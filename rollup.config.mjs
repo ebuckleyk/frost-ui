@@ -36,7 +36,11 @@ const config = {
     resolve(),
     commonjs(),
     typescript({ tsconfig: './tsconfig.json' }),
-    postcss(),
+    postcss({
+      config: {
+        path: './postcss.config.js',
+      },
+    }),
     terser(),
     bundleSize(),
   ],
