@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2016",
+    "jsx": "react", // Transform JSX into React code
+
+    /* Modules */
+    "module": "ESNext", // Generate modern JS modules
+    "moduleResolution": "node10", //Follow node.js rules for finding modules
+
+    /* Emit */
+    "declaration": true, // output .d.ts file for library types
+    "emitDeclarationOnly": true, // don't generate JS and only export type declarations
+    "sourceMap": true, // mapping JS code back to it's TS file origins for debugging
+    "outDir": "dist", // directory where the project will be generated
+    "declarationDir": "types", // location of the .d.ts files
+
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true, // assumes default exports if none are created manually
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  }
+}
