@@ -13,7 +13,7 @@ import { dts } from 'rollup-plugin-dts';
  * @type {import('rollup').RollupOptions}
  */
 const config = {
-  input: 'src/index.ts',
+  input: 'index.ts',
   external: ['react-dom'],
   output: [
     {
