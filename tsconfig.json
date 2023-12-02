@@ -25,9 +25,16 @@
 
     /* Completeness */
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*",
+    "stories/*",
+    "**/*.test*",
+    "**/*.stories.tsx"
+  ]
 }

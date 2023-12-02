@@ -8,12 +8,14 @@ import postcss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
 import bundleSize from 'rollup-plugin-bundle-size';
 import { dts } from 'rollup-plugin-dts';
+import tailwindcss from 'tailwindcss';
+import tailwindConfig from './tailwind.config.js';
 
 /**
  * @type {import('rollup').RollupOptions}
  */
 const config = {
-  input: 'index.ts',
+  input: 'src/index.ts',
   external: ['react-dom'],
   output: [
     {
@@ -40,6 +42,12 @@ const config = {
       config: {
         path: './postcss.config.js',
       },
+      extensions: ['.css'],
+      minimize: true,
+      inject: {
+        insertAt: 'top',
+      },
+      plugins: [tailwindcss(tailwindConfig)],
     }),
     terser(),
     bundleSize(),
@@ -54,6 +62,6 @@ const typesConfig = {
   output: [{ file: 'dist/index.d.ts', format: 'esm' }],
   plugins: [dts()],
   // https://stackoverflow.com/questions/71848226/creating-react-library-with-rollup-js-i-get-error-null-reading-usestate/7260405
-  external: [],
+  external: [/\.(css|less|scss)$/, 'react', 'react-dom'],
 };
 export default [config, typesConfig];
