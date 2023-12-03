@@ -1,2 +1,2 @@
-import './styles/globals.css' assert { type: 'css' };
+import './styles/index.css' assert { type: 'css' };
 export * from './components';
