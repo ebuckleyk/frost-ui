@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Preview } from '@storybook/react';
-import { Theme, ThemeProvider, useTheme } from '../src/components';
+import { Theme, ThemeProvider } from '../src/components';
 
 import '../src/styles/index.css';
 
@@ -35,9 +35,30 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
-        color: /(background|color)$/i,
+        // color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    backgrounds: {
+      default: 'twitter',
+      values: [
+        {
+          name: 'twitter',
+          value: '#00aced',
+        },
+        {
+          name: 'facebook',
+          value: '#3b5998',
+        },
+        {
+          name: 'white',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#1c1e21',
+        },
+      ],
     },
   },
   decorators: [
@@ -47,7 +68,9 @@ const preview: Preview = {
       return (
         <ThemeProvider theme={storyTheme}>
           {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
+          {/* <div style={{ width: '100%', height: '100%', background: "url('https://picsum.photos/id/1018/1000')" }}> */}
           <Story />
+          {/* </div> */}
         </ThemeProvider>
       );
     },
