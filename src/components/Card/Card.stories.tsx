@@ -53,6 +53,6 @@ export default meta;
 
 type Story = StoryObj<typeof Card>;
 
-export const Default: Story = {
+export const Demo: Story = {
   render: CardWithForm,
 };

@@ -33,6 +33,6 @@ const meta: Meta<ComponentType> = {
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Default: Story = {
+export const Demo: Story = {
   render: AccordionDemo,
 };
