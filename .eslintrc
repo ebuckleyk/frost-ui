@@ -13,6 +13,7 @@
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
+  "ignorePatterns":["dist", ".eslintrc.cjs"],
   "env": {
     "jest/globals": true
   },

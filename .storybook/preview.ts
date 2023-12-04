@@ -1,6 +1,8 @@
 import type { Preview } from '@storybook/react';
 
 import { withThemeByClassName } from '@storybook/addon-themes';
+// https://github.com/tailwindlabs/tailwindcss/issues/6314#issuecomment-991093531
+import '../src/styles/index.css';
 
 const preview: Preview = {
   parameters: {
