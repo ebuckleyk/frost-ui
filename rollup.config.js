@@ -37,7 +37,7 @@ const config = {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript({ tsconfig: './tsconfig.json' }),
+    typescript({ tsconfig: './tsconfig.json', exclude: ['**/*.test.ts', '**/*.stories.ts'] }),
     postcss({
       config: {
         path: './postcss.config.js',
