@@ -1,6 +1,4 @@
 import type { Preview } from '@storybook/react';
-
-import { withThemeByClassName } from '@storybook/addon-themes';
 // https://github.com/tailwindlabs/tailwindcss/issues/6314#issuecomment-991093531
 import '../src/styles/index.css';
 
@@ -14,16 +12,14 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-  },
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        light: 'light',
-        dark: 'dark',
+    options: {
+      panelPosition: 'right',
+      storySort: {
+        method: 'alphabetical',
+        order: [],
       },
-      defaultTheme: 'light',
-    }),
-  ],
+    },
+  },
 };
 
 export default preview;
