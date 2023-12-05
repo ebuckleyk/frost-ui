@@ -5,18 +5,12 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  packages: write
-
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    permissions:
-      contents: read
-      packages: write
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,7 +24,7 @@ jobs:
       - name: npm ci
         run: npm ci
         env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: create .npmrc
         run: |
