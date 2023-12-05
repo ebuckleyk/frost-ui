@@ -39,7 +39,7 @@ jobs:
             @ebuckleyk:registry=https://npm.pkg.github.com/
           EOF
         env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: create or publish release pr to NPM
         id: changesets
