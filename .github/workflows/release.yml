@@ -7,10 +7,6 @@ on:
 
   workflow_dispatch:
 
-permissions:
-  contents: read
-  packages: write
-
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
@@ -30,8 +26,7 @@ jobs:
       - name: npm ci
         run: npm ci
         env:
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: create .npmrc
         run: |
@@ -40,8 +35,7 @@ jobs:
             @ebuckleyk:registry=https://npm.pkg.github.com/
           EOF
         env:
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: create or publish release pr to NPM
         id: changesets
@@ -50,5 +44,4 @@ jobs:
           publish: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
