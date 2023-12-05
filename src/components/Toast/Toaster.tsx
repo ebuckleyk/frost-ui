@@ -2,15 +2,8 @@
 
 import * as React from 'react';
 
-import {
-  Toast,
-  ToastClose,
-  ToastDescription,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-  useToast,
-} from '@/components/Toast';
+import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from './Toast';
+import { useToast } from './use-toast';
 
 export function Toaster() {
   const { toasts } = useToast();
