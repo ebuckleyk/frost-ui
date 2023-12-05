@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Avatar, AvatarImage, AvatarFallback } from './Avatar';
+import { Card } from '../Card';
 // https://github.com/shadcn.png
 function AvatarDemo({ url }: { url: string | undefined }) {
   return (
-    <Avatar>
-      <AvatarImage src={url} alt="@shadcn" />
-      <AvatarFallback>CN</AvatarFallback>
-    </Avatar>
+    <Card className="flex items-center space-x-2 p-5">
+      <Avatar>
+        <AvatarImage src={url} alt="@shadcn" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+    </Card>
   );
 }
 type ComponentType = React.ComponentProps<typeof Avatar> & { imageSrc: string };
@@ -26,6 +29,6 @@ export default meta;
 type Story = StoryObj<ComponentType>;
 export const Demo: Story = {
   args: {
-    imageSrc: 'https://github.com/shadcn.png',
+    imageSrc: 'frost_ui.png',
   },
 };

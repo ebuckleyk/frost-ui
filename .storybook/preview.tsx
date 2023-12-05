@@ -1,4 +1,7 @@
+import * as React from 'react';
 import type { Preview } from '@storybook/react';
+
+import { Toaster } from '../src/components/Toast';
 // https://github.com/tailwindlabs/tailwindcss/issues/6314#issuecomment-991093531
 import '../src/styles/index.css';
 
@@ -20,6 +23,16 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story, context) => {
+      return (
+        <React.Fragment>
+          <Story />
+          <Toaster />
+        </React.Fragment>
+      );
+    },
+  ],
 };
 
 export default preview;

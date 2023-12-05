@@ -2,10 +2,16 @@ import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Input } from './Input';
 import { Label } from '../Label';
+import { Card } from '../Card';
 
 type ComponentType = typeof Input;
 const meta: Meta<ComponentType> = {
   component: Input,
+  render: () => (
+    <Card className="flex items-center p-5">
+      <Input />
+    </Card>
+  ),
 };
 
 export default meta;
@@ -21,10 +27,10 @@ export const Demo: Story = {
 export const SelectWithLabel: Story = {
   render: (args) => {
     return (
-      <React.Fragment>
+      <Card className="p-10">
         <Label htmlFor="input">Input</Label>
         <Input {...args} id="input" placeholder="Placeholder text" />
-      </React.Fragment>
+      </Card>
     );
   },
 };

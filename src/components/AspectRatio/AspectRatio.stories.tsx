@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { AspectRatio } from './AspectRatio';
+import { Card } from '../Card';
 
 function AspectRatioDemo({ ratio }: { ratio: number | undefined }) {
   return (
-    <div className="w-[250px] content-center bg-white">
+    <Card className="w-[250px] content-center">
       <AspectRatio ratio={ratio}>
         <img src="https://wowslider.com/sliders/demo-31/data1/images/autumn1072827.jpg" />
       </AspectRatio>
-    </div>
+    </Card>
   );
 }
 type ComponentType = React.ComponentProps<typeof AspectRatio>;
