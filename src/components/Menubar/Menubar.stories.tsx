@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+
 import {
   Menubar,
   MenubarCheckboxItem,

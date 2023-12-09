@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Card } from '../Card';
 import { Slider } from './Slider';
 
 function SliderDemo() {
   return (
-    <Card className="w-[350px] p-10">
+    <div className="w-[200px]">
       <Slider defaultValue={[50]} max={100} step={1} className={'w-[100%]'} />
-    </Card>
+    </div>
   );
 }
 

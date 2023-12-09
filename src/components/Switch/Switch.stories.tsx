@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Card } from '../Card';
 import { Label } from '../Label';
 import { Switch } from './Switch';
 
 function SwitchDemo() {
   return (
-    <Card className="flex items-center space-x-2 p-10">
+    <div className="flex items-center space-x-2">
       <Switch id="airplane-mode" />
       <Label htmlFor="airplane-mode">Airplane Mode</Label>
-    </Card>
+    </div>
   );
 }
 

@@ -1,17 +1,13 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { addDays, format } from 'date-fns';
-import { Calendar } from './Calendar';
-import { Card } from '../Card';
 import { DateRange } from 'react-day-picker';
+
+import { Calendar } from './Calendar';
 
 function SingleDayCalendarDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
-  return (
-    <Card>
-      <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border shadow" />
-    </Card>
-  );
+  return <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border shadow" />;
 }
 
 function MultiDayCalendarDemo() {
@@ -20,16 +16,14 @@ function MultiDayCalendarDemo() {
 
   const footer = days && days.length ? <p>You selected {days.length} day(s).</p> : <p>Please pick one or more days.</p>;
   return (
-    <Card>
-      <Calendar
-        footer={footer}
-        mode="multiple"
-        min={1}
-        selected={days}
-        onSelect={setDays}
-        className="rounded-md border shadow"
-      />
-    </Card>
+    <Calendar
+      footer={footer}
+      mode="multiple"
+      min={1}
+      selected={days}
+      onSelect={setDays}
+      className="rounded-md border shadow"
+    />
   );
 }
 
@@ -56,16 +50,14 @@ function RangeCalendarDemo() {
   }
 
   return (
-    <Card>
-      <Calendar
-        mode="range"
-        defaultMonth={pastMonth}
-        selected={range}
-        footer={footer}
-        onSelect={setRange}
-        className="rounded-md border shadow"
-      />
-    </Card>
+    <Calendar
+      mode="range"
+      defaultMonth={pastMonth}
+      selected={range}
+      footer={footer}
+      onSelect={setRange}
+      className="rounded-md border shadow"
+    />
   );
 }
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { Preview } from '@storybook/react';
 
+import { Card, CardContent, CardHeader } from '../src/components/Card';
 import { Toaster } from '../src/components/Toast';
 // https://github.com/tailwindlabs/tailwindcss/issues/6314#issuecomment-991093531
 import '../src/styles/index.css';
@@ -25,9 +26,16 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
+      const title = context.title.split('/')[1];
+
       return (
         <React.Fragment>
-          <Story />
+          <Card className="p-5">
+            <CardHeader>{title}</CardHeader>
+            <CardContent>
+              <Story />
+            </CardContent>
+          </Card>
           <Toaster />
         </React.Fragment>
       );

@@ -2,37 +2,30 @@ import * as React from 'react';
 import { FontBoldIcon, FontItalicIcon } from '@radix-ui/react-icons';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Card } from '../Card';
 import { Toggle } from './Toggle';
 
 function ToggleDemo() {
   return (
-    <Card className="p-5">
-      <Toggle aria-label="Toggle italic">
-        <FontBoldIcon className="h-4 w-4" />
-      </Toggle>
-    </Card>
+    <Toggle aria-label="Toggle italic">
+      <FontBoldIcon className="h-4 w-4" />
+    </Toggle>
   );
 }
 
 function ToggleOutlineDemo() {
   return (
-    <Card className="p-5">
-      <Toggle variant="outline" aria-label="Toggle italic">
-        <FontItalicIcon className="h-4 w-4" />
-      </Toggle>
-    </Card>
+    <Toggle variant="outline" aria-label="Toggle italic">
+      <FontItalicIcon className="h-4 w-4" />
+    </Toggle>
   );
 }
 
 function ToggleWithTextDemo() {
   return (
-    <Card className="p-5">
-      <Toggle aria-label="Toggle italic">
-        <FontItalicIcon className="mr-2 h-4 w-4" />
-        Italic
-      </Toggle>
-    </Card>
+    <Toggle aria-label="Toggle italic">
+      <FontItalicIcon className="mr-2 h-4 w-4" />
+      Italic
+    </Toggle>
   );
 }
 type ComponentType = React.ComponentProps<typeof Toggle>;

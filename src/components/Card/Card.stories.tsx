@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './Card';
+
+import { Button } from '../Button';
 import { Input } from '../Input';
 import { Label } from '../Label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../Select';
-import { Button } from '../Button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './Card';
 
 function CardWithForm() {
   return (

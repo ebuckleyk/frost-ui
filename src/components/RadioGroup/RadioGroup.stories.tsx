@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { Button } from '../Button';
-import { Card } from '../Card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 import { Label } from '../Label';
 import { toast } from '../Toast';
@@ -13,22 +12,20 @@ import { RadioGroup, RadioGroupItem } from './RadioGroup';
 
 function RadioGroupDemo() {
   return (
-    <Card className="flex p-10">
-      <RadioGroup defaultValue="comfortable">
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="default" id="r1" />
-          <Label htmlFor="r1">Default</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="comfortable" id="r2" />
-          <Label htmlFor="r2">Comfortable</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="compact" id="r3" />
-          <Label htmlFor="r3">Compact</Label>
-        </div>
-      </RadioGroup>
-    </Card>
+    <RadioGroup defaultValue="comfortable">
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="default" id="r1" />
+        <Label htmlFor="r1">Default</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="comfortable" id="r2" />
+        <Label htmlFor="r2">Comfortable</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="compact" id="r3" />
+        <Label htmlFor="r3">Compact</Label>
+      </div>
+    </RadioGroup>
   );
 }
 
@@ -54,49 +51,47 @@ function RadioGroupFormDemo() {
     });
   }
   return (
-    <Card className="flex p-10">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-          <FormField
-            control={form.control}
-            name="type"
-            render={({ field }) => (
-              <FormItem className="space-y-3">
-                <FormLabel>Notify me about...</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex flex-col space-y-1"
-                  >
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="all" />
-                      </FormControl>
-                      <FormLabel className="font-normal">All new messages</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="mentions" />
-                      </FormControl>
-                      <FormLabel className="font-normal">Direct messages and mentions</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="none" />
-                      </FormControl>
-                      <FormLabel className="font-normal">Nothing</FormLabel>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Submit</Button>
-        </form>
-      </Form>
-    </Card>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+        <FormField
+          control={form.control}
+          name="type"
+          render={({ field }) => (
+            <FormItem className="space-y-3">
+              <FormLabel>Notify me about...</FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex flex-col space-y-1"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="all" />
+                    </FormControl>
+                    <FormLabel className="font-normal">All new messages</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="mentions" />
+                    </FormControl>
+                    <FormLabel className="font-normal">Direct messages and mentions</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="none" />
+                    </FormControl>
+                    <FormLabel className="font-normal">Nothing</FormLabel>
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
   );
 }
 type ComponentType = React.ComponentProps<typeof RadioGroup>;

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { cn } from '../../lib/utils';
 import { Button } from '../Button';

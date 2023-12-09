@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Card } from '../Card';
 import { Separator } from './Separator';
 
 function SeparatorDemo() {
   return (
-    <Card className="p-5">
+    <>
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
         <p className="text-sm text-muted-foreground">An open-source UI component library.</p>
@@ -19,7 +18,7 @@ function SeparatorDemo() {
         <Separator orientation="vertical" />
         <div>Source</div>
       </div>
-    </Card>
+    </>
   );
 }
 

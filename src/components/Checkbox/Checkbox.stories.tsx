@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+
 import { Checkbox } from './Checkbox';
-import { Card } from '../Card';
 
 function CheckboxDemo() {
   return (
-    <Card className="flex items-center space-x-2 p-5">
+    <div className="flex items-center space-x-2 p-5">
       <Checkbox id="terms" />
       <label
         htmlFor="terms"
@@ -13,7 +13,7 @@ function CheckboxDemo() {
       >
         Accept terms and conditions
       </label>
-    </Card>
+    </div>
   );
 }
 type ComponentType = React.ComponentProps<typeof Checkbox>;
