@@ -13,8 +13,9 @@ function FileDropDemo() {
       </CardHeader>
       <CardContent>
         <FileDrop>
-          <FileDropArea />
-          <FileDropAreaText className="text-slate-700/30">Browse</FileDropAreaText>
+          <FileDropArea>
+            <FileDropAreaText className="text-slate-700/30">Browse</FileDropAreaText>
+          </FileDropArea>
         </FileDrop>
       </CardContent>
     </Card>
@@ -31,13 +32,12 @@ function AcceptFileTypeFileDropDemo() {
       <CardContent>
         <FileDrop
           accept={{
-            'image/*': ['.png'],
+            'text/html': ['.html', '.htm'],
           }}
         >
           <FileDropArea>
             <FileDropAreaText className="text-slate-700/30">Only *.html and *.htm files accepted.</FileDropAreaText>
           </FileDropArea>
-          Testing
         </FileDrop>
       </CardContent>
     </Card>

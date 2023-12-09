@@ -1,6 +1,7 @@
 import * as React from 'react';
-import Dropzone, { DropzoneOptions, DropzoneRootProps, useDropzone } from 'react-dropzone';
+import Dropzone, { DropzoneOptions, DropzoneRootProps, DropzoneState, useDropzone } from 'react-dropzone';
 
+import { createContextScope, Scope } from '@/lib/createContext';
 import { cn } from '@/lib/utils';
 
 // export interface FileDropProps extends DropzoneProps {}
@@ -10,75 +11,74 @@ import { cn } from '@/lib/utils';
 // }
 
 const FILEDROP_NAME = 'FileDrop';
+type ScopedProps<P> = P & { __scopeFileDrop?: Scope };
+const [createFileDropContext, createFileDropScope] = createContextScope(FILEDROP_NAME);
 
 export type FileDropProps = React.ComponentPropsWithoutRef<typeof Dropzone> & DropzoneOptions & DropzoneRootProps;
 
-const FileDrop = React.forwardRef<HTMLDivElement, FileDropProps>(({ className, children, ...props }, ref) => {
-  const { getRootProps, isDragAccept, isFocused, isDragReject } = useDropzone(props);
-  const style = React.useMemo(
-    () =>
-      `${isDragAccept ? 'border-green-400/30' : ''} ${isFocused ? 'border-input' : ''} ${
-        isDragReject ? 'border-red-400/30' : ''
-      }`,
-    [isFocused, isDragAccept, isDragReject],
-  );
+type FileDropContextValue = DropzoneState;
 
-  const dragOpacity = React.useMemo(() => (isDragAccept ? '' : '/30'), [isDragAccept]);
+const [FileDropProvider, useFileDropContext] = createFileDropContext<FileDropContextValue>(FILEDROP_NAME);
 
-  return <div {...getRootProps(props)} ref={ref} children={children} />;
+const FileDrop = React.forwardRef<HTMLDivElement, FileDropProps>((props: ScopedProps<FileDropProps>, forwardRef) => {
+  const { __scopeFileDrop, className, children } = props;
+
+  const dropzoneProps = useDropzone(props);
+  const providerProps = React.useMemo(() => dropzoneProps, [dropzoneProps]);
+
   return (
-    <div>
-      <div
-        ref={ref}
-        className={cn(
-          `bg-primary-foreground${dragOpacity} flex-col items-center border-2 border-dashed border-primary-foreground${dragOpacity} rounded transition .24s ease-in-out flex p-5 ${style}`,
-          className,
-        )}
-        {...getRootProps(props)}
-        children={children}
-      />
-    </div>
+    <FileDropProvider {...providerProps} scope={__scopeFileDrop}>
+      <div ref={forwardRef} {...providerProps.getRootProps(props)} className={cn(className)} children={children} />
+    </FileDropProvider>
   );
 });
 
-FileDrop.displayName = 'FileDrop';
+FileDrop.displayName = FILEDROP_NAME;
 
-const FileDropArea = React.forwardRef<HTMLDivElement, DropzoneOptions & React.HTMLAttributes<HTMLDivElement>>(
-  ({ children, className, ...props }) => {
-    const { getInputProps, isDragAccept, isFocused, isDragReject } = useDropzone(props);
+const FILE_DROP_AREA_NAME = 'FileDropArea';
+
+type FileDropAreaProps = Partial<DropzoneState> & React.PropsWithChildren & React.HtmlHTMLAttributes<HTMLDivElement>;
+type FileDropAreaElement = React.ElementRef<'div'>;
+
+const FileDropArea = React.forwardRef<FileDropAreaElement, FileDropAreaProps>(
+  (props: ScopedProps<FileDropAreaProps>, forwardRef) => {
+    const context = useFileDropContext(FILE_DROP_AREA_NAME, props.__scopeFileDrop);
+    const { getInputProps, isDragAccept, isFocused, isDragReject, isDragActive } = context;
 
     const style = React.useMemo(
       () =>
-        `${isDragAccept ? 'border-green-400/30' : ''} ${isFocused ? 'border-input' : ''} ${
-          isDragReject ? 'border-red-400/30' : ''
+        `${isDragAccept ? 'border-primary/40 bg-primary/30' : ''} ${isFocused ? 'border-input' : ''} ${
+          isDragReject ? 'border-destructive/40 bg-destructive/30' : ''
         }`,
       [isFocused, isDragAccept, isDragReject],
     );
 
-    const dragOpacity = React.useMemo(() => (isDragAccept ? '' : '/30'), [isDragAccept]);
-    console.log('rendered');
+    const dragOpacity = React.useMemo(() => (isDragActive ? '' : '/30'), [isDragActive]);
+
     return (
       <div
         className={cn(
           `bg-primary-foreground${dragOpacity} flex-col items-center border-2 border-dashed border-primary-foreground${dragOpacity} rounded transition .24s ease-in-out flex p-5 ${style}`,
-          className,
+          props.className,
         )}
+        ref={forwardRef}
       >
         <input {...getInputProps()} />
-        {children}
+        {props.children}
       </div>
     );
   },
 );
 
-FileDropArea.displayName = 'FileDropArea';
+FileDropArea.displayName = FILE_DROP_AREA_NAME;
 
+const FILE_DROP_AREA_TEXT_NAME = 'FileDropAreaText';
 const FileDropAreaText = React.forwardRef<HTMLParagraphElement, React.ParamHTMLAttributes<HTMLParagraphElement>>(
   ({ className, ...props }, ref) => {
     return <p ref={ref} className={cn(className)} {...props} />;
   },
 );
 
-FileDropAreaText.displayName = 'FileDropAreaText';
+FileDropAreaText.displayName = FILE_DROP_AREA_TEXT_NAME;
 
-export { FileDrop, FileDropArea, FileDropAreaText };
+export { FileDrop, FileDropArea, FileDropAreaText, createFileDropScope };

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Terminal } from 'lucide-react';
 import { Meta, StoryObj } from '@storybook/react';
+import { Terminal } from 'lucide-react';
+
 import { Alert, AlertDescription, AlertTitle } from './Alert';
 
 function AlertDemo(props) {
