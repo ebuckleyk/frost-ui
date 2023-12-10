@@ -26,7 +26,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const title = context.title.split('/')[1];
+      const title = context.title.includes('/') ? context.title.split('/')[1] : context.title;
 
       return (
         <React.Fragment>
