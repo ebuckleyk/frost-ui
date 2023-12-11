@@ -1,5 +1,12 @@
 # @ebuckleyk/frost-ui
 
+## 0.2.0
+
+### Minor Changes
+
+- 649fe74: Added FileDrop component
+- efb6469: "Added RichText component"
+
 ## 0.1.0
 
 ### Minor Changes
