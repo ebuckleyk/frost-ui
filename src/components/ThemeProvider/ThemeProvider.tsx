@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
 export type Theme = 'dark' | 'light' | 'system';
@@ -31,17 +31,7 @@ export function ThemeProvider({
   storageKey = 'ebuckleyk/frost-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [themeState, setThemeState] = useState<Theme>(() => getTheme(storageKey, theme));
-  console.log({ themeState });
-  const handleMediaQuery = useCallback(
-    (e: MediaQueryListEvent | MediaQueryList) => {
-      const systemTheme = getSystemTheme(e);
-      if (themeState === 'system') {
-        applyTheme(systemTheme);
-      }
-    },
-    [theme],
-  );
+  const [themeState, setThemeState] = useState<Theme>(() => theme || getTheme(storageKey, theme));
 
   const applyTheme = useCallback((t: Theme) => {
     const root = window.document.documentElement;
@@ -58,14 +48,27 @@ export function ThemeProvider({
     return t;
   }, []);
 
-  const setTheme = useCallback((t: Theme) => {
-    try {
-      setThemeState(t);
-      localStorage.setItem(storageKey, t);
-    } catch (error) {
-      // unsupported
-    }
-  }, []);
+  const handleMediaQuery = useCallback(
+    (e: MediaQueryListEvent | MediaQueryList) => {
+      const systemTheme = getSystemTheme(e);
+      if (themeState === 'system') {
+        applyTheme(systemTheme);
+      }
+    },
+    [applyTheme, themeState],
+  );
+
+  const setTheme = useCallback(
+    (t: Theme) => {
+      try {
+        setThemeState(t);
+        localStorage.setItem(storageKey, t);
+      } catch (error) {
+        // unsupported
+      }
+    },
+    [storageKey],
+  );
 
   // localStorage event handling
   useEffect(() => {
@@ -78,7 +81,7 @@ export function ThemeProvider({
 
     window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
-  }, [setTheme]);
+  }, [setTheme, storageKey, theme]);
 
   // always listen to System preference
   useEffect(() => {
@@ -93,9 +96,12 @@ export function ThemeProvider({
 
   // whenever theme changes, apply it
   useEffect(() => {
-    applyTheme(theme);
-    setTheme(theme);
-  }, [theme]);
+    setTheme(theme || 'system');
+  }, [applyTheme, setTheme, theme]);
+
+  useEffect(() => {
+    applyTheme(themeState);
+  }, [applyTheme, themeState]);
 
   const providerValue: ThemeProviderState = {
     theme: themeState,

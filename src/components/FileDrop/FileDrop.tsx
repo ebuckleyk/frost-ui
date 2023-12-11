@@ -163,7 +163,7 @@ type FileDropFileAreaChildProps = {
   files: DropFileInfo[] | undefined;
 };
 type FileDropFilesAreaProps = {
-  renderRows?: (props: FileDropFileAreaChildProps) => React.ReactNode | undefined;
+  renderRows?: (props: FileDropFileAreaChildProps) => React.ReactNode;
 };
 
 const FileDropFileArea: React.FC<FileDropFilesAreaProps> = (props: ScopedProps<FileDropFilesAreaProps>) => {

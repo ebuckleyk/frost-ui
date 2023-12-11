@@ -210,8 +210,8 @@ const BlockButton = ({ format, Icon }: ToolbarOptionProps) => {
     richTextUtils.toggleBlock(editor, format);
   }, [editor, format]);
   return (
-    <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleBlock}>
-      <Icon className="h-4 w-4" />
+    <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleBlock} variant={'outline'}>
+      <Icon className="h-3 w-3" />
     </Toggle>
   );
 };
@@ -223,8 +223,8 @@ const MarkButton = ({ format, Icon }: ToolbarOptionProps) => {
     richTextUtils.toggleMark(editor, format);
   }, [editor, format]);
   return (
-    <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleMark}>
-      <Icon className="h-4 w-4" />
+    <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleMark} variant={'outline'}>
+      <Icon className="h-3 w-3" />
     </Toggle>
   );
 };

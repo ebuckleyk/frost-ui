@@ -8,12 +8,13 @@ import * as z from 'zod';
 import { Button } from '../Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../Card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../Form';
+import { ScrollArea } from '../ScrollArea';
 import { toast } from '../Toast';
 import { FileDrop, FileDropArea, FileDropAreaText, FileDropFileArea } from './FileDrop';
 
 function FileDropDemo() {
   return (
-    <Card className="w-[350px] p-5">
+    <Card className="p-5">
       <CardHeader>
         <CardTitle>Upload File</CardTitle>
         <CardDescription>Drag & Drop or Click Browse to Upload File</CardDescription>
@@ -32,7 +33,7 @@ function FileDropDemo() {
 
 function AcceptFileTypeFileDropDemo() {
   return (
-    <Card className="w-[350px] p-5">
+    <Card className="p-5">
       <CardHeader>
         <CardTitle>Upload File</CardTitle>
         <CardDescription>Drag & Drop or Click Browse to Upload File</CardDescription>
@@ -59,10 +60,22 @@ const file2 = new File(['file'], '123.pdf', {
   type: 'application/pdf',
 });
 
+const generateFiles = (count: number): File[] => {
+  const list: File[] = [];
+  for (let i = 0; i < count; i++) {
+    list.push(
+      new File(['file'], `file ${i}.pdf`, {
+        type: 'application/pdf',
+      }),
+    );
+  }
+  return list;
+};
+
 function InitialFilesFileDropDemo() {
   const [state] = React.useState<File[]>([file1, file2]);
   return (
-    <Card className="w-[350px] p-5">
+    <Card className="p-5">
       <CardHeader>
         <CardTitle>Upload File</CardTitle>
         <CardDescription>Drag & Drop or Click Browse to Upload File</CardDescription>
@@ -82,7 +95,7 @@ function InitialFilesFileDropDemo() {
 function DisabledFileDropDemo() {
   const [state] = React.useState<File[]>([file1, file2]);
   return (
-    <Card className="w-[350px] p-5">
+    <Card className="p-5">
       <CardHeader>
         <CardTitle>Upload File</CardTitle>
         <CardDescription>Field and Files are readonly. Files are still selectable</CardDescription>
@@ -98,6 +111,29 @@ function DisabledFileDropDemo() {
     </Card>
   );
 }
+
+function FileDropWithScrollAreaDemo() {
+  const [state] = React.useState<File[]>(generateFiles(10));
+  return (
+    <Card className="p-5">
+      <CardHeader>
+        <CardTitle>Upload File</CardTitle>
+        <CardDescription>Field and Files are readonly. Files are still selectable</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <FileDrop disabled files={state}>
+          <FileDropArea>
+            <FileDropAreaText className="text-slate-700/30">See preloaded files.</FileDropAreaText>
+          </FileDropArea>
+          <ScrollArea className="h-36">
+            <FileDropFileArea />
+          </ScrollArea>
+        </FileDrop>
+      </CardContent>
+    </Card>
+  );
+}
+
 const formSchema = z.object({
   files: z.instanceof(File).array().min(1, 'Must add at least one file').max(2, 'No more than 2 files allowed.'),
 });
@@ -193,4 +229,8 @@ export const DisabledFileDrop: Story = {
 
 export const FileDropForm: Story = {
   render: FileDropFormDemo,
+};
+
+export const FileDropWithScrollArea: Story = {
+  render: FileDropWithScrollAreaDemo,
 };
