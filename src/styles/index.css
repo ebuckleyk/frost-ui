@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- /*
+/*
   old value: 222.2 84% 4.9%
   new: 240 69% 78%; | 240 69% 65%; 
   old bg: 0 0% 100%;
@@ -17,71 +17,145 @@
 
     --card: 221 97% 93%;
     --card-foreground: 218 75% 55%;
- 
+
     --popover: 221 97% 93%;
     --popover-foreground: 218 75% 55%;
- 
+
     --primary: 218 75% 55%;
     --primary-foreground: 221 97% 93%;
- 
+
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 221 97% 93%;
- 
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
- 
+
     --accent: 210 40% 96.1%;
     --accent-foreground: 218 75% 55%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 221 97% 93%;
     --input: 218 75% 85%;
     --ring: 222.2 84% 4.9%;
- 
+
     --radius: 0.5rem;
   }
- /*
+  /*
  old: 222.2 84% 4.9%;
  new: 216 8% 12%; | 219 40% 11%;
  */
   .dark {
     --background: 219 40% 11%;
     --foreground: 210 40% 98%;
- 
+
     --card: 219 40% 11%;
     --card-foreground: 210 40% 98%;
- 
+
     --popover: 219 40% 11%;
     --popover-foreground: 210 40% 98%;
- 
+
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
- 
+
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
- 
+
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
- 
+
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
- 
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Reset any custom CSS (specifically Chakra)*/
+  .richtext-editor :is(h1, h2, h3, h4, h5, h6, p, pre, code, img, blockquote, table, td, input, iframe, li, ol, ul) {
+    all: revert;
+  }
+
+  .richtext-editor p {
+    margin: 0;
+  }
+
+  .richtext-editor pre {
+    padding: 10px;
+    background-color: #eee;
+    white-space: pre-wrap;
+  }
+
+  .richtext-editor :not(pre) > code {
+    font-family: monospace;
+    background-color: hsl(var(--secondary-foreground));
+    padding: 3px;
+  }
+
+  .richtext-editor img {
+    max-width: 100%;
+    max-height: 20em;
+  }
+
+  .richtext-editor blockquote {
+    border-left: 2px solid hsl(var(--accent-foreground));
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 5px;
+    color: hsl(var(--primary) / 0.7);
+    font-style: italic;
+  }
+
+  .richtext-editor blockquote[dir='rtl'] {
+    border-left: none;
+    padding-left: 0;
+    padding-right: 5px;
+    border-right: 2px solid hsl(var(--accent-foreground));
+  }
+
+  .richtext-editor table {
+    border-collapse: collapse;
+  }
+
+  .richtext-editor td {
+    padding: 10px;
+    border: 2px solid #ddd;
+  }
+
+  .richtext-editor input {
+    box-sizing: border-box;
+    font-size: 0.85em;
+    width: 100%;
+    padding: 0.5em;
+    border: 2px solid #ddd;
+    background: #fafafa;
+  }
+
+  .richtext-editor input:focus {
+    outline: 0;
+    border-color: blue;
+  }
+
+  .richtext-editor iframe {
+    width: 100%;
+    border: 1px solid #eee;
+  }
+
+  .richtext-editor [data-slate-editor] > * + * {
+    margin-top: 1em;
   }
 }

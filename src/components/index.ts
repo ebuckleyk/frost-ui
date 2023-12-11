@@ -24,6 +24,7 @@ export * from './NavigationMenu';
 export * from './Popover';
 export * from './Progress';
 export * from './RadioGroup';
+export * from './RichText';
 export * from './ScrollArea';
 export * from './Select';
 export * from './Separator';
