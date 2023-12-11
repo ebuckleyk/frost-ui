@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.3.0
+
+### Minor Changes
+
+- 65f07ef: Updated storybook components. Change opacity for buttons and made RichTextEditor Toolbar outline variant by default
+
 ## 0.2.0
 
 ### Minor Changes
