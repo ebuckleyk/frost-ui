@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.4.0
+
+### Minor Changes
+
+- 6835547: Added EventCalendar component. Fixed dependency resolution for RichText component
+
 ## 0.3.0
 
 ### Minor Changes
