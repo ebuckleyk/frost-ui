@@ -15,6 +15,7 @@ export * from './ContextMenu';
 //export * from './DatePicker';
 export * from './Dialog';
 export * from './DropdownMenu';
+export * from './EventCalendar';
 export * from './Form';
 export * from './HoverCard';
 export * from './Input';

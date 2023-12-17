@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Toggle } from '@/components';
 import {
   CodeIcon,
   FontBoldIcon,
@@ -18,9 +17,10 @@ import { withHistory } from 'slate-history';
 import { Editable, Slate, useSlate, withReact } from 'slate-react';
 import { EditableProps } from 'slate-react/dist/components/editable';
 
-import { createContextScope, Scope } from '@/lib/createContext';
 import { cn } from '@/lib/utils';
+import { Toggle } from '@/components/Toggle';
 
+import { createContextScope, Scope } from '../../lib/createContext';
 import * as richTextUtils from './RichText.utils';
 
 const HOTKEYS: { [key: string]: string } = {

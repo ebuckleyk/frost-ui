@@ -1,0 +1,70 @@
+@import '../../styles/index.css';
+
+.fc .fc-list-sticky .fc-list-day > * {
+  background: none;
+}
+
+.fc .fc-list-event td {
+  color: hsl(var(--primary)) !important;
+}
+
+.fc .fc-list-event:hover td {
+  background-color: hsl(var(--primary) / 0.7);
+  backdrop-filter: blur(20px) saturate(200%);
+  color: hsl(var(--secondary));
+}
+
+.frostui-view {
+  background-color: hsl(var(--secondary) / 0.7);
+  border-radius: 10px;
+  border: none;
+  backdrop-filter: blur(20px) saturate(200%);
+  overflow: hidden;
+}
+
+.frostui-dayheader {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--primary));
+}
+
+.frostui-event {
+  border: hsl(var(--border));
+  cursor: pointer;
+}
+
+.frostui-nowindicator {
+  border-color: hsl(var(--primary) / 0.9) !important;
+}
+
+.fc-list-day {
+  background-color: hsl(var(--secondary) / 0.9) !important;
+  color: hsl(var(--primary));
+}
+
+.fc-event-main-frame {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: hsl(var(--secondary) / 0.7);
+}
+
+.fc-day-today.fc-timegrid-col.frostui-daycell {
+  background-color: hsl(var(--secondary) / 0.7);
+}
+
+.fc-popover.frostui-daycell {
+  border-radius: 10px;
+  background-color: hsl(var(--background));
+  z-index: 35;
+}
+
+.fc .fc-bg-event {
+  background-image: repeating-linear-gradient(45deg, hsl(var(--muted-foreground)) 20%, hsl(var(--background)) 30%);
+  color: hsl(var(--primary));
+  text-overflow: hidden;
+}
+
+.fc-event-main {
+  overflow: hidden;
+}

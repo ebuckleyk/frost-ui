@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+//import type { Config } from 'tailwindcss';
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -18,4 +20,17 @@ export const formatBytes = (bytes: number, decimals: number): string => {
     sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
     i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+};
+
+// export const useBreakpoint<K extends BreakpointKey>
+
+export const getInitials = (text: string): string => {
+  if (!text) return '';
+  return (
+    text
+      .match(/(\b\S)?/g)
+      ?.join('')
+      .match(/(^\S|\S$)?/g)
+      ?.join('') ?? ''
+  );
 };

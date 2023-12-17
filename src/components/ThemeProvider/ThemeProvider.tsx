@@ -75,13 +75,13 @@ export function ThemeProvider({
     const handleStorage = (e: StorageEvent) => {
       if (e.key !== storageKey) return;
 
-      const t = (e.newValue || theme) as Theme;
+      const t = (e.newValue || themeState) as Theme;
       setTheme(t);
     };
 
     window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
-  }, [setTheme, storageKey, theme]);
+  }, [setTheme, storageKey, themeState]);
 
   // always listen to System preference
   useEffect(() => {
