@@ -1,12 +1,16 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import * as React from 'react';
-import { CalendarOptions, EventContentArg, EventInput, PluginDef } from '@fullcalendar/core';
+import { EventContentArg, EventInput, PluginDef } from '@fullcalendar/core';
+import { EventImpl } from '@fullcalendar/core/internal';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import multiMonthPlugin from '@fullcalendar/multimonth';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import endOfWeek from 'date-fns/endOfWeek';
+import format from 'date-fns/format';
+import startOfWeek from 'date-fns/startOfWeek';
 import {
   Calendar,
   ChevronLeft,
@@ -24,6 +28,8 @@ import { cn, getInitials } from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/Avatar';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/Dialog';
+import { ScrollArea } from '@/components/ScrollArea';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTrigger } from '@/components/Sheet';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ToggleGroup';
 
@@ -31,27 +37,8 @@ import { createContextScope, Scope } from '../../lib/createContext';
 
 import './eventcalendar.css';
 
-import { EventImpl } from '@fullcalendar/core/internal';
-import endOfWeek from 'date-fns/endOfWeek';
-import format from 'date-fns/format';
-import startOfWeek from 'date-fns/startOfWeek';
-
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/Dialog';
-import { ScrollArea } from '@/components/ScrollArea';
-
 const DEFAULT_PLUGINS: PluginDef[] = [dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin, multiMonthPlugin];
-enum CALENDAR_VIEW {
-  MONTH = 'dayGridMonth',
-  WEEK = 'timeGridWeek',
-  DAY = 'timeGridDay',
-  LIST = 'listWeek',
-}
-
-enum MOBILE_CALENDAR_VIEW {
-  MONTH = 'listMonth',
-  WEEK = 'listWeek',
-  DAY = 'listDay',
-}
+const DEFAULT_COLOR = '#0000ff';
 
 type EventCalendarCategory = {
   id: string | number;
@@ -63,8 +50,22 @@ type EventCalendarAttendee = {
   name: string;
   imageUrl: string;
 };
+
+export enum CALENDAR_VIEW {
+  MONTH = 'dayGridMonth',
+  WEEK = 'timeGridWeek',
+  DAY = 'timeGridDay',
+  LIST = 'listWeek',
+}
+
+export enum MOBILE_CALENDAR_VIEW {
+  MONTH = 'listMonth',
+  WEEK = 'listWeek',
+  DAY = 'listDay',
+}
+
 export type EventCalendarEvent = EventInput & {
-  extendedProps?: Partial<Pick<EventImpl, 'extendedProps'>> & {
+  extendedProps?: Partial<Pick<EventInput, 'extendedProps'>> & {
     category?: EventCalendarCategory;
     attendees?: EventCalendarAttendee[];
     description?: string;
@@ -78,12 +79,19 @@ const EVENTCALENDAR_NAME = 'EventCalendar';
 type ScopedProps<P> = P & { __scopeEventCalendar?: Scope };
 const [createEventCalendarContext, createEventCalendarScope] = createContextScope(EVENTCALENDAR_NAME);
 
-type EventCalendarProps = CalendarOptions & {
+export type EventCalendarProps = {
   renderOnEventClick?: (event: EventImpl) => React.ReactNode;
+  initialView?: CALENDAR_VIEW;
+  events?: EventInput[];
+  initialEvents?: EventInput[];
+  dayMaxEvents?: number;
+  dayMaxEventRows?: boolean;
+  dayHeaders?: boolean;
+  stickyHeaderDates?: boolean;
+  nowIndicator?: boolean;
 };
 type EventCalendarContextValue = EventCalendarState &
   EventCalendarProps & {
-    calendar?: FullCalendar | null;
     renderOnEventClick?: (event: EventImpl) => React.ReactNode;
     goToNext: () => void;
     goToPrev: () => void;
@@ -93,99 +101,99 @@ type EventCalendarContextValue = EventCalendarState &
 
 type EventCalendarState = {
   currentCalendarDate?: Date;
-  currentCalendarView?: CALENDAR_VIEW;
+  currentCalendarView?: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW;
 };
 
 const [EventCalendarProvider, useEventCalendarContext] =
   createEventCalendarContext<EventCalendarContextValue>(EVENTCALENDAR_NAME);
 
-const EventCalendar: React.FC<EventCalendarProps> = (props: ScopedProps<EventCalendarProps>) => {
-  const [calendar, setCalendar] = React.useState<FullCalendar | undefined | null>();
-  const [state, setState] = React.useState<EventCalendarState>({
-    currentCalendarDate: new Date(),
-    currentCalendarView: (props.initialView as CALENDAR_VIEW) ?? CALENDAR_VIEW.DAY,
-  });
+const EventCalendar = React.forwardRef<React.ElementRef<typeof FullCalendar>, EventCalendarProps>(
+  (props: ScopedProps<EventCalendarProps>, forwardRef) => {
+    const [calendar, setCalendar] = React.useState<FullCalendar | undefined | null>();
+    const [state, setState] = React.useState<EventCalendarState>({
+      currentCalendarDate: new Date(),
+      currentCalendarView: (props.initialView as CALENDAR_VIEW) ?? CALENDAR_VIEW.DAY,
+    });
+    const {
+      __scopeEventCalendar,
+      events,
+      dayMaxEvents = 2,
+      dayMaxEventRows = true,
+      dayHeaders = true,
+      stickyHeaderDates = true,
+      nowIndicator = true,
+    } = props;
 
-  const {
-    __scopeEventCalendar,
-    events,
-    dayMaxEvents = 2,
-    dayMaxEventRows = true,
-    dayHeaders = true,
-    stickyHeaderDates = true,
-    nowIndicator = true,
-  } = props;
+    const internalRef = React.useRef<InstanceType<typeof FullCalendar>>(null);
+    const ref: React.RefObject<FullCalendar> = forwardRef ? (forwardRef as React.RefObject<FullCalendar>) : internalRef;
 
-  const ref = React.useRef<InstanceType<typeof FullCalendar>>(null);
-  const api = React.useMemo(() => calendar?.getApi(), [calendar]);
+    const api = React.useMemo(() => calendar?.getApi(), [calendar]);
 
-  React.useEffect(() => {
-    setCalendar(ref.current);
-  }, []);
+    React.useEffect(() => {
+      setCalendar(ref.current);
+    }, []);
 
-  const prev = React.useCallback(() => {
-    api?.prev();
-    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-  }, [api]);
+    const prev = React.useCallback(() => {
+      api?.prev();
+      setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
+    }, [api]);
 
-  const next = React.useCallback(() => {
-    api?.next();
-    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-  }, [api]);
+    const next = React.useCallback(() => {
+      api?.next();
+      setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
+    }, [api]);
 
-  const today = React.useCallback(() => {
-    api?.today();
-    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-  }, [api]);
+    const today = React.useCallback(() => {
+      api?.today();
+      setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
+    }, [api]);
 
-  const changeView = React.useCallback(
-    (v: CALENDAR_VIEW) => {
-      if (!v || v === state.currentCalendarView) return;
-      api?.changeView(v);
-      setState((prevState) => ({ ...prevState, currentCalendarView: v }));
-    },
-    [api, state.currentCalendarView],
-  );
+    const changeView = React.useCallback(
+      (v: CALENDAR_VIEW) => {
+        if (!v || v === state.currentCalendarView) return;
+        api?.changeView(v);
+        setState((prevState) => ({ ...prevState, currentCalendarView: v }));
+      },
+      [api, state.currentCalendarView],
+    );
 
-  React.useEffect(() => {
-    const date = api?.getDate();
-    setState((prevState) => ({ ...prevState, currentCalendarDate: date }));
-  }, [api]);
+    React.useEffect(() => {
+      const date = api?.getDate();
+      setState((prevState) => ({ ...prevState, currentCalendarDate: date }));
+    }, [api]);
 
-  return (
-    <EventCalendarProvider
-      scope={__scopeEventCalendar}
-      events={events}
-      calendar={calendar}
-      goToPrev={prev}
-      goToNext={next}
-      goToToday={today}
-      changeView={changeView}
-      renderOnEventClick={props.renderOnEventClick}
-      currentCalendarDate={state.currentCalendarDate}
-      currentCalendarView={state.currentCalendarView}
-    >
-      <Card className="p-5">
+    return (
+      <EventCalendarProvider
+        scope={__scopeEventCalendar}
+        events={events}
+        goToPrev={prev}
+        goToNext={next}
+        goToToday={today}
+        changeView={changeView}
+        renderOnEventClick={props.renderOnEventClick}
+        currentCalendarDate={state.currentCalendarDate}
+        currentCalendarView={state.currentCalendarView}
+      >
         <EventCalendarToolbar />
         <FullCalendar
-          ref={ref}
+          ref={forwardRef}
           plugins={DEFAULT_PLUGINS}
           initialView={state.currentCalendarView}
           headerToolbar={false}
           weekends={true}
           events={props.events}
           initialEvents={props.initialEvents}
-          eventClassNames={cn('frostui-event', props.eventClassNames)}
-          dayCellClassNames={cn('frostui-daycell', props.dayCellClassNames)}
-          nowIndicatorClassNames={cn('frostui-nowindicator', props.nowIndicatorClassNames)}
-          slotLaneClassNames={cn('frostui-slotLane', props.slotLaneClassNames)}
-          viewClassNames={cn('frostui-view', props.viewClassNames)}
-          allDayClassNames={cn('frostui-allday', props.allDayClassNames)}
-          moreLinkClassNames={cn('frostui-morelink', props.moreLinkClassNames)}
-          noEventsClassNames={cn('frostui-noevents', props.noEventsClassNames)}
-          dayHeaderClassNames={cn('frostui-dayheader', props.dayHeaderClassNames)}
-          slotLabelClassNames={cn('frostui-slotlabel', props.slotLabelClassNames)}
-          weekNumberClassNames={cn('frostui-weeknumber', props.weekNumberClassNames)}
+          eventClassNames={'frostui-event'}
+          dayCellClassNames={'frostui-daycell'}
+          nowIndicatorClassNames={'frostui-nowindicator'}
+          slotLaneClassNames={'frostui-slotLane'}
+          viewClassNames={'frostui-view'}
+          allDayClassNames={'frostui-allday'}
+          moreLinkClassNames={'frostui-morelink'}
+          noEventsClassNames={'frostui-noevents'}
+          dayHeaderClassNames={'frostui-dayheader'}
+          slotLabelClassNames={'frostui-slotlabel'}
+          weekNumberClassNames={'frostui-weeknumber'}
           dayMaxEvents={dayMaxEvents}
           dayMaxEventRows={dayMaxEventRows}
           dayHeaders={dayHeaders}
@@ -198,22 +206,16 @@ const EventCalendar: React.FC<EventCalendarProps> = (props: ScopedProps<EventCal
           eventContent={(args) => <ViewEventContent {...args} />}
           height={600}
         />
-      </Card>
-    </EventCalendarProvider>
-  );
-};
+      </EventCalendarProvider>
+    );
+  },
+);
 
 EventCalendar.displayName = EVENTCALENDAR_NAME;
 
 /**
  * Event Content
  */
-const getBorderColor = (borderColor: string) => {
-  if (!borderColor) return 'border-blue-500';
-  if (borderColor === 'white' || borderColor === 'black') return `border-${borderColor}`;
-  return `border-${borderColor}-500`;
-};
-
 type EventContentProps = EventContentArg & {
   children?: React.ReactNode;
 };
@@ -223,7 +225,6 @@ const ViewEventContent: React.FC<EventContentProps> = (props: ScopedProps<EventC
   const { timeText, event, view } = props;
   const isBgEvent = event.display === 'background';
 
-  const tailWindBorderColor = getBorderColor(event.borderColor);
   const tailWindAlign = view.type.includes('dayGridMonth') ? 'items-center' : 'align-middle';
 
   return (
@@ -231,7 +232,12 @@ const ViewEventContent: React.FC<EventContentProps> = (props: ScopedProps<EventC
       <SheetTrigger asChild className="z-50">
         <div className={`flex h-full w-full overflow-hidden ${tailWindAlign}`}>
           {view.type.includes('dayGridMonth') && !isBgEvent ? (
-            <div className={`mx-1 my-0 box-content h-0 w-0 rounded-full border-[4px] ${tailWindBorderColor}`} />
+            <div
+              style={{
+                borderColor: event.borderColor || DEFAULT_COLOR,
+              }}
+              className={'mx-1 my-0 box-content h-0 w-0 rounded-full border-[4px]'}
+            />
           ) : null}
           <div className="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap">{timeText}</div>
           <div className="min-h-0 shrink grow">
@@ -254,7 +260,7 @@ ViewEventContent.displayName = VIEWEVENTCONTENT_NAME;
 const EVENTCALENDARTOOLBAR_NAME = 'EventCalendarToolbar';
 type EventCalendarToolbarProps = React.HtmlHTMLAttributes<HTMLDivElement>;
 
-const getDateFormat = (date: Date, view: CALENDAR_VIEW): string => {
+const getDateFormat = (date: Date, view: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW): string => {
   switch (view) {
     case CALENDAR_VIEW.WEEK:
     case CALENDAR_VIEW.LIST:
@@ -322,7 +328,6 @@ type EventContentInfoProps = {
 const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<EventContentInfoProps>) => {
   const { event } = props;
 
-  const tailWindBorderColor = getBorderColor(event.borderColor);
   const attendees = (event.extendedProps ?? {}).attendees ?? [];
   const description = (event.extendedProps ?? {}).description;
   return (
@@ -330,26 +335,25 @@ const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<Ev
       <EditEventContentInfo event={event} />
       <SheetHeader className="flex flex-row items-center">
         <div className="mt-1 flex items-center">
-          <div className={`mx-1 mt-1 box-content h-0 w-0 rounded-full border-[4px] ${tailWindBorderColor}`} />
+          <div
+            style={{ borderColor: event.borderColor || DEFAULT_COLOR }}
+            className={'mx-1 mt-1 box-content h-0 w-0 rounded-full border-[4px]'}
+          />
         </div>
         <div className="m-0 font-semibold">{event.title}</div>
       </SheetHeader>
       <SheetDescription>
         <span className="flex flex-col gap-4">
-          <EventContentDescriptionItem className="" Icon={Calendar}>
+          <EventContentDescriptionItem Icon={Calendar}>
             {event.start && format(event.start, 'MMMM dd, y EEEE')}
           </EventContentDescriptionItem>
-          <EventContentDescriptionItem className="" Icon={Clock}>
+          <EventContentDescriptionItem Icon={Clock}>
             {`${event.start && format(event.start, 'p')}${event.start && event.end && ' - '}${
               event.end && format(event.end, 'p')
             }`}
           </EventContentDescriptionItem>
-          <EventContentDescriptionItem className="" Icon={TagsIcon}>
-            None
-          </EventContentDescriptionItem>
-          <EventContentDescriptionItem className="" Icon={MapPinIcon}>
-            Virtual
-          </EventContentDescriptionItem>
+          <EventContentDescriptionItem Icon={TagsIcon}>None</EventContentDescriptionItem>
+          <EventContentDescriptionItem Icon={MapPinIcon}>Virtual</EventContentDescriptionItem>
           <EventContentDescriptionItem
             className="items-start"
             Icon={() => (
@@ -383,7 +387,7 @@ const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<Ev
 
 EventContentInfo.displayName = EVENTCONTENTINFO_NAME;
 
-type EventContentDescriptionItemProps = Pick<HTMLDivElement, 'className'> & {
+type EventContentDescriptionItemProps = Partial<Pick<HTMLDivElement, 'className'>> & {
   Icon: LucideIcon | (() => JSX.Element);
   children: React.ReactNode;
 };
@@ -450,15 +454,3 @@ const EventAttendee: React.FC<EventAttendeeProps> = (props: ScopedProps<EventAtt
 
 EventAttendee.displayName = EVENTATTENDEE_NAME;
 export { EventCalendar, createEventCalendarScope };
-
-/**
- *             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Senectus et netus et malesuada fames ac. Massa tempor nec feugiat nisl pretium fusce
-            id. At tellus at urna condimentum mattis pellentesque id nibh. Quis enim lobortis scelerisque fermentum dui
-            faucibus. Convallis aenean et tortor at risus viverra. Nunc mattis enim ut tellus elementum sagittis vitae
-            et. Odio euismod lacinia at quis risus sed. Eu lobortis elementum nibh tellus molestie nunc. Tincidunt arcu
-            non sodales neque sodales ut etiam. Mi bibendum neque egestas congue. Vitae suscipit tellus mauris a diam
-            maecenas sed enim ut. Nulla facilisi etiam dignissim diam quis enim. In arcu cursus euismod quis viverra
-            nibh. Scelerisque fermentum dui faucibus in ornare quam. Viverra vitae congue eu consequat ac felis. Tellus
-            molestie nunc non blandit massa enim. Libero justo laoreet sit amet cursus.
- */

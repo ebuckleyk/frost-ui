@@ -44,7 +44,7 @@ export function ThemeProvider({
       return t;
     }
 
-    root.classList.add(t);
+    root.classList.add(!t ? 'dark' : t);
     return t;
   }, []);
 

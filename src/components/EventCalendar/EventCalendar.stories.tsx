@@ -1,14 +1,26 @@
 import * as React from 'react';
+import FullCalendar from '@fullcalendar/react';
 import { Meta, StoryObj } from '@storybook/react';
 import { setDay } from 'date-fns';
 import addDays from 'date-fns/addDays';
 import addHours from 'date-fns/addHours';
 import addMinutes from 'date-fns/addMinutes';
+import format from 'date-fns/format';
 import getWeek from 'date-fns/getWeek';
 import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 import setWeek from 'date-fns/setWeek';
+import { CalendarIcon } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
+import { Button } from '../Button';
+import { Calendar } from '../Calendar';
+import { Card } from '../Card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../Dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../Form';
+import { Input } from '../Input';
+import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 import { EventCalendar, EventCalendarEvent } from './EventCalendar';
 
 //#region EventData
@@ -22,7 +34,7 @@ const todayMorningEvent: EventCalendarEvent = {
   editable: true,
   startEditable: true,
   durationEditable: true,
-  borderColor: 'orange',
+  borderColor: '#FFA500',
   extendedProps: {
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
     dolore magna aliqua. Senectus et netus et malesuada fames ac. Massa tempor nec feugiat nisl pretium fusce
@@ -54,6 +66,7 @@ const afterNoonEvent: EventCalendarEvent = {
   editable: true,
   startEditable: true,
   durationEditable: true,
+  borderColor: '#FF0000',
 };
 
 const eveningEventStart = setHours(setMinutes(now, 0), 17);
@@ -65,6 +78,7 @@ const eveningEvent: EventCalendarEvent = {
   editable: true,
   startEditable: true,
   durationEditable: true,
+  borderColor: '#FFFFFF',
 };
 
 const vacationEventStart = setDay(setWeek(now, getWeek(now) + 2), 1);
@@ -98,6 +112,7 @@ const offsiteDay1: EventCalendarEvent = {
   editable: true,
   startEditable: true,
   durationEditable: true,
+  borderColor: '#FFD700',
 };
 
 const offsiteDay2EventStart = addDays(offsiteDay1EventStart, 1);
@@ -109,7 +124,7 @@ const offsiteDay2: EventCalendarEvent = {
   editable: true,
   startEditable: true,
   durationEditable: true,
-  borderColor: 'white',
+  borderColor: '#FFD700',
 };
 
 const offsiteDay3EventStart = addDays(offsiteDay2EventStart, 1);
@@ -121,6 +136,7 @@ const offsiteDay3: EventCalendarEvent = {
   editable: true,
   startEditable: true,
   durationEditable: true,
+  borderColor: '#FFD700',
 };
 
 const events: EventCalendarEvent[] = [
@@ -136,6 +152,146 @@ const events: EventCalendarEvent[] = [
 ];
 //#endregion
 
+const formSchema = z.object({
+  title: z.string(),
+  start: z.date(),
+  end: z.date().optional(),
+  eventColor: z.string().optional(),
+});
+
+const EventForm = ({ evt }: { evt?: EventCalendarEvent }) => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    defaultValues: {
+      title: evt?.title ?? '',
+      start: evt?.start ? new Date(evt.start as string) : new Date(),
+      end: evt?.end ? new Date(evt.end as string) : undefined,
+      eventColor: evt?.borderColor ?? '',
+    },
+  });
+  return (
+    <Form {...form}>
+      <form className="space-y-4">
+        <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Title</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+        <div>
+          <FormField
+            control={form.control}
+            name="start"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Start</FormLabel>
+                  <FormControl>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button variant={'outline'}>
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {field.value ? format(field.value, 'PPP') : <span>Start Date/Time</span>}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar mode="single" selected={field.value} onSelect={() => {}} initialFocus />
+                        <Input type="time" />
+                      </PopoverContent>
+                    </Popover>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="end"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>End</FormLabel>
+                  <FormControl>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button variant={'outline'}>
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {field.value ? format(field.value, 'PPP') : <span>End Date/Time</span>}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar mode="single" selected={field.value} onSelect={() => {}} initialFocus />
+                        <Input type="time" />
+                      </PopoverContent>
+                    </Popover>
+                  </FormControl>
+                </FormItem>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="eventColor"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Color</FormLabel>
+                  <FormControl>
+                    <Input type="color" className="w-2/12" {...field} defaultValue={'#ff0000'} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+        </div>
+        <Button type="submit">Save</Button>
+      </form>
+    </Form>
+  );
+};
+
+const CalendarDemo = () => {
+  const ref = React.useRef<InstanceType<typeof FullCalendar>>(null);
+
+  // const createEvent = React.useCallback(() => {}, []);
+
+  return (
+    <div className="space-y-3">
+      <Card className="flex justify-center p-5">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>Create Event</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Create Event</DialogTitle>
+            </DialogHeader>
+            <EventForm />
+          </DialogContent>
+        </Dialog>
+      </Card>
+      <Card className="p-5">
+        <EventCalendar
+          ref={ref}
+          events={events}
+          renderOnEventClick={(evet) => {
+            return <EventForm evt={evet.toPlainObject()} />;
+          }}
+        />
+      </Card>
+    </div>
+  );
+};
 type ComponentType = React.ComponentProps<typeof EventCalendar>;
 const meta: Meta<ComponentType> = {
   component: EventCalendar,
@@ -145,14 +301,5 @@ export default meta;
 
 type Story = StoryObj<ComponentType>;
 export const Demo: Story = {
-  render: () => {
-    return (
-      <EventCalendar
-        events={events}
-        renderOnEventClick={() => {
-          return <div>Content!! Stories!!</div>;
-        }}
-      />
-    );
-  },
+  render: CalendarDemo,
 };

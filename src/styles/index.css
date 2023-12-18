@@ -1,15 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*
-  old value: 222.2 84% 4.9%
-  new: 240 69% 78%; | 240 69% 65%; 
-  old bg: 0 0% 100%;
-  new bg| 221 97% 93%;
-  try new: 188 72% 45%;
-  // hsla(218, 75%, 45%, 1)
-  218 75% 55%;
- */
 @layer base {
   :root {
     --background: 221 97% 93%;
@@ -42,10 +33,6 @@
 
     --radius: 0.5rem;
   }
-  /*
- old: 222.2 84% 4.9%;
- new: 216 8% 12%; | 219 40% 11%;
- */
   .dark {
     --background: 219 40% 11%;
     --foreground: 210 40% 98%;

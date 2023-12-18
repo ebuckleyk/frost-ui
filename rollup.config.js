@@ -4,6 +4,7 @@ import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import bundleSize from 'rollup-plugin-bundle-size';
+import copy from 'rollup-plugin-copy';
 import { dts } from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
@@ -49,6 +50,9 @@ const config = {
         insertAt: 'top',
       },
       plugins: [tailwindcss(tailwindConfig)],
+    }),
+    copy({
+      targets: [{ src: './tailwind.config.js', dest: 'dist/configs/tailwindcss/' }],
     }),
     terser(),
     bundleSize(),

@@ -1,2 +1,3 @@
-import './styles/index.css' assert { type: 'css' };
+import './styles/index.css';
+
 export * from './components';
