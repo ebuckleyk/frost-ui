@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.5.2
+
+### Patch Changes
+
+- 6153197: Update rollup to exclude react and react-dom
+
 ## 0.5.1
 
 ### Patch Changes
