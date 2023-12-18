@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.6.0
+
+### Minor Changes
+
+- 07885fc: Add text-foreground css back
+
 ## 0.5.3
 
 ### Patch Changes
