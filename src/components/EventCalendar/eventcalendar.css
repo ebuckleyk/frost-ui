@@ -53,14 +53,8 @@
   background-color: hsl(var(--secondary) / 0.7);
 }
 
-.fc-popover.frostui-daycell {
-  border-radius: 10px;
-  background-color: hsl(var(--background));
-  z-index: 35;
-}
-
 .fc .fc-bg-event {
-  background-image: repeating-linear-gradient(45deg, hsl(var(--muted-foreground)) 20%, hsl(var(--background)) 30%);
+  background-image: repeating-linear-gradient(45deg, hsl(var(--muted-foreground)) 20%, hsl(var(--muted)) 30%);
   color: hsl(var(--primary));
   text-overflow: hidden;
 }

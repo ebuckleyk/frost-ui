@@ -31,7 +31,8 @@ export function ThemeProvider({
   storageKey = 'ebuckleyk/frost-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [themeState, setThemeState] = useState<Theme>(() => theme || getTheme(storageKey, theme));
+  // const [themeState, setThemeState] = useState<Theme>(() => theme || getTheme(storageKey, theme));
+  const [themeState, setThemeState] = useState<Theme>(theme);
 
   const applyTheme = useCallback((t: Theme) => {
     const root = window.document.documentElement;
