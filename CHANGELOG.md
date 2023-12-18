@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.5.3
+
+### Patch Changes
+
+- c713f56: Moved react and react-dom to peerDependencies
+
 ## 0.5.2
 
 ### Patch Changes
