@@ -136,4 +136,13 @@
   .richtext-editor [data-slate-editor] > * + * {
     margin-top: 1em;
   }
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply text-foreground;
+    }
+  }
 }
