@@ -121,9 +121,7 @@
     "escape-html": "^1.0.3",
     "is-hotkey": "^0.2.0",
     "lucide-react": "^0.294.0",
-    "react": "^18.2.0",
     "react-day-picker": "^8.9.1",
-    "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.48.2",
     "slate": "^0.101.1",
@@ -131,5 +129,9 @@
     "slate-react": "^0.101.3",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   }
 }
