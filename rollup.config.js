@@ -18,7 +18,7 @@ import tailwindConfig from './tailwind.config.js';
  */
 const config = {
   input: 'src/index.ts',
-  external: ['react-dom'],
+  external: ['react', 'react-dom'],
   output: [
     {
       file: packageJson.main,

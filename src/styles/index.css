@@ -137,12 +137,3 @@
     margin-top: 1em;
   }
 }
-
-/* @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
