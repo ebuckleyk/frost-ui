@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.5.0
+
+### Minor Changes
+
+- 70ddbd1: Removed className props from EventCalendar. Updated build to include tailwind.config.js file. Removed comments
+
 ## 0.4.0
 
 ### Minor Changes
