@@ -1,5 +1,12 @@
 # @ebuckleyk/frost-ui
 
+## 0.7.0
+
+### Minor Changes
+
+- ff46b9d: Reduce bundle size by removing some external dependencies to peerDependencies
+- 2e50056: " - Added (Carousel)[https://ui.shadcn.com/docs/components/carousel] - Added (Drawer)[https://ui.shadcn.com/docs/components/drawer] - Added (Pagination)[https://ui.shadcn.com/docs/components/pagination]"
+
 ## 0.6.0
 
 ### Minor Changes
