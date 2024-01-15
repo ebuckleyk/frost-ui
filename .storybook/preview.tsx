@@ -64,8 +64,10 @@ const preview: Preview = {
       return (
         <React.Fragment>
           <ThemeProvider theme={theme}>
-            <Story />
-            <Toaster />
+            <div style={{ margin: 'auto', width: '50%', padding: 10 }}>
+              <Story />
+              <Toaster />
+            </div>
           </ThemeProvider>
         </React.Fragment>
       );
