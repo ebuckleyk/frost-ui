@@ -8,6 +8,7 @@ import copy from 'rollup-plugin-copy';
 import { dts } from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
+import { visualizer } from 'rollup-plugin-visualizer';
 import tailwindcss from 'tailwindcss';
 
 import packageJson from './package.json';
@@ -56,6 +57,7 @@ const config = {
     }),
     terser(),
     bundleSize(),
+    visualizer(),
   ],
   onwarn(warning, warn) {
     if (warning.code === 'MODULE_LEVEL_DIRECTIVE' && warning.message.includes(`"use client"`)) return;
@@ -71,6 +73,6 @@ const typesConfig = {
   output: [{ file: 'dist/index.d.ts', format: 'esm' }],
   plugins: [dts()],
   // https://stackoverflow.com/questions/71848226/creating-react-library-with-rollup-js-i-get-error-null-reading-usestate/7260405
-  external: [/\.(css|less|scss)$/, 'react', 'react-dom'],
+  external: [/\.(css|less|scss)$/, ...(Object.keys(packageJson.peerDependencies) || {})],
 };
 export default [config, typesConfig];
