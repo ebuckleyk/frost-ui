@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.8.0
+
+### Minor Changes
+
+- 3ea5d46: Added new Sonner Toaster. Added Resizable component
+
 ## 0.7.0
 
 ### Minor Changes
