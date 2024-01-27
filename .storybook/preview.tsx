@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { Preview } from '@storybook/react';
 
+import { SonnerToaster } from '../src/components/Sonner';
 import { ThemeProvider } from '../src/components/ThemeProvider';
 import { Toaster } from '../src/components/Toast';
 import viewports from './viewports';
@@ -64,10 +65,11 @@ const preview: Preview = {
       return (
         <React.Fragment>
           <ThemeProvider theme={theme}>
-            <div style={{ margin: 'auto', width: '50%', padding: 10 }}>
-              <Story />
-              <Toaster />
-            </div>
+            {/* <div style={{ margin: 'auto', width: '50%', padding: 10 }}> */}
+            <Story />
+            <Toaster />
+            <SonnerToaster />
+            {/* </div> */}
           </ThemeProvider>
         </React.Fragment>
       );
