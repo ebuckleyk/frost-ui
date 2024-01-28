@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.9.0
+
+### Minor Changes
+
+- 7d4b78d: Added typography
+
 ## 0.8.0
 
 ### Minor Changes
