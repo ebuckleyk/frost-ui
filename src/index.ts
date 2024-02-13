@@ -1,3 +1,3 @@
-import './styles/index.css';
+import './styles/frostui.css';
 
 export * from './components';

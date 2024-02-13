@@ -12,7 +12,9 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import tailwindcss from 'tailwindcss';
 
 import packageJson from './package.json';
-import tailwindConfig from './tailwind.config.js';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const tailwindConfig = require('./tailwind.config.js');
 
 /**
  * @type {import('rollup').RollupOptions}
@@ -53,7 +55,10 @@ const config = {
       plugins: [tailwindcss(tailwindConfig)],
     }),
     copy({
-      targets: [{ src: './tailwind.config.js', dest: 'dist/configs/tailwindcss/' }],
+      targets: [
+        { src: './tailwind.config.js', dest: 'dist/configs/tailwindcss/' },
+        { src: './src/styles/theme-preset.js', dest: 'dist/presets/', rename: 'theme.js' },
+      ],
     }),
     terser(),
     bundleSize(),

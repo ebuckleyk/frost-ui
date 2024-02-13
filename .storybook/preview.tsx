@@ -6,7 +6,7 @@ import { ThemeProvider } from '../src/components/ThemeProvider';
 import { Toaster } from '../src/components/Toast';
 import viewports from './viewports';
 // https://github.com/tailwindlabs/tailwindcss/issues/6314#issuecomment-991093531
-import '../src/styles/index.css';
+import '../src/styles/frostui.css';
 
 const preview: Preview = {
   parameters: {
