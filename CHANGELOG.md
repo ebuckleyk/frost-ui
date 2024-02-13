@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.10.0
+
+### Minor Changes
+
+- 3e0d83c: Moved theme to a tailwindcss preset file
+
 ## 0.9.0
 
 ### Minor Changes
