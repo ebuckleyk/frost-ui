@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.11.0
+
+### Minor Changes
+
+- f33df23: Reconfigure bundling to support tree-shaking
+
 ## 0.10.0
 
 ### Minor Changes
