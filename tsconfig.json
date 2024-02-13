@@ -13,7 +13,8 @@
     "emitDeclarationOnly": true, // don't generate JS and only export type declarations
     "sourceMap": true, // mapping JS code back to it's TS file origins for debugging
     "outDir": "dist", // directory where the project will be generated
-    "declarationDir": "types", // location of the .d.ts files
+    // "declarationDir": "types", // location of the .d.ts files
+    "declarationDir": "dist/types", // location of the .d.ts files
 
     /* Interop Constraints */
     "allowSyntheticDefaultImports": true, // assumes default exports if none are created manually
