@@ -16,7 +16,9 @@
     "changeset": "changeset",
     "lint": "eslint --ext .js,.ts",
     "prerelease": "npm run build && npm run lint",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "Emmanuel K Buckley",
@@ -45,10 +47,14 @@
     "@storybook/react-vite": "^7.6.14",
     "@storybook/test": "^7.6.14",
     "@storybook/theming": "^7.6.14",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
     "@types/escape-html": "^1.0.4",
     "@types/react": "^18.2.40",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.5.0",
     "autoprefixer": "^10.4.16",
     "css-loader": "^6.8.1",
     "eslint-config-prettier": "^9.0.0",
@@ -56,6 +62,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
+    "jsdom": "^24.0.0",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
     "prettier": "^3.1.0",
@@ -75,7 +82,8 @@
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "tslib": "^2.6.2",
     "typescript": "^5.3.2",
-    "vite-tsconfig-paths": "^4.2.1",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.5.0",
     "zod": "^3.22.4"
   },
   "dependencies": {

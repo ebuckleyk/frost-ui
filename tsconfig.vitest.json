@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    // "target": "ES2016",
+    "jsx": "react",
+    // "module": "ESNext",
+    // "moduleResolution": "Node10",
+    "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["vitest.config.ts", "src/**/*.test.tsx", "src"]
+}

@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 function AvatarDemo({ url }: { url: string | undefined }) {
   return (
     <Avatar>
-      <AvatarImage src={url} alt="@shadcn" />
+      <AvatarImage src={url} alt="@ebuckleyk" />
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
   );

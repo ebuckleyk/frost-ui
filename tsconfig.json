@@ -29,8 +29,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
+  "references": [{ "path": "./tsconfig.vitest.json" }],
   "exclude": [
     "node_modules",
     "**/__tests__/*",

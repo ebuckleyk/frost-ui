@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './
 
 function AccordionDemo() {
   return (
-    <Accordion type="single" collapsible className="min-w-fit">
+    <Accordion type="single" collapsible className="max-w-[380px]">
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
         <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
