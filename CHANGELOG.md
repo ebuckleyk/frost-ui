@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.12.1
+
+### Patch Changes
+
+- 1922e8c: Exposed Breadcrumbs and InputOTP
+
 ## 0.12.0
 
 ### Minor Changes
