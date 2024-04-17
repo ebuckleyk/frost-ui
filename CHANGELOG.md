@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.12.0
+
+### Minor Changes
+
+- fa9d3a4: Added Breadcrumb and InputOTP component. Added additional stories
+
 ## 0.11.0
 
 ### Minor Changes
