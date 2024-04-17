@@ -79,10 +79,20 @@ function ProfileForm({ className }: React.ComponentProps<'form'>) {
 type ComponentType = React.ComponentProps<typeof Drawer>;
 const meta: Meta<ComponentType> = {
   component: Drawer,
-  render: DrawerDialogDemo,
+  subcomponents: {
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: DrawerDialogDemo,
+};

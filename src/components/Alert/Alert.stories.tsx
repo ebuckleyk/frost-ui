@@ -17,6 +17,7 @@ function AlertDemo(props) {
 type ComponentType = React.ComponentProps<typeof Alert>;
 const meta: Meta<ComponentType> = {
   component: Alert,
+  subcomponents: { AlertDescription, AlertTitle },
   render: ({ ...args }) => <AlertDemo {...args} />,
   argTypes: {
     variant: {

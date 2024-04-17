@@ -83,10 +83,12 @@ function TableDemo() {
 type ComponentType = React.ComponentProps<typeof Table>;
 const meta: Meta<ComponentType> = {
   component: Table,
-  render: TableDemo,
+  subcomponents: { TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: TableDemo,
+};

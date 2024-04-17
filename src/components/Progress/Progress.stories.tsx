@@ -20,10 +20,11 @@ function ProgressDemo() {
 type ComponentType = React.ComponentProps<typeof Progress>;
 const meta: Meta<ComponentType> = {
   component: Progress,
-  render: ProgressDemo,
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: ProgressDemo,
+};

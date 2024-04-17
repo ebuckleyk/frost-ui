@@ -33,6 +33,7 @@ function CarouselSizeDemo() {
 type ComponentType = React.ComponentProps<typeof Carousel>;
 const meta: Meta<ComponentType> = {
   component: Carousel,
+  subcomponents: { CarouselContent, CarouselItem, CarouselNext, CarouselPrevious },
 };
 
 export default meta;

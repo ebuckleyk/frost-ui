@@ -44,10 +44,12 @@ function PopoverDemo() {
 type ComponentType = React.ComponentProps<typeof Popover>;
 const meta: Meta<ComponentType> = {
   component: Popover,
-  render: PopoverDemo,
+  subcomponents: { PopoverContent, PopoverTrigger },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: PopoverDemo,
+};

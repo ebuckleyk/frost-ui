@@ -103,6 +103,7 @@ function CardWithFormDemo({ className, ...props }: CardProps) {
 
 const meta: Meta<typeof Card> = {
   component: Card,
+  subcomponents: { CardContent, CardDescription, CardFooter, CardHeader, CardTitle },
 };
 
 export default meta;

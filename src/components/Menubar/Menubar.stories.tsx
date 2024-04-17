@@ -109,10 +109,25 @@ function MenubarDemo() {
 type ComponentType = React.ComponentProps<typeof Menubar>;
 const meta: Meta<ComponentType> = {
   component: Menubar,
-  render: MenubarDemo,
+  subcomponents: {
+    MenubarCheckboxItem,
+    MenubarContent,
+    MenubarItem,
+    MenubarMenu,
+    MenubarRadioGroup,
+    MenubarRadioItem,
+    MenubarSeparator,
+    MenubarShortcut,
+    MenubarSub,
+    MenubarSubContent,
+    MenubarSubTrigger,
+    MenubarTrigger,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: MenubarDemo,
+};

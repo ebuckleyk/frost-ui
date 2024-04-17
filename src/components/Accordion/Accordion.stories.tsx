@@ -3,9 +3,11 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './Accordion';
 
-function AccordionDemo() {
+type AccordionProps = React.ComponentProps<typeof Accordion>;
+
+function AccordionDemo({ type, ...props }: AccordionProps) {
   return (
-    <Accordion type="single" collapsible className="max-w-[380px]">
+    <Accordion type={type} collapsible className="max-w-[380px]" {...props}>
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
         <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
@@ -26,11 +28,17 @@ function AccordionDemo() {
 type ComponentType = React.ComponentProps<typeof Accordion>;
 const meta: Meta<ComponentType> = {
   component: Accordion,
+  subcomponents: { AccordionItem, AccordionContent, AccordionTrigger },
+  render: ({ ...args }) => <AccordionDemo {...args} />,
+  // argTypes: {
+  //   type: {
+  //     options: ['single', 'multiple'],
+  //     control: { type: 'radio' },
+  //   },
+  // },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {
-  render: AccordionDemo,
-};
+export const Demo: Story = {};

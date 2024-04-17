@@ -34,10 +34,12 @@ function HoverCardDemo() {
 type ComponentType = React.ComponentProps<typeof HoverCard>;
 const meta: Meta<ComponentType> = {
   component: HoverCard,
-  render: HoverCardDemo,
+  subcomponents: { HoverCardContent, HoverCardTrigger },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: HoverCardDemo,
+};

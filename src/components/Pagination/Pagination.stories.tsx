@@ -36,10 +36,19 @@ function PaginationDemo() {
 type ComponentType = React.ComponentProps<typeof Pagination>;
 const meta: Meta<ComponentType> = {
   component: Pagination,
-  render: PaginationDemo,
+  subcomponents: {
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: PaginationDemo,
+};

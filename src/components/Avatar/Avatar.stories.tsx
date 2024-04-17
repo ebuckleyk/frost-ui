@@ -15,18 +15,19 @@ function AvatarDemo({ url }: { url: string | undefined }) {
 type ComponentType = React.ComponentProps<typeof Avatar> & { imageSrc: string };
 const meta: Meta<ComponentType> = {
   component: Avatar,
-  render: ({ imageSrc }) => <AvatarDemo url={imageSrc} />,
-  argTypes: {
-    imageSrc: {
-      control: { type: 'text' },
-    },
-  },
+  subcomponents: { AvatarImage, AvatarFallback },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
 export const Demo: Story = {
+  render: ({ imageSrc }) => <AvatarDemo url={imageSrc} />,
+  argTypes: {
+    imageSrc: {
+      control: { type: 'text' },
+    },
+  },
   args: {
     imageSrc: 'frost_ui.png',
   },

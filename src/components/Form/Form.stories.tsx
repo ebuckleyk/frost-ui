@@ -58,10 +58,12 @@ function ProfileFormDemo() {
 type ComponentType = React.ComponentProps<typeof Form>;
 const meta: Meta<ComponentType> = {
   component: Form,
-  render: ProfileFormDemo,
+  subcomponents: { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: ProfileFormDemo,
+};

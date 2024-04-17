@@ -29,10 +29,12 @@ function CollapsibleDemo() {
 type ComponentType = React.ComponentProps<typeof Collapsible>;
 const meta: Meta<ComponentType> = {
   component: Collapsible,
-  render: CollapsibleDemo,
+  subcomponents: { CollapsibleContent, CollapsibleTrigger },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: CollapsibleDemo,
+};

@@ -70,10 +70,25 @@ function ContextMenuDemo() {
 type ComponentType = React.ComponentProps<typeof ContextMenu>;
 const meta: Meta<ComponentType> = {
   component: ContextMenu,
-  render: ContextMenuDemo,
+  subcomponents: {
+    ContextMenuCheckboxItem,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuLabel,
+    ContextMenuRadioGroup,
+    ContextMenuRadioItem,
+    ContextMenuSeparator,
+    ContextMenuShortcut,
+    ContextMenuSub,
+    ContextMenuSubContent,
+    ContextMenuSubTrigger,
+    ContextMenuTrigger,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: ContextMenuDemo,
+};

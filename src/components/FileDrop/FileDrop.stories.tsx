@@ -207,13 +207,15 @@ function FileDropFormDemo() {
 type ComponentType = React.ComponentProps<typeof FileDrop>;
 const meta: Meta<ComponentType> = {
   component: FileDrop,
-  render: FileDropDemo,
+  subcomponents: { FileDropArea, FileDropAreaText, FileDropFileArea },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: FileDropDemo,
+};
 
 export const AcceptFileTypesDemo: Story = {
   render: AcceptFileTypeFileDropDemo,

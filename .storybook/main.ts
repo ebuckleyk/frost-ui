@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     '@storybook/addon-themes',
     '@storybook/addon-a11y',
     'storybook-dark-mode',
+    '@chromatic-com/storybook',
   ],
   framework: {
     name: '@storybook/react-vite',
@@ -24,8 +25,24 @@ const config: StorybookConfig = {
     };
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: true,
   },
   staticDirs: ['../public'],
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldExtractValuesFromUnion: true,
+      shouldRemoveUndefinedFromOptional: true,
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+      propFilter: (prop) => (prop.parent ? !/node_modules\/(?!@radix-ui)/.test(prop.parent.fileName) : true),
+    },
+  },
+  core: {
+    disableTelemetry: true,
+  },
 };
 export default config;

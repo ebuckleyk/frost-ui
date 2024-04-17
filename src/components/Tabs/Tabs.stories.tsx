@@ -62,10 +62,12 @@ function TabsDemo() {
 type ComponentType = React.ComponentProps<typeof Tabs>;
 const meta: Meta<ComponentType> = {
   component: Tabs,
-  render: TabsDemo,
+  subcomponents: { TabsContent, TabsList, TabsTrigger },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: TabsDemo,
+};

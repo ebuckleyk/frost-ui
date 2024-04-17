@@ -58,10 +58,20 @@ function CommandDemo() {
 type ComponentType = React.ComponentProps<typeof Command>;
 const meta: Meta<ComponentType> = {
   component: Command,
-  render: CommandDemo,
+  subcomponents: {
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+    CommandList,
+    CommandSeparator,
+    CommandShortcut,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: CommandDemo,
+};

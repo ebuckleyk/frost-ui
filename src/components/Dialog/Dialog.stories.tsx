@@ -49,10 +49,12 @@ function DialogDemo() {
 type ComponentType = React.ComponentProps<typeof Dialog>;
 const meta: Meta<ComponentType> = {
   component: Dialog,
-  render: DialogDemo,
+  subcomponents: { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: DialogDemo,
+};

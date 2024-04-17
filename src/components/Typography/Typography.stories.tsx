@@ -88,10 +88,29 @@ function TypographyDemo() {
 type ComponentType = React.ComponentProps<typeof Typography.code>;
 const meta: Meta<ComponentType> = {
   component: Typography.code,
-  render: TypographyDemo,
+  subcomponents: {
+    h1: Typography.h1,
+    h2: Typography.h2,
+    h3: Typography.h3,
+    h4: Typography.h4,
+    p: Typography.p,
+    ul: Typography.ul,
+    li: Typography.li,
+    blockQuote: Typography.blockquote,
+    code: Typography.code,
+    small: Typography.small,
+    table: Typography.table,
+    thead: Typography.thead,
+    tbody: Typography.tbody,
+    td: Typography.td,
+    th: Typography.th,
+    tr: Typography.tr,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: TypographyDemo,
+};

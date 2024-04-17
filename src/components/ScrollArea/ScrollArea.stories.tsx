@@ -84,13 +84,15 @@ function HorizontalScrollAreaDemo() {
 type ComponentType = React.ComponentProps<typeof ScrollArea>;
 const meta: Meta<ComponentType> = {
   component: ScrollArea,
-  render: ScrollAreaDemo,
+  subcomponents: { ScrollBar },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: ScrollAreaDemo,
+};
 
 export const TextScrollArea: Story = {
   render: TextScrollAreaDemo,

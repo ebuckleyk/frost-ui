@@ -100,7 +100,7 @@ function FormSelectDemo() {
     toast({
       title: 'You submitted the following values:',
       description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+        <pre className="bg-slate-950 mt-2 w-[340px] rounded-md p-4">
           <code>{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
@@ -142,14 +142,16 @@ function FormSelectDemo() {
 type ComponentType = typeof Select;
 const meta: Meta<ComponentType> = {
   component: Select,
-  render: SelectDemo,
+  subcomponents: { SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
 
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: SelectDemo,
+};
 
 export const ScrollableSelect: Story = {
   render: ScrollableSelectDemo,

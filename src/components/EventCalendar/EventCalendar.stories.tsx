@@ -21,7 +21,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 import { Input } from '../Input';
 import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
-import { EventCalendar, EventCalendarEvent } from './EventCalendar';
+import { EventCalendar } from './EventCalendar';
+import type { EventCalendarEvent } from './EventCalendar';
 
 //#region EventData
 const now = new Date();

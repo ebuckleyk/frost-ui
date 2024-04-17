@@ -13,6 +13,7 @@ import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from './Inpu
 type ComponentType = React.ComponentProps<typeof InputOTP>;
 const meta: Meta<ComponentType> = {
   component: InputOTP,
+  subcomponents: { InputOTPGroup, InputOTPSeparator, InputOTPSlot },
 };
 
 export default meta;

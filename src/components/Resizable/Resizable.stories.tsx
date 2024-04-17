@@ -69,6 +69,7 @@ function WithHandleDemo() {
 type ComponentType = React.ComponentProps<typeof ResizablePanelGroup>;
 const meta: Meta<ComponentType> = {
   component: ResizablePanelGroup,
+  subcomponents: { ResizableHandle, ResizablePanel },
 };
 
 export default meta;

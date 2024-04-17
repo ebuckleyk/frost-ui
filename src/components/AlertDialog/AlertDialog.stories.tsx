@@ -39,6 +39,16 @@ function AlertDialogDemo() {
 type ComponentType = React.ComponentProps<typeof AlertDialog>;
 const meta: Meta<ComponentType> = {
   component: AlertDialog,
+  subcomponents: {
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  },
   render: AlertDialogDemo,
 };
 

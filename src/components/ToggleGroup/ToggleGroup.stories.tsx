@@ -38,13 +38,15 @@ function OutlineToggleGroupDemo() {
 type ComponentType = React.ComponentProps<typeof ToggleGroup>;
 const meta: Meta<ComponentType> = {
   component: ToggleGroup,
-  render: ToggleGroupDemo,
+  subcomponents: { ToggleGroupItem },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: ToggleGroupDemo,
+};
 
 export const OutlineToggleGroup: Story = {
   render: OutlineToggleGroupDemo,

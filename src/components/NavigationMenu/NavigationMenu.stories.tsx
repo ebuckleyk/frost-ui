@@ -130,10 +130,19 @@ ListItem.displayName = 'ListItem';
 type ComponentType = React.ComponentProps<typeof NavigationMenu>;
 const meta: Meta<ComponentType> = {
   component: NavigationMenu,
-  render: NavigationMenuDemo,
+  subcomponents: {
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    navigationMenuTriggerStyle,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: NavigationMenuDemo,
+};

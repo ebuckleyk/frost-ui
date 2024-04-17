@@ -59,7 +59,7 @@ type DemoProps = {
 type ComponentType = React.ComponentProps<typeof Sheet> & DemoProps;
 const meta: Meta<ComponentType> = {
   component: Sheet,
-  render: (props) => <SheetDemo {...props} />,
+  subcomponents: { SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger },
   argTypes: {
     side: {
       options: SHEET_SIDES,
@@ -74,4 +74,6 @@ const meta: Meta<ComponentType> = {
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: (props) => <SheetDemo {...props} />,
+};

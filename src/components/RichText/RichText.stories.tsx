@@ -7,7 +7,8 @@ import * as z from 'zod';
 import { Button } from '../Button';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../Form';
 import { toast } from '../Toast';
-import { RichText, RichTextArea, RichTextToolbar, RichTextValue } from './RichText';
+import { RichText, RichTextArea, RichTextToolbar } from './RichText';
+import type { RichTextValue } from './RichText';
 
 function RichTextDemo() {
   return (
@@ -69,6 +70,7 @@ function RichTextFormDemo() {
 type ComponentType = React.ComponentProps<typeof RichText>;
 const meta: Meta<ComponentType> = {
   component: RichText,
+  subcomponents: { RichTextArea, RichTextToolbar },
 };
 
 export default meta;

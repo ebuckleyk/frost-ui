@@ -21,10 +21,12 @@ function TooltipDemo() {
 type ComponentType = React.ComponentProps<typeof Tooltip>;
 const meta: Meta<ComponentType> = {
   component: Tooltip,
-  render: TooltipDemo,
+  subcomponents: { TooltipContent, TooltipProvider, TooltipTrigger },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: TooltipDemo,
+};

@@ -97,13 +97,15 @@ function RadioGroupFormDemo() {
 type ComponentType = React.ComponentProps<typeof RadioGroup>;
 const meta: Meta<ComponentType> = {
   component: RadioGroup,
-  render: RadioGroupDemo,
+  subcomponents: { RadioGroupItem },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: RadioGroupDemo,
+};
 
 export const WithForm: Story = {
   render: RadioGroupFormDemo,

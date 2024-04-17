@@ -79,10 +79,24 @@ function DropdownMenuDemo() {
 type ComponentType = React.ComponentProps<typeof DropdownMenu>;
 const meta: Meta<ComponentType> = {
   component: DropdownMenu,
-  render: DropdownMenuDemo,
+  subcomponents: {
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuPortal,
+    DropdownMenuSeparator,
+    DropdownMenuShortcut,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<ComponentType>;
-export const Demo: Story = {};
+export const Demo: Story = {
+  render: DropdownMenuDemo,
+};

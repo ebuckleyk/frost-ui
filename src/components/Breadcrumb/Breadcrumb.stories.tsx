@@ -241,6 +241,14 @@ function ResponsiveDemo() {
 type ComponentType = React.ComponentProps<typeof Breadcrumb>;
 const meta: Meta<ComponentType> = {
   component: Breadcrumb,
+  subcomponents: {
+    BreadcrumbEllipsis,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+  },
 };
 
 export default meta;
