@@ -133,6 +133,7 @@
     "@fullcalendar/scrollgrid": "6.x",
     "@fullcalendar/timegrid": "6.x",
     "embla-carousel-react": ">=8.0.0-rc19",
+    "input-otp": "^1.2.4",
     "react": ">=18.2.0 < 19.x",
     "react-day-picker": "8.x",
     "react-dom": ">=18.2.0 < 19.x",
