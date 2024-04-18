@@ -32,13 +32,16 @@
     },
     "types": ["vitest/globals"]
   },
-  "references": [{ "path": "./tsconfig.vitest.json" }],
+  //"references": [{ "path": "./tsconfig.vitest.json" }],
   "exclude": [
     "node_modules",
     "**/__tests__/*",
     "stories/*",
     "**/*.test*",
     "**/*.stories.tsx",
-    "dist"
+    "dist",
+    "tests/*",
+    "**/__snapshots__/*",
+    "vitest.config.ts"
   ]
 }

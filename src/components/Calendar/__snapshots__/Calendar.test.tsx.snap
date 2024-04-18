@@ -379,11 +379,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     role="presentation"
                   >
                     <button
-                      aria-selected="true"
-                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground bg-accent text-accent-foreground"
+                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
                       name="day"
                       role="gridcell"
-                      tabindex="0"
+                      tabindex="-1"
                       type="button"
                     >
                       16
@@ -394,10 +393,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     role="presentation"
                   >
                     <button
-                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
+                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-accent text-accent-foreground"
                       name="day"
                       role="gridcell"
-                      tabindex="-1"
+                      tabindex="0"
                       type="button"
                     >
                       17
@@ -1032,11 +1031,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   role="presentation"
                 >
                   <button
-                    aria-selected="true"
-                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground bg-accent text-accent-foreground"
+                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
                     name="day"
                     role="gridcell"
-                    tabindex="0"
+                    tabindex="-1"
                     type="button"
                   >
                     16
@@ -1047,10 +1045,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   role="presentation"
                 >
                   <button
-                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
+                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-accent text-accent-foreground"
                     name="day"
                     role="gridcell"
-                    tabindex="-1"
+                    tabindex="0"
                     type="button"
                   >
                     17
