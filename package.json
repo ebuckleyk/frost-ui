@@ -146,6 +146,7 @@
     "react": ">=18.2.0 < 19.x",
     "react-day-picker": "8.x",
     "react-dom": ">=18.2.0 < 19.x",
+    "recharts": "^2.15.0",
     "slate": ">=0.101.1",
     "slate-history": ">=0.100.0",
     "slate-react": ">=0.101.3"

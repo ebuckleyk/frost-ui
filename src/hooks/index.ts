@@ -6,3 +6,4 @@ export * from './useIsomorphicLayoutEffect';
 export * from './useMap';
 export * from './useMediaQuery';
 export * from './useScript';
+export * from './useIsMobile';
