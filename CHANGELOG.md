@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.13.0
+
+### Minor Changes
+
+- 5f54b7d: Added Sidebar and Chart components
+
 ## 0.12.1
 
 ### Patch Changes
