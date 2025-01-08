@@ -42,6 +42,6 @@
     "dist",
     "tests/*",
     "**/__snapshots__/*",
-    "vitest.config.ts"
+    "vitest.config.mts"
   ]
 }

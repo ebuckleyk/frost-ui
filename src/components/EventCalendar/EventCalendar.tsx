@@ -125,13 +125,15 @@ const EventCalendar = React.forwardRef<React.ElementRef<typeof FullCalendar>, Ev
     } = props;
 
     const internalRef = React.useRef<InstanceType<typeof FullCalendar>>(null);
-    const ref: React.RefObject<FullCalendar> = forwardRef ? (forwardRef as React.RefObject<FullCalendar>) : internalRef;
+    const ref: React.RefObject<FullCalendar | null> = forwardRef
+      ? (forwardRef as React.RefObject<FullCalendar | null>)
+      : internalRef;
 
     const api = React.useMemo(() => calendar?.getApi(), [calendar]);
 
     React.useEffect(() => {
       setCalendar(ref.current);
-    }, []);
+    }, [ref]);
 
     const prev = React.useCallback(() => {
       api?.prev();
@@ -230,13 +232,13 @@ const ViewEventContent: React.FC<EventContentProps> = (props: ScopedProps<EventC
   return (
     <Sheet>
       <SheetTrigger asChild className="z-50">
-        <div className={`flex h-full w-full overflow-hidden ${tailWindAlign}`}>
+        <div className={`flex size-full overflow-hidden ${tailWindAlign}`}>
           {view.type.includes('dayGridMonth') && !isBgEvent ? (
             <div
               style={{
                 borderColor: event.borderColor || DEFAULT_COLOR,
               }}
-              className={'mx-1 my-0 box-content h-0 w-0 rounded-full border-[4px]'}
+              className={'mx-1 my-0 box-content size-0 rounded-full border-4'}
             />
           ) : null}
           <div className="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap">{timeText}</div>
@@ -287,10 +289,10 @@ const EventCalendarToolbar: React.FC<EventCalendarToolbarProps> = (props: Scoped
   return (
     <div className="my-3 flex flex-col items-center justify-between gap-4 md:flex-row">
       <div className="flex items-center space-x-1">
-        <Button onClick={goToPrev} size="icon" className="h-8 w-8">
+        <Button onClick={goToPrev} size="icon" className="size-8">
           <ChevronLeft />
         </Button>
-        <Button onClick={goToNext} size={'icon'} className="h-8 w-8">
+        <Button onClick={goToNext} size={'icon'} className="size-8">
           <ChevronRight />
         </Button>
         <div>{dateformat}</div>
@@ -337,7 +339,7 @@ const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<Ev
         <div className="mt-1 flex items-center">
           <div
             style={{ borderColor: event.borderColor || DEFAULT_COLOR }}
-            className={'mx-1 mt-1 box-content h-0 w-0 rounded-full border-[4px]'}
+            className={'mx-1 mt-1 box-content size-0 rounded-full border-4'}
           />
         </div>
         <div className="m-0 font-semibold">{event.title}</div>
@@ -358,7 +360,7 @@ const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<Ev
             className="items-start"
             Icon={() => (
               <span className="mr-2">
-                <UsersIcon className="h-4 w-4" />
+                <UsersIcon className="size-4" />
               </span>
             )}
           >
@@ -373,7 +375,7 @@ const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<Ev
             className={`${description ? '' : 'hidden'} items-start`}
             Icon={() => (
               <span className="mr-2">
-                <InfoIcon className="h-4 w-4" />
+                <InfoIcon className="size-4" />
               </span>
             )}
           >
@@ -388,13 +390,13 @@ const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<Ev
 EventContentInfo.displayName = EVENTCONTENTINFO_NAME;
 
 type EventContentDescriptionItemProps = Partial<Pick<HTMLDivElement, 'className'>> & {
-  Icon: LucideIcon | (() => JSX.Element);
+  Icon: LucideIcon | (() => React.ReactNode);
   children: React.ReactNode;
 };
 const EventContentDescriptionItem = (props: EventContentDescriptionItemProps) => {
   return (
     <span className={cn('inline-flex items-center', props.className)}>
-      <props.Icon className={'mr-2 h-4 w-4'} />
+      <props.Icon className={'mr-2 size-4'} />
       <span>{props.children}</span>
     </span>
   );
@@ -416,7 +418,7 @@ const EditEventContentInfo: React.FC<EditEventContentInfoProps> = (props: Scoped
         className="absolute right-12 top-4 cursor-pointer rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
       >
         <div>
-          <EditIcon className="h-4 w-4" />
+          <EditIcon className="size-4" />
           <span className="sr-only">Edit</span>
         </div>
       </DialogTrigger>

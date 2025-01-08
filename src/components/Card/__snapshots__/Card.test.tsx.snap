@@ -29,7 +29,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             class=" flex items-center space-x-4 rounded-md border p-4"
           >
             <svg
-              class="lucide lucide-bell-ring "
+              class="lucide lucide-bell-ring"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -41,16 +41,16 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"
-              />
-              <path
-                d="M10.3 21a1.94 1.94 0 0 0 3.4 0"
-              />
-              <path
-                d="M4 2C2.8 3.7 2 5.7 2 8"
+                d="M10.268 21a2 2 0 0 0 3.464 0"
               />
               <path
                 d="M22 8c0-2.3-.8-4.3-2-6"
+              />
+              <path
+                d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+              />
+              <path
+                d="M4 2C2.8 3.7 2 5.7 2 8"
               />
             </svg>
             <div
@@ -86,7 +86,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
             >
               <span
-                class="bg-sky-500 flex h-2 w-2 translate-y-1 rounded-full"
+                class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
               />
               <div
                 class="space-y-1"
@@ -107,7 +107,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
             >
               <span
-                class="bg-sky-500 flex h-2 w-2 translate-y-1 rounded-full"
+                class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
               />
               <div
                 class="space-y-1"
@@ -128,7 +128,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
             >
               <span
-                class="bg-sky-500 flex h-2 w-2 translate-y-1 rounded-full"
+                class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
               />
               <div
                 class="space-y-1"
@@ -200,7 +200,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           class=" flex items-center space-x-4 rounded-md border p-4"
         >
           <svg
-            class="lucide lucide-bell-ring "
+            class="lucide lucide-bell-ring"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -212,16 +212,16 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"
-            />
-            <path
-              d="M10.3 21a1.94 1.94 0 0 0 3.4 0"
-            />
-            <path
-              d="M4 2C2.8 3.7 2 5.7 2 8"
+              d="M10.268 21a2 2 0 0 0 3.464 0"
             />
             <path
               d="M22 8c0-2.3-.8-4.3-2-6"
+            />
+            <path
+              d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+            />
+            <path
+              d="M4 2C2.8 3.7 2 5.7 2 8"
             />
           </svg>
           <div
@@ -257,7 +257,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
           >
             <span
-              class="bg-sky-500 flex h-2 w-2 translate-y-1 rounded-full"
+              class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
             />
             <div
               class="space-y-1"
@@ -278,7 +278,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
           >
             <span
-              class="bg-sky-500 flex h-2 w-2 translate-y-1 rounded-full"
+              class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
             />
             <div
               class="space-y-1"
@@ -299,7 +299,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
           >
             <span
-              class="bg-sky-500 flex h-2 w-2 translate-y-1 rounded-full"
+              class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
             />
             <div
               class="space-y-1"

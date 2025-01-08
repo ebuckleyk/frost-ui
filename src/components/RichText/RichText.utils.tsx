@@ -134,7 +134,7 @@ export const toggleFormat = (editor: CustomEditor, format: string) => {
   Transforms.setNodes(editor, { [format]: isActive ? null : true }, { match: Text.isText, split: true });
 };
 
-export const renderElement = (props: RenderElementProps): JSX.Element => {
+export const renderElement = (props: RenderElementProps): React.ReactElement => {
   const style = { textAlign: props.element.align };
   switch (props.element.type) {
     case 'block-quote':
@@ -216,7 +216,7 @@ export const renderElement = (props: RenderElementProps): JSX.Element => {
   }
 };
 
-export const renderLeaf = (props: RenderLeafProps): JSX.Element => {
+export const renderLeaf = (props: RenderLeafProps): React.ReactElement => {
   if (props.leaf.bold) props.children = <strong>{props.children}</strong>;
   if (props.leaf.italic) props.children = <em>{props.children}</em>;
   if (props.leaf.code) props.children = <code>{props.children}</code>;
@@ -224,6 +224,6 @@ export const renderLeaf = (props: RenderLeafProps): JSX.Element => {
   return <span {...props.attributes}>{props.children}</span>;
 };
 
-export const renderPlaceholder = (props: RenderPlaceholderProps): JSX.Element => {
+export const renderPlaceholder = (props: RenderPlaceholderProps): React.ReactElement => {
   return <p {...props.attributes}>{props.children}</p>;
 };

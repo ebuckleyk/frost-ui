@@ -121,7 +121,7 @@ const FileDropArea = React.forwardRef<FileDropAreaElement, FileDropAreaProps>(
     const dragOpacity = React.useMemo(() => (isDragActive ? '' : '/30'), [isDragActive]);
 
     React.useEffect(() => {
-      add(acceptedFiles);
+      add(acceptedFiles as FileWithPath[]); //look into
     }, [acceptedFiles, add]);
 
     return (

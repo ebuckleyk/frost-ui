@@ -27,7 +27,7 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
             role="presentation"
           >
             <svg
-              class="lucide lucide-chevron-right "
+              class="lucide lucide-chevron-right"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -59,7 +59,7 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
             role="presentation"
           >
             <svg
-              class="lucide lucide-chevron-right "
+              class="lucide lucide-chevron-right"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -114,7 +114,7 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
           role="presentation"
         >
           <svg
-            class="lucide lucide-chevron-right "
+            class="lucide lucide-chevron-right"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -146,7 +146,7 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
           role="presentation"
         >
           <svg
-            class="lucide lucide-chevron-right "
+            class="lucide lucide-chevron-right"
             fill="none"
             height="24"
             stroke="currentColor"

@@ -23,7 +23,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 id="react-day-picker-1"
                 role="presentation"
               >
-                April 2024
+                January 2025
               </div>
               <div
                 class="space-x-1 flex items-center"
@@ -153,6 +153,34 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       tabindex="-1"
                       type="button"
                     >
+                      29
+                    </button>
+                  </td>
+                  <td
+                    class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
+                    role="presentation"
+                  >
+                    <button
+                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
+                      name="day"
+                      role="gridcell"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      30
+                    </button>
+                  </td>
+                  <td
+                    class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
+                    role="presentation"
+                  >
+                    <button
+                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
+                      name="day"
+                      role="gridcell"
+                      tabindex="-1"
+                      type="button"
+                    >
                       31
                     </button>
                   </td>
@@ -212,6 +240,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       4
                     </button>
                   </td>
+                </tr>
+                <tr
+                  class="flex w-full mt-2"
+                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -240,10 +272,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       6
                     </button>
                   </td>
-                </tr>
-                <tr
-                  class="flex w-full mt-2"
-                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -263,10 +291,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     role="presentation"
                   >
                     <button
-                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
+                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-accent text-accent-foreground"
                       name="day"
                       role="gridcell"
-                      tabindex="-1"
+                      tabindex="0"
                       type="button"
                     >
                       8
@@ -314,6 +342,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       11
                     </button>
                   </td>
+                </tr>
+                <tr
+                  class="flex w-full mt-2"
+                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -342,10 +374,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       13
                     </button>
                   </td>
-                </tr>
-                <tr
-                  class="flex w-full mt-2"
-                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -393,10 +421,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     role="presentation"
                   >
                     <button
-                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-accent text-accent-foreground"
+                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
                       name="day"
                       role="gridcell"
-                      tabindex="0"
+                      tabindex="-1"
                       type="button"
                     >
                       17
@@ -416,6 +444,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       18
                     </button>
                   </td>
+                </tr>
+                <tr
+                  class="flex w-full mt-2"
+                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -444,10 +476,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       20
                     </button>
                   </td>
-                </tr>
-                <tr
-                  class="flex w-full mt-2"
-                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -518,6 +546,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       25
                     </button>
                   </td>
+                </tr>
+                <tr
+                  class="flex w-full mt-2"
+                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -546,10 +578,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       27
                     </button>
                   </td>
-                </tr>
-                <tr
-                  class="flex w-full mt-2"
-                >
                   <td
                     class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                     role="presentation"
@@ -597,6 +625,20 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     role="presentation"
                   >
                     <button
+                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
+                      name="day"
+                      role="gridcell"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      31
+                    </button>
+                  </td>
+                  <td
+                    class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
+                    role="presentation"
+                  >
+                    <button
                       class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
                       name="day"
                       role="gridcell"
@@ -604,48 +646,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                       type="button"
                     >
                       1
-                    </button>
-                  </td>
-                  <td
-                    class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
-                    role="presentation"
-                  >
-                    <button
-                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
-                      name="day"
-                      role="gridcell"
-                      tabindex="-1"
-                      type="button"
-                    >
-                      2
-                    </button>
-                  </td>
-                  <td
-                    class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
-                    role="presentation"
-                  >
-                    <button
-                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
-                      name="day"
-                      role="gridcell"
-                      tabindex="-1"
-                      type="button"
-                    >
-                      3
-                    </button>
-                  </td>
-                  <td
-                    class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
-                    role="presentation"
-                  >
-                    <button
-                      class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
-                      name="day"
-                      role="gridcell"
-                      tabindex="-1"
-                      type="button"
-                    >
-                      4
                     </button>
                   </td>
                 </tr>
@@ -675,7 +675,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
               id="react-day-picker-1"
               role="presentation"
             >
-              April 2024
+              January 2025
             </div>
             <div
               class="space-x-1 flex items-center"
@@ -805,6 +805,34 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     tabindex="-1"
                     type="button"
                   >
+                    29
+                  </button>
+                </td>
+                <td
+                  class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
+                  role="presentation"
+                >
+                  <button
+                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
+                    name="day"
+                    role="gridcell"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    30
+                  </button>
+                </td>
+                <td
+                  class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
+                  role="presentation"
+                >
+                  <button
+                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
+                    name="day"
+                    role="gridcell"
+                    tabindex="-1"
+                    type="button"
+                  >
                     31
                   </button>
                 </td>
@@ -864,6 +892,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     4
                   </button>
                 </td>
+              </tr>
+              <tr
+                class="flex w-full mt-2"
+              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -892,10 +924,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     6
                   </button>
                 </td>
-              </tr>
-              <tr
-                class="flex w-full mt-2"
-              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -915,10 +943,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   role="presentation"
                 >
                   <button
-                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
+                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-accent text-accent-foreground"
                     name="day"
                     role="gridcell"
-                    tabindex="-1"
+                    tabindex="0"
                     type="button"
                   >
                     8
@@ -966,6 +994,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     11
                   </button>
                 </td>
+              </tr>
+              <tr
+                class="flex w-full mt-2"
+              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -994,10 +1026,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     13
                   </button>
                 </td>
-              </tr>
-              <tr
-                class="flex w-full mt-2"
-              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -1045,10 +1073,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   role="presentation"
                 >
                   <button
-                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 bg-accent text-accent-foreground"
+                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
                     name="day"
                     role="gridcell"
-                    tabindex="0"
+                    tabindex="-1"
                     type="button"
                   >
                     17
@@ -1068,6 +1096,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     18
                   </button>
                 </td>
+              </tr>
+              <tr
+                class="flex w-full mt-2"
+              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -1096,10 +1128,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     20
                   </button>
                 </td>
-              </tr>
-              <tr
-                class="flex w-full mt-2"
-              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -1170,6 +1198,10 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     25
                   </button>
                 </td>
+              </tr>
+              <tr
+                class="flex w-full mt-2"
+              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -1198,10 +1230,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     27
                   </button>
                 </td>
-              </tr>
-              <tr
-                class="flex w-full mt-2"
-              >
                 <td
                   class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
                   role="presentation"
@@ -1249,6 +1277,20 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   role="presentation"
                 >
                   <button
+                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100"
+                    name="day"
+                    role="gridcell"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    31
+                  </button>
+                </td>
+                <td
+                  class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
+                  role="presentation"
+                >
+                  <button
                     class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
                     name="day"
                     role="gridcell"
@@ -1256,48 +1298,6 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                     type="button"
                   >
                     1
-                  </button>
-                </td>
-                <td
-                  class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
-                  role="presentation"
-                >
-                  <button
-                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
-                    name="day"
-                    role="gridcell"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    2
-                  </button>
-                </td>
-                <td
-                  class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
-                  role="presentation"
-                >
-                  <button
-                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
-                    name="day"
-                    role="gridcell"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    3
-                  </button>
-                </td>
-                <td
-                  class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected])]:rounded-md"
-                  role="presentation"
-                >
-                  <button
-                    class="rdp-button_reset rdp-button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 backdrop-filter-none hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 day-outside text-muted-foreground opacity-50  aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
-                    name="day"
-                    role="gridcell"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    4
                   </button>
                 </td>
               </tr>
