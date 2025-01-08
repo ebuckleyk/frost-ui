@@ -1,0 +1,314 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tabs > should render Tabs component to match snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="w-[400px]"
+        data-orientation="horizontal"
+        dir="ltr"
+      >
+        <div
+          aria-orientation="horizontal"
+          class="h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground grid w-full grid-cols-2"
+          data-orientation="horizontal"
+          role="tablist"
+          style="outline: none;"
+          tabindex="0"
+        >
+          <button
+            aria-controls="radix-:r0:-content-account"
+            aria-selected="true"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+            data-orientation="horizontal"
+            data-radix-collection-item=""
+            data-state="active"
+            id="radix-:r0:-trigger-account"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Account
+          </button>
+          <button
+            aria-controls="radix-:r0:-content-password"
+            aria-selected="false"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+            data-orientation="horizontal"
+            data-radix-collection-item=""
+            data-state="inactive"
+            id="radix-:r0:-trigger-password"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            Password
+          </button>
+        </div>
+        <div
+          aria-labelledby="radix-:r0:-trigger-account"
+          class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          data-orientation="horizontal"
+          data-state="active"
+          id="radix-:r0:-content-account"
+          role="tabpanel"
+          style="animation-duration: 0s;"
+          tabindex="0"
+        >
+          <div
+            class="rounded-xl border bg-card/60 text-card-foreground shadow-md backdrop-blur-md backdrop-saturate-200"
+          >
+            <div
+              class="flex flex-col space-y-1.5 p-6"
+            >
+              <h3
+                class="font-semibold leading-none tracking-tight"
+              >
+                Account
+              </h3>
+              <p
+                class="text-sm text-muted-foreground"
+              >
+                Make changes to your account here. Click save when you're done.
+              </p>
+            </div>
+            <div
+              class="p-6 pt-0 space-y-2"
+            >
+              <div
+                class="space-y-1"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="name"
+                >
+                  Name
+                </label>
+                <input
+                  class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                  id="name"
+                  value="Pedro Duarte"
+                />
+              </div>
+              <div
+                class="space-y-1"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="username"
+                >
+                  Username
+                </label>
+                <input
+                  class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                  id="username"
+                  value="@peduarte"
+                />
+              </div>
+            </div>
+            <div
+              class="flex items-center p-6 pt-0"
+            >
+              <button
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 h-10 px-4 py-2"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-labelledby="radix-:r0:-trigger-password"
+          class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          data-orientation="horizontal"
+          data-state="inactive"
+          hidden=""
+          id="radix-:r0:-content-password"
+          role="tabpanel"
+          tabindex="0"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="w-[400px]"
+      data-orientation="horizontal"
+      dir="ltr"
+    >
+      <div
+        aria-orientation="horizontal"
+        class="h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground grid w-full grid-cols-2"
+        data-orientation="horizontal"
+        role="tablist"
+        style="outline: none;"
+        tabindex="0"
+      >
+        <button
+          aria-controls="radix-:r0:-content-account"
+          aria-selected="true"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="active"
+          id="radix-:r0:-trigger-account"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Account
+        </button>
+        <button
+          aria-controls="radix-:r0:-content-password"
+          aria-selected="false"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-:r0:-trigger-password"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Password
+        </button>
+      </div>
+      <div
+        aria-labelledby="radix-:r0:-trigger-account"
+        class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        data-orientation="horizontal"
+        data-state="active"
+        id="radix-:r0:-content-account"
+        role="tabpanel"
+        style="animation-duration: 0s;"
+        tabindex="0"
+      >
+        <div
+          class="rounded-xl border bg-card/60 text-card-foreground shadow-md backdrop-blur-md backdrop-saturate-200"
+        >
+          <div
+            class="flex flex-col space-y-1.5 p-6"
+          >
+            <h3
+              class="font-semibold leading-none tracking-tight"
+            >
+              Account
+            </h3>
+            <p
+              class="text-sm text-muted-foreground"
+            >
+              Make changes to your account here. Click save when you're done.
+            </p>
+          </div>
+          <div
+            class="p-6 pt-0 space-y-2"
+          >
+            <div
+              class="space-y-1"
+            >
+              <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="name"
+              >
+                Name
+              </label>
+              <input
+                class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                id="name"
+                value="Pedro Duarte"
+              />
+            </div>
+            <div
+              class="space-y-1"
+            >
+              <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="username"
+              >
+                Username
+              </label>
+              <input
+                class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                id="username"
+                value="@peduarte"
+              />
+            </div>
+          </div>
+          <div
+            class="flex items-center p-6 pt-0"
+          >
+            <button
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 h-10 px-4 py-2"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-labelledby="radix-:r0:-trigger-password"
+        class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-:r0:-content-password"
+        role="tabpanel"
+        tabindex="0"
+      />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

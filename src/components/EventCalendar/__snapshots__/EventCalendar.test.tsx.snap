@@ -1,0 +1,2576 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EventCalendar > should render EventCalendar component to match snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="my-3 flex flex-col items-center justify-between gap-4 md:flex-row"
+      >
+        <div
+          class="flex items-center space-x-1"
+        >
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+          >
+            <svg
+              class="lucide lucide-chevron-left"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m15 18-6-6 6-6"
+              />
+            </svg>
+          </button>
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+          >
+            <svg
+              class="lucide lucide-chevron-right"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 18 6-6-6-6"
+              />
+            </svg>
+          </button>
+          <div>
+            January 08, 2025
+          </div>
+        </div>
+        <div
+          class="hidden md:flex"
+        >
+          <div
+            class="flex items-center justify-center gap-1"
+            dir="ltr"
+            role="group"
+            style="outline: none;"
+            tabindex="0"
+          >
+            <button
+              aria-checked="false"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              data-radix-collection-item=""
+              data-state="off"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              Month
+            </button>
+            <button
+              aria-checked="false"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              data-radix-collection-item=""
+              data-state="off"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              Week
+            </button>
+            <button
+              aria-checked="true"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              data-radix-collection-item=""
+              data-state="on"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              Day
+            </button>
+            <button
+              aria-checked="false"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              data-radix-collection-item=""
+              data-state="off"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              List
+            </button>
+          </div>
+        </div>
+        <div
+          class="flex md:hidden"
+        >
+          <div
+            class="flex items-center justify-center gap-1"
+            dir="ltr"
+            role="group"
+            style="outline: none;"
+            tabindex="0"
+          >
+            <button
+              aria-checked="false"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              data-radix-collection-item=""
+              data-state="off"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              Month
+            </button>
+            <button
+              aria-checked="false"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              data-radix-collection-item=""
+              data-state="off"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              Week
+            </button>
+            <button
+              aria-checked="false"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              data-radix-collection-item=""
+              data-state="off"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              Day
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="fc fc-media-screen fc-direction-ltr fc-theme-standard fc-liquid-hack"
+        style="height: 600px;"
+      >
+        <div
+          class="fc-view-harness fc-view-harness-active"
+        >
+          <div
+            class="fc-timeGridDay-view fc-view fc-timegrid frostui-view"
+          >
+            <table
+              class="fc-scrollgrid  fc-scrollgrid-liquid"
+              role="grid"
+            >
+              <tbody
+                role="rowgroup"
+              >
+                <tr
+                  class="fc-scrollgrid-section fc-scrollgrid-section-header  fc-scrollgrid-section-sticky"
+                  role="presentation"
+                >
+                  <th
+                    role="presentation"
+                  >
+                    <div
+                      class="fc-scroller-harness"
+                    >
+                      <div
+                        class="fc-scroller"
+                        style="overflow-x: hidden; overflow-y: hidden;"
+                      >
+                        <table
+                          class="fc-col-header "
+                          role="presentation"
+                          style="width: 0px;"
+                        >
+                          <colgroup>
+                            <col
+                              style="width: 0px;"
+                            />
+                          </colgroup>
+                          <thead
+                            role="presentation"
+                          >
+                            <tr
+                              role="row"
+                            >
+                              <th
+                                aria-hidden="true"
+                                class="fc-timegrid-axis"
+                              >
+                                <div
+                                  class="fc-timegrid-axis-frame"
+                                />
+                              </th>
+                              <th
+                                class="fc-col-header-cell fc-day fc-day-wed fc-day-today frostui-dayheader"
+                                data-date="2025-01-08"
+                                role="columnheader"
+                              >
+                                <div
+                                  class="fc-scrollgrid-sync-inner"
+                                >
+                                  <a
+                                    class="fc-col-header-cell-cushion"
+                                  >
+                                    Wednesday
+                                  </a>
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+                <tr
+                  class="fc-scrollgrid-section fc-scrollgrid-section-body "
+                  role="presentation"
+                >
+                  <td
+                    role="presentation"
+                  >
+                    <div
+                      class="fc-scroller-harness"
+                    >
+                      <div
+                        class="fc-scroller"
+                        style="overflow-x: hidden; overflow-y: hidden;"
+                      >
+                        <div
+                          class="fc-daygrid-body fc-daygrid-body-unbalanced fc-daygrid-body-natural"
+                          style="width: 0px;"
+                        >
+                          <table
+                            class="fc-scrollgrid-sync-table"
+                            role="presentation"
+                            style="width: 0px;"
+                          >
+                            <colgroup>
+                              <col
+                                style="width: 0px;"
+                              />
+                            </colgroup>
+                            <tbody
+                              role="presentation"
+                            >
+                              <tr
+                                role="row"
+                              >
+                                <td
+                                  aria-hidden="true"
+                                  class="fc-timegrid-axis fc-scrollgrid-shrink frostui-allday"
+                                >
+                                  <div
+                                    class="fc-timegrid-axis-frame fc-scrollgrid-shrink-frame  fc-timegrid-axis-frame-liquid"
+                                  >
+                                    <span
+                                      class="fc-timegrid-axis-cushion fc-scrollgrid-shrink-cushion fc-scrollgrid-sync-inner"
+                                    />
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-day fc-day-wed fc-day-today fc-daygrid-day frostui-daycell"
+                                  data-date="2025-01-08"
+                                  role="gridcell"
+                                >
+                                  <div
+                                    class="fc-daygrid-day-frame fc-scrollgrid-sync-inner"
+                                  >
+                                    <div
+                                      class="fc-daygrid-day-events"
+                                    >
+                                      <div
+                                        class="fc-daygrid-day-bottom"
+                                        style="margin-top: 0px;"
+                                      />
+                                    </div>
+                                    <div
+                                      class="fc-daygrid-day-bg"
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="fc-scrollgrid-section"
+                  role="presentation"
+                >
+                  <td
+                    class="fc-timegrid-divider fc-cell-shaded"
+                  />
+                </tr>
+                <tr
+                  class="fc-scrollgrid-section fc-scrollgrid-section-body  fc-scrollgrid-section-liquid"
+                  role="presentation"
+                >
+                  <td
+                    role="presentation"
+                  >
+                    <div
+                      class="fc-scroller-harness fc-scroller-harness-liquid"
+                    >
+                      <div
+                        class="fc-scroller fc-scroller-liquid-absolute"
+                        style="overflow-x: hidden; overflow-y: auto;"
+                      >
+                        <div
+                          class="fc-timegrid-body"
+                          style="width: 0px;"
+                        >
+                          <div
+                            class="fc-timegrid-slots"
+                          >
+                            <table
+                              aria-hidden="true"
+                              class=""
+                              style="width: 0px;"
+                            >
+                              <colgroup>
+                                <col
+                                  style="width: 0px;"
+                                />
+                              </colgroup>
+                              <tbody>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="00:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        12am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="00:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="00:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="00:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="01:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        1am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="01:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="01:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="01:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="02:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        2am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="02:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="02:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="02:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="03:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        3am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="03:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="03:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="03:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="04:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        4am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="04:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="04:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="04:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="05:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        5am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="05:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="05:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="05:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="06:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        6am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="06:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="06:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="06:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="07:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        7am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="07:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="07:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="07:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="08:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        8am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="08:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="08:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="08:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="09:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        9am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="09:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="09:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="09:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="10:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        10am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="10:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="10:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="10:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="11:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        11am
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="11:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="11:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="11:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="12:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        12pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="12:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="12:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="12:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="13:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        1pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="13:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="13:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="13:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="14:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        2pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="14:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="14:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="14:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="15:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        3pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="15:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="15:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="15:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="16:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        4pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="16:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="16:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="16:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="17:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        5pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="17:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="17:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="17:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="18:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        6pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="18:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="18:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="18:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="19:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        7pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="19:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="19:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="19:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="20:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        8pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="20:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="20:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="20:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="21:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        9pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="21:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="21:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="21:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="22:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        10pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="22:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="22:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="22:30:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                    data-time="23:00:00"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                      >
+                                        11pm
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                    data-time="23:00:00"
+                                  />
+                                </tr>
+                                <tr>
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                    data-time="23:30:00"
+                                  />
+                                  <td
+                                    class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                    data-time="23:30:00"
+                                  />
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div
+                            class="fc-timegrid-cols"
+                          >
+                            <table
+                              role="presentation"
+                              style="width: 0px;"
+                            >
+                              <colgroup>
+                                <col
+                                  style="width: 0px;"
+                                />
+                              </colgroup>
+                              <tbody
+                                role="presentation"
+                              >
+                                <tr
+                                  role="row"
+                                >
+                                  <td
+                                    aria-hidden="true"
+                                    class="fc-timegrid-col fc-timegrid-axis"
+                                  >
+                                    <div
+                                      class="fc-timegrid-col-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-now-indicator-container"
+                                      />
+                                    </div>
+                                  </td>
+                                  <td
+                                    class="fc-day fc-day-wed fc-day-today fc-timegrid-col frostui-daycell"
+                                    data-date="2025-01-08"
+                                    role="gridcell"
+                                  >
+                                    <div
+                                      class="fc-timegrid-col-frame"
+                                    >
+                                      <div
+                                        class="fc-timegrid-col-bg"
+                                      />
+                                      <div
+                                        class="fc-timegrid-col-events"
+                                      >
+                                        <div
+                                          class="fc-timegrid-event-harness"
+                                          style="visibility: hidden; left: 0px; right: 0px;"
+                                        >
+                                          <a
+                                            class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
+                                            style="border-color: #ffa500;"
+                                            tabindex="0"
+                                          >
+                                            <div
+                                              class="fc-event-main"
+                                            >
+                                              <div
+                                                aria-controls="radix-:r7:"
+                                                aria-expanded="false"
+                                                aria-haspopup="dialog"
+                                                class="z-50 flex size-full overflow-hidden align-middle"
+                                                data-state="closed"
+                                                type="button"
+                                              >
+                                                <div
+                                                  class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
+                                                >
+                                                  8:30 - 9:30
+                                                </div>
+                                                <div
+                                                  class="min-h-0 shrink grow"
+                                                >
+                                                  <div
+                                                    class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
+                                                  >
+                                                    Morning Event
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div
+                                              class="fc-event-resizer fc-event-resizer-end"
+                                            />
+                                          </a>
+                                        </div>
+                                        <div
+                                          class="fc-timegrid-event-harness"
+                                          style="visibility: hidden; left: 0px; right: 0px;"
+                                        >
+                                          <a
+                                            class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
+                                            tabindex="0"
+                                          >
+                                            <div
+                                              class="fc-event-main"
+                                            >
+                                              <div
+                                                aria-controls="radix-:ra:"
+                                                aria-expanded="false"
+                                                aria-haspopup="dialog"
+                                                class="z-50 flex size-full overflow-hidden align-middle"
+                                                data-state="closed"
+                                                type="button"
+                                              >
+                                                <div
+                                                  class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
+                                                >
+                                                  12:15 - 12:45
+                                                </div>
+                                                <div
+                                                  class="min-h-0 shrink grow"
+                                                >
+                                                  <div
+                                                    class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
+                                                  >
+                                                    Noon Event
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div
+                                              class="fc-event-resizer fc-event-resizer-end"
+                                            />
+                                          </a>
+                                        </div>
+                                        <div
+                                          class="fc-timegrid-event-harness"
+                                          style="visibility: hidden; left: 0px; right: 0px;"
+                                        >
+                                          <a
+                                            class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
+                                            style="border-color: #ff0000;"
+                                            tabindex="0"
+                                          >
+                                            <div
+                                              class="fc-event-main"
+                                            >
+                                              <div
+                                                aria-controls="radix-:rd:"
+                                                aria-expanded="false"
+                                                aria-haspopup="dialog"
+                                                class="z-50 flex size-full overflow-hidden align-middle"
+                                                data-state="closed"
+                                                type="button"
+                                              >
+                                                <div
+                                                  class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
+                                                >
+                                                  3:30 - 5:00
+                                                </div>
+                                                <div
+                                                  class="min-h-0 shrink grow"
+                                                >
+                                                  <div
+                                                    class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
+                                                  >
+                                                    Afternoon Event
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div
+                                              class="fc-event-resizer fc-event-resizer-end"
+                                            />
+                                          </a>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="fc-timegrid-col-events"
+                                      />
+                                      <div
+                                        class="fc-timegrid-now-indicator-container"
+                                      />
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="my-3 flex flex-col items-center justify-between gap-4 md:flex-row"
+    >
+      <div
+        class="flex items-center space-x-1"
+      >
+        <button
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+        >
+          <svg
+            class="lucide lucide-chevron-left"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m15 18-6-6 6-6"
+            />
+          </svg>
+        </button>
+        <button
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+        >
+          <svg
+            class="lucide lucide-chevron-right"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m9 18 6-6-6-6"
+            />
+          </svg>
+        </button>
+        <div>
+          January 08, 2025
+        </div>
+      </div>
+      <div
+        class="hidden md:flex"
+      >
+        <div
+          class="flex items-center justify-center gap-1"
+          dir="ltr"
+          role="group"
+          style="outline: none;"
+          tabindex="0"
+        >
+          <button
+            aria-checked="false"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            data-radix-collection-item=""
+            data-state="off"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            Month
+          </button>
+          <button
+            aria-checked="false"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            data-radix-collection-item=""
+            data-state="off"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            Week
+          </button>
+          <button
+            aria-checked="true"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            data-radix-collection-item=""
+            data-state="on"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            Day
+          </button>
+          <button
+            aria-checked="false"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            data-radix-collection-item=""
+            data-state="off"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            List
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex md:hidden"
+      >
+        <div
+          class="flex items-center justify-center gap-1"
+          dir="ltr"
+          role="group"
+          style="outline: none;"
+          tabindex="0"
+        >
+          <button
+            aria-checked="false"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+            data-radix-collection-item=""
+            data-state="off"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            Month
+          </button>
+          <button
+            aria-checked="false"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+            data-radix-collection-item=""
+            data-state="off"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            Week
+          </button>
+          <button
+            aria-checked="false"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+            data-radix-collection-item=""
+            data-state="off"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            Day
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="fc fc-media-screen fc-direction-ltr fc-theme-standard fc-liquid-hack"
+      style="height: 600px;"
+    >
+      <div
+        class="fc-view-harness fc-view-harness-active"
+      >
+        <div
+          class="fc-timeGridDay-view fc-view fc-timegrid frostui-view"
+        >
+          <table
+            class="fc-scrollgrid  fc-scrollgrid-liquid"
+            role="grid"
+          >
+            <tbody
+              role="rowgroup"
+            >
+              <tr
+                class="fc-scrollgrid-section fc-scrollgrid-section-header  fc-scrollgrid-section-sticky"
+                role="presentation"
+              >
+                <th
+                  role="presentation"
+                >
+                  <div
+                    class="fc-scroller-harness"
+                  >
+                    <div
+                      class="fc-scroller"
+                      style="overflow-x: hidden; overflow-y: hidden;"
+                    >
+                      <table
+                        class="fc-col-header "
+                        role="presentation"
+                        style="width: 0px;"
+                      >
+                        <colgroup>
+                          <col
+                            style="width: 0px;"
+                          />
+                        </colgroup>
+                        <thead
+                          role="presentation"
+                        >
+                          <tr
+                            role="row"
+                          >
+                            <th
+                              aria-hidden="true"
+                              class="fc-timegrid-axis"
+                            >
+                              <div
+                                class="fc-timegrid-axis-frame"
+                              />
+                            </th>
+                            <th
+                              class="fc-col-header-cell fc-day fc-day-wed fc-day-today frostui-dayheader"
+                              data-date="2025-01-08"
+                              role="columnheader"
+                            >
+                              <div
+                                class="fc-scrollgrid-sync-inner"
+                              >
+                                <a
+                                  class="fc-col-header-cell-cushion"
+                                >
+                                  Wednesday
+                                </a>
+                              </div>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr
+                class="fc-scrollgrid-section fc-scrollgrid-section-body "
+                role="presentation"
+              >
+                <td
+                  role="presentation"
+                >
+                  <div
+                    class="fc-scroller-harness"
+                  >
+                    <div
+                      class="fc-scroller"
+                      style="overflow-x: hidden; overflow-y: hidden;"
+                    >
+                      <div
+                        class="fc-daygrid-body fc-daygrid-body-unbalanced fc-daygrid-body-natural"
+                        style="width: 0px;"
+                      >
+                        <table
+                          class="fc-scrollgrid-sync-table"
+                          role="presentation"
+                          style="width: 0px;"
+                        >
+                          <colgroup>
+                            <col
+                              style="width: 0px;"
+                            />
+                          </colgroup>
+                          <tbody
+                            role="presentation"
+                          >
+                            <tr
+                              role="row"
+                            >
+                              <td
+                                aria-hidden="true"
+                                class="fc-timegrid-axis fc-scrollgrid-shrink frostui-allday"
+                              >
+                                <div
+                                  class="fc-timegrid-axis-frame fc-scrollgrid-shrink-frame  fc-timegrid-axis-frame-liquid"
+                                >
+                                  <span
+                                    class="fc-timegrid-axis-cushion fc-scrollgrid-shrink-cushion fc-scrollgrid-sync-inner"
+                                  />
+                                </div>
+                              </td>
+                              <td
+                                class="fc-day fc-day-wed fc-day-today fc-daygrid-day frostui-daycell"
+                                data-date="2025-01-08"
+                                role="gridcell"
+                              >
+                                <div
+                                  class="fc-daygrid-day-frame fc-scrollgrid-sync-inner"
+                                >
+                                  <div
+                                    class="fc-daygrid-day-events"
+                                  >
+                                    <div
+                                      class="fc-daygrid-day-bottom"
+                                      style="margin-top: 0px;"
+                                    />
+                                  </div>
+                                  <div
+                                    class="fc-daygrid-day-bg"
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="fc-scrollgrid-section"
+                role="presentation"
+              >
+                <td
+                  class="fc-timegrid-divider fc-cell-shaded"
+                />
+              </tr>
+              <tr
+                class="fc-scrollgrid-section fc-scrollgrid-section-body  fc-scrollgrid-section-liquid"
+                role="presentation"
+              >
+                <td
+                  role="presentation"
+                >
+                  <div
+                    class="fc-scroller-harness fc-scroller-harness-liquid"
+                  >
+                    <div
+                      class="fc-scroller fc-scroller-liquid-absolute"
+                      style="overflow-x: hidden; overflow-y: auto;"
+                    >
+                      <div
+                        class="fc-timegrid-body"
+                        style="width: 0px;"
+                      >
+                        <div
+                          class="fc-timegrid-slots"
+                        >
+                          <table
+                            aria-hidden="true"
+                            class=""
+                            style="width: 0px;"
+                          >
+                            <colgroup>
+                              <col
+                                style="width: 0px;"
+                              />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="00:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      12am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="00:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="00:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="00:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="01:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      1am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="01:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="01:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="01:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="02:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      2am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="02:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="02:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="02:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="03:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      3am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="03:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="03:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="03:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="04:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      4am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="04:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="04:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="04:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="05:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      5am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="05:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="05:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="05:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="06:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      6am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="06:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="06:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="06:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="07:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      7am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="07:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="07:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="07:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="08:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      8am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="08:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="08:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="08:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="09:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      9am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="09:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="09:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="09:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="10:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      10am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="10:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="10:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="10:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="11:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      11am
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="11:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="11:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="11:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="12:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      12pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="12:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="12:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="12:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="13:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      1pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="13:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="13:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="13:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="14:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      2pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="14:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="14:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="14:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="15:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      3pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="15:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="15:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="15:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="16:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      4pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="16:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="16:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="16:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="17:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      5pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="17:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="17:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="17:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="18:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      6pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="18:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="18:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="18:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="19:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      7pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="19:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="19:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="19:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="20:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      8pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="20:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="20:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="20:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="21:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      9pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="21:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="21:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="21:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="22:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      10pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="22:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="22:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="22:30:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-scrollgrid-shrink frostui-slotlabel"
+                                  data-time="23:00:00"
+                                >
+                                  <div
+                                    class="fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-slot-label-cushion fc-scrollgrid-shrink-cushion"
+                                    >
+                                      11pm
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane frostui-slotLane"
+                                  data-time="23:00:00"
+                                />
+                              </tr>
+                              <tr>
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-label fc-timegrid-slot-minor"
+                                  data-time="23:30:00"
+                                />
+                                <td
+                                  class="fc-timegrid-slot fc-timegrid-slot-lane fc-timegrid-slot-minor frostui-slotLane"
+                                  data-time="23:30:00"
+                                />
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div
+                          class="fc-timegrid-cols"
+                        >
+                          <table
+                            role="presentation"
+                            style="width: 0px;"
+                          >
+                            <colgroup>
+                              <col
+                                style="width: 0px;"
+                              />
+                            </colgroup>
+                            <tbody
+                              role="presentation"
+                            >
+                              <tr
+                                role="row"
+                              >
+                                <td
+                                  aria-hidden="true"
+                                  class="fc-timegrid-col fc-timegrid-axis"
+                                >
+                                  <div
+                                    class="fc-timegrid-col-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-now-indicator-container"
+                                    />
+                                  </div>
+                                </td>
+                                <td
+                                  class="fc-day fc-day-wed fc-day-today fc-timegrid-col frostui-daycell"
+                                  data-date="2025-01-08"
+                                  role="gridcell"
+                                >
+                                  <div
+                                    class="fc-timegrid-col-frame"
+                                  >
+                                    <div
+                                      class="fc-timegrid-col-bg"
+                                    />
+                                    <div
+                                      class="fc-timegrid-col-events"
+                                    >
+                                      <div
+                                        class="fc-timegrid-event-harness"
+                                        style="visibility: hidden; left: 0px; right: 0px;"
+                                      >
+                                        <a
+                                          class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
+                                          style="border-color: #ffa500;"
+                                          tabindex="0"
+                                        >
+                                          <div
+                                            class="fc-event-main"
+                                          >
+                                            <div
+                                              aria-controls="radix-:r7:"
+                                              aria-expanded="false"
+                                              aria-haspopup="dialog"
+                                              class="z-50 flex size-full overflow-hidden align-middle"
+                                              data-state="closed"
+                                              type="button"
+                                            >
+                                              <div
+                                                class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
+                                              >
+                                                8:30 - 9:30
+                                              </div>
+                                              <div
+                                                class="min-h-0 shrink grow"
+                                              >
+                                                <div
+                                                  class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
+                                                >
+                                                  Morning Event
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="fc-event-resizer fc-event-resizer-end"
+                                          />
+                                        </a>
+                                      </div>
+                                      <div
+                                        class="fc-timegrid-event-harness"
+                                        style="visibility: hidden; left: 0px; right: 0px;"
+                                      >
+                                        <a
+                                          class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
+                                          tabindex="0"
+                                        >
+                                          <div
+                                            class="fc-event-main"
+                                          >
+                                            <div
+                                              aria-controls="radix-:ra:"
+                                              aria-expanded="false"
+                                              aria-haspopup="dialog"
+                                              class="z-50 flex size-full overflow-hidden align-middle"
+                                              data-state="closed"
+                                              type="button"
+                                            >
+                                              <div
+                                                class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
+                                              >
+                                                12:15 - 12:45
+                                              </div>
+                                              <div
+                                                class="min-h-0 shrink grow"
+                                              >
+                                                <div
+                                                  class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
+                                                >
+                                                  Noon Event
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="fc-event-resizer fc-event-resizer-end"
+                                          />
+                                        </a>
+                                      </div>
+                                      <div
+                                        class="fc-timegrid-event-harness"
+                                        style="visibility: hidden; left: 0px; right: 0px;"
+                                      >
+                                        <a
+                                          class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
+                                          style="border-color: #ff0000;"
+                                          tabindex="0"
+                                        >
+                                          <div
+                                            class="fc-event-main"
+                                          >
+                                            <div
+                                              aria-controls="radix-:rd:"
+                                              aria-expanded="false"
+                                              aria-haspopup="dialog"
+                                              class="z-50 flex size-full overflow-hidden align-middle"
+                                              data-state="closed"
+                                              type="button"
+                                            >
+                                              <div
+                                                class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
+                                              >
+                                                3:30 - 5:00
+                                              </div>
+                                              <div
+                                                class="min-h-0 shrink grow"
+                                              >
+                                                <div
+                                                  class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
+                                                >
+                                                  Afternoon Event
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="fc-event-resizer fc-event-resizer-end"
+                                          />
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="fc-timegrid-col-events"
+                                    />
+                                    <div
+                                      class="fc-timegrid-now-indicator-container"
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
