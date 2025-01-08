@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.14.0
+
+### Minor Changes
+
+- b3d8a62: Added snapshot tests and updated various packages
+
 ## 0.13.0
 
 ### Minor Changes
