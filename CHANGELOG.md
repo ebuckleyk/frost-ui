@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.15.0
+
+### Minor Changes
+
+- 82da89a: Updated react-day-picker to latest version. Updated other libraries
+
 ## 0.14.0
 
 ### Minor Changes
