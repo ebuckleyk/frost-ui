@@ -8,9 +8,9 @@ import listPlugin from '@fullcalendar/list';
 import multiMonthPlugin from '@fullcalendar/multimonth';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import endOfWeek from 'date-fns/endOfWeek';
-import format from 'date-fns/format';
-import startOfWeek from 'date-fns/startOfWeek';
+import { endOfWeek } from 'date-fns/endOfWeek';
+import { format } from 'date-fns/format';
+import { startOfWeek } from 'date-fns/startOfWeek';
 import {
   Calendar,
   ChevronLeft,

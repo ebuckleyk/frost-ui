@@ -8,7 +8,7 @@ import { Calendar } from './Calendar';
 function SingleDayCalendarDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   return (
-    <Calendar mode="single" selected={date} onSelect={setDate} className="max-w-[380px] rounded-md border shadow" />
+    <Calendar mode="single" selected={date} onSelect={setDate} className="max-w-[280px] rounded-md border shadow" />
   );
 }
 
@@ -24,7 +24,7 @@ function MultiDayCalendarDemo() {
       min={1}
       selected={days}
       onSelect={setDays}
-      className="max-w-[380px] rounded-md border shadow"
+      className="max-w-[280px] rounded-md border shadow"
     />
   );
 }
@@ -58,7 +58,7 @@ function RangeCalendarDemo() {
       selected={range}
       footer={footer}
       onSelect={setRange}
-      className="max-w-[380px] rounded-md border shadow"
+      className="max-w-[280px] rounded-md border shadow"
     />
   );
 }
