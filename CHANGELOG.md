@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.16.0
+
+### Minor Changes
+
+- 99bf0ac: Updated a few accessibility features and added Charts to package
+
 ## 0.15.0
 
 ### Minor Changes
