@@ -10,6 +10,7 @@ export * from './Calendar';
 export * from './Card';
 export * from './Carousel';
 export * from './Checkbox';
+export * from './Chart';
 export * from './Collapsible';
 //export * from './Combobox';
 export * from './Command';
