@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 0.17.0
+
+### Minor Changes
+
+- 2559bdc: Upgraded storybook. Removed eslint-plugin-tailwind to prep for tailwindcss v4
+
 ## 0.16.0
 
 ### Minor Changes
