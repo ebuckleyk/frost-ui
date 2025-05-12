@@ -47,6 +47,7 @@ const preview: Preview = {
       ],
     },
   },
+
   globalTypes: {
     theme: {
       name: 'Theme',
@@ -60,6 +61,7 @@ const preview: Preview = {
       },
     },
   },
+
   decorators: [
     (Story, context) => {
       const theme = context.parameters.theme || context.globals.theme;
@@ -76,6 +78,8 @@ const preview: Preview = {
       );
     },
   ],
+
+  tags: ['autodocs']
 };
 
 export default preview;

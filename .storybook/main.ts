@@ -24,9 +24,7 @@ const config: StorybookConfig = {
       plugins: [...(config.plugins || []), ...[viteTsconfigPaths()]],
     };
   },
-  docs: {
-    autodocs: true,
-  },
+  docs: {},
   staticDirs: ['../public'],
   typescript: {
     reactDocgen: 'react-docgen-typescript',
