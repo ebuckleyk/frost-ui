@@ -7,7 +7,7 @@ import { Toggle } from './Toggle';
 function ToggleDemo() {
   return (
     <Toggle aria-label="Toggle italic">
-      <FontBoldIcon className="h-4 w-4" />
+      <FontBoldIcon className="size-4" />
     </Toggle>
   );
 }
@@ -15,7 +15,7 @@ function ToggleDemo() {
 function ToggleOutlineDemo() {
   return (
     <Toggle variant="outline" aria-label="Toggle italic">
-      <FontItalicIcon className="h-4 w-4" />
+      <FontItalicIcon className="size-4" />
     </Toggle>
   );
 }
@@ -23,7 +23,7 @@ function ToggleOutlineDemo() {
 function ToggleWithTextDemo() {
   return (
     <Toggle aria-label="Toggle italic">
-      <FontItalicIcon className="mr-2 h-4 w-4" />
+      <FontItalicIcon className="mr-2 size-4" />
       Italic
     </Toggle>
   );

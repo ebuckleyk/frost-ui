@@ -83,7 +83,7 @@ function WithDropdownDemo() {
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1">
               Components
-              <ChevronDown className="h-4 w-4" />
+              <ChevronDown className="size-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem>Documentation</DropdownMenuItem>
@@ -180,7 +180,7 @@ function ResponsiveDemo() {
               {isDesktop ? (
                 <DropdownMenu open={open} onOpenChange={setOpen}>
                   <DropdownMenuTrigger className="flex items-center gap-1" aria-label="Toggle menu">
-                    <BreadcrumbEllipsis className="h-4 w-4" />
+                    <BreadcrumbEllipsis className="size-4" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start">
                     {items.slice(1, -2).map((item, index) => (
@@ -193,7 +193,7 @@ function ResponsiveDemo() {
               ) : (
                 <Drawer open={open} onOpenChange={setOpen}>
                   <DrawerTrigger aria-label="Toggle Menu">
-                    <BreadcrumbEllipsis className="h-4 w-4" />
+                    <BreadcrumbEllipsis className="size-4" />
                   </DrawerTrigger>
                   <DrawerContent>
                     <DrawerHeader className="text-left">

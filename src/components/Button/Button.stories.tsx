@@ -7,7 +7,7 @@ import { Button } from './Button';
 function WithIconDemo() {
   return (
     <Button>
-      <Mail className="mr-2 h-4 w-4" /> Login with Email
+      <Mail className="mr-2 size-4" /> Login with Email
     </Button>
   );
 }
@@ -15,7 +15,7 @@ function WithIconDemo() {
 function LoadingDemo() {
   return (
     <Button disabled>
-      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+      <Loader2 className="mr-2 size-4 animate-spin" />
       Please wait
     </Button>
   );

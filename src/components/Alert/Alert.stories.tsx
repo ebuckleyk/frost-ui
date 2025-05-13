@@ -7,7 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from './Alert';
 function AlertDemo(props) {
   return (
     <Alert {...props} className="max-w-[380px]">
-      <Terminal className="h-4 w-4" />
+      <Terminal className="size-4" />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>You can add components to your app using the cli.</AlertDescription>
     </Alert>

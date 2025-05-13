@@ -13,7 +13,7 @@ function ProgressDemo() {
 
   return (
     <div className="min-w-[150px]">
-      <Progress value={progress} className="w-[100%]" />
+      <Progress value={progress} className="w-full" />
     </div>
   );
 }

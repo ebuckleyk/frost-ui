@@ -114,7 +114,7 @@ type RichTextContextValue = Pick<
 const [RichTextProvider, useRichTextContext] = createRichTextContext<RichTextContextValue>(RICHTEXT_NAME);
 const SLATE_INIT_VALUE = [{ type: 'paragraph', children: [{ text: '' }] }] satisfies Descendant[];
 
-const RichText: React.FC<RichTextProps> = (props: ScopedProps<RichTextProps>) => {
+function RichText({ ...props }: ScopedProps<RichTextProps>) {
   const { __scopeRichText, children, onChange, ...rest } = props;
   const editor = React.useMemo(() => withHistory(withReact(createEditor())), []);
   return (
@@ -124,9 +124,7 @@ const RichText: React.FC<RichTextProps> = (props: ScopedProps<RichTextProps>) =>
       </Slate>
     </RichTextProvider>
   );
-};
-
-RichText.displayName = RICHTEXT_NAME;
+}
 
 /**
  * RichTextArea
@@ -134,7 +132,7 @@ RichText.displayName = RICHTEXT_NAME;
 const RICHTEXTAREA_NAME = 'RichTextArea';
 
 type RichTextAreaProps = React.HtmlHTMLAttributes<HTMLDivElement>;
-const RichTextArea: React.FC<RichTextAreaProps> = (props: ScopedProps<RichTextAreaProps>) => {
+function RichTextArea({ ...props }: ScopedProps<RichTextAreaProps>) {
   const { __scopeRichText, className } = props;
   const context = useRichTextContext(RICHTEXTAREA_NAME, __scopeRichText);
   const editor = useSlate();
@@ -159,7 +157,7 @@ const RichTextArea: React.FC<RichTextAreaProps> = (props: ScopedProps<RichTextAr
       data-slate-editor={'richtext-editor'}
       role="textbox"
       className={cn(
-        'border border-primary/20 bg-secondary/40 rounded p-4 focus:border-secondary-foreground richtext-editor',
+        'border border-primary/20 bg-secondary/40 rounded-sm p-4 focus:border-secondary-foreground richtext-editor backdrop-blur-md backdrop-saturate-200',
         className,
       )}
       onKeyDown={onKeyDown}
@@ -168,8 +166,7 @@ const RichTextArea: React.FC<RichTextAreaProps> = (props: ScopedProps<RichTextAr
       renderPlaceholder={richTextUtils.renderPlaceholder}
     />
   );
-};
-RichTextArea.displayName = RICHTEXTAREA_NAME;
+}
 
 /**
  * RichTextToolbar
@@ -211,7 +208,7 @@ const BlockButton = ({ format, Icon }: ToolbarOptionProps) => {
   }, [editor, format]);
   return (
     <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleBlock} variant={'outline'}>
-      <Icon className="h-3 w-3" />
+      <Icon className="size-3" />
     </Toggle>
   );
 };
@@ -224,7 +221,7 @@ const MarkButton = ({ format, Icon }: ToolbarOptionProps) => {
   }, [editor, format]);
   return (
     <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleMark} variant={'outline'}>
-      <Icon className="h-3 w-3" />
+      <Icon className="size-3" />
     </Toggle>
   );
 };
@@ -249,10 +246,10 @@ const DEFAULT_TOOLBAR_CONFIG: ToolbarOptions = {
   [TOOLBAR_OPTION.BLOCK_QUOTE]: true,
 };
 
-const RichTextToolbar: React.FC<RichTextToolbarProps> = (props: ScopedProps<RichTextToolbarProps>) => {
+function RichTextToolbar({ ...props }: ScopedProps<RichTextToolbarProps>) {
   const { className, toolbar = DEFAULT_TOOLBAR_CONFIG } = props;
   return (
-    <div className={cn('rounded gap-1', className)}>
+    <div className={cn('rounded-sm gap-1', className)}>
       {[FORMAT_GROUP, HEADINGS_GROUP, ALIGNMENT_GROUP].map((group) => {
         return group.map((g, k) => {
           const enabled = toolbar[g.option];
@@ -267,8 +264,6 @@ const RichTextToolbar: React.FC<RichTextToolbarProps> = (props: ScopedProps<Rich
       })}
     </div>
   );
-};
-
-RichTextToolbar.displayName = RICHTEXTTOOLBAR_NAME;
+}
 
 export { RichText, RichTextArea, RichTextToolbar, createRichTextScope };
