@@ -40,7 +40,7 @@ export function ComboboxDemo() {
       <PopoverTrigger asChild>
         <Button variant="outline" role="combobox" aria-expanded={open} className="w-[200px] justify-between">
           {value ? frameworks.find((framework) => framework.value === value)?.label : 'Select framework...'}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
@@ -57,7 +57,7 @@ export function ComboboxDemo() {
                   setOpen(false);
                 }}
               >
-                <Check className={cn('mr-2 h-4 w-4', value === framework.value ? 'opacity-100' : 'opacity-0')} />
+                <Check className={cn('mr-2 size-4', value === framework.value ? 'opacity-100' : 'opacity-0')} />
                 {framework.label}
               </CommandItem>
             ))}

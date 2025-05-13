@@ -3,19 +3,13 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
-import copy from 'rollup-plugin-copy';
 import { dts } from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-//import bundleSize from 'rollup-plugin-bundle-size';
 import sizes from 'rollup-plugin-sizes';
 import { visualizer } from 'rollup-plugin-visualizer';
-import tailwindcss from 'tailwindcss';
 
 import packageJson from './package.json';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const tailwindConfig = require('./tailwind.config.js');
 
 /**
  * @type {import('rollup').RollupOptions}
@@ -24,15 +18,7 @@ const config = {
   input: 'src/index.ts',
   external: ['react', 'react-dom'],
   output: [
-    // {
-    //   // file: packageJson.main,
-    //   dir: 'dist/cjs',
-    //   format: 'cjs',
-    //   sourcemap: true,
-    //   preserveModules: true,
-    // },
     {
-      // file: packageJson.module,
       dir: 'dist',
       format: 'esm',
       sourcemap: true,
@@ -56,21 +42,13 @@ const config = {
     commonjs(),
     typescript({ tsconfig: './tsconfig.json', exclude: ['**/*.test.ts', '**/*.stories.ts'] }),
     postcss({
-      config: {
-        path: './postcss.config.js',
-      },
       extensions: ['.css'],
       minimize: true,
       inject: {
         insertAt: 'top',
       },
-      plugins: [tailwindcss(tailwindConfig)],
-    }),
-    copy({
-      targets: [{ src: './src/styles/theme-preset.js', dest: 'dist/presets/', rename: 'theme.js' }],
     }),
     terser(),
-    //bundleSize(),
     sizes(),
     visualizer(),
   ],

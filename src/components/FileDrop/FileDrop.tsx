@@ -46,14 +46,13 @@ const fileToDropFile = (files?: FileWithServerId[] | undefined, indexStart = 0):
   return files?.map((f, idx) => ({ file: f, _index: idx + indexStart }));
 };
 
-const FileDrop = React.forwardRef<FileDropElement, FileDropProps>((props: ScopedProps<FileDropProps>, forwardRef) => {
-  const { __scopeFileDrop, className, children, files, disabled, onChange } = props;
+function FileDrop({ ...props }: ScopedProps<FileDropProps>) {
+  const { __scopeFileDrop, className, children, files, disabled } = props;
   const [fileDropState, setFileDropState] = React.useState<FileDropState>({
     stateFiles: fileToDropFile(files),
   });
   const dropzoneProps = useDropzone(props);
   const providerProps = React.useMemo(() => dropzoneProps, [dropzoneProps]);
-  const { stateFiles } = fileDropState;
 
   const remove = React.useCallback((dropFile: DropFileInfo) => {
     setFileDropState((prevState) => ({
@@ -73,12 +72,6 @@ const FileDrop = React.forwardRef<FileDropElement, FileDropProps>((props: Scoped
     });
   }, []);
 
-  React.useEffect(() => {
-    if (onChange) {
-      onChange(stateFiles?.map((x) => x.file) ?? []);
-    }
-  }, [onChange, stateFiles]);
-
   return (
     <FileDropProvider
       {...providerProps}
@@ -88,12 +81,10 @@ const FileDrop = React.forwardRef<FileDropElement, FileDropProps>((props: Scoped
       files={fileDropState.stateFiles}
       scope={__scopeFileDrop}
     >
-      <div ref={forwardRef} className={cn(className)} children={children} />
+      <div className={cn(className)} children={children} />
     </FileDropProvider>
   );
-});
-
-FileDrop.displayName = FILEDROP_NAME;
+}
 
 /**
  * File Drop Area Content
@@ -101,64 +92,51 @@ FileDrop.displayName = FILEDROP_NAME;
 const FILE_DROP_AREA_NAME = 'FileDropArea';
 
 type FileDropAreaProps = Partial<DropzoneState> & React.PropsWithChildren & React.HtmlHTMLAttributes<HTMLDivElement>;
-type FileDropAreaElement = React.ElementRef<'div'>;
 
-const FileDropArea = React.forwardRef<FileDropAreaElement, FileDropAreaProps>(
-  (props: ScopedProps<FileDropAreaProps>, forwardRef) => {
-    const { children, __scopeFileDrop } = props;
-    const context = useFileDropContext(FILE_DROP_AREA_NAME, __scopeFileDrop);
-    const { getInputProps, getRootProps, isDragAccept, isFocused, isDragReject, isDragActive, acceptedFiles, add } =
-      context;
+function FileDropArea({ ...props }: ScopedProps<FileDropAreaProps>) {
+  const { children, __scopeFileDrop } = props;
+  const context = useFileDropContext(FILE_DROP_AREA_NAME, __scopeFileDrop);
+  const { getInputProps, getRootProps, isDragAccept, isFocused, isDragReject, isDragActive, acceptedFiles, add } =
+    context;
 
-    const style = React.useMemo(
-      () =>
-        `${isDragAccept ? 'border-primary/40 bg-primary/30' : ''} ${isFocused ? 'border-input' : ''} ${
-          isDragReject ? 'border-destructive/40 bg-destructive/30' : ''
-        }`,
-      [isFocused, isDragAccept, isDragReject],
-    );
+  const style = React.useMemo(
+    () =>
+      `${isDragAccept ? 'border-primary/40 bg-primary/30' : ''} ${isFocused ? 'border-input' : ''} ${
+        isDragReject ? 'border-destructive/40 bg-destructive/30' : ''
+      }`,
+    [isFocused, isDragAccept, isDragReject],
+  );
 
-    const dragOpacity = React.useMemo(() => (isDragActive ? '' : '/30'), [isDragActive]);
+  const dragOpacity = React.useMemo(() => (isDragActive ? '' : '/30'), [isDragActive]);
 
-    React.useEffect(() => {
-      add(acceptedFiles as FileWithPath[]); //look into
-    }, [acceptedFiles, add]);
+  React.useEffect(() => {
+    add(acceptedFiles as FileWithPath[]); //look into
+  }, [acceptedFiles, add]);
 
-    return (
-      <div
-        className={cn(
-          `bg-primary-foreground${dragOpacity} flex-col items-center border-2 border-dashed border-primary-foreground${dragOpacity} rounded transition .24s ease-in-out flex p-5 ${style}`,
-          props.className,
-        )}
-        ref={forwardRef}
-        {...getRootProps(props)}
-      >
-        <input {...getInputProps()} />
-        {children}
-      </div>
-    );
-  },
-);
-
-FileDropArea.displayName = FILE_DROP_AREA_NAME;
+  return (
+    <div
+      className={cn(
+        `bg-primary-foreground${dragOpacity} flex-col items-center border-2 border-dashed border-primary-foreground${dragOpacity} rounded-sm transition .24s ease-in-out flex p-5 ${style}`,
+        props.className,
+      )}
+      {...getRootProps(props)}
+    >
+      <input {...getInputProps()} />
+      {children}
+    </div>
+  );
+}
 
 /**
  * File Drop Area Text Content
  */
-const FILE_DROP_AREA_TEXT_NAME = 'FileDropAreaText';
-
-const FileDropAreaText = React.forwardRef<HTMLParagraphElement, React.ParamHTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => {
-    return <p ref={ref} className={cn(className)} {...props} />;
-  },
-);
-
-FileDropAreaText.displayName = FILE_DROP_AREA_TEXT_NAME;
+function FileDropAreaText({ className, ...props }: React.ComponentProps<'p'>) {
+  return <p className={cn(className)} {...props} />;
+}
 
 /**
  * File Drop File Area Content
  */
-const FILE_DROP_FILES_AREA_NAME = 'FileDropFileArea';
 type FileDropFileAreaChildProps = {
   files: DropFileInfo[] | undefined;
 };
@@ -166,7 +144,7 @@ type FileDropFilesAreaProps = {
   renderRows?: (props: FileDropFileAreaChildProps) => React.ReactNode;
 };
 
-const FileDropFileArea: React.FC<FileDropFilesAreaProps> = (props: ScopedProps<FileDropFilesAreaProps>) => {
+function FileDropFileArea({ ...props }: ScopedProps<FileDropFilesAreaProps>) {
   const context = useFileDropContext(FILE_DROP_AREA_NAME, props.__scopeFileDrop);
   const { files } = context;
   const { renderRows } = props;
@@ -179,8 +157,7 @@ const FileDropFileArea: React.FC<FileDropFilesAreaProps> = (props: ScopedProps<F
     </FileDropFileItem>
   ));
   return renderRows ? renderRows(params) : list;
-};
-FileDropFileArea.displayName = FILE_DROP_FILES_AREA_NAME;
+}
 
 /**
  * File Drop File Item
@@ -196,23 +173,21 @@ const [FileDropFileItemProvider, useFileDropFileItemContext] =
 type FileDropFileItemProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   fileInfo: DropFileInfo;
 };
-const FileDropFileItem: React.FC<FileDropFileItemProps> = (props: ScopedProps<FileDropFileItemProps>) => {
+function FileDropFileItem({ ...props }: ScopedProps<FileDropFileItemProps>) {
   const { __scopeFileDrop, className, children, fileInfo, ...fileItemProps } = props;
   return (
     <FileDropFileItemProvider fileInfo={fileInfo} scope={__scopeFileDrop}>
       <Card
         {...fileItemProps}
         className={cn(
-          'flex flex-row border-primary/40 bg-opacity-90 mt-1 items-center border h-[45px] w-full rounded p-1',
+          'flex flex-row border-primary/40 bg-opacity-90 mt-1 items-center border h-[45px] w-full rounded-sm p-1',
           className,
         )}
         children={children}
       />
     </FileDropFileItemProvider>
   );
-};
-
-FileDropFileItem.displayName = FILE_DROP_FILE_ITEM_NAME;
+}
 
 /**
  * FileDropFileItemRemove
@@ -221,9 +196,7 @@ const FILE_DROP_FILE_ITEM_REMOVE_NAME = 'FileDropFileItemRemove';
 type FileDropFileItemRemoveProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   onRemove?: (file: FileWithServerId | DropFileInfo) => void;
 };
-const FileDropFileItemRemove: React.FC<FileDropFileItemRemoveProps> = (
-  props: ScopedProps<FileDropFileItemRemoveProps>,
-) => {
+function FileDropFileItemRemove({ ...props }: ScopedProps<FileDropFileItemRemoveProps>) {
   const { className, __scopeFileDrop } = props;
   const { remove, disabled } = useFileDropContext(FILE_DROP_FILE_ITEM_REMOVE_NAME, props.__scopeFileDrop);
   const { fileInfo } = useFileDropFileItemContext(FILE_DROP_FILE_ITEM_REMOVE_NAME, __scopeFileDrop);
@@ -237,18 +210,15 @@ const FileDropFileItemRemove: React.FC<FileDropFileItemRemoveProps> = (
   return (
     <XCircle className={cn(`flex-auto mr-1 h-6 w-1/6 text-destructive/90 ${styles}`, className)} onClick={onRemove} />
   );
-};
-
-FileDropFileItemRemove.displayName = FILE_DROP_FILE_ITEM_REMOVE_NAME;
+}
 
 /**
  *
  */
 const FILE_DROP_FILE_ITEM_CONTENT_NAME = 'FileDropFileItemContent';
 type FileDropFileItemContentProps = React.HtmlHTMLAttributes<HTMLDivElement>;
-const FileDropFileItemContent: React.FC<FileDropFileItemContentProps> = (
-  props: ScopedProps<FileDropFileItemContentProps>,
-) => {
+
+function FileDropFileItemContent({ ...props }: ScopedProps<FileDropFileItemContentProps>) {
   const { className, __scopeFileDrop } = props;
   const { fileInfo } = useFileDropFileItemContext(FILE_DROP_FILE_ITEM_CONTENT_NAME, __scopeFileDrop);
   const file = fileInfo.file;
@@ -263,9 +233,7 @@ const FileDropFileItemContent: React.FC<FileDropFileItemContentProps> = (
       </div>
     </div>
   );
-};
-
-FileDropFileItemContent.displayName = FILE_DROP_FILE_ITEM_CONTENT_NAME;
+}
 
 /**
  * Export

@@ -6,7 +6,7 @@ import { Slider } from './Slider';
 function SliderDemo() {
   return (
     <div className="w-[200px]">
-      <Slider defaultValue={[50]} max={100} step={1} className={'w-[100%]'} />
+      <Slider defaultValue={[50]} max={100} step={1} className={'w-full'} />
     </div>
   );
 }

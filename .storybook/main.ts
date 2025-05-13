@@ -19,9 +19,10 @@ const config: StorybookConfig = {
     options: {},
   },
   async viteFinal(config) {
+    const { default: tailwindcss } = await import('@tailwindcss/vite');
     return {
       ...config,
-      plugins: [...(config.plugins || []), ...[viteTsconfigPaths()]],
+      plugins: [...(config.plugins || []), ...[viteTsconfigPaths(), tailwindcss()]],
     };
   },
   docs: {},
