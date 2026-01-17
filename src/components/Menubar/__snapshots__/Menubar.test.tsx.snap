@@ -6,7 +6,7 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="bg-background/85 flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs backdrop-blur-md backdrop-saturate-200"
+        class="glass-popover flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs"
         data-orientation="horizontal"
         data-slot="menubar"
         role="menubar"
@@ -78,7 +78,7 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="bg-background/85 flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs backdrop-blur-md backdrop-saturate-200"
+      class="glass-popover flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs"
       data-orientation="horizontal"
       data-slot="menubar"
       role="menubar"

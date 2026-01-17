@@ -5,16 +5,16 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)]',
   {
     variants: {
       variant: {
-        default: 'bg-primary/80 text-primary-foreground hover:bg-primary/60',
-        destructive: 'bg-destructive/60 text-destructive-foreground/90 hover:bg-destructive/80',
+        default: 'bg-primary/[var(--glass-button)] text-primary-foreground hover:bg-primary/60 border border-primary/20',
+        destructive: 'bg-destructive/[var(--glass-button)] text-destructive-foreground hover:bg-destructive/80 border border-destructive/20',
         outline:
-          'border border-input/10 bg-background/10 hover:bg-accent/80 hover:text-accent-foreground',
-        secondary: 'bg-secondary/80 text-primary hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
+          'border-2 border-border/[var(--glass-border-opacity)] bg-background/10 hover:bg-accent/60 hover:text-accent-foreground',
+        secondary: 'bg-secondary/[var(--glass-button)] text-secondary-foreground hover:bg-secondary/60 border border-secondary/20',
+        ghost: 'hover:bg-accent/50 hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {

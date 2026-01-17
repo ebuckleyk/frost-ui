@@ -34,6 +34,19 @@
 
   --radius: 0.5rem;
 
+  /* Glassmorphism Design Tokens - Light Mode */
+  --glass-blur: 12px;
+  --glass-saturation: 180%;
+  --glass-opacity: 0.7;
+  --glass-border-opacity: 0.2;
+
+  /* Component-specific glass opacities */
+  --glass-card: 0.65;
+  --glass-popover: 0.85;
+  --glass-dialog: 0.8;
+  --glass-button: 0.75;
+  --glass-overlay: 0.5;
+
   /* Things to update later */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -81,6 +94,19 @@
   --ring: oklch(0.87 0.02 253);
 
   --radius: 0.5rem;
+
+  /* Glassmorphism Design Tokens - Dark Mode */
+  --glass-blur: 16px;
+  --glass-saturation: 200%;
+  --glass-opacity: 0.75;
+  --glass-border-opacity: 0.3;
+
+  /* Component-specific glass opacities - Dark Mode */
+  --glass-card: 0.7;
+  --glass-popover: 0.9;
+  --glass-dialog: 0.85;
+  --glass-button: 0.8;
+  --glass-overlay: 0.6;
 
   /* Things to update later */
   --chart-1: oklch(0.488 0.243 264.376);
@@ -151,6 +177,10 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  /* Glassmorphism Utilities */
+  --backdrop-blur-glass: var(--glass-blur);
+  --backdrop-saturate-glass: var(--glass-saturation);
 
   @keyframes accordion-down {
     from {
@@ -273,5 +303,37 @@
     ::file-selector-button {
       border-color: var(--color-gray-200, currentColor);
     }
+  }
+}
+
+/* Glassmorphism Utility Classes */
+@layer utilities {
+  .glass {
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    background-color: color-mix(in oklch, var(--color-background) calc(var(--glass-opacity) * 100%), transparent);
+    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+  }
+
+  .glass-card {
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    background-color: color-mix(in oklch, var(--color-card) calc(var(--glass-card) * 100%), transparent);
+    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+  }
+
+  .glass-popover {
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    background-color: color-mix(in oklch, var(--color-popover) calc(var(--glass-popover) * 100%), transparent);
+    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+  }
+
+  .glass-dialog {
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    background-color: color-mix(in oklch, var(--color-background) calc(var(--glass-dialog) * 100%), transparent);
+    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+  }
+
+  .glass-overlay {
+    backdrop-filter: blur(calc(var(--glass-blur) * 0.5));
+    background-color: color-mix(in oklch, #000 calc(var(--glass-overlay) * 100%), transparent);
   }
 }

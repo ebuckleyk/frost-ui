@@ -6,7 +6,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="bg-popover/90 text-popover-foreground flex h-full w-full flex-col overflow-hidden backdrop-blur-md backdrop-saturate-200 rounded-lg border shadow-md"
+        class="glass-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-lg border shadow-md"
         cmdk-root=""
         data-slot="command"
         tabindex="-1"
@@ -332,7 +332,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="bg-popover/90 text-popover-foreground flex h-full w-full flex-col overflow-hidden backdrop-blur-md backdrop-saturate-200 rounded-lg border shadow-md"
+      class="glass-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-lg border shadow-md"
       cmdk-root=""
       data-slot="command"
       tabindex="-1"

@@ -21,7 +21,7 @@ exports[`Collapsible > should render Collapsible component to match snapshot 1`]
           <button
             aria-controls="radix-:r0:"
             aria-expanded="false"
-            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5"
+            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] hover:bg-accent/50 hover:text-accent-foreground h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5"
             data-slot="collapsible-trigger"
             data-state="closed"
             type="button"
@@ -81,7 +81,7 @@ exports[`Collapsible > should render Collapsible component to match snapshot 1`]
         <button
           aria-controls="radix-:r0:"
           aria-expanded="false"
-          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5"
+          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] hover:bg-accent/50 hover:text-accent-foreground h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5"
           data-slot="collapsible-trigger"
           data-state="closed"
           type="button"
