@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm test:*)"
+      "Bash(npm test:*)",
+      "Bash(npm run storybook:*)",
+      "Bash(for file in Menubar/Menubar.tsx NavigationMenu/NavigationMenu.tsx HoverCard/HoverCard.tsx AlertDialog/AlertDialog.tsx Toast/Toast.tsx Carousel/Carousel.tsx)",
+      "Bash(do if [ -f \"$file\" ])",
+      "Bash(then sed -i 's/backdrop-blur-md backdrop-saturate-200//g; s/backdrop-blur-md backdrop-saturate-100//g; s/bg-popover\\\\/85 text-popover/glass-popover text-popover/g; s/bg-popover\\\\/90 text-popover/glass-popover text-popover/g; s/bg-background\\\\/85/glass-popover bg-background\\\\/85/g; s/bg-background\\\\/80/glass-dialog bg-background\\\\/80/g; s/bg-card\\\\/60/glass-card bg-card\\\\/60/g; s/bg-black\\\\/50/glass-overlay/g' \"$file\")",
+      "Bash(echo:*)",
+      "Bash(fi)",
+      "Bash(done)"
     ]
   }
 }

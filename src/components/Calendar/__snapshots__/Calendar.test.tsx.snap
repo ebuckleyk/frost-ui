@@ -18,7 +18,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
           >
             <button
               aria-label="Go to the Previous Month"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border border-input/10 hover:bg-accent/80 hover:text-accent-foreground has-[>svg]:px-3 absolute left-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] border-2 border-border/[var(--glass-border-opacity)] hover:bg-accent/60 hover:text-accent-foreground has-[>svg]:px-3 absolute left-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
               type="button"
             >
               <svg
@@ -39,7 +39,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
             </button>
             <button
               aria-label="Go to the Next Month"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border border-input/10 hover:bg-accent/80 hover:text-accent-foreground has-[>svg]:px-3 absolute right-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] border-2 border-border/[var(--glass-border-opacity)] hover:bg-accent/60 hover:text-accent-foreground has-[>svg]:px-3 absolute right-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
               type="button"
             >
               <svg
@@ -151,7 +151,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Sunday, December 28th, 2025"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -167,7 +167,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Monday, December 29th, 2025"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -183,7 +183,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Tuesday, December 30th, 2025"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -199,7 +199,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Wednesday, December 31st, 2025"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -213,7 +213,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Thursday, January 1st, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -227,7 +227,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Friday, January 2nd, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -241,7 +241,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Saturday, January 3rd, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -259,7 +259,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Sunday, January 4th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -273,7 +273,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Monday, January 5th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -287,7 +287,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Tuesday, January 6th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -301,7 +301,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Wednesday, January 7th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -315,7 +315,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Thursday, January 8th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -329,7 +329,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Friday, January 9th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -343,7 +343,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Saturday, January 10th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -361,7 +361,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Sunday, January 11th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -375,7 +375,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Monday, January 12th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -389,7 +389,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Tuesday, January 13th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -403,7 +403,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Wednesday, January 14th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -417,7 +417,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Thursday, January 15th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -431,7 +431,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Friday, January 16th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -446,7 +446,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Today, Saturday, January 17th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="0"
                       type="button"
                     >
@@ -464,7 +464,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Sunday, January 18th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -478,7 +478,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Monday, January 19th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -492,7 +492,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Tuesday, January 20th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -506,7 +506,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Wednesday, January 21st, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -520,7 +520,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Thursday, January 22nd, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -534,7 +534,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Friday, January 23rd, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -548,7 +548,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Saturday, January 24th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -566,7 +566,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Sunday, January 25th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -580,7 +580,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Monday, January 26th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -594,7 +594,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Tuesday, January 27th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -608,7 +608,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Wednesday, January 28th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -622,7 +622,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Thursday, January 29th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -636,7 +636,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Friday, January 30th, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -650,7 +650,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                   >
                     <button
                       aria-label="Saturday, January 31st, 2026"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                       tabindex="-1"
                       type="button"
                     >
@@ -679,7 +679,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
         >
           <button
             aria-label="Go to the Previous Month"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border border-input/10 hover:bg-accent/80 hover:text-accent-foreground has-[>svg]:px-3 absolute left-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] border-2 border-border/[var(--glass-border-opacity)] hover:bg-accent/60 hover:text-accent-foreground has-[>svg]:px-3 absolute left-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
             type="button"
           >
             <svg
@@ -700,7 +700,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
           </button>
           <button
             aria-label="Go to the Next Month"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border border-input/10 hover:bg-accent/80 hover:text-accent-foreground has-[>svg]:px-3 absolute right-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] border-2 border-border/[var(--glass-border-opacity)] hover:bg-accent/60 hover:text-accent-foreground has-[>svg]:px-3 absolute right-1 top-0 size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
             type="button"
           >
             <svg
@@ -812,7 +812,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Sunday, December 28th, 2025"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -828,7 +828,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Monday, December 29th, 2025"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -844,7 +844,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Tuesday, December 30th, 2025"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -860,7 +860,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Wednesday, December 31st, 2025"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -874,7 +874,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Thursday, January 1st, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -888,7 +888,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Friday, January 2nd, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -902,7 +902,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Saturday, January 3rd, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -920,7 +920,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Sunday, January 4th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -934,7 +934,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Monday, January 5th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -948,7 +948,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Tuesday, January 6th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -962,7 +962,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Wednesday, January 7th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -976,7 +976,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Thursday, January 8th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -990,7 +990,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Friday, January 9th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1004,7 +1004,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Saturday, January 10th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1022,7 +1022,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Sunday, January 11th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1036,7 +1036,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Monday, January 12th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1050,7 +1050,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Tuesday, January 13th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1064,7 +1064,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Wednesday, January 14th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1078,7 +1078,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Thursday, January 15th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1092,7 +1092,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Friday, January 16th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1107,7 +1107,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Today, Saturday, January 17th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="0"
                     type="button"
                   >
@@ -1125,7 +1125,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Sunday, January 18th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1139,7 +1139,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Monday, January 19th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1153,7 +1153,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Tuesday, January 20th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1167,7 +1167,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Wednesday, January 21st, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1181,7 +1181,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Thursday, January 22nd, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1195,7 +1195,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Friday, January 23rd, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1209,7 +1209,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Saturday, January 24th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1227,7 +1227,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Sunday, January 25th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1241,7 +1241,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Monday, January 26th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1255,7 +1255,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Tuesday, January 27th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1269,7 +1269,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Wednesday, January 28th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1283,7 +1283,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Thursday, January 29th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1297,7 +1297,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Friday, January 30th, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
@@ -1311,7 +1311,7 @@ exports[`Calendar > should render Calendar component to match snapshot 1`] = `
                 >
                   <button
                     aria-label="Saturday, January 31st, 2026"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] has-[>svg]:px-3 size-9 p-0 font-normal aria-selected:opacity-100 hover:bg-primary hover:text-primary-foreground"
                     tabindex="-1"
                     type="button"
                   >
