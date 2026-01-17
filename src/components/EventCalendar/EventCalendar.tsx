@@ -107,113 +107,106 @@ type EventCalendarState = {
 const [EventCalendarProvider, useEventCalendarContext] =
   createEventCalendarContext<EventCalendarContextValue>(EVENTCALENDAR_NAME);
 
-const EventCalendar = React.forwardRef<React.ElementRef<typeof FullCalendar>, EventCalendarProps>(
-  (props: ScopedProps<EventCalendarProps>, forwardRef) => {
-    const [calendar, setCalendar] = React.useState<FullCalendar | undefined | null>();
-    const [state, setState] = React.useState<EventCalendarState>({
-      currentCalendarDate: new Date(),
-      currentCalendarView: (props.initialView as CALENDAR_VIEW) ?? CALENDAR_VIEW.DAY,
-    });
-    const {
-      __scopeEventCalendar,
-      events,
-      dayMaxEvents = 2,
-      dayMaxEventRows = true,
-      dayHeaders = true,
-      stickyHeaderDates = true,
-      nowIndicator = true,
-    } = props;
+function EventCalendar({ ...props }: ScopedProps<EventCalendarProps>) {
+  const [calendar, setCalendar] = React.useState<FullCalendar | undefined | null>();
+  const [state, setState] = React.useState<EventCalendarState>({
+    currentCalendarDate: new Date(),
+    currentCalendarView: (props.initialView as CALENDAR_VIEW) ?? CALENDAR_VIEW.DAY,
+  });
+  const {
+    __scopeEventCalendar,
+    events,
+    dayMaxEvents = 2,
+    dayMaxEventRows = true,
+    dayHeaders = true,
+    stickyHeaderDates = true,
+    nowIndicator = true,
+  } = props;
 
-    const internalRef = React.useRef<InstanceType<typeof FullCalendar>>(null);
-    const ref: React.RefObject<FullCalendar | null> = forwardRef
-      ? (forwardRef as React.RefObject<FullCalendar | null>)
-      : internalRef;
+  const ref = React.useRef<InstanceType<typeof FullCalendar>>(null);
 
-    const api = React.useMemo(() => calendar?.getApi(), [calendar]);
+  const api = React.useMemo(() => calendar?.getApi(), [calendar]);
 
-    React.useEffect(() => {
-      setCalendar(ref.current);
-    }, [ref]);
+  React.useEffect(() => {
+    setCalendar(ref.current);
+  }, [ref]);
 
-    const prev = React.useCallback(() => {
-      api?.prev();
-      setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-    }, [api]);
+  const prev = React.useCallback(() => {
+    api?.prev();
+    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
+  }, [api]);
 
-    const next = React.useCallback(() => {
-      api?.next();
-      setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-    }, [api]);
+  const next = React.useCallback(() => {
+    api?.next();
+    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
+  }, [api]);
 
-    const today = React.useCallback(() => {
-      api?.today();
-      setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-    }, [api]);
+  const today = React.useCallback(() => {
+    api?.today();
+    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
+  }, [api]);
 
-    const changeView = React.useCallback(
-      (v: CALENDAR_VIEW) => {
-        if (!v || v === state.currentCalendarView) return;
-        api?.changeView(v);
-        setState((prevState) => ({ ...prevState, currentCalendarView: v }));
-      },
-      [api, state.currentCalendarView],
-    );
+  const changeView = React.useCallback(
+    (v: CALENDAR_VIEW) => {
+      if (!v || v === state.currentCalendarView) return;
+      api?.changeView(v);
+      setState((prevState) => ({ ...prevState, currentCalendarView: v }));
+    },
+    [api, state.currentCalendarView],
+  );
 
-    React.useEffect(() => {
-      const date = api?.getDate();
-      setState((prevState) => ({ ...prevState, currentCalendarDate: date }));
-    }, [api]);
+  React.useEffect(() => {
+    const date = api?.getDate();
+    setState((prevState) => ({ ...prevState, currentCalendarDate: date }));
+  }, [api]);
 
-    return (
-      <EventCalendarProvider
-        scope={__scopeEventCalendar}
-        events={events}
-        goToPrev={prev}
-        goToNext={next}
-        goToToday={today}
-        changeView={changeView}
-        renderOnEventClick={props.renderOnEventClick}
-        currentCalendarDate={state.currentCalendarDate}
-        currentCalendarView={state.currentCalendarView}
-      >
-        <EventCalendarToolbar />
-        <FullCalendar
-          ref={forwardRef}
-          plugins={DEFAULT_PLUGINS}
-          initialView={state.currentCalendarView}
-          headerToolbar={false}
-          weekends={true}
-          events={props.events}
-          initialEvents={props.initialEvents}
-          eventClassNames={'frostui-event'}
-          dayCellClassNames={'frostui-daycell'}
-          nowIndicatorClassNames={'frostui-nowindicator'}
-          slotLaneClassNames={'frostui-slotLane'}
-          viewClassNames={'frostui-view'}
-          allDayClassNames={'frostui-allday'}
-          moreLinkClassNames={'frostui-morelink'}
-          noEventsClassNames={'frostui-noevents'}
-          dayHeaderClassNames={'frostui-dayheader'}
-          slotLabelClassNames={'frostui-slotlabel'}
-          weekNumberClassNames={'frostui-weeknumber'}
-          dayMaxEvents={dayMaxEvents}
-          dayMaxEventRows={dayMaxEventRows}
-          dayHeaders={dayHeaders}
-          stickyHeaderDates={stickyHeaderDates}
-          allDayContent={() => <></>}
-          nowIndicator={nowIndicator}
-          eventClick={(info) => {
-            info.jsEvent.preventDefault();
-          }}
-          eventContent={(args) => <ViewEventContent {...args} />}
-          height={600}
-        />
-      </EventCalendarProvider>
-    );
-  },
-);
-
-EventCalendar.displayName = EVENTCALENDAR_NAME;
+  return (
+    <EventCalendarProvider
+      scope={__scopeEventCalendar}
+      events={events}
+      goToPrev={prev}
+      goToNext={next}
+      goToToday={today}
+      changeView={changeView}
+      renderOnEventClick={props.renderOnEventClick}
+      currentCalendarDate={state.currentCalendarDate}
+      currentCalendarView={state.currentCalendarView}
+    >
+      <EventCalendarToolbar />
+      <FullCalendar
+        ref={ref}
+        plugins={DEFAULT_PLUGINS}
+        initialView={state.currentCalendarView}
+        headerToolbar={false}
+        weekends={true}
+        events={props.events}
+        initialEvents={props.initialEvents}
+        eventClassNames={'frostui-event'}
+        dayCellClassNames={'frostui-daycell'}
+        nowIndicatorClassNames={'frostui-nowindicator'}
+        slotLaneClassNames={'frostui-slotLane'}
+        viewClassNames={'frostui-view'}
+        allDayClassNames={'frostui-allday'}
+        moreLinkClassNames={'frostui-morelink'}
+        noEventsClassNames={'frostui-noevents'}
+        dayHeaderClassNames={'frostui-dayheader'}
+        slotLabelClassNames={'frostui-slotlabel'}
+        weekNumberClassNames={'frostui-weeknumber'}
+        dayMaxEvents={dayMaxEvents}
+        dayMaxEventRows={dayMaxEventRows}
+        dayHeaders={dayHeaders}
+        stickyHeaderDates={stickyHeaderDates}
+        allDayContent={() => <></>}
+        nowIndicator={nowIndicator}
+        eventClick={(info) => {
+          info.jsEvent.preventDefault();
+        }}
+        eventContent={(args) => <ViewEventContent {...args} />}
+        height={600}
+      />
+    </EventCalendarProvider>
+  );
+}
 
 /**
  * Event Content
@@ -222,8 +215,7 @@ type EventContentProps = EventContentArg & {
   children?: React.ReactNode;
 };
 
-const VIEWEVENTCONTENT_NAME = 'ViewEventContent';
-const ViewEventContent: React.FC<EventContentProps> = (props: ScopedProps<EventContentProps>) => {
+function ViewEventContent({ ...props }: ScopedProps<EventContentProps>) {
   const { timeText, event, view } = props;
   const isBgEvent = event.display === 'background';
 
@@ -252,14 +244,11 @@ const ViewEventContent: React.FC<EventContentProps> = (props: ScopedProps<EventC
       <EventContentInfo event={event} />
     </Sheet>
   );
-};
-
-ViewEventContent.displayName = VIEWEVENTCONTENT_NAME;
+}
 
 /**
  * Event Calendar Toolbar
  */
-const EVENTCALENDARTOOLBAR_NAME = 'EventCalendarToolbar';
 type EventCalendarToolbarProps = React.HtmlHTMLAttributes<HTMLDivElement>;
 
 const getDateFormat = (date: Date, view: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW): string => {
@@ -273,9 +262,10 @@ const getDateFormat = (date: Date, view: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW): 
       return format(date, 'MMMM dd, y');
   }
 };
-const EventCalendarToolbar: React.FC<EventCalendarToolbarProps> = (props: ScopedProps<EventCalendarToolbarProps>) => {
+
+function EventCalendarToolbar({ ...props }: ScopedProps<EventCalendarToolbarProps>) {
   const { currentCalendarDate, currentCalendarView, goToPrev, goToNext, changeView } = useEventCalendarContext(
-    EVENTCALENDARTOOLBAR_NAME,
+    'EventCalendarToolbar',
     props.__scopeEventCalendar,
   );
 
@@ -314,20 +304,17 @@ const EventCalendarToolbar: React.FC<EventCalendarToolbarProps> = (props: Scoped
       </div>
     </div>
   );
-};
-
-EventCalendarToolbar.displayName = EVENTCALENDARTOOLBAR_NAME;
+}
 
 /**
  * Event Content Info
  */
 
-const EVENTCONTENTINFO_NAME = 'EventContentInfo';
 type EventContentInfoProps = {
   event: EventImpl;
 };
 
-const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<EventContentInfoProps>) => {
+function EventContentInfo({ ...props }: ScopedProps<EventContentInfoProps>) {
   const { event } = props;
 
   const attendees = (event.extendedProps ?? {}).attendees ?? [];
@@ -385,37 +372,34 @@ const EventContentInfo: React.FC<EventContentInfoProps> = (props: ScopedProps<Ev
       </SheetDescription>
     </SheetContent>
   );
-};
-
-EventContentInfo.displayName = EVENTCONTENTINFO_NAME;
+}
 
 type EventContentDescriptionItemProps = Partial<Pick<HTMLDivElement, 'className'>> & {
   Icon: LucideIcon | (() => React.ReactNode);
   children: React.ReactNode;
 };
-const EventContentDescriptionItem = (props: EventContentDescriptionItemProps) => {
+function EventContentDescriptionItem({ ...props }: EventContentDescriptionItemProps) {
   return (
     <span className={cn('inline-flex items-center', props.className)}>
       <props.Icon className={'mr-2 size-4'} />
       <span>{props.children}</span>
     </span>
   );
-};
+}
 
 /**
  * Edit Event Content Info
  */
-const EDITEVENTCONTENTINFO_NAME = 'EditEventContentInfo';
 type EditEventContentInfoProps = {
   event: EventImpl;
 };
-const EditEventContentInfo: React.FC<EditEventContentInfoProps> = (props: ScopedProps<EditEventContentInfoProps>) => {
+function EditEventContentInfo({ ...props }: ScopedProps<EditEventContentInfoProps>) {
   const { renderOnEventClick } = useEventCalendarContext(EVENTCALENDAR_NAME, props.__scopeEventCalendar);
   return (
     <Dialog>
       <DialogTrigger
         asChild
-        className="absolute right-12 top-4 cursor-pointer rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        className="absolute right-12 top-4 cursor-pointer rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
       >
         <div>
           <EditIcon className="size-4" />
@@ -430,17 +414,15 @@ const EditEventContentInfo: React.FC<EditEventContentInfoProps> = (props: Scoped
       </DialogContent>
     </Dialog>
   );
-};
-EditEventContentInfo.displayName = EDITEVENTCONTENTINFO_NAME;
+}
 
 /**
  * Event Attendee
  */
-const EVENTATTENDEE_NAME = 'EventAttendee';
 type EventAttendeeProps = {
   attendee: EventCalendarAttendee;
 };
-const EventAttendee: React.FC<EventAttendeeProps> = (props: ScopedProps<EventAttendeeProps>) => {
+function EventAttendee({ ...props }: ScopedProps<EventAttendeeProps>) {
   const { attendee } = props;
   const { imageUrl, name } = attendee;
   return (
@@ -452,7 +434,6 @@ const EventAttendee: React.FC<EventAttendeeProps> = (props: ScopedProps<EventAtt
       {name}
     </Card>
   );
-};
+}
 
-EventAttendee.displayName = EVENTATTENDEE_NAME;
 export { EventCalendar, createEventCalendarScope };

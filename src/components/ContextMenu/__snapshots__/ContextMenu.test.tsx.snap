@@ -7,6 +7,7 @@ exports[`ContextMenu > should render ContextMenu component to match snapshot 1`]
     <div>
       <span
         class="flex h-[150px] w-[200px] items-center justify-center rounded-md border border-dashed text-sm"
+        data-slot="context-menu-trigger"
         data-state="closed"
       >
         Right click here
@@ -16,6 +17,7 @@ exports[`ContextMenu > should render ContextMenu component to match snapshot 1`]
   "container": <div>
     <span
       class="flex h-[150px] w-[200px] items-center justify-center rounded-md border border-dashed text-sm"
+      data-slot="context-menu-trigger"
       data-state="closed"
     >
       Right click here

@@ -7,28 +7,37 @@ exports[`InputOTP > should render InputOTP component to match snapshot 1`] = `
     <div>
       <noscript />
       <div
-        class="flex items-center gap-2 has-[:disabled]:opacity-50"
+        class="flex items-center gap-2 has-disabled:opacity-50"
         data-input-otp-container="true"
         style="position: relative; cursor: text; user-select: none; pointer-events: none; --root-height: 0px;"
       >
         <div
           class="flex items-center"
+          data-slot="input-otp-group"
         >
           <div
-            class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+            class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+            data-active="false"
+            data-slot="input-otp-slot"
           />
           <div
-            class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+            class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+            data-active="false"
+            data-slot="input-otp-slot"
           />
           <div
-            class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+            class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+            data-active="false"
+            data-slot="input-otp-slot"
           />
         </div>
         <div
+          data-slot="input-otp-separator"
           role="separator"
         >
           <svg
-            class="lucide lucide-dot"
+            aria-hidden="true"
+            class="lucide lucide-minus"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -39,24 +48,29 @@ exports[`InputOTP > should render InputOTP component to match snapshot 1`] = `
             width="24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle
-              cx="12.1"
-              cy="12.1"
-              r="1"
+            <path
+              d="M5 12h14"
             />
           </svg>
         </div>
         <div
           class="flex items-center"
+          data-slot="input-otp-group"
         >
           <div
-            class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+            class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+            data-active="false"
+            data-slot="input-otp-slot"
           />
           <div
-            class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+            class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+            data-active="false"
+            data-slot="input-otp-slot"
           />
           <div
-            class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+            class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+            data-active="false"
+            data-slot="input-otp-slot"
           />
         </div>
         <div
@@ -67,6 +81,7 @@ exports[`InputOTP > should render InputOTP component to match snapshot 1`] = `
             class="disabled:cursor-not-allowed"
             data-input-otp="true"
             data-input-otp-placeholder-shown="true"
+            data-slot="input-otp"
             inputmode="numeric"
             maxlength="6"
             style="position: absolute; inset: 0; width: 100%; height: 100%; display: flex; text-align: left; opacity: 1; color: transparent; pointer-events: all; background: transparent; caret-color: transparent; border: 0px solid transparent; outline: 0 solid transparent; box-shadow: none; line-height: 1; letter-spacing: -.5em; font-family: monospace; font-variant-numeric: tabular-nums;"
@@ -79,28 +94,37 @@ exports[`InputOTP > should render InputOTP component to match snapshot 1`] = `
   "container": <div>
     <noscript />
     <div
-      class="flex items-center gap-2 has-[:disabled]:opacity-50"
+      class="flex items-center gap-2 has-disabled:opacity-50"
       data-input-otp-container="true"
       style="position: relative; cursor: text; user-select: none; pointer-events: none; --root-height: 0px;"
     >
       <div
         class="flex items-center"
+        data-slot="input-otp-group"
       >
         <div
-          class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+          class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+          data-active="false"
+          data-slot="input-otp-slot"
         />
         <div
-          class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+          class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+          data-active="false"
+          data-slot="input-otp-slot"
         />
         <div
-          class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+          class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+          data-active="false"
+          data-slot="input-otp-slot"
         />
       </div>
       <div
+        data-slot="input-otp-separator"
         role="separator"
       >
         <svg
-          class="lucide lucide-dot"
+          aria-hidden="true"
+          class="lucide lucide-minus"
           fill="none"
           height="24"
           stroke="currentColor"
@@ -111,24 +135,29 @@ exports[`InputOTP > should render InputOTP component to match snapshot 1`] = `
           width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle
-            cx="12.1"
-            cy="12.1"
-            r="1"
+          <path
+            d="M5 12h14"
           />
         </svg>
       </div>
       <div
         class="flex items-center"
+        data-slot="input-otp-group"
       >
         <div
-          class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+          class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+          data-active="false"
+          data-slot="input-otp-slot"
         />
         <div
-          class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+          class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+          data-active="false"
+          data-slot="input-otp-slot"
         />
         <div
-          class="relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md"
+          class="data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]"
+          data-active="false"
+          data-slot="input-otp-slot"
         />
       </div>
       <div
@@ -139,6 +168,7 @@ exports[`InputOTP > should render InputOTP component to match snapshot 1`] = `
           class="disabled:cursor-not-allowed"
           data-input-otp="true"
           data-input-otp-placeholder-shown="true"
+          data-slot="input-otp"
           inputmode="numeric"
           maxlength="6"
           style="position: absolute; inset: 0; width: 100%; height: 100%; display: flex; text-align: left; opacity: 1; color: transparent; pointer-events: all; background: transparent; caret-color: transparent; border: 0px solid transparent; outline: 0 solid transparent; box-shadow: none; line-height: 1; letter-spacing: -.5em; font-family: monospace; font-variant-numeric: tabular-nums;"

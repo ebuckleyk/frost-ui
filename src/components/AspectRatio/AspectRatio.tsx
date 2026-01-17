@@ -1,7 +1,9 @@
 'use client';
 
+import React from 'react';
 import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 
-const AspectRatio = AspectRatioPrimitive.Root;
-
+function AspectRatio({ ...props }: React.ComponentProps<typeof AspectRatioPrimitive.Root>) {
+  return <AspectRatioPrimitive.Root data-slot="aspet-ratio" {...props} />;
+}
 export { AspectRatio };

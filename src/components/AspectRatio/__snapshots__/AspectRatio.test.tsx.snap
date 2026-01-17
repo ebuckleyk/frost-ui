@@ -10,6 +10,7 @@ exports[`AspectRatio > should render AspectRatio component to match snapshot 1`]
         style="position: relative; width: 100%; padding-bottom: 6.25%;"
       >
         <div
+          data-slot="aspet-ratio"
           style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;"
         >
           <img
@@ -27,6 +28,7 @@ exports[`AspectRatio > should render AspectRatio component to match snapshot 1`]
       style="position: relative; width: 100%; padding-bottom: 6.25%;"
     >
       <div
+        data-slot="aspet-ratio"
         style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;"
       >
         <img

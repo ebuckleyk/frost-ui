@@ -6,29 +6,35 @@ exports[`Card > should render Card component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="rounded-xl border bg-card/60 text-card-foreground shadow-md backdrop-blur-md backdrop-saturate-200 w-[380px]"
+        class="flex flex-col rounded-xl border py-6 gap-6 bg-card/60 text-card-foreground shadow-md backdrop-blur-md backdrop-saturate-200 w-[380px]"
+        data-slot="card"
       >
         <div
-          class="flex flex-col space-y-1.5 p-6"
+          class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+          data-slot="card-header"
         >
-          <h3
-            class="font-semibold leading-none tracking-tight"
+          <div
+            class="leading-none font-semibold"
+            data-slot="card-title"
           >
             Notifications
-          </h3>
-          <p
-            class="text-sm text-muted-foreground"
+          </div>
+          <div
+            class="text-muted-foreground text-sm"
+            data-slot="card-description"
           >
             You have 3 unread messages.
-          </p>
+          </div>
         </div>
         <div
-          class="p-6 pt-0 grid gap-4"
+          class="px-6 grid gap-4"
+          data-slot="card-content"
         >
           <div
             class=" flex items-center space-x-4 rounded-md border p-4"
           >
             <svg
+              aria-hidden="true"
               class="lucide lucide-bell-ring"
               fill="none"
               height="24"
@@ -69,14 +75,16 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             </div>
             <button
               aria-checked="false"
-              class="peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              class="peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+              data-slot="switch"
               data-state="unchecked"
               role="switch"
               type="button"
               value="on"
             >
               <span
-                class="pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+                class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+                data-slot="switch-thumb"
                 data-state="unchecked"
               />
             </button>
@@ -148,12 +156,15 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="flex items-center p-6 pt-0"
+          class="flex items-center px-6 [.border-t]:pt-6"
+          data-slot="card-footer"
         >
           <button
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 h-10 px-4 py-2 w-full"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+            data-slot="button"
           >
             <svg
+              aria-hidden="true"
               class="lucide lucide-check mr-2 h-4 w-4"
               fill="none"
               height="24"
@@ -177,29 +188,35 @@ exports[`Card > should render Card component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="rounded-xl border bg-card/60 text-card-foreground shadow-md backdrop-blur-md backdrop-saturate-200 w-[380px]"
+      class="flex flex-col rounded-xl border py-6 gap-6 bg-card/60 text-card-foreground shadow-md backdrop-blur-md backdrop-saturate-200 w-[380px]"
+      data-slot="card"
     >
       <div
-        class="flex flex-col space-y-1.5 p-6"
+        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+        data-slot="card-header"
       >
-        <h3
-          class="font-semibold leading-none tracking-tight"
+        <div
+          class="leading-none font-semibold"
+          data-slot="card-title"
         >
           Notifications
-        </h3>
-        <p
-          class="text-sm text-muted-foreground"
+        </div>
+        <div
+          class="text-muted-foreground text-sm"
+          data-slot="card-description"
         >
           You have 3 unread messages.
-        </p>
+        </div>
       </div>
       <div
-        class="p-6 pt-0 grid gap-4"
+        class="px-6 grid gap-4"
+        data-slot="card-content"
       >
         <div
           class=" flex items-center space-x-4 rounded-md border p-4"
         >
           <svg
+            aria-hidden="true"
             class="lucide lucide-bell-ring"
             fill="none"
             height="24"
@@ -240,14 +257,16 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           </div>
           <button
             aria-checked="false"
-            class="peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+            class="peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-slot="switch"
             data-state="unchecked"
             role="switch"
             type="button"
             value="on"
           >
             <span
-              class="pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+              class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+              data-slot="switch-thumb"
               data-state="unchecked"
             />
           </button>
@@ -319,12 +338,15 @@ exports[`Card > should render Card component to match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="flex items-center p-6 pt-0"
+        class="flex items-center px-6 [.border-t]:pt-6"
+        data-slot="card-footer"
       >
         <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 h-10 px-4 py-2 w-full"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+          data-slot="button"
         >
           <svg
+            aria-hidden="true"
             class="lucide lucide-check mr-2 h-4 w-4"
             fill="none"
             height="24"

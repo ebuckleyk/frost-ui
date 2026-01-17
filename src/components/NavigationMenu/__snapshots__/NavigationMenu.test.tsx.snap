@@ -7,24 +7,31 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
     <div>
       <nav
         aria-label="Main"
-        class="relative z-10 flex max-w-max flex-1 items-center justify-center"
+        class="group/navigation-menu relative flex max-w-max flex-1 items-center justify-center"
         data-orientation="horizontal"
+        data-slot="navigation-menu"
+        data-viewport="true"
         dir="ltr"
       >
         <div
           style="position: relative;"
         >
           <ul
-            class="group flex flex-1 list-none items-center justify-center space-x-1"
+            class="group flex flex-1 list-none items-center justify-center gap-1"
             data-orientation="horizontal"
+            data-slot="navigation-menu-list"
             dir="ltr"
           >
-            <li>
+            <li
+              class="relative"
+              data-slot="navigation-menu-item"
+            >
               <button
                 aria-controls="radix-:r0:-content-radix-:r1:"
                 aria-expanded="false"
-                class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
+                class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 group"
                 data-radix-collection-item=""
+                data-slot="navigation-menu-trigger"
                 data-state="closed"
                 id="radix-:r0:-trigger-radix-:r1:"
               >
@@ -32,7 +39,7 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
                  
                 <svg
                   aria-hidden="true"
-                  class="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+                  class="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -48,12 +55,16 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
                 </svg>
               </button>
             </li>
-            <li>
+            <li
+              class="relative"
+              data-slot="navigation-menu-item"
+            >
               <button
                 aria-controls="radix-:r0:-content-radix-:r2:"
                 aria-expanded="false"
-                class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
+                class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 group"
                 data-radix-collection-item=""
+                data-slot="navigation-menu-trigger"
                 data-state="closed"
                 id="radix-:r0:-trigger-radix-:r2:"
               >
@@ -61,7 +72,7 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
                  
                 <svg
                   aria-hidden="true"
-                  class="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+                  class="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -77,10 +88,14 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
                 </svg>
               </button>
             </li>
-            <li>
+            <li
+              class="relative"
+              data-slot="navigation-menu-item"
+            >
               <a
-                class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col gap-1 p-2 [&_svg:not([class*='size-'])]:size-4 group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1"
                 data-radix-collection-item=""
+                data-slot="navigation-menu-link"
               >
                 Documentation
               </a>
@@ -88,7 +103,7 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
           </ul>
         </div>
         <div
-          class="absolute left-0 top-full flex justify-center"
+          class="absolute top-full left-0 isolate z-50 flex justify-center"
         />
       </nav>
     </div>
@@ -96,24 +111,31 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
   "container": <div>
     <nav
       aria-label="Main"
-      class="relative z-10 flex max-w-max flex-1 items-center justify-center"
+      class="group/navigation-menu relative flex max-w-max flex-1 items-center justify-center"
       data-orientation="horizontal"
+      data-slot="navigation-menu"
+      data-viewport="true"
       dir="ltr"
     >
       <div
         style="position: relative;"
       >
         <ul
-          class="group flex flex-1 list-none items-center justify-center space-x-1"
+          class="group flex flex-1 list-none items-center justify-center gap-1"
           data-orientation="horizontal"
+          data-slot="navigation-menu-list"
           dir="ltr"
         >
-          <li>
+          <li
+            class="relative"
+            data-slot="navigation-menu-item"
+          >
             <button
               aria-controls="radix-:r0:-content-radix-:r1:"
               aria-expanded="false"
-              class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
+              class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 group"
               data-radix-collection-item=""
+              data-slot="navigation-menu-trigger"
               data-state="closed"
               id="radix-:r0:-trigger-radix-:r1:"
             >
@@ -121,7 +143,7 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
                
               <svg
                 aria-hidden="true"
-                class="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+                class="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
                 fill="none"
                 height="15"
                 viewBox="0 0 15 15"
@@ -137,12 +159,16 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
               </svg>
             </button>
           </li>
-          <li>
+          <li
+            class="relative"
+            data-slot="navigation-menu-item"
+          >
             <button
               aria-controls="radix-:r0:-content-radix-:r2:"
               aria-expanded="false"
-              class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
+              class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 group"
               data-radix-collection-item=""
+              data-slot="navigation-menu-trigger"
               data-state="closed"
               id="radix-:r0:-trigger-radix-:r2:"
             >
@@ -150,7 +176,7 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
                
               <svg
                 aria-hidden="true"
-                class="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+                class="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
                 fill="none"
                 height="15"
                 viewBox="0 0 15 15"
@@ -166,10 +192,14 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
               </svg>
             </button>
           </li>
-          <li>
+          <li
+            class="relative"
+            data-slot="navigation-menu-item"
+          >
             <a
-              class="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+              class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col gap-1 p-2 [&_svg:not([class*='size-'])]:size-4 group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1"
               data-radix-collection-item=""
+              data-slot="navigation-menu-link"
             >
               Documentation
             </a>
@@ -177,7 +207,7 @@ exports[`NavigationMenu > should render NavigationMenu component to match snapsh
         </ul>
       </div>
       <div
-        class="absolute left-0 top-full flex justify-center"
+        class="absolute top-full left-0 isolate z-50 flex justify-center"
       />
     </nav>
   </div>,

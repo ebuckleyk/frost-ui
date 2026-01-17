@@ -9,16 +9,19 @@ exports[`Skeleton > should render Skeleton component to match snapshot 1`] = `
         class="flex items-center space-x-4"
       >
         <div
-          class="animate-pulse bg-primary/10 h-12 w-12 rounded-full"
+          class="bg-accent animate-pulse h-12 w-12 rounded-full"
+          data-slot="skeleton"
         />
         <div
           class="space-y-2"
         >
           <div
-            class="animate-pulse rounded-md bg-primary/10 h-4 w-[250px]"
+            class="bg-accent animate-pulse rounded-md h-4 w-[250px]"
+            data-slot="skeleton"
           />
           <div
-            class="animate-pulse rounded-md bg-primary/10 h-4 w-[200px]"
+            class="bg-accent animate-pulse rounded-md h-4 w-[200px]"
+            data-slot="skeleton"
           />
         </div>
       </div>
@@ -29,16 +32,19 @@ exports[`Skeleton > should render Skeleton component to match snapshot 1`] = `
       class="flex items-center space-x-4"
     >
       <div
-        class="animate-pulse bg-primary/10 h-12 w-12 rounded-full"
+        class="bg-accent animate-pulse h-12 w-12 rounded-full"
+        data-slot="skeleton"
       />
       <div
         class="space-y-2"
       >
         <div
-          class="animate-pulse rounded-md bg-primary/10 h-4 w-[250px]"
+          class="bg-accent animate-pulse rounded-md h-4 w-[250px]"
+          data-slot="skeleton"
         />
         <div
-          class="animate-pulse rounded-md bg-primary/10 h-4 w-[200px]"
+          class="bg-accent animate-pulse rounded-md h-4 w-[200px]"
+          data-slot="skeleton"
         />
       </div>
     </div>

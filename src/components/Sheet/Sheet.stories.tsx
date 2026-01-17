@@ -53,7 +53,7 @@ function SheetDemo(props: DemoProps) {
 
 const SHEET_SIDES = ['top', 'right', 'bottom', 'left'] as const;
 type DemoProps = {
-  side: 'top' | 'right' | 'bottom' | 'left' | null | undefined;
+  side: 'top' | 'right' | 'bottom' | 'left' | undefined;
   size: string;
 };
 type ComponentType = React.ComponentProps<typeof Sheet> & DemoProps;
