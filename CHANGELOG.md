@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.1.0
+
+### Minor Changes
+
+- e502037: token improvements for glassmorphism
+
 ## 1.0.0
 
 ### Major Changes
