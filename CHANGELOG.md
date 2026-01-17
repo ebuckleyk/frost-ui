@@ -1,5 +1,15 @@
 # @ebuckleyk/frost-ui
 
+## 1.0.0
+
+### Major Changes
+
+- 91c99ca: Upgraded to Tailwindcss v4. Upgraded to latest Shadcn UI components
+
+### Minor Changes
+
+- db715be: Upgraded to latest version of tailwindv4 compatibility
+
 ## 0.17.0
 
 ### Minor Changes
