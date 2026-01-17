@@ -20,8 +20,9 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
         </p>
       </div>
       <div
-        class="shrink-0 bg-border h-[1px] w-full my-4"
+        class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-4"
         data-orientation="horizontal"
+        data-slot="separator-root"
         role="none"
       />
       <div
@@ -31,16 +32,18 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
           Blog
         </div>
         <div
-          class="shrink-0 bg-border h-full w-[1px]"
+          class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
           data-orientation="vertical"
+          data-slot="separator-root"
           role="none"
         />
         <div>
           Docs
         </div>
         <div
-          class="shrink-0 bg-border h-full w-[1px]"
+          class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
           data-orientation="vertical"
+          data-slot="separator-root"
           role="none"
         />
         <div>
@@ -65,8 +68,9 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
       </p>
     </div>
     <div
-      class="shrink-0 bg-border h-[1px] w-full my-4"
+      class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-4"
       data-orientation="horizontal"
+      data-slot="separator-root"
       role="none"
     />
     <div
@@ -76,16 +80,18 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
         Blog
       </div>
       <div
-        class="shrink-0 bg-border h-full w-[1px]"
+        class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
         data-orientation="vertical"
+        data-slot="separator-root"
         role="none"
       />
       <div>
         Docs
       </div>
       <div
-        class="shrink-0 bg-border h-full w-[1px]"
+        class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
         data-orientation="vertical"
+        data-slot="separator-root"
         role="none"
       />
       <div>

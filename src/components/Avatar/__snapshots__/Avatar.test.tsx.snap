@@ -6,10 +6,12 @@ exports[`Avatar > should render Avatar component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <span
-        class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+        class="relative flex size-8 shrink-0 overflow-hidden rounded-full"
+        data-slot="avatar"
       >
         <span
-          class="flex h-full w-full items-center justify-center rounded-full bg-muted"
+          class="bg-muted flex size-full items-center justify-center rounded-full"
+          data-slot="avatar-fallback"
         >
           CN
         </span>
@@ -18,10 +20,12 @@ exports[`Avatar > should render Avatar component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <span
-      class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+      class="relative flex size-8 shrink-0 overflow-hidden rounded-full"
+      data-slot="avatar"
     >
       <span
-        class="flex h-full w-full items-center justify-center rounded-full bg-muted"
+        class="bg-muted flex size-full items-center justify-center rounded-full"
+        data-slot="avatar-fallback"
       >
         CN
       </span>

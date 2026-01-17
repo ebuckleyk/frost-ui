@@ -7,15 +7,19 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
     <div>
       <nav
         aria-label="breadcrumb"
+        data-slot="breadcrumb"
       >
         <ol
-          class="flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5"
+          class="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"
+          data-slot="breadcrumb-list"
         >
           <li
             class="inline-flex items-center gap-1.5"
+            data-slot="breadcrumb-item"
           >
             <a
-              class="transition-colors hover:text-foreground"
+              class="hover:text-foreground transition-colors"
+              data-slot="breadcrumb-link"
               href="/"
             >
               Home
@@ -24,9 +28,11 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
           <li
             aria-hidden="true"
             class="[&>svg]:size-3.5"
+            data-slot="breadcrumb-separator"
             role="presentation"
           >
             <svg
+              aria-hidden="true"
               class="lucide lucide-chevron-right"
               fill="none"
               height="24"
@@ -45,9 +51,11 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
           </li>
           <li
             class="inline-flex items-center gap-1.5"
+            data-slot="breadcrumb-item"
           >
             <a
-              class="transition-colors hover:text-foreground"
+              class="hover:text-foreground transition-colors"
+              data-slot="breadcrumb-link"
               href="/components"
             >
               Components
@@ -56,9 +64,11 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
           <li
             aria-hidden="true"
             class="[&>svg]:size-3.5"
+            data-slot="breadcrumb-separator"
             role="presentation"
           >
             <svg
+              aria-hidden="true"
               class="lucide lucide-chevron-right"
               fill="none"
               height="24"
@@ -77,11 +87,13 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
           </li>
           <li
             class="inline-flex items-center gap-1.5"
+            data-slot="breadcrumb-item"
           >
             <span
               aria-current="page"
               aria-disabled="true"
-              class="font-normal text-foreground"
+              class="text-foreground font-normal"
+              data-slot="breadcrumb-page"
               role="link"
             >
               Breadcrumb
@@ -94,15 +106,19 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
   "container": <div>
     <nav
       aria-label="breadcrumb"
+      data-slot="breadcrumb"
     >
       <ol
-        class="flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5"
+        class="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"
+        data-slot="breadcrumb-list"
       >
         <li
           class="inline-flex items-center gap-1.5"
+          data-slot="breadcrumb-item"
         >
           <a
-            class="transition-colors hover:text-foreground"
+            class="hover:text-foreground transition-colors"
+            data-slot="breadcrumb-link"
             href="/"
           >
             Home
@@ -111,9 +127,11 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
         <li
           aria-hidden="true"
           class="[&>svg]:size-3.5"
+          data-slot="breadcrumb-separator"
           role="presentation"
         >
           <svg
+            aria-hidden="true"
             class="lucide lucide-chevron-right"
             fill="none"
             height="24"
@@ -132,9 +150,11 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
         </li>
         <li
           class="inline-flex items-center gap-1.5"
+          data-slot="breadcrumb-item"
         >
           <a
-            class="transition-colors hover:text-foreground"
+            class="hover:text-foreground transition-colors"
+            data-slot="breadcrumb-link"
             href="/components"
           >
             Components
@@ -143,9 +163,11 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
         <li
           aria-hidden="true"
           class="[&>svg]:size-3.5"
+          data-slot="breadcrumb-separator"
           role="presentation"
         >
           <svg
+            aria-hidden="true"
             class="lucide lucide-chevron-right"
             fill="none"
             height="24"
@@ -164,11 +186,13 @@ exports[`Breadcrumb > should render Breadcrumb component to match snapshot 1`] =
         </li>
         <li
           class="inline-flex items-center gap-1.5"
+          data-slot="breadcrumb-item"
         >
           <span
             aria-current="page"
             aria-disabled="true"
-            class="font-normal text-foreground"
+            class="text-foreground font-normal"
+            data-slot="breadcrumb-page"
             role="link"
           >
             Breadcrumb

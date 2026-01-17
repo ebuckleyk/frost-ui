@@ -180,7 +180,7 @@ function FileDropFileItem({ ...props }: ScopedProps<FileDropFileItemProps>) {
       <Card
         {...fileItemProps}
         className={cn(
-          'flex flex-row border-primary/40 bg-opacity-90 mt-1 items-center border h-[45px] w-full rounded-sm p-1',
+          'flex flex-row border-primary/40 bg-card/90 mt-1 items-center border h-[45px] w-full rounded-sm p-1',
           className,
         )}
         children={children}

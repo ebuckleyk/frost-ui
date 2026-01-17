@@ -6,8 +6,9 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="flex h-9 items-center space-x-1 rounded-md border bg-background p-1 shadow-sm"
+        class="bg-background/85 flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs backdrop-blur-md backdrop-saturate-200"
         data-orientation="horizontal"
+        data-slot="menubar"
         role="menubar"
         style="outline: none;"
         tabindex="0"
@@ -15,9 +16,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+          class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
           data-orientation="horizontal"
           data-radix-collection-item=""
+          data-slot="menubar-trigger"
           data-state="closed"
           id="radix-:r1:"
           role="menuitem"
@@ -29,9 +31,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+          class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
           data-orientation="horizontal"
           data-radix-collection-item=""
+          data-slot="menubar-trigger"
           data-state="closed"
           id="radix-:r5:"
           role="menuitem"
@@ -43,9 +46,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+          class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
           data-orientation="horizontal"
           data-radix-collection-item=""
+          data-slot="menubar-trigger"
           data-state="closed"
           id="radix-:r9:"
           role="menuitem"
@@ -57,9 +61,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+          class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
           data-orientation="horizontal"
           data-radix-collection-item=""
+          data-slot="menubar-trigger"
           data-state="closed"
           id="radix-:rd:"
           role="menuitem"
@@ -73,8 +78,9 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="flex h-9 items-center space-x-1 rounded-md border bg-background p-1 shadow-sm"
+      class="bg-background/85 flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs backdrop-blur-md backdrop-saturate-200"
       data-orientation="horizontal"
+      data-slot="menubar"
       role="menubar"
       style="outline: none;"
       tabindex="0"
@@ -82,9 +88,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="menu"
-        class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+        class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
         data-orientation="horizontal"
         data-radix-collection-item=""
+        data-slot="menubar-trigger"
         data-state="closed"
         id="radix-:r1:"
         role="menuitem"
@@ -96,9 +103,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="menu"
-        class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+        class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
         data-orientation="horizontal"
         data-radix-collection-item=""
+        data-slot="menubar-trigger"
         data-state="closed"
         id="radix-:r5:"
         role="menuitem"
@@ -110,9 +118,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="menu"
-        class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+        class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
         data-orientation="horizontal"
         data-radix-collection-item=""
+        data-slot="menubar-trigger"
         data-state="closed"
         id="radix-:r9:"
         role="menuitem"
@@ -124,9 +133,10 @@ exports[`Menubar > should render Menubar component to match snapshot 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="menu"
-        class="flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+        class="focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-none select-none"
         data-orientation="horizontal"
         data-radix-collection-item=""
+        data-slot="menubar-trigger"
         data-state="closed"
         id="radix-:rd:"
         role="menuitem"

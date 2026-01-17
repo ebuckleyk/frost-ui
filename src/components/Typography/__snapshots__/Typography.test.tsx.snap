@@ -12,7 +12,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The Joke Tax Chronicles
         </h1>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           Once upon a time, in a far-off land, there was a very lazy king who spent all day lounging on his throne. One day, his advisors came to him with a problem: the kingdom was running out of money.
         </p>
@@ -22,7 +22,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The King's Plan
         </h2>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           The king thought long and hard, and finally came up with
            
@@ -45,7 +45,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The Joke Tax
         </h3>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           The king's subjects were not amused. They grumbled and complained, but the king was firm:
         </p>
@@ -69,7 +69,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           </li>
         </ul>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           As a result, people stopped telling jokes, and the kingdom fell into a gloom. But there was one person who refused to let the king's foolishness get him down: a court jester named Jokester.
         </p>
@@ -79,12 +79,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           Jokester's Revolt
         </h3>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           Jokester began sneaking into the castle in the middle of the night and leaving jokes all over the place: under the king's pillow, in his soup, even in the royal toilet. The king was furious, but he couldn't seem to stop Jokester.
         </p>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And once they started laughing, they couldn't stop.
         </p>
@@ -94,7 +94,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The People's Rebellion
         </h3>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           The people of the kingdom, feeling uplifted by the laughter, started to tell jokes and puns again, and soon the entire kingdom was in on the joke.
         </p>
@@ -171,12 +171,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           </table>
         </div>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.
         </p>
         <p
-          class="leading-7 [&:not(:first-child)]:mt-6"
+          class="leading-7 not-first:mt-6"
         >
           The moral of the story is: never underestimate the power of a good laugh and always be careful of bad ideas.
         </p>
@@ -191,7 +191,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The Joke Tax Chronicles
       </h1>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         Once upon a time, in a far-off land, there was a very lazy king who spent all day lounging on his throne. One day, his advisors came to him with a problem: the kingdom was running out of money.
       </p>
@@ -201,7 +201,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The King's Plan
       </h2>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         The king thought long and hard, and finally came up with
          
@@ -224,7 +224,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The Joke Tax
       </h3>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         The king's subjects were not amused. They grumbled and complained, but the king was firm:
       </p>
@@ -248,7 +248,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         </li>
       </ul>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         As a result, people stopped telling jokes, and the kingdom fell into a gloom. But there was one person who refused to let the king's foolishness get him down: a court jester named Jokester.
       </p>
@@ -258,12 +258,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         Jokester's Revolt
       </h3>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         Jokester began sneaking into the castle in the middle of the night and leaving jokes all over the place: under the king's pillow, in his soup, even in the royal toilet. The king was furious, but he couldn't seem to stop Jokester.
       </p>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And once they started laughing, they couldn't stop.
       </p>
@@ -273,7 +273,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The People's Rebellion
       </h3>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         The people of the kingdom, feeling uplifted by the laughter, started to tell jokes and puns again, and soon the entire kingdom was in on the joke.
       </p>
@@ -350,12 +350,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         </table>
       </div>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.
       </p>
       <p
-        class="leading-7 [&:not(:first-child)]:mt-6"
+        class="leading-7 not-first:mt-6"
       >
         The moral of the story is: never underestimate the power of a good laugh and always be careful of bad ideas.
       </p>

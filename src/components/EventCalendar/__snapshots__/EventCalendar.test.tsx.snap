@@ -12,9 +12,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           class="flex items-center space-x-1"
         >
           <button
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+            data-slot="button"
           >
             <svg
+              aria-hidden="true"
               class="lucide lucide-chevron-left"
               fill="none"
               height="24"
@@ -32,9 +34,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
             </svg>
           </button>
           <button
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+            data-slot="button"
           >
             <svg
+              aria-hidden="true"
               class="lucide lucide-chevron-right"
               fill="none"
               height="24"
@@ -52,14 +56,15 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
             </svg>
           </button>
           <div>
-            January 08, 2025
+            January 17, 2026
           </div>
         </div>
         <div
           class="hidden md:flex"
         >
           <div
-            class="flex items-center justify-center gap-1"
+            class="group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs"
+            data-slot="toggle-group"
             dir="ltr"
             role="group"
             style="outline: none;"
@@ -67,8 +72,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           >
             <button
               aria-checked="false"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
               data-radix-collection-item=""
+              data-slot="toggle-group-item"
               data-state="off"
               role="radio"
               tabindex="-1"
@@ -78,8 +84,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
             </button>
             <button
               aria-checked="false"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
               data-radix-collection-item=""
+              data-slot="toggle-group-item"
               data-state="off"
               role="radio"
               tabindex="-1"
@@ -89,8 +96,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
             </button>
             <button
               aria-checked="true"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
               data-radix-collection-item=""
+              data-slot="toggle-group-item"
               data-state="on"
               role="radio"
               tabindex="-1"
@@ -100,8 +108,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
             </button>
             <button
               aria-checked="false"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+              class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
               data-radix-collection-item=""
+              data-slot="toggle-group-item"
               data-state="off"
               role="radio"
               tabindex="-1"
@@ -115,7 +124,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           class="flex md:hidden"
         >
           <div
-            class="flex items-center justify-center gap-1"
+            class="group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs"
+            data-slot="toggle-group"
+            data-variant="outline"
             dir="ltr"
             role="group"
             style="outline: none;"
@@ -123,9 +134,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           >
             <button
               aria-checked="false"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              class="inline-flex items-center justify-center gap-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
               data-radix-collection-item=""
+              data-slot="toggle-group-item"
               data-state="off"
+              data-variant="outline"
               role="radio"
               tabindex="-1"
               type="button"
@@ -134,9 +147,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
             </button>
             <button
               aria-checked="false"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              class="inline-flex items-center justify-center gap-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
               data-radix-collection-item=""
+              data-slot="toggle-group-item"
               data-state="off"
+              data-variant="outline"
               role="radio"
               tabindex="-1"
               type="button"
@@ -145,9 +160,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
             </button>
             <button
               aria-checked="false"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              class="inline-flex items-center justify-center gap-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
               data-radix-collection-item=""
+              data-slot="toggle-group-item"
               data-state="off"
+              data-variant="outline"
               role="radio"
               tabindex="-1"
               type="button"
@@ -213,8 +230,8 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                 />
                               </th>
                               <th
-                                class="fc-col-header-cell fc-day fc-day-wed fc-day-today frostui-dayheader"
-                                data-date="2025-01-08"
+                                class="fc-col-header-cell fc-day fc-day-sat fc-day-today frostui-dayheader"
+                                data-date="2026-01-17"
                                 role="columnheader"
                               >
                                 <div
@@ -223,7 +240,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                   <a
                                     class="fc-col-header-cell-cushion"
                                   >
-                                    Wednesday
+                                    Saturday
                                   </a>
                                 </div>
                               </th>
@@ -281,8 +298,8 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                   </div>
                                 </td>
                                 <td
-                                  class="fc-day fc-day-wed fc-day-today fc-daygrid-day frostui-daycell"
-                                  data-date="2025-01-08"
+                                  class="fc-day fc-day-sat fc-day-today fc-daygrid-day frostui-daycell"
+                                  data-date="2026-01-17"
                                   role="gridcell"
                                 >
                                   <div
@@ -1103,8 +1120,8 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                     </div>
                                   </td>
                                   <td
-                                    class="fc-day fc-day-wed fc-day-today fc-timegrid-col frostui-daycell"
-                                    data-date="2025-01-08"
+                                    class="fc-day fc-day-sat fc-day-today fc-timegrid-col frostui-daycell"
+                                    data-date="2026-01-17"
                                     role="gridcell"
                                   >
                                     <div
@@ -1115,130 +1132,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                       />
                                       <div
                                         class="fc-timegrid-col-events"
-                                      >
-                                        <div
-                                          class="fc-timegrid-event-harness"
-                                          style="visibility: hidden; left: 0px; right: 0px;"
-                                        >
-                                          <a
-                                            class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
-                                            style="border-color: #ffa500;"
-                                            tabindex="0"
-                                          >
-                                            <div
-                                              class="fc-event-main"
-                                            >
-                                              <div
-                                                aria-controls="radix-:r7:"
-                                                aria-expanded="false"
-                                                aria-haspopup="dialog"
-                                                class="z-50 flex size-full overflow-hidden align-middle"
-                                                data-state="closed"
-                                                type="button"
-                                              >
-                                                <div
-                                                  class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
-                                                >
-                                                  8:30 - 9:30
-                                                </div>
-                                                <div
-                                                  class="min-h-0 shrink grow"
-                                                >
-                                                  <div
-                                                    class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
-                                                  >
-                                                    Morning Event
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div
-                                              class="fc-event-resizer fc-event-resizer-end"
-                                            />
-                                          </a>
-                                        </div>
-                                        <div
-                                          class="fc-timegrid-event-harness"
-                                          style="visibility: hidden; left: 0px; right: 0px;"
-                                        >
-                                          <a
-                                            class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
-                                            tabindex="0"
-                                          >
-                                            <div
-                                              class="fc-event-main"
-                                            >
-                                              <div
-                                                aria-controls="radix-:ra:"
-                                                aria-expanded="false"
-                                                aria-haspopup="dialog"
-                                                class="z-50 flex size-full overflow-hidden align-middle"
-                                                data-state="closed"
-                                                type="button"
-                                              >
-                                                <div
-                                                  class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
-                                                >
-                                                  12:15 - 12:45
-                                                </div>
-                                                <div
-                                                  class="min-h-0 shrink grow"
-                                                >
-                                                  <div
-                                                    class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
-                                                  >
-                                                    Noon Event
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div
-                                              class="fc-event-resizer fc-event-resizer-end"
-                                            />
-                                          </a>
-                                        </div>
-                                        <div
-                                          class="fc-timegrid-event-harness"
-                                          style="visibility: hidden; left: 0px; right: 0px;"
-                                        >
-                                          <a
-                                            class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
-                                            style="border-color: #ff0000;"
-                                            tabindex="0"
-                                          >
-                                            <div
-                                              class="fc-event-main"
-                                            >
-                                              <div
-                                                aria-controls="radix-:rd:"
-                                                aria-expanded="false"
-                                                aria-haspopup="dialog"
-                                                class="z-50 flex size-full overflow-hidden align-middle"
-                                                data-state="closed"
-                                                type="button"
-                                              >
-                                                <div
-                                                  class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
-                                                >
-                                                  3:30 - 5:00
-                                                </div>
-                                                <div
-                                                  class="min-h-0 shrink grow"
-                                                >
-                                                  <div
-                                                    class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
-                                                  >
-                                                    Afternoon Event
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div
-                                              class="fc-event-resizer fc-event-resizer-end"
-                                            />
-                                          </a>
-                                        </div>
-                                      </div>
+                                      />
                                       <div
                                         class="fc-timegrid-col-events"
                                       />
@@ -1271,9 +1165,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
         class="flex items-center space-x-1"
       >
         <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+          data-slot="button"
         >
           <svg
+            aria-hidden="true"
             class="lucide lucide-chevron-left"
             fill="none"
             height="24"
@@ -1291,9 +1187,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </svg>
         </button>
         <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 size-8"
+          data-slot="button"
         >
           <svg
+            aria-hidden="true"
             class="lucide lucide-chevron-right"
             fill="none"
             height="24"
@@ -1311,14 +1209,15 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </svg>
         </button>
         <div>
-          January 08, 2025
+          January 17, 2026
         </div>
       </div>
       <div
         class="hidden md:flex"
       >
         <div
-          class="flex items-center justify-center gap-1"
+          class="group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs"
+          data-slot="toggle-group"
           dir="ltr"
           role="group"
           style="outline: none;"
@@ -1326,8 +1225,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
         >
           <button
             aria-checked="false"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
             data-radix-collection-item=""
+            data-slot="toggle-group-item"
             data-state="off"
             role="radio"
             tabindex="-1"
@@ -1337,8 +1237,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </button>
           <button
             aria-checked="false"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
             data-radix-collection-item=""
+            data-slot="toggle-group-item"
             data-state="off"
             role="radio"
             tabindex="-1"
@@ -1348,8 +1249,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </button>
           <button
             aria-checked="true"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
             data-radix-collection-item=""
+            data-slot="toggle-group-item"
             data-state="on"
             role="radio"
             tabindex="-1"
@@ -1359,8 +1261,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </button>
           <button
             aria-checked="false"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-9 px-3"
+            class="inline-flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap bg-transparent h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
             data-radix-collection-item=""
+            data-slot="toggle-group-item"
             data-state="off"
             role="radio"
             tabindex="-1"
@@ -1374,7 +1277,9 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
         class="flex md:hidden"
       >
         <div
-          class="flex items-center justify-center gap-1"
+          class="group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs"
+          data-slot="toggle-group"
+          data-variant="outline"
           dir="ltr"
           role="group"
           style="outline: none;"
@@ -1382,9 +1287,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
         >
           <button
             aria-checked="false"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+            class="inline-flex items-center justify-center gap-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
             data-radix-collection-item=""
+            data-slot="toggle-group-item"
             data-state="off"
+            data-variant="outline"
             role="radio"
             tabindex="-1"
             type="button"
@@ -1393,9 +1300,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </button>
           <button
             aria-checked="false"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+            class="inline-flex items-center justify-center gap-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
             data-radix-collection-item=""
+            data-slot="toggle-group-item"
             data-state="off"
+            data-variant="outline"
             role="radio"
             tabindex="-1"
             type="button"
@@ -1404,9 +1313,11 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </button>
           <button
             aria-checked="false"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
+            class="inline-flex items-center justify-center gap-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-9 px-2 min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l"
             data-radix-collection-item=""
+            data-slot="toggle-group-item"
             data-state="off"
+            data-variant="outline"
             role="radio"
             tabindex="-1"
             type="button"
@@ -1472,8 +1383,8 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                               />
                             </th>
                             <th
-                              class="fc-col-header-cell fc-day fc-day-wed fc-day-today frostui-dayheader"
-                              data-date="2025-01-08"
+                              class="fc-col-header-cell fc-day fc-day-sat fc-day-today frostui-dayheader"
+                              data-date="2026-01-17"
                               role="columnheader"
                             >
                               <div
@@ -1482,7 +1393,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                 <a
                                   class="fc-col-header-cell-cushion"
                                 >
-                                  Wednesday
+                                  Saturday
                                 </a>
                               </div>
                             </th>
@@ -1540,8 +1451,8 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                 </div>
                               </td>
                               <td
-                                class="fc-day fc-day-wed fc-day-today fc-daygrid-day frostui-daycell"
-                                data-date="2025-01-08"
+                                class="fc-day fc-day-sat fc-day-today fc-daygrid-day frostui-daycell"
+                                data-date="2026-01-17"
                                 role="gridcell"
                               >
                                 <div
@@ -2362,8 +2273,8 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                   </div>
                                 </td>
                                 <td
-                                  class="fc-day fc-day-wed fc-day-today fc-timegrid-col frostui-daycell"
-                                  data-date="2025-01-08"
+                                  class="fc-day fc-day-sat fc-day-today fc-timegrid-col frostui-daycell"
+                                  data-date="2026-01-17"
                                   role="gridcell"
                                 >
                                   <div
@@ -2374,130 +2285,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
                                     />
                                     <div
                                       class="fc-timegrid-col-events"
-                                    >
-                                      <div
-                                        class="fc-timegrid-event-harness"
-                                        style="visibility: hidden; left: 0px; right: 0px;"
-                                      >
-                                        <a
-                                          class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
-                                          style="border-color: #ffa500;"
-                                          tabindex="0"
-                                        >
-                                          <div
-                                            class="fc-event-main"
-                                          >
-                                            <div
-                                              aria-controls="radix-:r7:"
-                                              aria-expanded="false"
-                                              aria-haspopup="dialog"
-                                              class="z-50 flex size-full overflow-hidden align-middle"
-                                              data-state="closed"
-                                              type="button"
-                                            >
-                                              <div
-                                                class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
-                                              >
-                                                8:30 - 9:30
-                                              </div>
-                                              <div
-                                                class="min-h-0 shrink grow"
-                                              >
-                                                <div
-                                                  class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
-                                                >
-                                                  Morning Event
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div
-                                            class="fc-event-resizer fc-event-resizer-end"
-                                          />
-                                        </a>
-                                      </div>
-                                      <div
-                                        class="fc-timegrid-event-harness"
-                                        style="visibility: hidden; left: 0px; right: 0px;"
-                                      >
-                                        <a
-                                          class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
-                                          tabindex="0"
-                                        >
-                                          <div
-                                            class="fc-event-main"
-                                          >
-                                            <div
-                                              aria-controls="radix-:ra:"
-                                              aria-expanded="false"
-                                              aria-haspopup="dialog"
-                                              class="z-50 flex size-full overflow-hidden align-middle"
-                                              data-state="closed"
-                                              type="button"
-                                            >
-                                              <div
-                                                class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
-                                              >
-                                                12:15 - 12:45
-                                              </div>
-                                              <div
-                                                class="min-h-0 shrink grow"
-                                              >
-                                                <div
-                                                  class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
-                                                >
-                                                  Noon Event
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div
-                                            class="fc-event-resizer fc-event-resizer-end"
-                                          />
-                                        </a>
-                                      </div>
-                                      <div
-                                        class="fc-timegrid-event-harness"
-                                        style="visibility: hidden; left: 0px; right: 0px;"
-                                      >
-                                        <a
-                                          class="fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-today fc-event-future fc-timegrid-event fc-v-event frostui-event"
-                                          style="border-color: #ff0000;"
-                                          tabindex="0"
-                                        >
-                                          <div
-                                            class="fc-event-main"
-                                          >
-                                            <div
-                                              aria-controls="radix-:rd:"
-                                              aria-expanded="false"
-                                              aria-haspopup="dialog"
-                                              class="z-50 flex size-full overflow-hidden align-middle"
-                                              data-state="closed"
-                                              type="button"
-                                            >
-                                              <div
-                                                class="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap"
-                                              >
-                                                3:30 - 5:00
-                                              </div>
-                                              <div
-                                                class="min-h-0 shrink grow"
-                                              >
-                                                <div
-                                                  class="sticky inset-y-0 max-h-full overflow-hidden not-italic"
-                                                >
-                                                  Afternoon Event
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div
-                                            class="fc-event-resizer fc-event-resizer-end"
-                                          />
-                                        </a>
-                                      </div>
-                                    </div>
+                                    />
                                     <div
                                       class="fc-timegrid-col-events"
                                     />

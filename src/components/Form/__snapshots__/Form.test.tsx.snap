@@ -9,10 +9,13 @@ exports[`Form > should render Form component to match snapshot 1`] = `
         class="space-y-8"
       >
         <div
-          class="space-y-2"
+          class="grid gap-2"
+          data-slot="form-item"
         >
           <label
-            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
+            data-error="false"
+            data-slot="form-label"
             for=":r0:-form-item"
           >
             Username
@@ -20,21 +23,24 @@ exports[`Form > should render Form component to match snapshot 1`] = `
           <input
             aria-describedby=":r0:-form-item-description"
             aria-invalid="false"
-            class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            data-slot="form-control"
             id=":r0:-form-item"
             name="username"
             placeholder="ebuckleyk"
             value=""
           />
           <p
-            class="text-[0.8rem] text-muted-foreground"
+            class="text-muted-foreground text-sm"
+            data-slot="form-description"
             id=":r0:-form-item-description"
           >
             This is your public display name.
           </p>
         </div>
         <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 h-10 px-4 py-2"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 h-9 px-4 py-2 has-[>svg]:px-3"
+          data-slot="button"
           type="submit"
         >
           Submit
@@ -47,10 +53,13 @@ exports[`Form > should render Form component to match snapshot 1`] = `
       class="space-y-8"
     >
       <div
-        class="space-y-2"
+        class="grid gap-2"
+        data-slot="form-item"
       >
         <label
-          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
+          data-error="false"
+          data-slot="form-label"
           for=":r0:-form-item"
         >
           Username
@@ -58,21 +67,24 @@ exports[`Form > should render Form component to match snapshot 1`] = `
         <input
           aria-describedby=":r0:-form-item-description"
           aria-invalid="false"
-          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+          data-slot="form-control"
           id=":r0:-form-item"
           name="username"
           placeholder="ebuckleyk"
           value=""
         />
         <p
-          class="text-[0.8rem] text-muted-foreground"
+          class="text-muted-foreground text-sm"
+          data-slot="form-description"
           id=":r0:-form-item-description"
         >
           This is your public display name.
         </p>
       </div>
       <button
-        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary/80 text-primary-foreground hover:bg-primary/60 h-10 px-4 py-2"
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background backdrop-blur-md backdrop-saturate-100 transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary/80 text-primary-foreground hover:bg-primary/60 h-9 px-4 py-2 has-[>svg]:px-3"
+        data-slot="button"
         type="submit"
       >
         Submit

@@ -6,39 +6,48 @@ exports[`Table > should render Table component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="relative w-full overflow-auto"
+        class="relative w-full overflow-x-auto"
+        data-slot="table-container"
       >
         <table
           class="w-full caption-bottom text-sm"
+          data-slot="table"
         >
           <caption
-            class="mt-4 text-sm text-muted-foreground"
+            class="text-muted-foreground mt-4 text-sm"
+            data-slot="table-caption"
           >
             A list of your recent invoices.
           </caption>
           <thead
             class="[&_tr]:border-b"
+            data-slot="table-header"
           >
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <th
-                class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] w-[100px]"
+                class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] w-[100px]"
+                data-slot="table-head"
               >
                 Invoice
               </th>
               <th
-                class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-head"
               >
                 Status
               </th>
               <th
-                class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-head"
               >
                 Method
               </th>
               <th
-                class="h-10 px-2 align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="text-foreground h-10 px-2 align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-head"
               >
                 Amount
               </th>
@@ -46,190 +55,230 @@ exports[`Table > should render Table component to match snapshot 1`] = `
           </thead>
           <tbody
             class="[&_tr:last-child]:border-0"
+            data-slot="table-body"
           >
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                data-slot="table-cell"
               >
                 INV001
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Paid
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Credit Card
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $250.00
               </td>
             </tr>
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                data-slot="table-cell"
               >
                 INV002
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Pending
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 PayPal
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $150.00
               </td>
             </tr>
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                data-slot="table-cell"
               >
                 INV003
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Unpaid
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Bank Transfer
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $350.00
               </td>
             </tr>
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                data-slot="table-cell"
               >
                 INV004
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Paid
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Credit Card
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $450.00
               </td>
             </tr>
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                data-slot="table-cell"
               >
                 INV005
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Paid
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 PayPal
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $550.00
               </td>
             </tr>
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                data-slot="table-cell"
               >
                 INV006
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Pending
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Bank Transfer
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $200.00
               </td>
             </tr>
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+                data-slot="table-cell"
               >
                 INV007
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Unpaid
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                data-slot="table-cell"
               >
                 Credit Card
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $300.00
               </td>
             </tr>
           </tbody>
           <tfoot
-            class="border-t bg-muted/50 font-medium [&>tr]:last:border-b-0"
+            class="bg-muted/50 border-t font-medium [&>tr]:last:border-b-0"
+            data-slot="table-footer"
           >
             <tr
-              class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+              class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+              data-slot="table-row"
             >
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
                 colspan="3"
+                data-slot="table-cell"
               >
                 Total
               </td>
               <td
-                class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+                data-slot="table-cell"
               >
                 $2,500.00
               </td>
@@ -241,39 +290,48 @@ exports[`Table > should render Table component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="relative w-full overflow-auto"
+      class="relative w-full overflow-x-auto"
+      data-slot="table-container"
     >
       <table
         class="w-full caption-bottom text-sm"
+        data-slot="table"
       >
         <caption
-          class="mt-4 text-sm text-muted-foreground"
+          class="text-muted-foreground mt-4 text-sm"
+          data-slot="table-caption"
         >
           A list of your recent invoices.
         </caption>
         <thead
           class="[&_tr]:border-b"
+          data-slot="table-header"
         >
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <th
-              class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] w-[100px]"
+              class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] w-[100px]"
+              data-slot="table-head"
             >
               Invoice
             </th>
             <th
-              class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-head"
             >
               Status
             </th>
             <th
-              class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-head"
             >
               Method
             </th>
             <th
-              class="h-10 px-2 align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="text-foreground h-10 px-2 align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-head"
             >
               Amount
             </th>
@@ -281,190 +339,230 @@ exports[`Table > should render Table component to match snapshot 1`] = `
         </thead>
         <tbody
           class="[&_tr:last-child]:border-0"
+          data-slot="table-body"
         >
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              data-slot="table-cell"
             >
               INV001
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Paid
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Credit Card
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $250.00
             </td>
           </tr>
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              data-slot="table-cell"
             >
               INV002
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Pending
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               PayPal
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $150.00
             </td>
           </tr>
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              data-slot="table-cell"
             >
               INV003
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Unpaid
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Bank Transfer
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $350.00
             </td>
           </tr>
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              data-slot="table-cell"
             >
               INV004
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Paid
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Credit Card
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $450.00
             </td>
           </tr>
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              data-slot="table-cell"
             >
               INV005
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Paid
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               PayPal
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $550.00
             </td>
           </tr>
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              data-slot="table-cell"
             >
               INV006
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Pending
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Bank Transfer
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $200.00
             </td>
           </tr>
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] font-medium"
+              data-slot="table-cell"
             >
               INV007
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Unpaid
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              data-slot="table-cell"
             >
               Credit Card
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $300.00
             </td>
           </tr>
         </tbody>
         <tfoot
-          class="border-t bg-muted/50 font-medium [&>tr]:last:border-b-0"
+          class="bg-muted/50 border-t font-medium [&>tr]:last:border-b-0"
+          data-slot="table-footer"
         >
           <tr
-            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+            class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+            data-slot="table-row"
           >
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
               colspan="3"
+              data-slot="table-cell"
             >
               Total
             </td>
             <td
-              class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] text-right"
+              data-slot="table-cell"
             >
               $2,500.00
             </td>
