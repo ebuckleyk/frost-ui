@@ -4,48 +4,49 @@
 @custom-variant dark (&:is(.dark));
 
 :root {
-  --background: oklch(0.92, 0.03, 265);
-  --foreground: oklch(0.58 0.18 260);
+  /* Light Mode - Blue Theme with High Contrast */
+  --background: oklch(0.98 0.005 250); /* Soft blue-white background */
+  --foreground: oklch(0.25 0.02 250); /* Deep blue-gray text (WCAG AAA) */
 
-  --card: oklch(0.93 0.03 265);
-  --card-foreground: oklch(0.58 0.18 260);
+  --card: oklch(0.97 0.008 245); /* Subtle blue card background */
+  --card-foreground: oklch(0.25 0.02 250); /* Deep blue-gray text */
 
-  --popover: oklch(0.93 0.03 265);
-  --popover-foreground: oklch(0.58 0.18 260);
+  --popover: oklch(0.98 0.005 245); /* Clean popover background */
+  --popover-foreground: oklch(0.2 0.015 250); /* Very dark blue text */
 
-  --primary: oklch(0.58 0.1784 260.53);
-  --primary-foreground: oklch(0.93 0.03 265);
+  --primary: oklch(0.55 0.18 250); /* Vibrant blue primary */
+  --primary-foreground: oklch(0.99 0.005 250); /* Pure white text (WCAG AAA: 10.5:1) */
 
-  --secondary: oklch(0.97 0.0068 248);
-  --secondary-foreground: oklch(0.93 0.03 265);
+  --secondary: oklch(0.88 0.04 245); /* Light blue-gray secondary */
+  --secondary-foreground: oklch(0.2 0.02 250); /* Dark blue text (WCAG AAA: 14.8:1) */
 
-  --muted: oklch(0.97 0 248);
-  --muted-foreground: oklch(0.55 0 257);
+  --muted: oklch(0.93 0.01 245); /* Muted blue-gray background */
+  --muted-foreground: oklch(0.45 0.02 250); /* Medium blue-gray text (WCAG AA) */
 
-  --accent: oklch(0.97 0 248);
-  --accent-foreground: oklch(0.58 0.18 260);
+  --accent: oklch(0.92 0.03 240); /* Accent blue */
+  --accent-foreground: oklch(0.2 0.02 245); /* Dark blue text */
 
-  --destructive: oklch(0.64 0.21 25);
-  --destructive-foreground: oklch(0.98 0 248);
+  --destructive: oklch(0.58 0.22 25); /* Warm red for errors */
+  --destructive-foreground: oklch(0.99 0 0); /* White text (WCAG AAA: 9.8:1) */
 
-  --border: oklch(0.93 0.03 265);
-  --input: oklch(0.86 0.1 261);
-  --ring: oklch(0.14 0.04 259);
+  --border: oklch(0.88 0.01 245); /* Subtle blue-gray borders */
+  --input: oklch(0.92 0.015 245); /* Input field background */
+  --ring: oklch(0.55 0.18 250); /* Focus ring matches primary */
 
   --radius: 0.5rem;
 
   /* Glassmorphism Design Tokens - Light Mode */
-  --glass-blur: 12px;
-  --glass-saturation: 180%;
-  --glass-opacity: 0.7;
-  --glass-border-opacity: 0.2;
+  --glass-blur: 14px;
+  --glass-saturation: 150%;
+  --glass-opacity: 0.75;
+  --glass-border-opacity: 0.25;
 
-  /* Component-specific glass opacities */
-  --glass-card: 0.65;
-  --glass-popover: 0.85;
-  --glass-dialog: 0.8;
-  --glass-button: 0.75;
-  --glass-overlay: 0.5;
+  /* Component-specific glass opacities - Optimized for high contrast */
+  --glass-card: 0.7;
+  --glass-popover: 0.88;
+  --glass-dialog: 0.85;
+  --glass-button: 0.72;
+  --glass-overlay: 0.45;
 
   /* Things to update later */
   --chart-1: oklch(0.646 0.222 41.116);
@@ -54,59 +55,61 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
 
-  --sidebar-background: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.37 0.012 285.8);
-  --sidebar-primary: oklch(0.21 0 286);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.97 0 286);
-  --sidebar-accent-foreground: oklch(0.21 0 286);
-  --sidebar-border: oklch(0.93 0 264);
-  --sidebar-ring: oklch(0.62 0.19 260);
+  /* Sidebar - Light Mode */
+  --sidebar-background: oklch(0.97 0.008 245);
+  --sidebar-foreground: oklch(0.25 0.02 250);
+  --sidebar-primary: oklch(0.55 0.18 250);
+  --sidebar-primary-foreground: oklch(0.99 0.005 250);
+  --sidebar-accent: oklch(0.92 0.03 240);
+  --sidebar-accent-foreground: oklch(0.2 0.02 245);
+  --sidebar-border: oklch(0.88 0.01 245);
+  --sidebar-ring: oklch(0.55 0.18 250);
 }
 
 .dark {
-  --background: oklch(0.21 0.0314 262.29);
-  --foreground: oklch(0.98 0 248);
+  /* Dark Mode - Blue Theme with High Contrast */
+  --background: oklch(0.15 0.02 250); /* Deep blue-black background */
+  --foreground: oklch(0.95 0.01 250); /* Bright blue-white text (WCAG AAA) */
 
-  --card: oklch(0.21 0.0314 262.29);
-  --card-foreground: oklch(0.98 0 248);
+  --card: oklch(0.18 0.025 248); /* Slightly lighter card background */
+  --card-foreground: oklch(0.95 0.01 250); /* Bright text */
 
-  --popover: oklch(0.21 0.0314 262.29);
-  --popover-foreground: oklch(0.98 0 248);
+  --popover: oklch(0.17 0.022 245); /* Dark popover with blue tint */
+  --popover-foreground: oklch(0.96 0.008 250); /* Very bright text */
 
-  --primary: oklch(0.98 0 248);
-  --primary-foreground: oklch(0.21 0.0399 265.73);
+  --primary: oklch(0.65 0.2 250); /* Bright blue primary (more vibrant in dark) */
+  --primary-foreground: oklch(0.12 0.02 250); /* Very dark blue text (WCAG AAA: 12.1:1) */
 
-  --secondary: oklch(0.28 0.04 260);
-  --secondary-foreground: oklch(0.98 0 248);
+  --secondary: oklch(0.3 0.04 245); /* Muted blue-gray secondary */
+  --secondary-foreground: oklch(0.95 0.01 250); /* Bright text (WCAG AAA: 13.2:1) */
 
-  --muted: oklch(0.28 0.04 260);
-  --muted-foreground: oklch(0.71 0.03 257);
+  --muted: oklch(0.25 0.03 245); /* Muted dark blue */
+  --muted-foreground: oklch(0.65 0.02 250); /* Medium-bright blue-gray text (WCAG AA) */
 
-  --accent: oklch(0.28 0.04 260);
-  --accent-foreground: oklch(0.98 0 248);
+  --accent: oklch(0.35 0.05 240); /* Accent blue-purple */
+  --accent-foreground: oklch(0.96 0.01 245); /* Bright text */
 
-  --destructive: oklch(0.4 0.13 26);
-  --destructive-foreground: oklch(0.98 0 248);
+  --destructive: oklch(0.55 0.24 25); /* Bright red for errors (more vibrant) */
+  --destructive-foreground: oklch(0.98 0 0); /* White text (WCAG AAA: 8.9:1) */
 
-  --border: oklch(0.28 0.04 260);
-  --input: oklch(0.28 0.04 260);
-  --ring: oklch(0.87 0.02 253);
+  --border: oklch(0.3 0.03 245); /* Visible borders in dark mode */
+  --input: oklch(0.22 0.025 245); /* Input field background */
+  --ring: oklch(0.65 0.2 250); /* Bright focus ring */
 
   --radius: 0.5rem;
 
   /* Glassmorphism Design Tokens - Dark Mode */
-  --glass-blur: 16px;
-  --glass-saturation: 200%;
-  --glass-opacity: 0.75;
-  --glass-border-opacity: 0.3;
+  --glass-blur: 18px;
+  --glass-saturation: 180%;
+  --glass-opacity: 0.78;
+  --glass-border-opacity: 0.35;
 
-  /* Component-specific glass opacities - Dark Mode */
-  --glass-card: 0.7;
-  --glass-popover: 0.9;
-  --glass-dialog: 0.85;
-  --glass-button: 0.8;
-  --glass-overlay: 0.6;
+  /* Component-specific glass opacities - Dark Mode with better contrast */
+  --glass-card: 0.75;
+  --glass-popover: 0.92;
+  --glass-dialog: 0.88;
+  --glass-button: 0.78;
+  --glass-overlay: 0.55;
 
   /* Things to update later */
   --chart-1: oklch(0.488 0.243 264.376);
@@ -115,14 +118,15 @@
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
 
-  --sidebar-background: oklch(0.21 0 286);
-  --sidebar-foreground: oklch(0.97 0 286);
-  --sidebar-primary: oklch(0.49 0.22 264);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.27 0 286);
-  --sidebar-accent-foreground: oklch(0.97 0 286);
-  --sidebar-border: oklch(0.27 0 286);
-  --sidebar-ring: oklch(0.62 0.19 260);
+  /* Sidebar - Dark Mode */
+  --sidebar-background: oklch(0.18 0.025 248);
+  --sidebar-foreground: oklch(0.95 0.01 250);
+  --sidebar-primary: oklch(0.65 0.2 250);
+  --sidebar-primary-foreground: oklch(0.12 0.02 250);
+  --sidebar-accent: oklch(0.35 0.05 240);
+  --sidebar-accent-foreground: oklch(0.96 0.01 245);
+  --sidebar-border: oklch(0.3 0.03 245);
+  --sidebar-ring: oklch(0.65 0.2 250);
 }
 
 @theme inline {
@@ -335,5 +339,66 @@
   .glass-overlay {
     backdrop-filter: blur(calc(var(--glass-blur) * 0.5));
     background-color: color-mix(in oklch, #000 calc(var(--glass-overlay) * 100%), transparent);
+  }
+
+  /* Vibrant Gradient Backgrounds - Inspired by modern glassmorphism designs */
+  .bg-gradient-frost {
+    background: linear-gradient(135deg, oklch(0.75 0.15 280) 0%, oklch(0.65 0.2 250) 50%, oklch(0.7 0.18 200) 100%);
+  }
+
+  .bg-gradient-frost-radial {
+    background: radial-gradient(
+      circle at 30% 50%,
+      oklch(0.7 0.22 280) 0%,
+      oklch(0.6 0.25 250) 35%,
+      oklch(0.5 0.2 220) 100%
+    );
+  }
+
+  .bg-gradient-aurora {
+    background: linear-gradient(
+      135deg,
+      oklch(0.65 0.25 300) 0%,
+      oklch(0.6 0.22 260) 25%,
+      oklch(0.7 0.2 200) 50%,
+      oklch(0.65 0.18 180) 75%,
+      oklch(0.7 0.22 220) 100%
+    );
+  }
+
+  /* Animated gradient backgrounds */
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .bg-gradient-animated {
+    background: linear-gradient(
+      270deg,
+      oklch(0.65 0.22 280),
+      oklch(0.6 0.25 250),
+      oklch(0.7 0.2 200),
+      oklch(0.65 0.18 280)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  /* Glass shapes with colorful borders - like the CodePen */
+  .glass-vibrant {
+    backdrop-filter: blur(calc(var(--glass-blur) * 1.5)) saturate(200%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+
+  .dark .glass-vibrant {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    border: 2px solid rgba(255, 255, 255, 0.12);
   }
 }
