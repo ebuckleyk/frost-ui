@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.3.1
+
+### Patch Changes
+
+- 4e3c7ab: Updated slate dependency
+
 ## 1.3.0
 
 ### Minor Changes
