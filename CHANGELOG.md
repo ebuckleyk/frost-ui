@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.4.1
+
+### Patch Changes
+
+- 9384e11: Remove css import from event calendar
+
 ## 1.4.0
 
 ### Minor Changes
