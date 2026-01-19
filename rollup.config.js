@@ -44,9 +44,7 @@ const config = {
     postcss({
       extensions: ['.css'],
       minimize: true,
-      inject: {
-        insertAt: 'top',
-      },
+      extract: 'styles/frostui.css',
     }),
     terser(),
     sizes(),
