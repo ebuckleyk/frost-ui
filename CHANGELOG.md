@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.3.0
+
+### Minor Changes
+
+- f60ba2f: Added new components
+
 ## 1.2.0
 
 ### Minor Changes
