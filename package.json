@@ -148,8 +148,8 @@
     "react-day-picker": "^9.5.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.15.3",
-    "slate": "^0.112.0",
-    "slate-history": "^0.110.3",
-    "slate-react": "^0.112.0"
+    "slate": ">=0.110.0",
+    "slate-history": ">=0.110.0",
+    "slate-react": ">=0.110.0"
   }
 }
