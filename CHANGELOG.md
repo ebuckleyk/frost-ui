@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.2.0
+
+### Minor Changes
+
+- 1e4cba1: Updated color system for storybook and improve contrast for glassmorphism
+
 ## 1.1.0
 
 ### Minor Changes
