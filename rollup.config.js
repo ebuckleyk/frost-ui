@@ -45,6 +45,11 @@ const config = {
       extensions: ['.css'],
       minimize: true,
       extract: 'styles/frostui.css',
+      plugins: [
+        require('@tailwindcss/postcss')({
+          config: './tailwind.config.js',
+        }),
+      ],
     }),
     terser(),
     sizes(),
