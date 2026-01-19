@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.4.0
+
+### Minor Changes
+
+- e38ce16: extracted css file
+
 ## 1.3.1
 
 ### Patch Changes
