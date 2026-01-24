@@ -6,7 +6,7 @@ import * as z from 'zod';
 
 import { Button } from '../Button';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../Form';
-import { toast } from '../Toast';
+import { toast } from '../Sonner';
 import { RichText, RichTextArea, RichTextToolbar } from './RichText';
 import type { RichTextValue } from './RichText';
 
@@ -27,8 +27,7 @@ function RichTextFormDemo() {
     resolver: zodResolver(formSchema),
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: 'You submitted',
+    toast('You submitted', {
       description: (
         <pre>
           <code>{JSON.stringify(values, null, 2)}</code>

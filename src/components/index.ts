@@ -45,7 +45,6 @@ export * from './Table';
 export * from './Tabs';
 export * from './Textarea';
 export * from './ThemeProvider';
-export * from './Toast';
 export * from './Toggle';
 export * from './ToggleGroup';
 export * from './Tooltip';

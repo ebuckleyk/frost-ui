@@ -6,7 +6,7 @@ import * as z from 'zod';
 
 import { Button } from '../Button';
 import { Input } from '../Input';
-import { toast } from '../Toast';
+import { toast } from '../Sonner';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './Form';
 
 const formSchema = z.object({
@@ -23,8 +23,7 @@ function Component() {
   });
   // 2. Define a submit handler
   function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: 'You submitted',
+    toast('You submitted', {
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code>{JSON.stringify(values, null, 2)}</code>
