@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.6.0
+
+### Minor Changes
+
+- 85693c8: Removed old Toaster. Package Sonner with library
+
 ## 1.5.0
 
 ### Minor Changes
