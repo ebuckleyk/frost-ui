@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 import { Button } from '../Button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
-import { toast } from '../Toast';
+import { toast } from '../Sonner';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from './InputOTP';
 
 type ComponentType = React.ComponentProps<typeof InputOTP>;
@@ -108,8 +108,7 @@ function FormDemo() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
+    toast('You submitted the following values:', {
       description: (
         <pre className="bg-slate-950 mt-2 w-[340px] rounded-md p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>

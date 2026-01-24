@@ -3,7 +3,6 @@ import type { Preview } from '@storybook/react';
 
 import { SonnerToaster } from '../src/components/Sonner';
 import { ThemeProvider } from '../src/components/ThemeProvider';
-import { Toaster } from '../src/components/Toast';
 import viewports from './viewports';
 // https://github.com/tailwindlabs/tailwindcss/issues/6314#issuecomment-991093531
 import '../src/styles/frostui.css';
@@ -41,15 +40,18 @@ const preview: Preview = {
         },
         {
           name: 'gradient-frost',
-          value: 'linear-gradient(135deg, oklch(0.75 0.15 280) 0%, oklch(0.65 0.20 250) 50%, oklch(0.70 0.18 200) 100%)',
+          value:
+            'linear-gradient(135deg, oklch(0.75 0.15 280) 0%, oklch(0.65 0.20 250) 50%, oklch(0.70 0.18 200) 100%)',
         },
         {
           name: 'gradient-aurora',
-          value: 'linear-gradient(135deg, oklch(0.65 0.25 300) 0%, oklch(0.60 0.22 260) 25%, oklch(0.70 0.20 200) 50%, oklch(0.65 0.18 180) 75%, oklch(0.70 0.22 220) 100%)',
+          value:
+            'linear-gradient(135deg, oklch(0.65 0.25 300) 0%, oklch(0.60 0.22 260) 25%, oklch(0.70 0.20 200) 50%, oklch(0.65 0.18 180) 75%, oklch(0.70 0.22 220) 100%)',
         },
         {
           name: 'gradient-radial',
-          value: 'radial-gradient(circle at 30% 50%, oklch(0.70 0.22 280) 0%, oklch(0.60 0.25 250) 35%, oklch(0.50 0.20 220) 100%)',
+          value:
+            'radial-gradient(circle at 30% 50%, oklch(0.70 0.22 280) 0%, oklch(0.60 0.25 250) 35%, oklch(0.50 0.20 220) 100%)',
         },
         {
           name: 'image',
@@ -82,7 +84,6 @@ const preview: Preview = {
           <ThemeProvider theme={theme}>
             {/* <div style={{ margin: 'auto', width: '50%', padding: 10 }}> */}
             <Story />
-            <Toaster />
             <SonnerToaster />
             {/* </div> */}
           </ThemeProvider>
@@ -91,7 +92,7 @@ const preview: Preview = {
     },
   ],
 
-  tags: ['autodocs']
+  tags: ['autodocs'],
 };
 
 export default preview;

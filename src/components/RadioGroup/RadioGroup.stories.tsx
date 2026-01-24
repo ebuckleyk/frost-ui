@@ -7,7 +7,7 @@ import * as z from 'zod';
 import { Button } from '../Button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 import { Label } from '../Label';
-import { toast } from '../Toast';
+import { toast } from '../Sonner';
 import { RadioGroup, RadioGroupItem } from './RadioGroup';
 
 function RadioGroupDemo() {
@@ -41,8 +41,7 @@ function RadioGroupFormDemo() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
+    toast('You submitted the following values:', {
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code>{JSON.stringify(data, null, 2)}</code>

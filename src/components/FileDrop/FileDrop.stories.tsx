@@ -9,7 +9,7 @@ import { Button } from '../Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../Card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 import { ScrollArea } from '../ScrollArea';
-import { toast } from '../Toast';
+import { toast } from '../Sonner';
 import { FileDrop, FileDropArea, FileDropAreaText, FileDropFileArea } from './FileDrop';
 
 function FileDropDemo() {
@@ -147,8 +147,7 @@ function FileDropFormDemo() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: 'You submitted',
+    toast('You submitted', {
       description: `${values.files.length} file(s)`,
     });
   }
