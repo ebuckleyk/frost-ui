@@ -2,9 +2,9 @@ import * as React from 'react';
 import { XCircle } from 'lucide-react';
 import { DropzoneState, FileWithPath, useDropzone, type DropzoneOptions, type FileError } from 'react-dropzone';
 
-import { createContextScope, Scope } from '@/lib/createContext';
 import { cn, formatBytes } from '@/lib/utils';
 
+import { createContextScope, Scope } from '../../lib/createContext';
 import { Card } from '../Card';
 
 export interface FileWithServerId extends FileWithPath {
