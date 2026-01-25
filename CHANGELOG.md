@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.8.0
+
+### Minor Changes
+
+- fdaab66: Export sidebar
+
 ## 1.7.0
 
 ### Minor Changes
