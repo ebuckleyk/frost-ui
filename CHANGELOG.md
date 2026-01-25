@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.7.0
+
+### Minor Changes
+
+- e7a022f: Fix exports of new components
+
 ## 1.6.0
 
 ### Minor Changes
