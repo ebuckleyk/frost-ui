@@ -43,6 +43,7 @@ export * from './ScrollArea';
 export * from './Select';
 export * from './Separator';
 export * from './Sheet';
+export * from './Sidebar';
 export * from './Skeleton';
 export * from './Slider';
 export * from './Sonner';
