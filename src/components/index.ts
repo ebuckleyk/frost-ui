@@ -12,7 +12,7 @@ export * from './Carousel';
 export * from './Checkbox';
 export * from './Chart';
 export * from './Collapsible';
-//export * from './Combobox';
+export * from './Combobox';
 export * from './Command';
 export * from './ContextMenu';
 //export * from './DatePicker';
