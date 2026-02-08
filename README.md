@@ -38,6 +38,26 @@ https://ebuckleyk.github.io/frost-ui/
      import '@ebuckleyk/frost-ui/dist/styles/frostui.css';
      ```
 
+### EventCalendar Slots
+
+The EventCalendar component supports render-slot props so consuming UIs can swap pieces without forking:
+
+- `renderToolbar` - Replace the default toolbar (navigation + view toggles).
+- `renderEventContent` - Override how an event cell renders in month/week/day/list views.
+- `renderEventDetails` - Replace the default Sheet details surface shown on event click.
+- `renderEventEdit` - Replace the edit dialog content (used by the Edit icon in details).
+
+Example:
+
+```tsx
+<EventCalendar
+  events={events}
+  renderToolbar={(props) => <CustomToolbar {...props} />}
+  renderEventContent={(args) => <CustomEventCell {...args} />}
+  renderEventDetails={(event) => <CustomEventDetails event={event} />}
+/>
+```
+
 ### How to update library
 
 1. Run `npm run lint` _Safety check to prevent publish from failing_

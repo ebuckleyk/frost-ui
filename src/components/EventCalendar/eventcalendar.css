@@ -2,61 +2,90 @@
   background: none;
 }
 
-.fc .fc-list-event td {
-  color: var(--primary) !important;
+.frostui-eventcalendar {
+  --event-calendar-radius: var(--radius-xl);
+  --event-calendar-border: color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+  --event-calendar-surface: color-mix(in oklch, var(--color-card) calc(var(--glass-card) * 100%), transparent);
+  --event-calendar-surface-strong: color-mix(in oklch, var(--color-card) calc((var(--glass-card) + 0.08) * 100%), transparent);
+  --event-calendar-muted: color-mix(in oklch, var(--color-muted) 65%, transparent);
+  --event-calendar-accent: color-mix(in oklch, var(--color-accent) 35%, transparent);
 }
 
-.fc .fc-list-event:hover td {
-  background-color: var(--primary) / 0.7;
-  backdrop-filter: blur(20px) saturate(200%);
-  color: var(--secondary);
+.frostui-eventcalendar .fc {
+  --fc-border-color: var(--event-calendar-border);
+  --fc-page-bg-color: transparent;
+  --fc-neutral-bg-color: var(--event-calendar-surface-strong);
+  --fc-list-event-hover-bg-color: var(--event-calendar-accent);
+  color: var(--color-foreground);
+}
+
+.frostui-eventcalendar .fc .fc-list-event td {
+  color: var(--color-foreground) !important;
+}
+
+.frostui-eventcalendar .fc .fc-list-event:hover td {
+  background-color: var(--event-calendar-accent);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  color: var(--color-foreground);
 }
 
 .frostui-view {
-  background-color: var(--secondary) / 0.7;
-  border-radius: 10px;
-  border: none;
-  backdrop-filter: blur(20px) saturate(200%);
+  border-radius: var(--event-calendar-radius);
+  border: 1px solid var(--event-calendar-border);
+  background: var(--event-calendar-surface);
   overflow: hidden;
 }
 
 .frostui-dayheader {
-  background-color: var(--secondary);
-  color: var(--primary);
+  background-color: var(--event-calendar-surface-strong);
+  color: var(--color-foreground);
+  border-bottom: 1px solid var(--event-calendar-border);
 }
 
 .frostui-event {
-  border: var(--border);
+  border: 1px solid var(--event-calendar-border);
+  background: var(--event-calendar-surface-strong);
+  color: var(--color-foreground);
   cursor: pointer;
+  box-shadow: 0 1px 10px color-mix(in oklch, var(--color-foreground) 6%, transparent);
+}
+
+.frostui-event:hover {
+  background: var(--event-calendar-accent);
 }
 
 .frostui-nowindicator {
-  border-color: var(--primary) / 0.9 !important;
+  border-color: var(--color-primary) !important;
 }
 
-.fc-list-day {
-  background-color: var(--secondary) / 0.9 !important;
-  color: var(--primary);
+.frostui-eventcalendar .fc-list-day {
+  background-color: var(--event-calendar-surface-strong) !important;
+  color: var(--color-foreground);
 }
 
-.fc-event-main-frame {
-  color: var(--primary-foreground) !important;
+.frostui-eventcalendar .fc-event-main-frame {
+  color: inherit !important;
 }
 
-.fc .fc-daygrid-day.fc-day-today {
-  background-color: var(--secondary) / 0.7;
+.frostui-eventcalendar .fc .fc-daygrid-day.fc-day-today {
+  background-color: var(--event-calendar-muted);
 }
 
-.fc-day-today.fc-timegrid-col.frostui-daycell {
-  background-color: var(--secondary) / 0.7;
+.frostui-eventcalendar .fc-day-today.fc-timegrid-col.frostui-daycell {
+  background-color: var(--event-calendar-muted);
 }
 
-.fc .fc-bg-event {
-  background-image: repeating-linear-gradient(45deg, var(--muted-foreground) 20%, var(--muted) 30%);
-  color: var(--primary);
+.frostui-eventcalendar .fc .fc-bg-event {
+  background-image: repeating-linear-gradient(45deg, var(--color-muted-foreground) 20%, var(--color-muted) 30%);
+  color: var(--color-foreground);
   text-overflow: hidden;
 }
 
-.fc-event-main {
+.frostui-eventcalendar .fc-event-main {
   overflow: hidden;
+}
+
+.frostui-eventcalendar .fc-theme-standard td,
+.frostui-eventcalendar .fc-theme-standard th {
+  border-color: var(--event-calendar-border);
 }
