@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.9.0
+
+### Minor Changes
+
+- 93a82c1: Fixed Calendar component styling and made Combobox reusable
+
 ## 1.8.0
 
 ### Minor Changes
