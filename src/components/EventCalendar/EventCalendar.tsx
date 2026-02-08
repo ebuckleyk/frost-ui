@@ -1,6 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import * as React from 'react';
-import { EventContentArg, EventInput, PluginDef } from '@fullcalendar/core';
+import { CalendarApi, EventContentArg, EventInput, PluginDef } from '@fullcalendar/core';
 import { EventImpl } from '@fullcalendar/core/internal';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -64,6 +64,15 @@ export enum MOBILE_CALENDAR_VIEW {
   DAY = 'listDay',
 }
 
+export type EventCalendarToolbarRenderProps = {
+  currentCalendarDate?: Date;
+  currentCalendarView?: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW;
+  goToPrev: () => void;
+  goToNext: () => void;
+  goToToday: () => void;
+  changeView: (v: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW) => void;
+};
+
 export type EventCalendarEvent = EventInput & {
   extendedProps?: Partial<Pick<EventInput, 'extendedProps'>> & {
     category?: EventCalendarCategory;
@@ -80,8 +89,19 @@ type ScopedProps<P> = P & { __scopeEventCalendar?: Scope };
 const [createEventCalendarContext, createEventCalendarScope] = createContextScope(EVENTCALENDAR_NAME);
 
 export type EventCalendarProps = {
+  className?: string;
   renderOnEventClick?: (event: EventImpl) => React.ReactNode;
-  initialView?: CALENDAR_VIEW;
+  renderToolbar?: (props: EventCalendarToolbarRenderProps) => React.ReactNode;
+  renderEventContent?: (args: EventContentArg) => React.ReactNode;
+  renderEventDetails?: (event: EventImpl) => React.ReactNode;
+  renderEventEdit?: (event: EventImpl) => React.ReactNode;
+  onEventClick?: (event: EventImpl, jsEvent: MouseEvent) => void;
+  onViewChange?: (view: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW) => void;
+  onDateChange?: (date: Date) => void;
+  onNavigate?: (direction: 'prev' | 'next' | 'today') => void;
+  preventEventDefaultOnClick?: boolean;
+  plugins?: PluginDef[];
+  initialView?: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW;
   events?: EventInput[];
   initialEvents?: EventInput[];
   dayMaxEvents?: number;
@@ -89,15 +109,74 @@ export type EventCalendarProps = {
   dayHeaders?: boolean;
   stickyHeaderDates?: boolean;
   nowIndicator?: boolean;
+  height?: React.ComponentProps<typeof FullCalendar>['height'];
+  views?: React.ComponentProps<typeof FullCalendar>['views'];
+  headerToolbar?: React.ComponentProps<typeof FullCalendar>['headerToolbar'];
+  footerToolbar?: React.ComponentProps<typeof FullCalendar>['footerToolbar'];
+  locale?: React.ComponentProps<typeof FullCalendar>['locale'];
+  calendarProps?: Omit<
+    React.ComponentProps<typeof FullCalendar>,
+    | 'ref'
+    | 'plugins'
+    | 'initialView'
+    | 'events'
+    | 'initialEvents'
+    | 'eventContent'
+    | 'eventClick'
+    | 'height'
+    | 'views'
+    | 'headerToolbar'
+    | 'footerToolbar'
+    | 'locale'
+    | 'dayMaxEvents'
+    | 'dayMaxEventRows'
+    | 'dayHeaders'
+    | 'stickyHeaderDates'
+    | 'nowIndicator'
+  >;
 };
-type EventCalendarContextValue = EventCalendarState &
+
+type EventCalendarConfig = Pick<
+  EventCalendarProps,
+  | 'className'
+  | 'renderOnEventClick'
+  | 'renderEventContent'
+  | 'renderEventDetails'
+  | 'renderEventEdit'
+  | 'onEventClick'
+  | 'preventEventDefaultOnClick'
+  | 'plugins'
+  | 'events'
+  | 'initialEvents'
+  | 'dayMaxEvents'
+  | 'dayMaxEventRows'
+  | 'dayHeaders'
+  | 'stickyHeaderDates'
+  | 'nowIndicator'
+  | 'height'
+  | 'views'
+  | 'headerToolbar'
+  | 'footerToolbar'
+  | 'locale'
+  | 'calendarProps'
+> & {
+  initialView: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW;
+};
+
+type EventCalendarRootProps = React.PropsWithChildren<
   EventCalendarProps & {
-    renderOnEventClick?: (event: EventImpl) => React.ReactNode;
-    goToNext: () => void;
-    goToPrev: () => void;
-    goToToday: () => void;
-    changeView: (v: CALENDAR_VIEW) => void;
-  };
+    calendarRef?: React.Ref<InstanceType<typeof FullCalendar>>;
+  }
+>;
+type EventCalendarContextValue = EventCalendarState & {
+  config: EventCalendarConfig;
+  calendarApi?: CalendarApi;
+  setCalendarRef: (node: InstanceType<typeof FullCalendar> | null) => void;
+  goToNext: () => void;
+  goToPrev: () => void;
+  goToToday: () => void;
+  changeView: (v: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW) => void;
+};
 
 type EventCalendarState = {
   currentCalendarDate?: Date;
@@ -107,106 +186,329 @@ type EventCalendarState = {
 const [EventCalendarProvider, useEventCalendarContext] =
   createEventCalendarContext<EventCalendarContextValue>(EVENTCALENDAR_NAME);
 
-function EventCalendar({ ...props }: ScopedProps<EventCalendarProps>) {
-  const [calendar, setCalendar] = React.useState<FullCalendar | undefined | null>();
+const useEventCalendar = (consumerName = EVENTCALENDAR_NAME, scope?: Scope) =>
+  useEventCalendarContext(consumerName, scope);
+
+type FullCalendarClassNameInput<T> = string | string[] | ((args: T) => string | string[]);
+
+const joinClassNames = <T,>(base: string, input?: FullCalendarClassNameInput<T>) => {
+  if (!input) return base;
+  if (typeof input === 'function') {
+    return (args: T) => cn(base, input(args));
+  }
+
+  return cn(base, input);
+};
+
+const assignRef = <T,>(ref: React.Ref<T> | undefined, value: T | null) => {
+  if (!ref) return;
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  (ref as React.MutableRefObject<T | null>).current = value;
+};
+
+const mergeRefs = <T,>(...refs: Array<React.Ref<T> | undefined>) => {
+  return (value: T | null) => {
+    refs.forEach((ref) => assignRef(ref, value));
+  };
+};
+
+const EventCalendarRoot = ({ ...props }: ScopedProps<EventCalendarRootProps>) => {
+  const [calendar, setCalendar] = React.useState<InstanceType<typeof FullCalendar> | null>(null);
   const [state, setState] = React.useState<EventCalendarState>({
     currentCalendarDate: new Date(),
-    currentCalendarView: (props.initialView as CALENDAR_VIEW) ?? CALENDAR_VIEW.DAY,
+    currentCalendarView: props.initialView ?? CALENDAR_VIEW.DAY,
   });
   const {
     __scopeEventCalendar,
+    className,
     events,
     dayMaxEvents = 2,
     dayMaxEventRows = true,
     dayHeaders = true,
     stickyHeaderDates = true,
     nowIndicator = true,
+    plugins = DEFAULT_PLUGINS,
+    height = 600,
+    headerToolbar = false,
+    footerToolbar,
+    views,
+    locale,
+    calendarProps,
+    preventEventDefaultOnClick = true,
+    renderEventContent,
+    renderEventDetails,
+    renderEventEdit,
+    renderOnEventClick,
+    onEventClick,
+    onViewChange,
+    onDateChange,
+    onNavigate,
+    calendarRef,
+    children,
   } = props;
 
-  const ref = React.useRef<InstanceType<typeof FullCalendar>>(null);
+  const setCalendarRef = React.useCallback(
+    (node: InstanceType<typeof FullCalendar> | null) => {
+      setCalendar(node);
+      assignRef(calendarRef, node);
+    },
+    [calendarRef],
+  );
 
   const api = React.useMemo(() => calendar?.getApi(), [calendar]);
 
-  React.useEffect(() => {
-    setCalendar(ref.current);
-  }, [ref]);
-
   const prev = React.useCallback(() => {
     api?.prev();
-    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-  }, [api]);
+    const nextDate = api?.getDate();
+    setState((prevState) => ({ ...prevState, currentCalendarDate: nextDate }));
+    if (nextDate) onDateChange?.(nextDate);
+    onNavigate?.('prev');
+  }, [api, onDateChange, onNavigate]);
 
   const next = React.useCallback(() => {
     api?.next();
-    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-  }, [api]);
+    const nextDate = api?.getDate();
+    setState((prevState) => ({ ...prevState, currentCalendarDate: nextDate }));
+    if (nextDate) onDateChange?.(nextDate);
+    onNavigate?.('next');
+  }, [api, onDateChange, onNavigate]);
 
   const today = React.useCallback(() => {
     api?.today();
-    setState((prevState) => ({ ...prevState, currentCalendarDate: api?.getDate() }));
-  }, [api]);
+    const nextDate = api?.getDate();
+    setState((prevState) => ({ ...prevState, currentCalendarDate: nextDate }));
+    if (nextDate) onDateChange?.(nextDate);
+    onNavigate?.('today');
+  }, [api, onDateChange, onNavigate]);
 
   const changeView = React.useCallback(
-    (v: CALENDAR_VIEW) => {
+    (v: CALENDAR_VIEW | MOBILE_CALENDAR_VIEW) => {
       if (!v || v === state.currentCalendarView) return;
       api?.changeView(v);
       setState((prevState) => ({ ...prevState, currentCalendarView: v }));
+      onViewChange?.(v);
     },
-    [api, state.currentCalendarView],
+    [api, onViewChange, state.currentCalendarView],
   );
 
   React.useEffect(() => {
     const date = api?.getDate();
     setState((prevState) => ({ ...prevState, currentCalendarDate: date }));
-  }, [api]);
+    if (date) onDateChange?.(date);
+  }, [api, onDateChange]);
+
+  const config = React.useMemo<EventCalendarConfig>(
+    () => ({
+      className,
+      renderOnEventClick,
+      renderEventContent,
+      renderEventDetails,
+      renderEventEdit,
+      onEventClick,
+      preventEventDefaultOnClick,
+      plugins,
+      events,
+      initialEvents: props.initialEvents,
+      dayMaxEvents,
+      dayMaxEventRows,
+      dayHeaders,
+      stickyHeaderDates,
+      nowIndicator,
+      height,
+      views,
+      headerToolbar,
+      footerToolbar,
+      locale,
+      calendarProps,
+      initialView: props.initialView ?? CALENDAR_VIEW.DAY,
+    }),
+    [
+      className,
+      renderOnEventClick,
+      renderEventContent,
+      renderEventDetails,
+      renderEventEdit,
+      onEventClick,
+      preventEventDefaultOnClick,
+      plugins,
+      events,
+      props.initialEvents,
+      dayMaxEvents,
+      dayMaxEventRows,
+      dayHeaders,
+      stickyHeaderDates,
+      nowIndicator,
+      height,
+      views,
+      headerToolbar,
+      footerToolbar,
+      locale,
+      calendarProps,
+      props.initialView,
+    ],
+  );
+
+  const providerValue = React.useMemo<EventCalendarContextValue>(
+    () => ({
+      config,
+      calendarApi: api,
+      setCalendarRef,
+      goToPrev: prev,
+      goToNext: next,
+      goToToday: today,
+      changeView,
+      currentCalendarDate: state.currentCalendarDate,
+      currentCalendarView: state.currentCalendarView,
+    }),
+    [
+      config,
+      api,
+      setCalendarRef,
+      prev,
+      next,
+      today,
+      changeView,
+      state.currentCalendarDate,
+      state.currentCalendarView,
+    ],
+  );
 
   return (
-    <EventCalendarProvider
-      scope={__scopeEventCalendar}
-      events={events}
-      goToPrev={prev}
-      goToNext={next}
-      goToToday={today}
-      changeView={changeView}
-      renderOnEventClick={props.renderOnEventClick}
-      currentCalendarDate={state.currentCalendarDate}
-      currentCalendarView={state.currentCalendarView}
-    >
-      <EventCalendarToolbar />
-      <FullCalendar
-        ref={ref}
-        plugins={DEFAULT_PLUGINS}
-        initialView={state.currentCalendarView}
-        headerToolbar={false}
-        weekends={true}
-        events={props.events}
-        initialEvents={props.initialEvents}
-        eventClassNames={'frostui-event'}
-        dayCellClassNames={'frostui-daycell'}
-        nowIndicatorClassNames={'frostui-nowindicator'}
-        slotLaneClassNames={'frostui-slotLane'}
-        viewClassNames={'frostui-view'}
-        allDayClassNames={'frostui-allday'}
-        moreLinkClassNames={'frostui-morelink'}
-        noEventsClassNames={'frostui-noevents'}
-        dayHeaderClassNames={'frostui-dayheader'}
-        slotLabelClassNames={'frostui-slotlabel'}
-        weekNumberClassNames={'frostui-weeknumber'}
-        dayMaxEvents={dayMaxEvents}
-        dayMaxEventRows={dayMaxEventRows}
-        dayHeaders={dayHeaders}
-        stickyHeaderDates={stickyHeaderDates}
-        allDayContent={() => <></>}
-        nowIndicator={nowIndicator}
-        eventClick={(info) => {
-          info.jsEvent.preventDefault();
-        }}
-        eventContent={(args) => <ViewEventContent {...args} />}
-        height={600}
-      />
+    <EventCalendarProvider scope={__scopeEventCalendar} {...providerValue}>
+      {children}
     </EventCalendarProvider>
   );
+};
+
+type EventCalendarToolbarSlotProps = {
+  render?: (props: EventCalendarToolbarRenderProps) => React.ReactNode;
+};
+
+function EventCalendarToolbarSlot({ ...props }: ScopedProps<EventCalendarToolbarSlotProps>) {
+  const { render } = props;
+  const { currentCalendarDate, currentCalendarView, goToPrev, goToNext, goToToday, changeView } = useEventCalendar(
+    'EventCalendarToolbarSlot',
+    props.__scopeEventCalendar,
+  );
+  const toolbarContext = React.useMemo<EventCalendarToolbarRenderProps>(
+    () => ({
+      currentCalendarDate,
+      currentCalendarView,
+      goToPrev,
+      goToNext,
+      goToToday,
+      changeView,
+    }),
+    [currentCalendarDate, currentCalendarView, goToPrev, goToNext, goToToday, changeView],
+  );
+
+  if (render) return render(toolbarContext);
+
+  return <EventCalendarToolbar __scopeEventCalendar={props.__scopeEventCalendar} />;
 }
+
+const EventCalendarCalendar = React.forwardRef<InstanceType<typeof FullCalendar>, ScopedProps<{}>>(
+  ({ ...props }, forwardedRef) => {
+    const { config, currentCalendarView, setCalendarRef } = useEventCalendar(
+      'EventCalendarCalendar',
+      props.__scopeEventCalendar,
+    );
+    const mergedRef = React.useMemo(() => mergeRefs(setCalendarRef, forwardedRef), [setCalendarRef, forwardedRef]);
+
+    return (
+      <div data-slot="event-calendar" className={cn('frostui-eventcalendar', config.className)}>
+        <FullCalendar
+          {...config.calendarProps}
+          ref={mergedRef}
+          plugins={config.plugins ?? DEFAULT_PLUGINS}
+          initialView={currentCalendarView ?? config.initialView}
+          headerToolbar={config.headerToolbar ?? false}
+          footerToolbar={config.footerToolbar}
+          views={config.views}
+          locale={config.locale}
+          weekends={true}
+          events={config.events}
+          initialEvents={config.initialEvents}
+          eventClassNames={joinClassNames(
+            'frostui-event',
+            config.calendarProps?.eventClassNames as FullCalendarClassNameInput<any>,
+          )}
+          dayCellClassNames={joinClassNames(
+            'frostui-daycell',
+            config.calendarProps?.dayCellClassNames as FullCalendarClassNameInput<any>,
+          )}
+          nowIndicatorClassNames={joinClassNames(
+            'frostui-nowindicator',
+            config.calendarProps?.nowIndicatorClassNames as FullCalendarClassNameInput<any>,
+          )}
+          slotLaneClassNames={joinClassNames(
+            'frostui-slotLane',
+            config.calendarProps?.slotLaneClassNames as FullCalendarClassNameInput<any>,
+          )}
+          viewClassNames={joinClassNames(
+            'frostui-view glass-card shadow-lg',
+            config.calendarProps?.viewClassNames as FullCalendarClassNameInput<any>,
+          )}
+          allDayClassNames={joinClassNames(
+            'frostui-allday',
+            config.calendarProps?.allDayClassNames as FullCalendarClassNameInput<any>,
+          )}
+          moreLinkClassNames={joinClassNames(
+            'frostui-morelink',
+            config.calendarProps?.moreLinkClassNames as FullCalendarClassNameInput<any>,
+          )}
+          noEventsClassNames={joinClassNames(
+            'frostui-noevents',
+            config.calendarProps?.noEventsClassNames as FullCalendarClassNameInput<any>,
+          )}
+          dayHeaderClassNames={joinClassNames(
+            'frostui-dayheader',
+            config.calendarProps?.dayHeaderClassNames as FullCalendarClassNameInput<any>,
+          )}
+          slotLabelClassNames={joinClassNames(
+            'frostui-slotlabel',
+            config.calendarProps?.slotLabelClassNames as FullCalendarClassNameInput<any>,
+          )}
+          weekNumberClassNames={joinClassNames(
+            'frostui-weeknumber',
+            config.calendarProps?.weekNumberClassNames as FullCalendarClassNameInput<any>,
+          )}
+          dayMaxEvents={config.dayMaxEvents}
+          dayMaxEventRows={config.dayMaxEventRows}
+          dayHeaders={config.dayHeaders}
+          stickyHeaderDates={config.stickyHeaderDates}
+          allDayContent={() => <></>}
+          nowIndicator={config.nowIndicator}
+          eventClick={(info) => {
+            config.onEventClick?.(info.event, info.jsEvent);
+            if (config.preventEventDefaultOnClick) info.jsEvent.preventDefault();
+          }}
+          eventContent={(args) => config.renderEventContent?.(args) ?? <EventCalendarEventContent {...args} />}
+          height={config.height}
+        />
+      </div>
+    );
+  },
+);
+
+EventCalendarCalendar.displayName = 'EventCalendarCalendar';
+
+const EventCalendar = React.forwardRef<InstanceType<typeof FullCalendar>, ScopedProps<EventCalendarProps>>(
+  ({ renderToolbar, ...props }, forwardedRef) => {
+    return (
+      <EventCalendarRoot {...props} calendarRef={forwardedRef}>
+        <EventCalendarToolbarSlot render={renderToolbar} __scopeEventCalendar={props.__scopeEventCalendar} />
+        <EventCalendarCalendar __scopeEventCalendar={props.__scopeEventCalendar} />
+      </EventCalendarRoot>
+    );
+  },
+);
+
+EventCalendar.displayName = EVENTCALENDAR_NAME;
 
 /**
  * Event Content
@@ -215,9 +517,10 @@ type EventContentProps = EventContentArg & {
   children?: React.ReactNode;
 };
 
-function ViewEventContent({ ...props }: ScopedProps<EventContentProps>) {
+function EventCalendarEventContent({ ...props }: ScopedProps<EventContentProps>) {
   const { timeText, event, view } = props;
   const isBgEvent = event.display === 'background';
+  const { config } = useEventCalendar(EVENTCALENDAR_NAME, props.__scopeEventCalendar);
 
   const tailWindAlign = view.type.includes('dayGridMonth') ? 'items-center' : 'align-middle';
 
@@ -241,7 +544,7 @@ function ViewEventContent({ ...props }: ScopedProps<EventContentProps>) {
           </div>
         </div>
       </SheetTrigger>
-      <EventContentInfo event={event} />
+      {config.renderEventDetails ? config.renderEventDetails(event) : <EventCalendarEventDetails event={event} />}
     </Sheet>
   );
 }
@@ -269,8 +572,6 @@ function EventCalendarToolbar({ ...props }: ScopedProps<EventCalendarToolbarProp
     props.__scopeEventCalendar,
   );
 
-  React.useEffect(() => {}, [currentCalendarView]);
-
   const dateformat = React.useMemo(
     () => getDateFormat(currentCalendarDate ?? new Date(), currentCalendarView ?? CALENDAR_VIEW.DAY),
     [currentCalendarView, currentCalendarDate],
@@ -279,13 +580,15 @@ function EventCalendarToolbar({ ...props }: ScopedProps<EventCalendarToolbarProp
   return (
     <div className="my-3 flex flex-col items-center justify-between gap-4 md:flex-row">
       <div className="flex items-center space-x-1">
-        <Button onClick={goToPrev} size="icon" className="size-8">
+        <Button onClick={goToPrev} size="icon" className="size-8" aria-label="Previous">
           <ChevronLeft />
         </Button>
-        <Button onClick={goToNext} size={'icon'} className="size-8">
+        <Button onClick={goToNext} size={'icon'} className="size-8" aria-label="Next">
           <ChevronRight />
         </Button>
-        <div>{dateformat}</div>
+        <div className="text-sm font-medium text-foreground" aria-live="polite">
+          {dateformat}
+        </div>
       </div>
       <div className="hidden md:flex">
         <ToggleGroup onValueChange={changeView} value={currentCalendarView} type="single">
@@ -310,18 +613,19 @@ function EventCalendarToolbar({ ...props }: ScopedProps<EventCalendarToolbarProp
  * Event Content Info
  */
 
-type EventContentInfoProps = {
+type EventCalendarEventDetailsProps = {
   event: EventImpl;
 };
 
-function EventContentInfo({ ...props }: ScopedProps<EventContentInfoProps>) {
+function EventCalendarEventDetails({ ...props }: ScopedProps<EventCalendarEventDetailsProps>) {
   const { event } = props;
+  const { config } = useEventCalendar(EVENTCALENDAR_NAME, props.__scopeEventCalendar);
 
   const attendees = (event.extendedProps ?? {}).attendees ?? [];
   const description = (event.extendedProps ?? {}).description;
   return (
     <SheetContent className="flex w-full flex-col gap-5 md:w-3/6">
-      <EditEventContentInfo event={event} />
+      <EditEventContentInfo event={event} renderEventEdit={config.renderEventEdit} />
       <SheetHeader className="flex flex-row items-center">
         <div className="mt-1 flex items-center">
           <div
@@ -354,7 +658,7 @@ function EventContentInfo({ ...props }: ScopedProps<EventContentInfoProps>) {
             <span>{attendees.length}</span>
             <ScrollArea className={`h-36 flex-wrap ${attendees.length ? 'flex' : 'hidden'}`}>
               {(attendees as EventCalendarAttendee[]).map((attendee) => {
-                return <EventAttendee attendee={attendee} />;
+                return <EventAttendee key={attendee.id} attendee={attendee} />;
               })}
             </ScrollArea>
           </EventContentDescriptionItem>
@@ -392,9 +696,11 @@ function EventContentDescriptionItem({ ...props }: EventContentDescriptionItemPr
  */
 type EditEventContentInfoProps = {
   event: EventImpl;
+  renderEventEdit?: (event: EventImpl) => React.ReactNode;
 };
 function EditEventContentInfo({ ...props }: ScopedProps<EditEventContentInfoProps>) {
-  const { renderOnEventClick } = useEventCalendarContext(EVENTCALENDAR_NAME, props.__scopeEventCalendar);
+  const { config } = useEventCalendar(EVENTCALENDAR_NAME, props.__scopeEventCalendar);
+  const renderEdit = props.renderEventEdit ?? config.renderOnEventClick;
   return (
     <Dialog>
       <DialogTrigger
@@ -410,7 +716,7 @@ function EditEventContentInfo({ ...props }: ScopedProps<EditEventContentInfoProp
         <DialogHeader>
           <DialogTitle>Edit Event</DialogTitle>
         </DialogHeader>
-        {renderOnEventClick && renderOnEventClick(props.event)}
+        {renderEdit && renderEdit(props.event)}
       </DialogContent>
     </Dialog>
   );
@@ -436,4 +742,13 @@ function EventAttendee({ ...props }: ScopedProps<EventAttendeeProps>) {
   );
 }
 
-export { EventCalendar, createEventCalendarScope };
+export {
+  EventCalendar,
+  EventCalendarCalendar,
+  EventCalendarEventContent,
+  EventCalendarEventDetails,
+  EventCalendarRoot,
+  EventCalendarToolbar,
+  createEventCalendarScope,
+  useEventCalendar,
+};

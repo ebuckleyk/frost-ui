@@ -5,3 +5,4 @@ coverage
 docs-build
 stats.html
 .tmp/*
+.opencode/*
