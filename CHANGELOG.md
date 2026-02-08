@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.9.1
+
+### Patch Changes
+
+- f452290: Cleanup changes to EventCalendar
+
 ## 1.9.0
 
 ### Minor Changes
