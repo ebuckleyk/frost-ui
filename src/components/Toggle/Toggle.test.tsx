@@ -7,7 +7,7 @@ import { Toggle } from './Toggle';
 function Component() {
   return (
     <Toggle aria-label="Toggle italic">
-      <FontBoldIcon className="h-4 w-4" />
+      <FontBoldIcon className="size-4" />
     </Toggle>
   );
 }
