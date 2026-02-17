@@ -21,7 +21,6 @@ import {
 function DrawerDialogDemo() {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
-  console.log({ isDesktop });
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>

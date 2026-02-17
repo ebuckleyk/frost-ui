@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { Search, DollarSign, Send, AtSign, Lock, Eye, EyeOff, MessageSquare } from 'lucide-react';
+import { AtSign, DollarSign, Eye, EyeOff, Lock, MessageSquare, Search, Send } from 'lucide-react';
 
 import { Kbd } from '../Kbd';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
-  InputGroupText,
   InputGroupInput,
+  InputGroupText,
   InputGroupTextarea,
 } from './InputGroup';
 

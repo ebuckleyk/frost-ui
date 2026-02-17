@@ -63,7 +63,7 @@ export function ThemeProvider({
       try {
         setThemeState(t);
         localStorage.setItem(storageKey, t);
-      } catch (error) {
+      } catch {
         // unsupported
       }
     },
@@ -135,7 +135,7 @@ const getTheme = (key: string, fallback: Theme): Theme => {
   let theme: Theme = fallback;
   try {
     theme = (localStorage.getItem(key) as Theme) || undefined;
-  } catch (error) {
+  } catch {
     /* empty */
   }
   return theme || fallback;

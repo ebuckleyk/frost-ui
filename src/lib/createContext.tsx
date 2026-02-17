@@ -10,7 +10,7 @@ function createContext<ContextValueType extends object | null>(
   function Provider(props: ContextValueType & { children: React.ReactNode }) {
     const { children, ...context } = props;
     // only re-memoize when prop values change
-    const value = React.useMemo(() => context, Object.values(context)) as ContextValueType;
+    const value = React.useMemo(() => context, [context]) as ContextValueType;
     return <Context.Provider value={value}>{children}</Context.Provider>;
   }
 
@@ -56,7 +56,7 @@ function createContextScope(scopeName: string, createContextScopeDeps: CreateSco
       const { scope, children, ...context } = props;
       const Context = scope?.[scopeName][index] || BaseContext;
       // Only re-memoize when prop values change
-      const value = React.useMemo(() => context, Object.values(context)) as ContextValueType;
+      const value = React.useMemo(() => context, [context]) as ContextValueType;
       return <Context.Provider value={value}>{children}</Context.Provider>;
     }
 

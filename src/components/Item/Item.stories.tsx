@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { User, Mail, Phone, MoreVertical, Star, Package, Calendar } from 'lucide-react';
+import { Calendar, Mail, MoreVertical, Package, Phone, Star, User } from 'lucide-react';
 
-import { Button } from '../Button';
 import { Badge } from '../Badge';
+import { Button } from '../Button';
 import {
   Item,
-  ItemMedia,
-  ItemContent,
   ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
   ItemGroup,
+  ItemHeader,
+  ItemMedia,
   ItemSeparator,
   ItemTitle,
-  ItemDescription,
-  ItemHeader,
-  ItemFooter,
 } from './Item';
 
 function BasicDemo() {

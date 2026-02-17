@@ -234,7 +234,12 @@ function ExampleComboboxPopup() {
       <Combobox items={countries} defaultValue={countries[0]}>
         <ComboboxTrigger
           render={
-            <Button variant="outline" className="w-64 justify-between font-normal">
+            <Button
+              variant="outline"
+              className="
+              w-64 justify-between font-normal
+            "
+            >
               <ComboboxValue />
             </Button>
           }

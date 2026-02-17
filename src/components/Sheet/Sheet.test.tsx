@@ -21,8 +21,7 @@ function Component() {
       <SheetTrigger asChild>
         <Button variant="outline">Open</Button>
       </SheetTrigger>
-      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
-      <SheetContent className={`w-[500px]`} side={'left'}>
+      <SheetContent style={{ width: 500 }} side={'left'}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>Make changes to your profile here. Click save when you're done.</SheetDescription>

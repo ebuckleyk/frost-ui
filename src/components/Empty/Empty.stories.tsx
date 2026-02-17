@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { Search, FileX, Inbox } from 'lucide-react';
+import { FileX, Inbox, Search } from 'lucide-react';
 
 import { Button } from '../Button';
-import { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyContent, EmptyMedia } from './Empty';
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from './Empty';
 
 function BasicDemo() {
   return (

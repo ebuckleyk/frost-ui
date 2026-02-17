@@ -15,8 +15,8 @@ import packageJson from './package.json';
  * @type {import('rollup').RollupOptions}
  */
 const config = {
-  input: 'src/index.ts',
-  external: ['react', 'react-dom'],
+  input: ['src/index.ts', 'src/styles/index.ts', 'src/styles/theme-preset.js'],
+  external: Object.keys(packageJson.peerDependencies || {}),
   output: [
     {
       dir: 'dist',

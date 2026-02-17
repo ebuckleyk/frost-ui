@@ -29,7 +29,6 @@ type FileDropProps = React.PropsWithChildren<DropzoneOptions & { files?: FileWit
     files?: FileWithServerId[] | undefined;
     onChange?: (files: FileWithServerId[]) => void;
   };
-type FileDropElement = React.ElementRef<'div'>;
 type FileDropContextValue = DropzoneState & {
   files?: DropFileInfo[] | undefined;
   remove?: (file: DropFileInfo) => void;
@@ -116,7 +115,13 @@ function FileDropArea({ ...props }: ScopedProps<FileDropAreaProps>) {
   return (
     <div
       className={cn(
-        `bg-primary-foreground${dragOpacity} flex-col items-center border-2 border-dashed border-primary-foreground${dragOpacity} rounded-sm transition .24s ease-in-out flex p-5 ${style}`,
+        `
+          bg-primary-foreground${dragOpacity}
+          flex-col items-center border-2 border-dashed
+          border-primary-foreground${dragOpacity}
+          flex rounded-sm p-5 transition duration-200 ease-in-out
+          ${style}
+        `,
         props.className,
       )}
       {...getRootProps(props)}
@@ -180,7 +185,10 @@ function FileDropFileItem({ ...props }: ScopedProps<FileDropFileItemProps>) {
       <Card
         {...fileItemProps}
         className={cn(
-          'flex flex-row border-primary/40 bg-card/90 mt-1 items-center border h-[45px] w-full rounded-sm p-1',
+          `
+            mt-1 flex h-[45px] w-full flex-row items-center rounded-sm border
+            border-primary/40 bg-card/90 p-1
+          `,
           className,
         )}
         children={children}
@@ -202,13 +210,28 @@ function FileDropFileItemRemove({ ...props }: ScopedProps<FileDropFileItemRemove
   const { fileInfo } = useFileDropFileItemContext(FILE_DROP_FILE_ITEM_REMOVE_NAME, __scopeFileDrop);
   const onRemove = React.useCallback(() => {
     if (disabled) return;
-    props.onRemove ? props.onRemove(fileInfo) : remove && remove(fileInfo);
+    if (props.onRemove) {
+      props.onRemove(fileInfo);
+      return;
+    }
+    if (remove) {
+      remove(fileInfo);
+    }
   }, [fileInfo, props, remove, disabled]);
 
   const styles = React.useMemo(() => (disabled ? 'opacity-0' : 'hover:cursor-pointer'), [disabled]);
 
   return (
-    <XCircle className={cn(`flex-auto mr-1 h-6 w-1/6 text-destructive/90 ${styles}`, className)} onClick={onRemove} />
+    <XCircle
+      className={cn(
+        `
+          mr-1 h-6 w-1/6 flex-auto text-destructive/90
+          ${styles}
+        `,
+        className,
+      )}
+      onClick={onRemove}
+    />
   );
 }
 
@@ -224,7 +247,13 @@ function FileDropFileItemContent({ ...props }: ScopedProps<FileDropFileItemConte
   const file = fileInfo.file;
   return (
     <div
-      className={cn('flex flex-col flex-3 w-5/6 break-words truncate overflow-hidden hover:cursor-pointer', className)}
+      className={cn(
+        `
+          flex w-5/6 flex-3 flex-col truncate overflow-hidden wrap-break-word
+          hover:cursor-pointer
+        `,
+        className,
+      )}
     >
       <p className="text-sm">{file.name}</p>
       <div className="flex flex-row space-x-1 text-xs opacity-50">

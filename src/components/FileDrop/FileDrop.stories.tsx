@@ -22,7 +22,13 @@ function FileDropDemo() {
       <CardContent>
         <FileDrop>
           <FileDropArea>
-            <FileDropAreaText className="cursor-pointer text-slate-700/30 underline">Browse</FileDropAreaText>
+            <FileDropAreaText
+              className="
+              cursor-pointer text-slate-700/30 underline
+            "
+            >
+              Browse
+            </FileDropAreaText>
           </FileDropArea>
           <FileDropFileArea />
         </FileDrop>

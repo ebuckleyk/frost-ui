@@ -21,8 +21,7 @@ function SheetDemo(props: DemoProps) {
       <SheetTrigger asChild>
         <Button variant="outline">Open</Button>
       </SheetTrigger>
-      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
-      <SheetContent className={`w-[${props.size}px]`} side={props.side}>
+      <SheetContent style={{ width: props.size }} side={props.side}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>Make changes to your profile here. Click save when you're done.</SheetDescription>
