@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CaretSortIcon } from '@radix-ui/react-icons';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Button } from '../Button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './Collapsible';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Terminal } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from './Alert';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FontBoldIcon, FontItalicIcon } from '@radix-ui/react-icons';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Toggle } from './Toggle';
 

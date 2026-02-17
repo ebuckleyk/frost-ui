@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 
 import { SonnerToaster } from '../src/components/Sonner';
 import { ThemeProvider } from '../src/components/ThemeProvider';
@@ -25,40 +25,44 @@ const preview: Preview = {
       },
     },
     viewport: {
-      viewports: viewports,
+      options: viewports,
     },
     backgrounds: {
-      default: 'gradient-frost',
-      values: [
-        {
+      options: {
+        light: {
           name: 'light',
           value: '#F8F8F8',
         },
-        {
+
+        dark: {
           name: 'dark',
           value: '#333333',
         },
-        {
+
+        "gradient-frost": {
           name: 'gradient-frost',
           value:
             'linear-gradient(135deg, oklch(0.75 0.15 280) 0%, oklch(0.65 0.20 250) 50%, oklch(0.70 0.18 200) 100%)',
         },
-        {
+
+        "gradient-aurora": {
           name: 'gradient-aurora',
           value:
             'linear-gradient(135deg, oklch(0.65 0.25 300) 0%, oklch(0.60 0.22 260) 25%, oklch(0.70 0.20 200) 50%, oklch(0.65 0.18 180) 75%, oklch(0.70 0.22 220) 100%)',
         },
-        {
+
+        "gradient-radial": {
           name: 'gradient-radial',
           value:
             'radial-gradient(circle at 30% 50%, oklch(0.70 0.22 280) 0%, oklch(0.60 0.25 250) 35%, oklch(0.50 0.20 220) 100%)',
         },
-        {
+
+        image: {
           name: 'image',
           value:
             'url("https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")',
-        },
-      ],
+        }
+      }
     },
   },
 
@@ -93,6 +97,12 @@ const preview: Preview = {
   ],
 
   tags: ['autodocs'],
+
+  initialGlobals: {
+    backgrounds: {
+      value: 'gradient-frost'
+    }
+  }
 };
 
 export default preview;

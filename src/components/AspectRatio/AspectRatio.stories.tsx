@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useImageOnLoad } from '../../hooks/useImageOnLoad';
 import { AspectRatio } from './AspectRatio';

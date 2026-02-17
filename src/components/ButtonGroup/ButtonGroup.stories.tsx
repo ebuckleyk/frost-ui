@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Copy, Download, Share2 } from 'lucide-react';
 
 import { Button } from '../Button';
