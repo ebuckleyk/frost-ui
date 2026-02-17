@@ -202,7 +202,13 @@ function ResponsiveDemo() {
                     </DrawerHeader>
                     <div className="grid gap-1 px-4">
                       {items.slice(1, -2).map((item, index) => (
-                        <a key={index} href={item.href ? item.href : '#'} className="py-1 text-sm">
+                        <a
+                          key={index}
+                          href={item.href ? item.href : '#'}
+                          className="
+                          py-1 text-sm
+                        "
+                        >
                           {item.label}
                         </a>
                       ))}
@@ -223,13 +229,26 @@ function ResponsiveDemo() {
           <BreadcrumbItem key={index}>
             {item.href ? (
               <>
-                <BreadcrumbLink asChild className="max-w-20 truncate md:max-w-none">
+                <BreadcrumbLink
+                  asChild
+                  className="
+                    max-w-20 truncate
+                    md:max-w-none
+                  "
+                >
                   <a href={item.href}>{item.label}</a>
                 </BreadcrumbLink>
                 <BreadcrumbSeparator />
               </>
             ) : (
-              <BreadcrumbPage className="max-w-20 truncate md:max-w-none">{item.label}</BreadcrumbPage>
+              <BreadcrumbPage
+                className="
+                  max-w-20 truncate
+                  md:max-w-none
+                "
+              >
+                {item.label}
+              </BreadcrumbPage>
             )}
           </BreadcrumbItem>
         ))}

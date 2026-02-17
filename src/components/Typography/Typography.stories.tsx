@@ -14,7 +14,12 @@ function TypographyDemo() {
       <Typography.h2 className="mt-10">The King's Plan</Typography.h2>
       <Typography.p>
         The king thought long and hard, and finally came up with{' '}
-        <a href="#" className="font-medium text-primary underline underline-offset-4">
+        <a
+          href="#"
+          className="
+          font-medium text-primary underline underline-offset-4
+        "
+        >
           a brilliant plan
         </a>
         : he would tax the jokes in the kingdom.

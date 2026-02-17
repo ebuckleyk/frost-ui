@@ -21,10 +21,18 @@ function WithIconDemo() {
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm">
-        Press <Kbd><Command className="size-3" /> K</Kbd> to search
+        Press{' '}
+        <Kbd>
+          <Command className="size-3" /> K
+        </Kbd>{' '}
+        to search
       </p>
       <p className="text-sm">
-        Use <Kbd><Command className="size-3" /> ⇧ P</Kbd> to open command palette
+        Use{' '}
+        <Kbd>
+          <Command className="size-3" /> ⇧ P
+        </Kbd>{' '}
+        to open command palette
       </p>
     </div>
   );

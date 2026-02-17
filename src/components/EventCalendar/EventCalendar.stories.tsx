@@ -12,7 +12,6 @@ import setMinutes from 'date-fns/setMinutes';
 import setWeek from 'date-fns/setWeek';
 import { CalendarIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
 
 import { Button } from '../Button';
 import { Calendar } from '../Calendar';
@@ -24,7 +23,13 @@ import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../Select';
 import { SheetContent, SheetDescription, SheetHeader, SheetTitle } from '../Sheet';
 import { ToggleGroup, ToggleGroupItem } from '../ToggleGroup';
-import { CALENDAR_VIEW, EventCalendar, EventCalendarCalendar, EventCalendarRoot, useEventCalendar } from './EventCalendar';
+import {
+  CALENDAR_VIEW,
+  EventCalendar,
+  EventCalendarCalendar,
+  EventCalendarRoot,
+  useEventCalendar,
+} from './EventCalendar';
 import type { EventCalendarEvent, EventCalendarToolbarRenderProps } from './EventCalendar';
 
 //#region EventData
@@ -156,15 +161,15 @@ const events: EventCalendarEvent[] = [
 ];
 //#endregion
 
-const formSchema = z.object({
-  title: z.string(),
-  start: z.date(),
-  end: z.date().optional(),
-  eventColor: z.string().optional(),
-});
+type EventFormValues = {
+  title: string;
+  start: Date;
+  end?: Date;
+  eventColor?: string;
+};
 
 const EventForm = ({ evt }: { evt?: EventCalendarEvent }) => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<EventFormValues>({
     defaultValues: {
       title: evt?.title ?? '',
       start: evt?.start ? new Date(evt.start as string) : new Date(),
@@ -297,11 +302,23 @@ const CalendarDemo = () => {
   );
 };
 
-const CustomToolbar = ({ currentCalendarDate, currentCalendarView, goToPrev, goToNext, goToToday, changeView }: EventCalendarToolbarRenderProps) => {
+const CustomToolbar = ({
+  currentCalendarDate,
+  currentCalendarView,
+  goToPrev,
+  goToNext,
+  goToToday,
+  changeView,
+}: EventCalendarToolbarRenderProps) => {
   const dateText = format(currentCalendarDate ?? new Date(), 'MMMM dd, y');
 
   return (
-    <Card className="glass-card flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between">
+    <Card
+      className="
+        glass-card flex flex-col gap-3 p-4
+        md:flex-row md:items-center md:justify-between
+      "
+    >
       <div className="flex items-center gap-2">
         <Button variant="outline" size="icon" onClick={goToPrev} aria-label="Previous">
           {'<'}
@@ -335,7 +352,12 @@ const CustomSlotsDemo = () => {
         renderToolbar={(props) => <CustomToolbar {...props} />}
         renderEventDetails={(event) => {
           return (
-            <SheetContent className="flex w-full flex-col gap-4 md:w-1/2">
+            <SheetContent
+              className="
+                flex w-full flex-col gap-4
+                md:w-1/2
+              "
+            >
               <SheetHeader>
                 <SheetTitle className="text-lg">{event.title}</SheetTitle>
               </SheetHeader>
@@ -369,15 +391,29 @@ const CustomEventContentDemo = () => {
           const badge = args.event.extendedProps?.category?.name ?? 'General';
 
           return (
-            <div className="flex size-full items-center gap-2 rounded-md px-2 py-1">
+            <div
+              className="
+              flex size-full items-center gap-2 rounded-md px-2 py-1
+            "
+            >
               <div className="size-1.5 rounded-full bg-primary" />
               <div className="flex min-w-0 flex-col">
-                <span className={`text-xs font-medium ${isMuted ? 'text-muted-foreground' : 'text-foreground'}`}>
+                <span
+                  className={`
+                    text-xs font-medium
+                    ${isMuted ? `text-muted-foreground` : `text-foreground`}
+                  `}
+                >
                   {args.timeText}
                 </span>
                 <span className="truncate text-sm font-semibold text-foreground">{args.event.title}</span>
               </div>
-              <span className="ml-auto rounded-full border border-border/60 px-2 py-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">
+              <span
+                className="
+                  ml-auto rounded-full border border-border/60 px-2 py-0.5
+                  text-[10px] tracking-wide text-muted-foreground uppercase
+                "
+              >
                 {badge}
               </span>
             </div>
@@ -402,15 +438,29 @@ const FullyCustomDemo = () => {
           const badge = args.event.extendedProps?.category?.name ?? 'General';
 
           return (
-            <div className="flex size-full items-center gap-2 rounded-md px-2 py-1">
+            <div
+              className="
+              flex size-full items-center gap-2 rounded-md px-2 py-1
+            "
+            >
               <div className="size-1.5 rounded-full bg-primary" />
               <div className="flex min-w-0 flex-col">
-                <span className={`text-xs font-medium ${isMuted ? 'text-muted-foreground' : 'text-foreground'}`}>
+                <span
+                  className={`
+                    text-xs font-medium
+                    ${isMuted ? `text-muted-foreground` : `text-foreground`}
+                  `}
+                >
                   {args.timeText}
                 </span>
                 <span className="truncate text-sm font-semibold text-foreground">{args.event.title}</span>
               </div>
-              <span className="ml-auto rounded-full border border-border/60 px-2 py-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">
+              <span
+                className="
+                  ml-auto rounded-full border border-border/60 px-2 py-0.5
+                  text-[10px] tracking-wide text-muted-foreground uppercase
+                "
+              >
                 {badge}
               </span>
             </div>
@@ -418,7 +468,12 @@ const FullyCustomDemo = () => {
         }}
         renderEventDetails={(event) => {
           return (
-            <SheetContent className="flex w-full flex-col gap-4 md:w-1/2">
+            <SheetContent
+              className="
+                flex w-full flex-col gap-4
+                md:w-1/2
+              "
+            >
               <SheetHeader>
                 <SheetTitle className="text-lg">{event.title}</SheetTitle>
               </SheetHeader>
@@ -446,11 +501,25 @@ const ExternalToolbar = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Date</span>
+        <span
+          className="
+            text-[11px] font-semibold tracking-wide text-muted-foreground
+            uppercase
+          "
+        >
+          Date
+        </span>
         <div className="text-base font-semibold text-foreground">{dateText}</div>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Navigate</span>
+        <span
+          className="
+            text-[11px] font-semibold tracking-wide text-muted-foreground
+            uppercase
+          "
+        >
+          Navigate
+        </span>
         <div className="grid grid-cols-3 gap-2">
           <Button variant="outline" size="icon" onClick={goToPrev} aria-label="Previous">
             {'<'}
@@ -464,7 +533,14 @@ const ExternalToolbar = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">View</span>
+        <span
+          className="
+            text-[11px] font-semibold tracking-wide text-muted-foreground
+            uppercase
+          "
+        >
+          View
+        </span>
         <Select value={currentCalendarView} onValueChange={(value) => changeView(value as CALENDAR_VIEW)}>
           <SelectTrigger>
             <SelectValue placeholder="Select view" />
@@ -484,7 +560,12 @@ const ExternalToolbar = () => {
 const ExternalToolbarDemo = () => {
   return (
     <EventCalendarRoot events={events}>
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div
+        className="
+          grid gap-4
+          lg:grid-cols-[minmax(0,1fr)_320px]
+        "
+      >
         <Card className="p-5">
           <EventCalendarCalendar />
         </Card>

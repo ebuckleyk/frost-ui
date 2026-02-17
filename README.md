@@ -6,8 +6,8 @@ https://ebuckleyk.github.io/frost-ui/
 
 ### Installation (Vite + Tailwind v4)
 
-1. Install package and Tailwind deps:
-   - `npm i @ebuckleyk/frost-ui`
+1. Install package and core peer deps:
+   - `npm i @ebuckleyk/frost-ui react react-dom`
    - `npm i -D tailwindcss @tailwindcss/vite tw-animate-css`
 2. Add Tailwind to Vite:
    - `vite.config.ts`:
@@ -21,22 +21,44 @@ https://ebuckleyk.github.io/frost-ui/
      });
      ```
 3. Use the Frost UI preset and scan package files:
-   - `tailwind.config.js`:
-     ```js
-     module.exports = {
-       presets: [require('@ebuckleyk/frost-ui/dist/presets/theme.js')],
-       content: [
-         './index.html',
-         './src/**/*.{js,ts,jsx,tsx}',
-         './node_modules/@ebuckleyk/frost-ui/dist/**/*.{js,ts,jsx,tsx}',
-       ],
-     };
-     ```
+    - `tailwind.config.js`:
+      ```js
+      module.exports = {
+        presets: [require('@ebuckleyk/frost-ui/presets/theme')],
+        content: [
+          './index.html',
+          './src/**/*.{js,ts,jsx,tsx}',
+          './node_modules/@ebuckleyk/frost-ui/dist/**/*.{js,ts,jsx,tsx}',
+        ],
+      };
+      ```
 4. Import the library CSS once:
-   - `src/main.tsx`:
-     ```ts
-     import '@ebuckleyk/frost-ui/dist/styles/frostui.css';
-     ```
+    - `src/main.tsx`:
+      ```ts
+      import '@ebuckleyk/frost-ui/styles.css';
+      ```
+
+### Peer dependencies
+
+- Required: `react`, `react-dom`
+- Optional (install only what you use): Radix UI packages, `@base-ui/react`, `date-fns`, `cmdk`, `lucide-react`, `sonner`, `vaul`, `react-hook-form`, `react-day-picker`, `recharts`, FullCalendar packages, `slate`, `input-otp`, `embla-carousel-react`, `react-dropzone`, and `dompurify`.
+- Full list: see `package.json` `peerDependencies`.
+
+### Tree-shaking imports
+
+- Preferred (most tree-shaking):
+  ```ts
+  import { Button } from '@ebuckleyk/frost-ui/components/Button';
+  import { useMediaQuery } from '@ebuckleyk/frost-ui/hooks/useMediaQuery';
+  ```
+- Root exports are still supported:
+  ```ts
+  import { Button } from '@ebuckleyk/frost-ui';
+  ```
+- CSS is opt-in:
+  ```ts
+  import '@ebuckleyk/frost-ui/styles.css';
+  ```
 
 ### EventCalendar Slots
 

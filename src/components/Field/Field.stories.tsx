@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Input } from '../Input';
 import { Checkbox } from '../Checkbox';
-import { Switch } from '../Switch';
+import { Input } from '../Input';
 import { RadioGroup, RadioGroupItem } from '../RadioGroup';
+import { Switch } from '../Switch';
 import {
   Field,
-  FieldLabel,
+  FieldContent,
   FieldDescription,
   FieldError,
   FieldGroup,
+  FieldLabel,
   FieldLegend,
   FieldSeparator,
   FieldSet,
-  FieldContent,
   FieldTitle,
 } from './Field';
 
@@ -67,9 +67,7 @@ function WithMultipleErrorsDemo() {
     <Field orientation="vertical" data-invalid="true">
       <FieldLabel htmlFor="confirm">Confirm Password</FieldLabel>
       <Input id="confirm" type="password" aria-invalid="true" />
-      <FieldError
-        errors={[{ message: 'Passwords do not match' }, { message: 'Password must contain a number' }]}
-      />
+      <FieldError errors={[{ message: 'Passwords do not match' }, { message: 'Password must contain a number' }]} />
     </Field>
   );
 }
@@ -98,9 +96,7 @@ function WithCheckboxDemo() {
         <FieldLabel htmlFor="terms">
           <FieldTitle>Accept terms and conditions</FieldTitle>
           <FieldContent>
-            <FieldDescription>
-              You agree to our Terms of Service and Privacy Policy.
-            </FieldDescription>
+            <FieldDescription>You agree to our Terms of Service and Privacy Policy.</FieldDescription>
           </FieldContent>
         </FieldLabel>
       </Field>

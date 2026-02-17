@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { Input } from '../Input';
-import { Field, FieldLabel, FieldDescription, FieldError, FieldGroup } from './Field';
+import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from './Field';
 
 describe('Field', () => {
   it('should render Field component to match snapshot', () => {

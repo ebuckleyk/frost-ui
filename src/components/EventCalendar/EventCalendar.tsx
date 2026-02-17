@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import * as React from 'react';
 import { CalendarApi, EventContentArg, EventInput, PluginDef } from '@fullcalendar/core';
 import { EventImpl } from '@fullcalendar/core/internal';
@@ -364,17 +363,7 @@ const EventCalendarRoot = ({ ...props }: ScopedProps<EventCalendarRootProps>) =>
       currentCalendarDate: state.currentCalendarDate,
       currentCalendarView: state.currentCalendarView,
     }),
-    [
-      config,
-      api,
-      setCalendarRef,
-      prev,
-      next,
-      today,
-      changeView,
-      state.currentCalendarDate,
-      state.currentCalendarView,
-    ],
+    [config, api, setCalendarRef, prev, next, today, changeView, state.currentCalendarDate, state.currentCalendarView],
   );
 
   return (
@@ -411,7 +400,7 @@ function EventCalendarToolbarSlot({ ...props }: ScopedProps<EventCalendarToolbar
   return <EventCalendarToolbar __scopeEventCalendar={props.__scopeEventCalendar} />;
 }
 
-const EventCalendarCalendar = React.forwardRef<InstanceType<typeof FullCalendar>, ScopedProps<{}>>(
+const EventCalendarCalendar = React.forwardRef<InstanceType<typeof FullCalendar>, ScopedProps<object>>(
   ({ ...props }, forwardedRef) => {
     const { config, currentCalendarView, setCalendarRef } = useEventCalendar(
       'EventCalendarCalendar',
@@ -435,47 +424,47 @@ const EventCalendarCalendar = React.forwardRef<InstanceType<typeof FullCalendar>
           initialEvents={config.initialEvents}
           eventClassNames={joinClassNames(
             'frostui-event',
-            config.calendarProps?.eventClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.eventClassNames as FullCalendarClassNameInput<unknown>,
           )}
           dayCellClassNames={joinClassNames(
             'frostui-daycell',
-            config.calendarProps?.dayCellClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.dayCellClassNames as FullCalendarClassNameInput<unknown>,
           )}
           nowIndicatorClassNames={joinClassNames(
             'frostui-nowindicator',
-            config.calendarProps?.nowIndicatorClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.nowIndicatorClassNames as FullCalendarClassNameInput<unknown>,
           )}
           slotLaneClassNames={joinClassNames(
             'frostui-slotLane',
-            config.calendarProps?.slotLaneClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.slotLaneClassNames as FullCalendarClassNameInput<unknown>,
           )}
           viewClassNames={joinClassNames(
             'frostui-view glass-card shadow-lg',
-            config.calendarProps?.viewClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.viewClassNames as FullCalendarClassNameInput<unknown>,
           )}
           allDayClassNames={joinClassNames(
             'frostui-allday',
-            config.calendarProps?.allDayClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.allDayClassNames as FullCalendarClassNameInput<unknown>,
           )}
           moreLinkClassNames={joinClassNames(
             'frostui-morelink',
-            config.calendarProps?.moreLinkClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.moreLinkClassNames as FullCalendarClassNameInput<unknown>,
           )}
           noEventsClassNames={joinClassNames(
             'frostui-noevents',
-            config.calendarProps?.noEventsClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.noEventsClassNames as FullCalendarClassNameInput<unknown>,
           )}
           dayHeaderClassNames={joinClassNames(
             'frostui-dayheader',
-            config.calendarProps?.dayHeaderClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.dayHeaderClassNames as FullCalendarClassNameInput<unknown>,
           )}
           slotLabelClassNames={joinClassNames(
             'frostui-slotlabel',
-            config.calendarProps?.slotLabelClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.slotLabelClassNames as FullCalendarClassNameInput<unknown>,
           )}
           weekNumberClassNames={joinClassNames(
             'frostui-weeknumber',
-            config.calendarProps?.weekNumberClassNames as FullCalendarClassNameInput<any>,
+            config.calendarProps?.weekNumberClassNames as FullCalendarClassNameInput<unknown>,
           )}
           dayMaxEvents={config.dayMaxEvents}
           dayMaxEventRows={config.dayMaxEventRows}
@@ -527,7 +516,12 @@ function EventCalendarEventContent({ ...props }: ScopedProps<EventContentProps>)
   return (
     <Sheet>
       <SheetTrigger asChild className="z-50">
-        <div className={`flex size-full overflow-hidden ${tailWindAlign}`}>
+        <div
+          className={`
+            flex size-full overflow-hidden
+            ${tailWindAlign}
+          `}
+        >
           {view.type.includes('dayGridMonth') && !isBgEvent ? (
             <div
               style={{
@@ -536,9 +530,20 @@ function EventCalendarEventContent({ ...props }: ScopedProps<EventContentProps>)
               className={'mx-1 my-0 box-content size-0 rounded-full border-4'}
             />
           ) : null}
-          <div className="mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap">{timeText}</div>
+          <div
+            className="
+              mr-1 max-h-full shrink-0 grow-0 overflow-hidden whitespace-nowrap
+            "
+          >
+            {timeText}
+          </div>
           <div className="min-h-0 shrink grow">
-            <div className={`sticky inset-y-0 max-h-full overflow-hidden ${isBgEvent ? 'italic' : 'not-italic'}`}>
+            <div
+              className={`
+                sticky inset-y-0 max-h-full overflow-hidden
+                ${isBgEvent ? `italic` : `not-italic`}
+              `}
+            >
               {event.title}
             </div>
           </div>
@@ -578,7 +583,12 @@ function EventCalendarToolbar({ ...props }: ScopedProps<EventCalendarToolbarProp
   );
 
   return (
-    <div className="my-3 flex flex-col items-center justify-between gap-4 md:flex-row">
+    <div
+      className="
+        my-3 flex flex-col items-center justify-between gap-4
+        md:flex-row
+      "
+    >
       <div className="flex items-center space-x-1">
         <Button onClick={goToPrev} size="icon" className="size-8" aria-label="Previous">
           <ChevronLeft />
@@ -590,7 +600,12 @@ function EventCalendarToolbar({ ...props }: ScopedProps<EventCalendarToolbarProp
           {dateformat}
         </div>
       </div>
-      <div className="hidden md:flex">
+      <div
+        className="
+          hidden
+          md:flex
+        "
+      >
         <ToggleGroup onValueChange={changeView} value={currentCalendarView} type="single">
           <ToggleGroupItem value={CALENDAR_VIEW.MONTH}>Month</ToggleGroupItem>
           <ToggleGroupItem value={CALENDAR_VIEW.WEEK}>Week</ToggleGroupItem>
@@ -598,7 +613,12 @@ function EventCalendarToolbar({ ...props }: ScopedProps<EventCalendarToolbarProp
           <ToggleGroupItem value={CALENDAR_VIEW.LIST}>List</ToggleGroupItem>
         </ToggleGroup>
       </div>
-      <div className="flex md:hidden">
+      <div
+        className="
+          flex
+          md:hidden
+        "
+      >
         <ToggleGroup variant={'outline'} onValueChange={changeView} value={currentCalendarView} type="single">
           <ToggleGroupItem value={MOBILE_CALENDAR_VIEW.MONTH}>Month</ToggleGroupItem>
           <ToggleGroupItem value={MOBILE_CALENDAR_VIEW.WEEK}>Week</ToggleGroupItem>
@@ -624,7 +644,12 @@ function EventCalendarEventDetails({ ...props }: ScopedProps<EventCalendarEventD
   const attendees = (event.extendedProps ?? {}).attendees ?? [];
   const description = (event.extendedProps ?? {}).description;
   return (
-    <SheetContent className="flex w-full flex-col gap-5 md:w-3/6">
+    <SheetContent
+      className="
+        flex w-full flex-col gap-5
+        md:w-3/6
+      "
+    >
       <EditEventContentInfo event={event} renderEventEdit={config.renderEventEdit} />
       <SheetHeader className="flex flex-row items-center">
         <div className="mt-1 flex items-center">
@@ -656,14 +681,22 @@ function EventCalendarEventDetails({ ...props }: ScopedProps<EventCalendarEventD
             )}
           >
             <span>{attendees.length}</span>
-            <ScrollArea className={`h-36 flex-wrap ${attendees.length ? 'flex' : 'hidden'}`}>
+            <ScrollArea
+              className={`
+                h-36 flex-wrap
+                ${attendees.length ? 'flex' : `hidden`}
+              `}
+            >
               {(attendees as EventCalendarAttendee[]).map((attendee) => {
                 return <EventAttendee key={attendee.id} attendee={attendee} />;
               })}
             </ScrollArea>
           </EventContentDescriptionItem>
           <EventContentDescriptionItem
-            className={`${description ? '' : 'hidden'} items-start`}
+            className={`
+              ${description ? '' : 'hidden'}
+              items-start
+            `}
             Icon={() => (
               <span className="mr-2">
                 <InfoIcon className="size-4" />
@@ -705,7 +738,12 @@ function EditEventContentInfo({ ...props }: ScopedProps<EditEventContentInfoProp
     <Dialog>
       <DialogTrigger
         asChild
-        className="absolute right-12 top-4 cursor-pointer rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        className="
+          absolute top-4 right-12 cursor-pointer rounded-xs opacity-70
+          ring-offset-background transition-opacity
+          hover:opacity-100
+          focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none
+        "
       >
         <div>
           <EditIcon className="size-4" />

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Item, ItemMedia, ItemContent, ItemTitle, ItemDescription } from './Item';
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from './Item';
 
 describe('Item', () => {
   it('should render Item component to match snapshot', () => {

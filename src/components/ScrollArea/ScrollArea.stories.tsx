@@ -30,7 +30,7 @@ function ScrollAreaDemo() {
   return (
     <ScrollArea className="h-72 w-48 rounded-md border">
       <div className="p-4">
-        <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+        <h4 className="mb-4 text-sm leading-none font-medium">Tags</h4>
         {tags.map((tag) => (
           <>
             <div key={tag} className="text-sm">
@@ -57,7 +57,7 @@ function TextScrollAreaDemo() {
 
 function HorizontalScrollAreaDemo() {
   return (
-    <ScrollArea className="w-96 whitespace-nowrap rounded-md border">
+    <ScrollArea className="w-96 rounded-md border whitespace-nowrap">
       <div className="flex w-max space-x-4 p-4">
         {works.map((artwork) => (
           <figure key={artwork.artist} className="shrink-0">

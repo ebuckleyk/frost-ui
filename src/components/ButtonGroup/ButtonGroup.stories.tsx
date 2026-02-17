@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Copy, Download, Share2 } from 'lucide-react';
+import { AlignCenter, AlignLeft, AlignRight, Bold, Copy, Download, Italic, Share2, Underline } from 'lucide-react';
 
 import { Button } from '../Button';
 import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from './ButtonGroup';

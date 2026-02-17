@@ -157,7 +157,11 @@ function RichTextArea({ ...props }: ScopedProps<RichTextAreaProps>) {
       data-slate-editor={'richtext-editor'}
       role="textbox"
       className={cn(
-        'border border-primary/20 bg-secondary/40 rounded-sm p-4 focus:border-secondary-foreground richtext-editor backdrop-blur-md backdrop-saturate-200',
+        `
+          richtext-editor rounded-sm border border-primary/20 bg-secondary/40
+          p-4 backdrop-blur-md backdrop-saturate-200
+          focus:border-secondary-foreground
+        `,
         className,
       )}
       onKeyDown={onKeyDown}
@@ -171,7 +175,6 @@ function RichTextArea({ ...props }: ScopedProps<RichTextAreaProps>) {
 /**
  * RichTextToolbar
  */
-const RICHTEXTTOOLBAR_NAME = 'RichTextToolbar';
 type ToolbarOptions = {
   bold?: boolean;
   italic?: boolean;
@@ -249,7 +252,7 @@ const DEFAULT_TOOLBAR_CONFIG: ToolbarOptions = {
 function RichTextToolbar({ ...props }: ScopedProps<RichTextToolbarProps>) {
   const { className, toolbar = DEFAULT_TOOLBAR_CONFIG } = props;
   return (
-    <div className={cn('rounded-sm gap-1', className)}>
+    <div className={cn('gap-1 rounded-sm', className)}>
       {[FORMAT_GROUP, HEADINGS_GROUP, ALIGNMENT_GROUP].map((group) => {
         return group.map((g, k) => {
           const enabled = toolbar[g.option];

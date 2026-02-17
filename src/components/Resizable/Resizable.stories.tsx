@@ -5,7 +5,12 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './Resizabl
 
 function ResizableDemo() {
   return (
-    <ResizablePanelGroup direction="horizontal" className="max-w-md rounded-lg border">
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="
+      max-w-md rounded-lg border
+    "
+    >
       <ResizablePanel defaultSize={50}>
         <div className="flex h-[200px] items-center justify-center p-6">
           <span className="font-semibold">One</span>
@@ -32,7 +37,12 @@ function ResizableDemo() {
 }
 function VerticalResizeDemo() {
   return (
-    <ResizablePanelGroup direction="vertical" className="min-h-[200px] max-w-md rounded-lg border">
+    <ResizablePanelGroup
+      direction="vertical"
+      className="
+      min-h-[200px] max-w-md rounded-lg border
+    "
+    >
       <ResizablePanel defaultSize={25}>
         <div className="flex h-full items-center justify-center p-6">
           <span className="font-semibold">Header</span>
@@ -50,7 +60,12 @@ function VerticalResizeDemo() {
 
 function WithHandleDemo() {
   return (
-    <ResizablePanelGroup direction="horizontal" className="min-h-[200px] max-w-md rounded-lg border">
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="
+      min-h-[200px] max-w-md rounded-lg border
+    "
+    >
       <ResizablePanel defaultSize={25}>
         <div className="flex h-full items-center justify-center p-6">
           <span className="font-semibold">Sidebar</span>
