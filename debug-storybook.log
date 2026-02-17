@@ -1,0 +1,28 @@
+[18:13:13.302] [INFO] storybook v10.2.7
+[18:13:14.807] [DEBUG] Getting package.json info for C:/Users/Emmanuel K. Buckley/source/repos/frost-ui/package.json...
+[18:13:14.810] [WARN] You are currently using Storybook [1m10.2.7[22m but you have packages which are incompatible with it:
+
+- storybook-dark-mode@4.0.2 which depends on ^8.0.0
+
+Please consider updating your packages or contacting the maintainers for compatibility details.
+
+For more details on compatibility guidance, see:
+https://github.com/storybookjs/storybook/issues/32836
+[18:13:16.217] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
+[18:13:16.217] [DEBUG] Serving static files from [36mpublic[39m at [36m/[39m
+[18:13:16.228] [INFO] Starting...
+[18:13:16.317] [WARN] No story files found for the specified pattern: [34msrc\**\*.mdx[39m
+[18:13:17.061] [ERROR] [38;2;241;97;97mError: Build failed with 1 error:
+node_modules/storybook-dark-mode/dist/esm/preset/manager.js:8:32: ERROR: Could not resolve "@storybook/types"[39m
+    at failureErrorWithLog (.\node_modules\esbuild\lib\main.js:1467:15)
+    at .\node_modules\esbuild\lib\main.js:926:25
+    at runOnEndCallbacks (.\node_modules\esbuild\lib\main.js:1307:45)
+    at buildResponseToResult (.\node_modules\esbuild\lib\main.js:924:7)
+    at .\node_modules\esbuild\lib\main.js:951:16
+    at responseCallbacks.<computed> (.\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (.\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (.\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)
+[18:13:17.069] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

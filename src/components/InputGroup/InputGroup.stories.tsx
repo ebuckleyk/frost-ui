@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Search, DollarSign, Send, AtSign, Lock, Eye, EyeOff, MessageSquare } from 'lucide-react';
 
 import { Kbd } from '../Kbd';

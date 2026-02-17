@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Avatar, AvatarFallback, AvatarImage } from '../Avatar';
 import { Button } from '../Button';

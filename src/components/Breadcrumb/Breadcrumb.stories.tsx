@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { ChevronDown, Slash } from 'lucide-react';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';

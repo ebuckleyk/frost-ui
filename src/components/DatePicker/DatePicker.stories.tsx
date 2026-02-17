@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { format } from 'date-fns';
 
 import { cn } from '../../lib/utils';

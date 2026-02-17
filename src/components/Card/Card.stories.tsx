@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { BellRing, Check } from 'lucide-react';
 
 import { cn } from '../../lib/utils';

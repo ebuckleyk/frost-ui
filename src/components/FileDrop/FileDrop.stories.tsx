@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { ErrorCode } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';

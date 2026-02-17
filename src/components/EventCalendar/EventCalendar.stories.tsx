@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FullCalendar from '@fullcalendar/react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { setDay } from 'date-fns';
 import addDays from 'date-fns/addDays';
 import addHours from 'date-fns/addHours';

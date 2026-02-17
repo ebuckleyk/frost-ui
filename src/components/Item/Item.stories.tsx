@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { User, Mail, Phone, MoreVertical, Star, Package, Calendar } from 'lucide-react';
 
 import { Button } from '../Button';
