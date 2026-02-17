@@ -48,7 +48,7 @@ const Component = () => {
             >
               <span
                 className="
-                flex h-2 w-2 translate-y-1 rounded-full bg-sky-500
+                flex size-2 translate-y-1 rounded-full bg-sky-500
               "
               />
               <div className="space-y-1">
@@ -61,7 +61,7 @@ const Component = () => {
       </CardContent>
       <CardFooter>
         <Button className="w-full">
-          <Check className="mr-2 h-4 w-4" /> Mark all as read
+          <Check className="mr-2 size-4" /> Mark all as read
         </Button>
       </CardFooter>
     </Card>

@@ -66,7 +66,7 @@ function NavigationMenuDemo() {
                 <NavigationMenuLink asChild>
                   <a
                     className="
-                      flex h-full w-full flex-col justify-end rounded-md
+                      flex size-full flex-col justify-end rounded-md
                       bg-linear-to-b from-muted/50 to-muted p-6 no-underline
                       outline-none select-none
                       focus:shadow-md

@@ -132,7 +132,7 @@ function Calendar({
         week_number: cn('text-[0.8rem] text-muted-foreground select-none', defaultClassNames.week_number),
         day: cn(
           `
-            group/day relative aspect-square h-full w-full
+            group/day relative aspect-square size-full
             rounded-(--cell-radius) p-0 text-center select-none
             [&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)
           `,

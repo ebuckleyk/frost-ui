@@ -14,7 +14,7 @@ function Command({ className, ...props }: React.ComponentProps<typeof CommandPri
       data-slot="command"
       className={cn(
         `
-          glass-popover flex h-full w-full flex-col overflow-hidden rounded-md
+          glass-popover flex size-full flex-col overflow-hidden rounded-md
           text-popover-foreground shadow-xl
         `,
         className,

@@ -207,7 +207,7 @@ const EventForm = ({ evt }: { evt?: EventCalendarEvent }) => {
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button variant={'outline'}>
-                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          <CalendarIcon className="mr-2 size-4" />
                           {field.value ? format(field.value, 'PPP') : <span>Start Date/Time</span>}
                         </Button>
                       </PopoverTrigger>
@@ -233,7 +233,7 @@ const EventForm = ({ evt }: { evt?: EventCalendarEvent }) => {
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button variant={'outline'}>
-                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          <CalendarIcon className="mr-2 size-4" />
                           {field.value ? format(field.value, 'PPP') : <span>End Date/Time</span>}
                         </Button>
                       </PopoverTrigger>
