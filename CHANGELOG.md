@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.10.0
+
+### Minor Changes
+
+- 0ecb1ec: Cleaned up the eslint errors and enabled tree shaking ability
+
 ## 1.9.1
 
 ### Patch Changes
