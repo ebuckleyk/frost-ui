@@ -10,9 +10,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../Ca
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 import { ScrollArea } from '../ScrollArea';
 import { toast } from '../Sonner';
-import { FileDrop, FileDropArea, FileDropAreaText, FileDropFileArea } from './FileDrop';
+import {
+  FileDrop,
+  FileDropArea,
+  FileDropAreaText,
+  FileDropFileArea,
+  FileDropFileItem,
+  FileDropFileItemContent,
+  FileDropFileItemRemove,
+} from './FileDrop';
 
 function FileDropDemo() {
+  const [files, setFiles] = React.useState<File[]>([]);
+
   return (
     <Card className="p-5">
       <CardHeader>
@@ -20,7 +30,7 @@ function FileDropDemo() {
         <CardDescription>Drag & Drop or Click Browse to Upload File</CardDescription>
       </CardHeader>
       <CardContent>
-        <FileDrop>
+        <FileDrop files={files} onChange={setFiles}>
           <FileDropArea>
             <FileDropAreaText
               className="
@@ -38,6 +48,8 @@ function FileDropDemo() {
 }
 
 function AcceptFileTypeFileDropDemo() {
+  const [files, setFiles] = React.useState<File[]>([]);
+
   return (
     <Card className="p-5">
       <CardHeader>
@@ -46,6 +58,8 @@ function AcceptFileTypeFileDropDemo() {
       </CardHeader>
       <CardContent>
         <FileDrop
+          files={files}
+          onChange={setFiles}
           accept={{
             'text/html': ['.html', '.htm'],
           }}
@@ -79,7 +93,7 @@ const generateFiles = (count: number): File[] => {
 };
 
 function InitialFilesFileDropDemo() {
-  const [state] = React.useState<File[]>([file1, file2]);
+  const [state, setState] = React.useState<File[]>([file1, file2]);
   return (
     <Card className="p-5">
       <CardHeader>
@@ -87,7 +101,7 @@ function InitialFilesFileDropDemo() {
         <CardDescription>Drag & Drop or Click Browse to Upload File</CardDescription>
       </CardHeader>
       <CardContent>
-        <FileDrop files={state}>
+        <FileDrop files={state} onChange={setState}>
           <FileDropArea>
             <FileDropAreaText className="text-slate-700/30">See preloaded files.</FileDropAreaText>
           </FileDropArea>
@@ -99,7 +113,7 @@ function InitialFilesFileDropDemo() {
 }
 
 function DisabledFileDropDemo() {
-  const [state] = React.useState<File[]>([file1, file2]);
+  const [state, setState] = React.useState<File[]>([file1, file2]);
   return (
     <Card className="p-5">
       <CardHeader>
@@ -107,7 +121,7 @@ function DisabledFileDropDemo() {
         <CardDescription>Field and Files are readonly. Files are still selectable</CardDescription>
       </CardHeader>
       <CardContent>
-        <FileDrop disabled files={state}>
+        <FileDrop disabled files={state} onChange={setState}>
           <FileDropArea>
             <FileDropAreaText className="text-slate-700/30">See preloaded files.</FileDropAreaText>
           </FileDropArea>
@@ -119,7 +133,7 @@ function DisabledFileDropDemo() {
 }
 
 function FileDropWithScrollAreaDemo() {
-  const [state] = React.useState<File[]>(generateFiles(10));
+  const [state, setState] = React.useState<File[]>(generateFiles(10));
   return (
     <Card className="p-5">
       <CardHeader>
@@ -127,7 +141,7 @@ function FileDropWithScrollAreaDemo() {
         <CardDescription>Field and Files are readonly. Files are still selectable</CardDescription>
       </CardHeader>
       <CardContent>
-        <FileDrop disabled files={state}>
+        <FileDrop disabled files={state} onChange={setState}>
           <FileDropArea>
             <FileDropAreaText className="text-slate-700/30">See preloaded files.</FileDropAreaText>
           </FileDropArea>
@@ -169,7 +183,8 @@ function FileDropFormDemo() {
                 <FormLabel>Files</FormLabel>
                 <FormControl>
                   <FileDrop
-                    {...field}
+                    files={field.value}
+                    onChange={field.onChange}
                     maxFiles={2}
                     onDropRejected={(files) => {
                       const messages: string[] = [];
@@ -212,7 +227,14 @@ function FileDropFormDemo() {
 type ComponentType = React.ComponentProps<typeof FileDrop>;
 const meta: Meta<ComponentType> = {
   component: FileDrop,
-  subcomponents: { FileDropArea, FileDropAreaText, FileDropFileArea },
+  subcomponents: {
+    FileDropArea,
+    FileDropAreaText,
+    FileDropFileArea,
+    FileDropFileItem,
+    FileDropFileItemContent,
+    FileDropFileItemRemove,
+  },
 };
 
 export default meta;
