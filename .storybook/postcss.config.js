@@ -1,4 +1,5 @@
 import { join } from 'path';
+
 module.exports = {
   plugins: {
     tailwindcss: {
