@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.11.0
+
+### Minor Changes
+
+- 01e5165: Added badge variants
+
 ## 1.10.0
 
 ### Minor Changes
