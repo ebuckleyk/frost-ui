@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.12.0
+
+### Minor Changes
+
+- efc78cd: Updated FileDrop to be a Controlled component
+
 ## 1.11.0
 
 ### Minor Changes
