@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.13.0
+
+### Minor Changes
+
+- 7ff487b: Updated dark theme
+
 ## 1.12.0
 
 ### Minor Changes
