@@ -16,7 +16,7 @@
   --popover: oklch(0.98 0.005 245); /* Clean popover background */
   --popover-foreground: oklch(0.2 0.015 250); /* Very dark blue text */
 
-  --primary: oklch(0.55 0.18 250); /* Vibrant blue primary */
+  --primary: oklch(0.55 0.14 250); /* Vibrant blue primary */
   --primary-foreground: oklch(0.99 0.005 250); /* Pure white text (WCAG AAA: 10.5:1) */
 
   --secondary: oklch(0.88 0.04 245); /* Light blue-gray secondary */
@@ -70,32 +70,32 @@
 
 .dark {
   /* Dark Mode - Neutral Navy with Accent Blue */
-  --background: oklch(0.105 0.018 255);
+  --background: oklch(0.12 0.015 250);
   --foreground: oklch(0.94 0.01 250);
 
-  --card: oklch(0.155 0.022 255);
+  --card: oklch(0.155 0.018 250);
   --card-foreground: oklch(0.94 0.01 250);
 
-  --popover: oklch(0.145 0.02 255);
+  --popover: oklch(0.145 0.017 250);
   --popover-foreground: oklch(0.96 0.008 250);
 
-  --primary: oklch(0.72 0.16 230);
+  --primary: oklch(0.72 0.14 230);
   --primary-foreground: oklch(0.11 0.018 255);
 
-  --secondary: oklch(0.205 0.025 255);
+  --secondary: oklch(0.205 0.022 250);
   --secondary-foreground: oklch(0.9 0.01 250);
 
-  --muted: oklch(0.19 0.022 255);
+  --muted: oklch(0.19 0.018 250);
   --muted-foreground: oklch(0.68 0.025 250);
 
-  --accent: oklch(0.24 0.04 245);
+  --accent: oklch(0.26 0.035 245);
   --accent-foreground: oklch(0.94 0.01 250);
 
   --destructive: oklch(0.55 0.24 25); /* Bright red for errors (more vibrant) */
   --destructive-foreground: oklch(0.98 0 0); /* White text (WCAG AAA: 8.9:1) */
 
-  --border: oklch(0.255 0.024 255);
-  --input: oklch(0.18 0.022 255);
+  --border: oklch(0.26 0.02 250);
+  --input: oklch(0.18 0.018 250);
   --ring: oklch(0.72 0.16 230);
 
   --radius: 0.5rem;
@@ -121,13 +121,13 @@
   --chart-5: oklch(0.645 0.246 16.439);
 
   /* Sidebar - Dark Mode */
-  --sidebar-background: oklch(0.13 0.018 255);
+  --sidebar-background: oklch(0.13 0.016 250);
   --sidebar-foreground: oklch(0.94 0.01 250);
   --sidebar-primary: oklch(0.72 0.16 230);
   --sidebar-primary-foreground: oklch(0.11 0.018 255);
-  --sidebar-accent: oklch(0.19 0.026 255);
+  --sidebar-accent: oklch(0.19 0.022 250);
   --sidebar-accent-foreground: oklch(0.94 0.01 250);
-  --sidebar-border: oklch(0.235 0.022 255);
+  --sidebar-border: oklch(0.235 0.018 250);
   --sidebar-ring: oklch(0.72 0.16 230);
 }
 
@@ -391,47 +391,28 @@
     background: linear-gradient(135deg, oklch(0.75 0.15 280) 0%, oklch(0.65 0.2 250) 50%, oklch(0.7 0.18 200) 100%);
   }
 
-  .bg-gradient-frost-radial {
-    background: radial-gradient(
-      circle at 30% 50%,
-      oklch(0.7 0.22 280) 0%,
-      oklch(0.6 0.25 250) 35%,
-      oklch(0.5 0.2 220) 100%
-    );
+  .bg-frost-ambient {
+    background:
+      radial-gradient(circle at 20% 0%, color-mix(in oklch, var(--primary) 6%, transparent), transparent 40%),
+      linear-gradient(to bottom, color-mix(in oklch, var(--primary) 3%, transparent), transparent 30%),
+      var(--background);
+    background-size:
+      140% 140%,
+      100% 100%,
+      auto;
+  }
+  .dark .bg-frost-ambient {
+    background:
+      radial-gradient(circle at 20% 10%, color-mix(in oklch, var(--primary) 10%, transparent), transparent 30%),
+      radial-gradient(circle at 80% 0%, oklch(0.45 0.08 275 / 0.08), transparent 25%), var(--background);
+    background-size:
+      140% 140%,
+      100% 100%,
+      auto;
   }
 
-  .bg-gradient-aurora {
-    background: linear-gradient(
-      135deg,
-      oklch(0.65 0.25 300) 0%,
-      oklch(0.6 0.22 260) 25%,
-      oklch(0.7 0.2 200) 50%,
-      oklch(0.65 0.18 180) 75%,
-      oklch(0.7 0.22 220) 100%
-    );
-  }
-
-  /* Animated gradient backgrounds */
-  @keyframes gradient-shift {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  .bg-gradient-animated {
-    background: linear-gradient(
-      270deg,
-      oklch(0.65 0.22 280),
-      oklch(0.6 0.25 250),
-      oklch(0.7 0.2 200),
-      oklch(0.65 0.18 280)
-    );
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+  .bg-frost-ambient-motion {
+    animation: frost-ambient-drift 28s ease-in-out infinite;
   }
 
   /* Glass shapes with colorful borders - like the CodePen */
@@ -445,5 +426,39 @@
   .dark .glass-vibrant {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
     border: 2px solid rgba(255, 255, 255, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-frost-ambient-motion {
+      animation: none;
+    }
+  }
+
+  /* Animated gradient backgrounds */
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes frost-ambient-drift {
+    0%,
+    100% {
+      background-position:
+        0% 0%,
+        50% 0%,
+        0% 0%;
+    }
+
+    50% {
+      background-position:
+        8% 4%,
+        48% 6%,
+        0% 0%;
+    }
   }
 }
