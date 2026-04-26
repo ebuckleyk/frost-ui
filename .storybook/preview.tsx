@@ -38,6 +38,10 @@ const preview: Preview = {
           name: 'dark',
           value: '#333333',
         },
+        'cool-slate': {
+          name: 'cool-slate',
+          value: 'oklch(0.12 0.015 250)',
+        },
 
         'gradient-frost': {
           name: 'gradient-frost',
@@ -86,10 +90,8 @@ const preview: Preview = {
       return (
         <React.Fragment>
           <ThemeProvider theme={theme}>
-            {/* <div style={{ margin: 'auto', width: '50%', padding: 10 }}> */}
             <Story />
             <SonnerToaster />
-            {/* </div> */}
           </ThemeProvider>
         </React.Fragment>
       );
