@@ -46,8 +46,8 @@ function DrawerContent({ className, children, ...props }: React.ComponentProps<t
         data-slot="drawer-content"
         className={cn(
           `
-            group/drawer-content glass-dialog fixed z-50 flex h-auto flex-col
-            shadow-2xl
+            group/drawer-content glass-dialog shadow-frost-lg fixed z-50 flex h-auto
+            flex-col
           `,
           `
             data-[vaul-drawer-direction=top]:inset-x-0

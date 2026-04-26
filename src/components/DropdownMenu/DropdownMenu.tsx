@@ -30,11 +30,10 @@ function DropdownMenuContent({
         sideOffset={sideOffset}
         className={cn(
           `
-            z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-32
-            origin-(--radix-dropdown-menu-content-transform-origin)
-            overflow-x-hidden overflow-y-auto rounded-md border bg-popover/85
-            p-1 text-popover-foreground shadow-md backdrop-blur-md
-            backdrop-saturate-200
+            glass-popover shadow-frost-md z-50 max-h-(--radix-dropdown-menu-content-available-height)
+            min-w-32
+            origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md p-1
+            text-popover-foreground
             data-[side=bottom]:slide-in-from-top-2
             data-[side=left]:slide-in-from-right-2
             data-[side=right]:slide-in-from-left-2
@@ -257,9 +256,8 @@ function DropdownMenuSubContent({
       data-slot="dropdown-menu-sub-content"
       className={cn(
         `
-          z-50 min-w-32 origin-(--radix-dropdown-menu-content-transform-origin)
-          overflow-hidden rounded-md border bg-popover p-1
-          text-popover-foreground shadow-lg
+          glass-popover shadow-frost-md z-50 min-w-32
+          origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-md p-1 text-popover-foreground
           data-[side=bottom]:slide-in-from-top-2
           data-[side=left]:slide-in-from-right-2
           data-[side=right]:slide-in-from-left-2

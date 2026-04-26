@@ -158,9 +158,10 @@ function RichTextArea({ ...props }: ScopedProps<RichTextAreaProps>) {
       role="textbox"
       className={cn(
         `
-          richtext-editor rounded-sm border border-primary/20 bg-secondary/40
-          p-4 backdrop-blur-md backdrop-saturate-200
-          focus:border-secondary-foreground
+          richtext-editor glass-card shadow-frost-sm min-h-32 rounded-md p-4
+          text-foreground transition-[border-color,box-shadow]
+          focus-within:border-ring focus-within:ring-[3px]
+          focus-within:ring-ring/50
         `,
         className,
       )}
@@ -210,7 +211,13 @@ const BlockButton = ({ format, Icon }: ToolbarOptionProps) => {
     richTextUtils.toggleBlock(editor, format);
   }, [editor, format]);
   return (
-    <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleBlock} variant={'outline'}>
+    <Toggle
+      aria-label={format}
+      pressed={isActive}
+      onPressedChange={toggleBlock}
+      variant="outline"
+      className="data-[state=on]:shadow-frost-sm shadow-none"
+    >
       <Icon className="size-3" />
     </Toggle>
   );
@@ -223,7 +230,13 @@ const MarkButton = ({ format, Icon }: ToolbarOptionProps) => {
     richTextUtils.toggleMark(editor, format);
   }, [editor, format]);
   return (
-    <Toggle aria-label={format} pressed={isActive} onPressedChange={toggleMark} variant={'outline'}>
+    <Toggle
+      aria-label={format}
+      pressed={isActive}
+      onPressedChange={toggleMark}
+      variant="outline"
+      className="data-[state=on]:shadow-frost-sm shadow-none"
+    >
       <Icon className="size-3" />
     </Toggle>
   );
@@ -252,7 +265,14 @@ const DEFAULT_TOOLBAR_CONFIG: ToolbarOptions = {
 function RichTextToolbar({ ...props }: ScopedProps<RichTextToolbarProps>) {
   const { className, toolbar = DEFAULT_TOOLBAR_CONFIG } = props;
   return (
-    <div className={cn('gap-1 rounded-sm', className)}>
+    <div
+      className={cn(
+        `
+          glass-card shadow-frost-sm flex flex-wrap gap-1 rounded-md p-1
+        `,
+        className,
+      )}
+    >
       {[FORMAT_GROUP, HEADINGS_GROUP, ALIGNMENT_GROUP].map((group) => {
         return group.map((g, k) => {
           const enabled = toolbar[g.option];
