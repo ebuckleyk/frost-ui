@@ -7,36 +7,35 @@ https://ebuckleyk.github.io/frost-ui/
 ### Installation (Vite + Tailwind v4)
 
 1. Install package and core peer deps:
-   - `npm i @ebuckleyk/frost-ui react react-dom`
-   - `npm i -D tailwindcss @tailwindcss/vite tw-animate-css`
+    - `npm i @ebuckleyk/frost-ui react react-dom`
+    - `npm i -D tailwindcss @tailwindcss/vite`
 2. Add Tailwind to Vite:
-   - `vite.config.ts`:
-     ```ts
+    - `vite.config.ts`:
+      ```ts
      import { defineConfig } from 'vite';
      import react from '@vitejs/plugin-react';
      import tailwindcss from '@tailwindcss/vite';
 
      export default defineConfig({
-       plugins: [react(), tailwindcss()],
-     });
-     ```
-3. Use the Frost UI preset and scan package files:
-    - `tailwind.config.js`:
-      ```js
-      module.exports = {
-        presets: [require('@ebuckleyk/frost-ui/presets/theme')],
-        content: [
-          './index.html',
-          './src/**/*.{js,ts,jsx,tsx}',
-          './node_modules/@ebuckleyk/frost-ui/dist/**/*.{js,ts,jsx,tsx}',
-        ],
-      };
+        plugins: [react(), tailwindcss()],
+      });
       ```
-4. Import the library CSS once:
-    - `src/main.tsx`:
-      ```ts
-      import '@ebuckleyk/frost-ui/styles.css';
-      ```
+3. Import the raw Tailwind CSS entry from your app stylesheet and add only your app-local sources:
+   ```css
+   @import '@ebuckleyk/frost-ui/tailwind.css';
+
+   @source './app';
+   @source './features';
+   @source './shared';
+   @source './main.tsx';
+   ```
+
+The raw `@ebuckleyk/frost-ui/tailwind.css` entry imports Tailwind, Frost UI design tokens, base styles, utilities, animations, and Frost UI's own package sources. Do not also import `@ebuckleyk/frost-ui/styles.css` in Tailwind v4 apps.
+
+### CSS entrypoints
+
+- **Tailwind v4 apps:** import `@ebuckleyk/frost-ui/tailwind.css` from your app CSS. This keeps Frost UI theme/base/utility CSS raw so your app's Tailwind build can generate both Frost UI component utilities and your app-local utilities from your own `@source` directives.
+- **Compiled CSS compatibility:** existing consumers can continue importing `@ebuckleyk/frost-ui/styles.css` from JavaScript/TypeScript. This is precompiled CSS and is kept for backward compatibility, but it cannot scan/generate utilities that only exist in a consuming app.
 
 ### Peer dependencies
 
@@ -55,10 +54,7 @@ https://ebuckleyk.github.io/frost-ui/
   ```ts
   import { Button } from '@ebuckleyk/frost-ui';
   ```
-- CSS is opt-in:
-  ```ts
-  import '@ebuckleyk/frost-ui/styles.css';
-  ```
+- CSS is opt-in. Tailwind v4 apps should prefer `@ebuckleyk/frost-ui/tailwind.css`; existing compiled-CSS consumers can keep `@ebuckleyk/frost-ui/styles.css`.
 
 ### EventCalendar Slots
 
