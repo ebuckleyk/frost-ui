@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.14.0
+
+### Minor Changes
+
+- 5d5c16b: Add a raw Tailwind v4 CSS export at `@ebuckleyk/frost-ui/tailwind.css` so consuming apps can import Frost UI theme/base/utility CSS without copying package styles locally.
+
 ## 1.13.0
 
 ### Minor Changes
