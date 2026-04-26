@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.14.1
+
+### Patch Changes
+
+- e84e84c: Added some default backgrounds
+
 ## 1.14.0
 
 ### Minor Changes
