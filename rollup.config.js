@@ -4,6 +4,7 @@ import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import { dts } from 'rollup-plugin-dts';
+import copy from 'rollup-plugin-copy';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import sizes from 'rollup-plugin-sizes';
@@ -50,6 +51,16 @@ const config = {
           config: './tailwind.config.js',
         }),
       ],
+    }),
+    copy({
+      targets: [
+        {
+          src: 'src/styles/frostui.css',
+          dest: 'dist/styles',
+          rename: 'tailwind.css',
+        },
+      ],
+      hook: 'writeBundle',
     }),
     terser(),
     sizes(),
