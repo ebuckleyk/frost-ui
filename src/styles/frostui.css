@@ -67,34 +67,34 @@
 }
 
 .dark {
-  /* Dark Mode - Blue Theme with High Contrast */
-  --background: oklch(0.15 0.02 250); /* Deep blue-black background */
-  --foreground: oklch(0.95 0.01 250); /* Bright blue-white text (WCAG AAA) */
+  /* Dark Mode - Neutral Navy with Accent Blue */
+  --background: oklch(0.105 0.018 255);
+  --foreground: oklch(0.94 0.01 250);
 
-  --card: oklch(0.18 0.025 248); /* Slightly lighter card background */
-  --card-foreground: oklch(0.95 0.01 250); /* Bright text */
+  --card: oklch(0.155 0.022 255);
+  --card-foreground: oklch(0.94 0.01 250);
 
-  --popover: oklch(0.17 0.022 245); /* Dark popover with blue tint */
-  --popover-foreground: oklch(0.96 0.008 250); /* Very bright text */
+  --popover: oklch(0.145 0.02 255);
+  --popover-foreground: oklch(0.96 0.008 250);
 
-  --primary: oklch(0.65 0.2 250); /* Bright blue primary (more vibrant in dark) */
-  --primary-foreground: oklch(0.12 0.02 250); /* Very dark blue text (WCAG AAA: 12.1:1) */
+  --primary: oklch(0.72 0.16 230);
+  --primary-foreground: oklch(0.11 0.018 255);
 
-  --secondary: oklch(0.3 0.04 245); /* Muted blue-gray secondary */
-  --secondary-foreground: oklch(0.95 0.01 250); /* Bright text (WCAG AAA: 13.2:1) */
+  --secondary: oklch(0.205 0.025 255);
+  --secondary-foreground: oklch(0.9 0.01 250);
 
-  --muted: oklch(0.25 0.03 245); /* Muted dark blue */
-  --muted-foreground: oklch(0.65 0.02 250); /* Medium-bright blue-gray text (WCAG AA) */
+  --muted: oklch(0.19 0.022 255);
+  --muted-foreground: oklch(0.68 0.025 250);
 
-  --accent: oklch(0.35 0.05 240); /* Accent blue-purple */
-  --accent-foreground: oklch(0.96 0.01 245); /* Bright text */
+  --accent: oklch(0.24 0.04 245);
+  --accent-foreground: oklch(0.94 0.01 250);
 
   --destructive: oklch(0.55 0.24 25); /* Bright red for errors (more vibrant) */
   --destructive-foreground: oklch(0.98 0 0); /* White text (WCAG AAA: 8.9:1) */
 
-  --border: oklch(0.3 0.03 245); /* Visible borders in dark mode */
-  --input: oklch(0.22 0.025 245); /* Input field background */
-  --ring: oklch(0.65 0.2 250); /* Bright focus ring */
+  --border: oklch(0.255 0.024 255);
+  --input: oklch(0.18 0.022 255);
+  --ring: oklch(0.72 0.16 230);
 
   --radius: 0.5rem;
 
@@ -102,12 +102,12 @@
   --glass-blur: 18px;
   --glass-saturation: 180%;
   --glass-opacity: 0.78;
-  --glass-border-opacity: 0.35;
+  --glass-border-opacity: 0.18;
 
   /* Component-specific glass opacities - Dark Mode with better contrast */
-  --glass-card: 0.75;
-  --glass-popover: 0.92;
-  --glass-dialog: 0.88;
+  --glass-card: 0.68;
+  --glass-popover: 0.9;
+  --glass-dialog: 0.86;
   --glass-button: 0.78;
   --glass-overlay: 0.55;
 
@@ -119,14 +119,14 @@
   --chart-5: oklch(0.645 0.246 16.439);
 
   /* Sidebar - Dark Mode */
-  --sidebar-background: oklch(0.18 0.025 248);
-  --sidebar-foreground: oklch(0.95 0.01 250);
-  --sidebar-primary: oklch(0.65 0.2 250);
-  --sidebar-primary-foreground: oklch(0.12 0.02 250);
-  --sidebar-accent: oklch(0.35 0.05 240);
-  --sidebar-accent-foreground: oklch(0.96 0.01 245);
-  --sidebar-border: oklch(0.3 0.03 245);
-  --sidebar-ring: oklch(0.65 0.2 250);
+  --sidebar-background: oklch(0.13 0.018 255);
+  --sidebar-foreground: oklch(0.94 0.01 250);
+  --sidebar-primary: oklch(0.72 0.16 230);
+  --sidebar-primary-foreground: oklch(0.11 0.018 255);
+  --sidebar-accent: oklch(0.19 0.026 255);
+  --sidebar-accent-foreground: oklch(0.94 0.01 250);
+  --sidebar-border: oklch(0.235 0.022 255);
+  --sidebar-ring: oklch(0.72 0.16 230);
 }
 
 @theme inline {
@@ -169,7 +169,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --color-sidebar: var(--sidebar);
+  --color-sidebar: var(--sidebar-background);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
@@ -228,15 +228,34 @@
   }
 
   .richtext-editor pre {
-    padding: 10px;
-    background-color: #eee;
+    margin: 0.75rem 0;
+    border-radius: var(--radius-md);
+    border: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
+    background: color-mix(in oklch, var(--muted) 80%, transparent);
+    padding: 0.75rem 1rem;
+    overflow-x: auto;
     white-space: pre-wrap;
   }
 
+  .dark .richtext-editor pre {
+    border-color: color-mix(in oklch, var(--primary) 22%, var(--border));
+    background: color-mix(in oklch, var(--primary) 9%, var(--muted));
+  }
+
+  .richtext-editor pre code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875em;
+    color: var(--foreground);
+    background: transparent;
+    padding: 0;
+  }
+
+  .dark .richtext-editor pre code {
+    color: var(--primary);
+  }
+
   .richtext-editor :not(pre) > code {
-    font-family: monospace;
-    background-color: var(--secondary-foreground);
-    padding: 3px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
   .richtext-editor img {
@@ -339,6 +358,30 @@
   .glass-overlay {
     backdrop-filter: blur(calc(var(--glass-blur) * 0.5));
     background-color: color-mix(in oklch, #000 calc(var(--glass-overlay) * 100%), transparent);
+  }
+
+  .shadow-frost-sm {
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.35),
+      0 0 0 1px color-mix(in oklch, var(--border) 45%, transparent);
+  }
+
+  .shadow-frost-md {
+    box-shadow:
+      0 10px 30px rgb(0 0 0 / 0.42),
+      0 0 0 1px color-mix(in oklch, var(--border) 50%, transparent);
+  }
+
+  .shadow-frost-lg {
+    box-shadow:
+      0 24px 70px rgb(0 0 0 / 0.58),
+      0 0 0 1px color-mix(in oklch, var(--border) 60%, transparent);
+  }
+
+  .shadow-frost-glow {
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--primary) 20%, transparent),
+      0 20px 80px color-mix(in oklch, var(--primary) 14%, transparent);
   }
 
   /* Vibrant Gradient Backgrounds - Inspired by modern glassmorphism designs */

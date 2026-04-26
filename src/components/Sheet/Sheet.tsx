@@ -54,7 +54,7 @@ function SheetContent({
         data-slot="sheet-content"
         className={cn(
           `
-            glass-dialog fixed z-50 flex flex-col gap-4 shadow-2xl transition
+            glass-dialog shadow-frost-lg fixed z-50 flex flex-col gap-4 transition
             ease-in-out
             data-[state=closed]:animate-out data-[state=closed]:duration-300
             data-[state=open]:animate-in data-[state=open]:duration-500

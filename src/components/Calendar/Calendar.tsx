@@ -28,8 +28,8 @@ function Calendar({
       showOutsideDays={showOutsideDays}
       className={cn(
         `
-          glass-card group/calendar rounded-xl p-2 text-card-foreground
-          shadow-lg [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)]
+          glass-card group/calendar shadow-frost-sm rounded-xl p-2
+          text-card-foreground [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)]
         `,
         `
           in-data-[slot=card-content]:rounded-none

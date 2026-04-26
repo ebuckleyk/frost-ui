@@ -219,7 +219,19 @@ export const renderElement = (props: RenderElementProps): React.ReactElement => 
 export const renderLeaf = (props: RenderLeafProps): React.ReactElement => {
   if (props.leaf.bold) props.children = <strong>{props.children}</strong>;
   if (props.leaf.italic) props.children = <em>{props.children}</em>;
-  if (props.leaf.code) props.children = <code>{props.children}</code>;
+  if (props.leaf.code) {
+    props.children = (
+      <code
+        className="
+          shadow-frost-sm rounded-md border border-border/80 bg-muted px-1.5 py-0.5
+          font-mono text-[0.875em] font-medium text-foreground
+          dark:border-primary/25 dark:bg-primary/10 dark:text-primary
+        "
+      >
+        {props.children}
+      </code>
+    );
+  }
   if (props.leaf.underline) props.children = <u>{props.children}</u>;
   return <span {...props.attributes}>{props.children}</span>;
 };

@@ -116,14 +116,13 @@ function NavigationMenuContent({ className, ...props }: React.ComponentProps<typ
           md:absolute md:w-auto
         `,
         `
+          group-data-[viewport=false]/navigation-menu:glass-popover
+          group-data-[viewport=false]/navigation-menu:shadow-frost-md
           group-data-[viewport=false]/navigation-menu:top-full
           group-data-[viewport=false]/navigation-menu:mt-1.5
           group-data-[viewport=false]/navigation-menu:overflow-hidden
           group-data-[viewport=false]/navigation-menu:rounded-md
-          group-data-[viewport=false]/navigation-menu:border
-          group-data-[viewport=false]/navigation-menu:bg-popover
           group-data-[viewport=false]/navigation-menu:text-popover-foreground
-          group-data-[viewport=false]/navigation-menu:shadow-sm
           group-data-[viewport=false]/navigation-menu:duration-200
           **:data-[slot=navigation-menu-link]:focus:ring-0
           **:data-[slot=navigation-menu-link]:focus:outline-none
@@ -155,9 +154,9 @@ function NavigationMenuViewport({
         data-slot="navigation-menu-viewport"
         className={cn(
           `
-            origin-top-center glass-popover relative mt-1.5
-            h-(--radix-navigation-menu-viewport-height) w-full overflow-hidden
-            rounded-md border text-popover-foreground shadow-sm
+            origin-top-center glass-popover shadow-frost-md relative
+            mt-1.5 h-(--radix-navigation-menu-viewport-height) w-full
+            overflow-hidden rounded-md border text-popover-foreground
             data-[state=closed]:animate-out data-[state=closed]:zoom-out-95
             data-[state=open]:animate-in data-[state=open]:zoom-in-90
             md:w-(--radix-navigation-menu-viewport-width)
@@ -214,7 +213,7 @@ function NavigationMenuIndicator({
     >
       <div
         className="
-          relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-border shadow-md
+          shadow-frost-sm relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-border
         "
       />
     </NavigationMenuPrimitive.Indicator>

@@ -68,9 +68,8 @@ function ContextMenuSubContent({ className, ...props }: React.ComponentProps<typ
       data-slot="context-menu-sub-content"
       className={cn(
         `
-          z-50 min-w-32 origin-(--radix-context-menu-content-transform-origin)
-          overflow-hidden rounded-md border bg-popover p-1
-          text-popover-foreground shadow-lg
+          glass-popover shadow-frost-md z-50 min-w-32
+          origin-(--radix-context-menu-content-transform-origin) overflow-hidden rounded-md p-1 text-popover-foreground
           data-[side=bottom]:slide-in-from-top-2
           data-[side=left]:slide-in-from-right-2
           data-[side=right]:slide-in-from-left-2
@@ -94,10 +93,10 @@ function ContextMenuContent({ className, ...props }: React.ComponentProps<typeof
         data-slot="context-menu-content"
         className={cn(
           `
-            z-50 max-h-(--radix-context-menu-content-available-height) min-w-32
-            origin-(--radix-context-menu-content-transform-origin)
-            overflow-x-hidden overflow-y-auto rounded-md border bg-popover p-1
-            text-popover-foreground shadow-md
+            glass-popover shadow-frost-md z-50 max-h-(--radix-context-menu-content-available-height)
+            min-w-32
+            origin-(--radix-context-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md p-1
+            text-popover-foreground
             data-[side=bottom]:slide-in-from-top-2
             data-[side=left]:slide-in-from-right-2
             data-[side=right]:slide-in-from-left-2

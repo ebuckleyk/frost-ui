@@ -439,7 +439,7 @@ const EventCalendarCalendar = React.forwardRef<InstanceType<typeof FullCalendar>
             config.calendarProps?.slotLaneClassNames as FullCalendarClassNameInput<unknown>,
           )}
           viewClassNames={joinClassNames(
-            'frostui-view glass-card shadow-lg',
+            'frostui-view glass-card shadow-frost-sm',
             config.calendarProps?.viewClassNames as FullCalendarClassNameInput<unknown>,
           )}
           allDayClassNames={joinClassNames(

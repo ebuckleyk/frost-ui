@@ -215,7 +215,7 @@ function FileDropFileItem({ ...props }: ScopedProps<FileDropFileItemProps>) {
         size="sm"
         className={cn(
           `
-            w-full flex-nowrap items-center border-primary/30 bg-card/95 shadow-sm
+            shadow-frost-sm w-full flex-nowrap items-center border-primary/30 bg-card/95
           `,
           className,
         )}
