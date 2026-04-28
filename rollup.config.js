@@ -22,7 +22,7 @@ const config = {
     {
       dir: 'dist',
       format: 'esm',
-      sourcemap: true,
+      sourcemap: false,
       preserveModules: true,
       preserveModulesRoot: 'src',
       entryFileNames: (chunkInfo) => {
