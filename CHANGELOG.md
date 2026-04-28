@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.14.2
+
+### Patch Changes
+
+- 589b18c: Remove sourcemaps from dist
+
 ## 1.14.1
 
 ### Patch Changes
