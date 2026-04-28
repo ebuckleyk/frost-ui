@@ -11,7 +11,7 @@
     /* Emit */
     "declaration": true, // output .d.ts file for library types
     "emitDeclarationOnly": true, // don't generate JS and only export type declarations
-    "sourceMap": true, // mapping JS code back to it's TS file origins for debugging
+    "sourceMap": false, // disable published sourcemaps for package consumers
     "outDir": "dist", // directory where the project will be generated
     // "declarationDir": "types", // location of the .d.ts files
     "declarationDir": "dist/types", // location of the .d.ts files
