@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.15.0
+
+### Minor Changes
+
+- 1fd9ef6: Glassmorphism theme improvements
+
 ## 1.14.2
 
 ### Patch Changes
