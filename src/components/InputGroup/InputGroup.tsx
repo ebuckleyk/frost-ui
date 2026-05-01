@@ -16,6 +16,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
       role="group"
       className={cn(
         `
+        input-glass
           group/input-group relative flex h-8 w-full min-w-0 items-center
           rounded-lg border border-input transition-colors outline-none
           in-data-[slot=combobox-content]:focus-within:border-inherit
@@ -174,6 +175,7 @@ function InputGroupInput({ className, ...props }: React.ComponentProps<'input'>)
   return (
     <Input
       data-slot="input-group-control"
+      glass={false}
       className={cn(
         `
           flex-1 rounded-none border-0 bg-transparent shadow-none ring-0
@@ -194,6 +196,7 @@ function InputGroupTextarea({ className, ...props }: React.ComponentProps<'texta
   return (
     <Textarea
       data-slot="input-group-control"
+      glass={false}
       className={cn(
         `
           flex-1 resize-none rounded-none border-0 bg-transparent py-2

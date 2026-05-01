@@ -2,9 +2,11 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  glass?: boolean;
+};
 
-function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
+function Textarea({ className, glass = true, ...props }: TextareaProps) {
   return (
     <textarea
       data-slot="textarea"
@@ -22,6 +24,7 @@ function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
           dark:bg-input/30
           dark:aria-invalid:ring-destructive/40
         `,
+        glass && 'input-glass',
         className,
       )}
       {...props}

@@ -46,9 +46,19 @@
   /* Component-specific glass opacities - Optimized for high contrast */
   --glass-card: 0.7;
   --glass-popover: 0.88;
-  --glass-dialog: 0.85;
+  --glass-dialog: 0.6;
   --glass-button: 0.72;
   --glass-overlay: 0.45;
+  --glass-edge: oklch(0.2 0 0 / 0.12);
+  --glass-edge-soft: oklch(0.2 0 0 / 0.04);
+  --glass-highlight: oklch(1 0 0 / 0.35);
+  --glass-highlight-soft: oklch(1 0 0 / 0.12);
+  --glass-shadow: 0 18px 50px rgb(15 23 42 / 0.12);
+  --glass-ambient-sm: oklch(1 0 0 / 0.01);
+  --glass-ambient: oklch(1 0 0 / 0.02);
+  --glass-ambient-lg: oklch(1 0 0 / 0.035);
+  --glass-overlay-center: oklch(0 0 0 / 0.18);
+  --glass-overlay-edge: oklch(0 0 0 / 0.38);
 
   /* Things to update later */
   --chart-1: oklch(0.646 0.222 41.116);
@@ -101,17 +111,27 @@
   --radius: 0.5rem;
 
   /* Glassmorphism Design Tokens - Dark Mode */
-  --glass-blur: 18px;
+  --glass-blur: 24px;
   --glass-saturation: 180%;
   --glass-opacity: 0.78;
-  --glass-border-opacity: 0.18;
+  --glass-border-opacity: 0.28;
 
   /* Component-specific glass opacities - Dark Mode with better contrast */
-  --glass-card: 0.68;
-  --glass-popover: 0.9;
-  --glass-dialog: 0.86;
-  --glass-button: 0.78;
+  --glass-card: 0.38;
+  --glass-popover: 0.76;
+  --glass-dialog: 0.72;
+  --glass-button: 0.58;
   --glass-overlay: 0.55;
+  --glass-edge: color-mix(in oklch, var(--color-foreground) 12%, transparent);
+  --glass-edge-soft: oklch(1 0 0 / 0.03);
+  --glass-highlight: oklch(1 0 0 / 0.16);
+  --glass-highlight-soft: oklch(1 0 0 / 0.02);
+  --glass-shadow: 0 24px 80px rgb(0 0 0 / 0.45);
+  --glass-ambient-sm: oklch(1 0 0 / 0.008);
+  --glass-ambient: oklch(1 0 0 / 0.015);
+  --glass-ambient-lg: oklch(1 0 0 / 0.025);
+  --glass-overlay-center: oklch(0 0 0 / 0.25);
+  --glass-overlay-edge: oklch(0 0 0 / 0.6);
 
   /* Things to update later */
   --chart-1: oklch(0.488 0.243 264.376);
@@ -335,31 +355,133 @@
 @layer utilities {
   .glass {
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    background-color: color-mix(in oklch, var(--color-background) calc(var(--glass-opacity) * 100%), transparent);
-    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight-soft),
+      var(--glass-ambient-sm),
+      color-mix(in oklch, var(--color-background) calc(var(--glass-opacity) * 100%), transparent)
+    );
+
+    border: 1px solid var(--glass-edge);
   }
 
   .glass-card {
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    background-color: color-mix(in oklch, var(--color-card) calc(var(--glass-card) * 100%), transparent);
-    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight),
+      var(--glass-highlight-soft),
+      color-mix(in oklch, var(--color-card) calc(var(--glass-card) * 100%), var(--glass-ambient))
+    );
+    border: 1px solid var(--glass-edge);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      inset 0 -1px 0 var(--glass-edge-soft),
+      var(--glass-shadow),
+      0 0 0 1px var(--glass-edge-soft);
   }
 
   .glass-popover {
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    background-color: color-mix(in oklch, var(--color-popover) calc(var(--glass-popover) * 100%), transparent);
-    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight-soft),
+      var(--glass-ambient-sm),
+      color-mix(in oklch, var(--color-popover) calc(var(--glass-popover) * 100%), transparent)
+    );
+
+    border: 1px solid var(--glass-edge);
+
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight-soft),
+      var(--glass-shadow);
   }
 
   .glass-dialog {
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    background-color: color-mix(in oklch, var(--color-background) calc(var(--glass-dialog) * 100%), transparent);
-    border: 1px solid color-mix(in oklch, var(--color-border) calc(var(--glass-border-opacity) * 100%), transparent);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+
+    background:
+      linear-gradient(to bottom, var(--glass-highlight-soft), transparent 30%),
+      color-mix(in oklch, var(--color-background) calc(var(--glass-dialog) * 100%), var(--glass-ambient-lg));
+
+    border: 1px solid var(--glass-edge);
+
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight-soft),
+      var(--glass-shadow);
   }
 
   .glass-overlay {
-    backdrop-filter: blur(calc(var(--glass-blur) * 0.5));
-    background-color: color-mix(in oklch, #000 calc(var(--glass-overlay) * 100%), transparent);
+    backdrop-filter: blur(calc(var(--glass-blur) * 0.6));
+    -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.6));
+
+    background: radial-gradient(circle at center, var(--glass-overlay-center), var(--glass-overlay-edge));
+  }
+
+  .input-glass {
+    background: color-mix(in oklch, var(--color-input) 60%, transparent);
+
+    border: 1px solid var(--glass-edge);
+
+    box-shadow: inset 0 1px 0 var(--glass-highlight-soft);
+  }
+
+  .input-glass:focus {
+    border-color: var(--color-ring);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight-soft),
+      0 0 0 2px color-mix(in oklch, var(--color-ring) 40%, transparent);
+  }
+
+  .glass-control {
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight-soft),
+      var(--glass-ambient-sm),
+      color-mix(in oklch, var(--color-background) calc(var(--glass-button) * 100%), transparent)
+    );
+
+    border: 1px solid var(--glass-edge);
+
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight-soft),
+      0 0 0 1px var(--glass-edge-soft);
+  }
+
+  .glass-control:hover {
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight-soft),
+      var(--glass-ambient),
+      color-mix(in oklch, var(--color-background) calc(var(--glass-button) * 100%), transparent)
+    );
+  }
+
+  .glass-control-muted {
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight-soft),
+      var(--glass-ambient-sm),
+      color-mix(in oklch, var(--color-muted) 70%, transparent)
+    );
+
+    border: 1px solid var(--glass-edge);
+
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight-soft),
+      0 0 0 1px var(--glass-edge-soft);
   }
 
   .shadow-frost-sm {
@@ -418,14 +540,19 @@
   /* Glass shapes with colorful borders - like the CodePen */
   .glass-vibrant {
     backdrop-filter: blur(calc(var(--glass-blur) * 1.5)) saturate(200%);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    border: 2px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 1.5)) saturate(200%);
+
+    background: linear-gradient(135deg, oklch(1 0 0 / 0.12), oklch(1 0 0 / 0.04));
+
+    border: 2px solid oklch(1 0 0 / 0.18);
+
+    box-shadow: 0 8px 32px oklch(0.3 0.05 250 / 0.35);
   }
 
   .dark .glass-vibrant {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    border: 2px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(135deg, oklch(1 0 0 / 0.08), oklch(1 0 0 / 0.02));
+
+    border-color: oklch(1 0 0 / 0.12);
   }
 
   @media (prefers-reduced-motion: reduce) {

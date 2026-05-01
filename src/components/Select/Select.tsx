@@ -32,7 +32,7 @@ function SelectTrigger({
       data-size={size}
       className={cn(
         `
-          flex w-fit items-center justify-between gap-2 rounded-md border
+          input-glass flex w-fit items-center justify-between gap-2 rounded-md border
           border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap
           shadow-xs transition-[color,box-shadow] outline-none
           focus-visible:border-ring focus-visible:ring-[3px]

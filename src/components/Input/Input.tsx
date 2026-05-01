@@ -2,9 +2,11 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  glass?: boolean;
+};
 
-function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
+function Input({ className, type, glass = true, ...props }: InputProps) {
   return (
     <input
       type={type}
@@ -23,6 +25,7 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
           md:text-sm
           dark:bg-input/30
         `,
+        glass && 'input-glass',
         `
           focus-visible:border-ring focus-visible:ring-[3px]
           focus-visible:ring-ring/50

@@ -132,14 +132,13 @@ function FileDropArea({ ...props }: ScopedProps<FileDropAreaProps>) {
 
   const rootClassName = cn(
     `
-      flex w-full flex-col items-center rounded-sm border-2 border-dashed p-5
-      transition duration-200 ease-in-out
+      glass-card flex w-full flex-col items-center rounded-2xl border p-6
+      transition-[background-color,border-color,box-shadow,opacity] duration-200 ease-in-out
     `,
-    isDragAccept && 'border-primary/40 bg-primary/30',
-    isFocused && 'border-input',
-    isDragReject && 'border-destructive/40 bg-destructive/30',
-    !isDragActive && 'border-primary-foreground/30 bg-primary-foreground/30',
-    isDragActive && 'border-primary-foreground bg-primary-foreground',
+    isDragAccept && 'shadow-frost-glow border-primary/40 bg-primary/10',
+    isFocused && 'ring-[3px] ring-ring/50',
+    isDragReject && 'border-destructive/40 bg-destructive/10',
+    isDragActive && !isDragAccept && !isDragReject && 'bg-accent/10',
     disabled && 'cursor-not-allowed opacity-50',
     className,
   );
@@ -215,7 +214,7 @@ function FileDropFileItem({ ...props }: ScopedProps<FileDropFileItemProps>) {
         size="sm"
         className={cn(
           `
-            shadow-frost-sm w-full flex-nowrap items-center border-primary/30 bg-card/95
+            glass-control-muted w-full flex-nowrap items-center
           `,
           className,
         )}
