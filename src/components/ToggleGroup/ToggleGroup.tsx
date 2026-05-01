@@ -28,7 +28,9 @@ function ToggleGroup({
       className={cn(
         `
           group/toggle-group flex w-fit items-center rounded-md
-          data-[variant=outline]:shadow-xs
+          data-[variant=outline]:border-(--glass-edge)
+          data-[variant=outline]:bg-transparent
+          data-[variant=outline]:shadow-none
         `,
         className,
       )}

@@ -59,7 +59,7 @@ function ComboboxInput({
   showClear?: boolean;
 }) {
   return (
-    <InputGroup className={cn('w-auto', className)}>
+    <InputGroup className={cn('input-glass w-auto', className)}>
       <ComboboxPrimitive.Input render={<InputGroupInput disabled={disabled} />} {...props} />
       <InputGroupAddon align="inline-end">
         {showTrigger && (
@@ -247,7 +247,7 @@ function ComboboxChips({
       data-slot="combobox-chips"
       className={cn(
         `
-          flex min-h-8 flex-wrap items-center gap-1 rounded-lg border
+          input-glass flex min-h-8 flex-wrap items-center gap-1 rounded-lg border
           border-input bg-transparent bg-clip-padding px-2.5 py-1 text-sm
           transition-colors
           focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50

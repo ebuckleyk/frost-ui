@@ -29,15 +29,17 @@ const buttonVariants = cva(
           hover:bg-destructive/75
         `,
         outline: `
-          border-2 border-input bg-background/20 text-foreground
-          hover:bg-accent/80 hover:text-accent-foreground
+          border border-(--glass-edge) bg-transparent text-foreground
+          shadow-none
+          hover:bg-accent/20 hover:text-accent-foreground
         `,
         secondary: `
-          border border-secondary/30 bg-secondary/90 text-secondary-foreground
-          hover:bg-secondary/75
+          glass-control-muted text-secondary-foreground
+          hover:bg-secondary/40
         `,
         ghost: `
           text-foreground
+          saturate-100 backdrop-blur-none
           hover:bg-accent/60 hover:text-accent-foreground
         `,
         link: `

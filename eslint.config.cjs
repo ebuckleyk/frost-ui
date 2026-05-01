@@ -52,7 +52,8 @@ module.exports = [
         'error',
         {
           ignore: [
-            '^(.+:)?glass-(card|dialog|overlay|popover)$',
+            '^(.+:)?glass-(card|control|control-muted|dialog|overlay|popover)$',
+            '^(.+:)?input-glass$',
             '^(.+:)?shadow-frost-(sm|md|lg|glow)$',
             '^cn-.*$',
             '^frostui-.*$',
