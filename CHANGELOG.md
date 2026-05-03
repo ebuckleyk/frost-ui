@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.15.1
+
+### Patch Changes
+
+- 511192e: Update supported lucide-react and Slate peer dependency ranges.
+
 ## 1.15.0
 
 ### Minor Changes
