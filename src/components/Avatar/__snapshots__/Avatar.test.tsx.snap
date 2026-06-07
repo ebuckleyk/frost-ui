@@ -10,7 +10,7 @@ exports[`Avatar > should render Avatar component to match snapshot 1`] = `
         data-slot="avatar"
       >
         <span
-          class="bg-muted flex size-full items-center justify-center rounded-full"
+          class="flex size-full items-center justify-center rounded-full bg-muted"
           data-slot="avatar-fallback"
         >
           CN
@@ -24,7 +24,7 @@ exports[`Avatar > should render Avatar component to match snapshot 1`] = `
       data-slot="avatar"
     >
       <span
-        class="bg-muted flex size-full items-center justify-center rounded-full"
+        class="flex size-full items-center justify-center rounded-full bg-muted"
         data-slot="avatar-fallback"
       >
         CN

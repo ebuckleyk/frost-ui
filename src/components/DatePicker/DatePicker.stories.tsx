@@ -1,41 +1,15 @@
 import * as React from 'react';
-import { CalendarIcon } from '@radix-ui/react-icons';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { format } from 'date-fns';
 
-import { cn } from '../../lib/utils';
-import { Button } from '../Button';
-import { Calendar } from '../Calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
+import { DatePicker } from './DatePicker';
 
 function DatePickerDemo() {
   const [date, setDate] = React.useState<Date>();
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant={'outline'}
-          className={cn(
-            'w-[240px] justify-start text-left font-normal',
-            !date &&
-              `
-            text-muted-foreground
-          `,
-          )}
-        >
-          <CalendarIcon className="mr-2 size-4" />
-          {date ? format(date, 'PPP') : <span>Pick a date</span>}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
-        <Calendar mode="single" selected={date} onSelect={setDate} captionLayout="dropdown" />
-      </PopoverContent>
-    </Popover>
-  );
+  return <DatePicker date={date} onDateChange={setDate} buttonClassName="w-[240px]" />;
 }
-type ComponentType = React.ComponentProps<typeof DatePickerDemo>;
+type ComponentType = React.ComponentProps<typeof DatePicker>;
 const meta: Meta<ComponentType> = {
-  component: DatePickerDemo,
+  component: DatePicker,
   render: DatePickerDemo,
 };
 

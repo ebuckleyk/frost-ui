@@ -266,8 +266,8 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
           className="
-            group-data-[variant=floating]:shadow-frost-sm flex size-full flex-col
-            bg-sidebar
+            group-data-[variant=floating]:shadow-frost-sm group-data-[variant=floating]:glass-card flex size-full
+            flex-col bg-sidebar/85
             group-data-[variant=floating]:rounded-lg
             group-data-[variant=floating]:border
             group-data-[variant=floating]:border-sidebar-border
@@ -369,7 +369,7 @@ function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input
     <Input
       data-slot="sidebar-input"
       data-sidebar="input"
-      className={cn('h-8 w-full bg-background shadow-none', className)}
+      className={cn('h-8 w-full bg-background/40 shadow-none', className)}
       {...props}
     />
   );
@@ -556,7 +556,7 @@ const sidebarMenuButtonVariants = cva(
       variant: {
         default: 'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
         outline: `
-          bg-background shadow-[0_0_0_1px_var(--sidebar-border)]
+          glass-control bg-background/30 shadow-[0_0_0_1px_var(--sidebar-border)]
           hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
           hover:shadow-[0_0_0_1px_var(--sidebar-accent)]
         `,

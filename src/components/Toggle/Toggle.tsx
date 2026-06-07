@@ -14,7 +14,7 @@ const toggleVariants = cva(
     focus-visible:ring-ring/50
     disabled:pointer-events-none disabled:opacity-50
     aria-invalid:border-destructive aria-invalid:ring-destructive/20
-    data-[state=on]:bg-accent/60
+    data-[state=on]:bg-accent/55
     data-[state=on]:text-accent-foreground dark:aria-invalid:ring-destructive/40
     [&_svg]:pointer-events-none [&_svg]:shrink-0
     [&_svg:not([class*='size-'])]:size-4
@@ -22,10 +22,13 @@ const toggleVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border border-transparent bg-transparent shadow-none hover:bg-accent/20 hover:text-accent-foreground',
+        default: `
+          border border-transparent bg-transparent shadow-none
+          hover:bg-accent/20 hover:text-accent-foreground active:bg-accent/30
+        `,
         outline: `
-          border border-(--glass-edge) bg-transparent shadow-none
-          hover:bg-accent/20 hover:text-accent-foreground
+          glass-control border border-(--glass-edge) bg-transparent shadow-none
+          hover:bg-accent/20 hover:text-accent-foreground active:bg-accent/30
         `,
       },
       size: {

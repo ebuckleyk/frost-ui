@@ -6,19 +6,21 @@ exports[`Command > should render Command component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="glass-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-lg border shadow-md"
+        class="glass-popover shadow-frost-md flex size-full flex-col overflow-hidden text-popover-foreground rounded-lg border shadow-md"
         cmdk-root=""
         data-slot="command"
         tabindex="-1"
       >
         <label
           cmdk-label=""
-          for="radix-:r2:"
-          id="radix-:r1:"
+          for="radix-_r_2_"
+          id="radix-_r_1_"
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
         />
         <div
-          class="flex h-9 items-center gap-2 border-b px-3"
+          class="
+        input-glass flex h-9 items-center gap-2 border-b px-3
+      "
           data-slot="command-input-wrapper"
         >
           <svg
@@ -45,15 +47,15 @@ exports[`Command > should render Command component to match snapshot 1`] = `
           </svg>
           <input
             aria-autocomplete="list"
-            aria-controls="radix-:r0:"
+            aria-controls="radix-_r_0_"
             aria-expanded="true"
-            aria-labelledby="radix-:r1:"
+            aria-labelledby="radix-_r_1_"
             autocomplete="off"
             autocorrect="off"
-            class="placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
             cmdk-input=""
             data-slot="command-input"
-            id="radix-:r2:"
+            id="radix-_r_2_"
             placeholder="Type a command or search..."
             role="combobox"
             spellcheck="false"
@@ -66,7 +68,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
           class="max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto"
           cmdk-list=""
           data-slot="command-list"
-          id="radix-:r0:"
+          id="radix-_r_0_"
           role="listbox"
           tabindex="-1"
         >
@@ -74,7 +76,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
             cmdk-list-sizer=""
           >
             <div
-              class="text-foreground [&_[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium"
+              class="overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground"
               cmdk-group=""
               data-slot="command-group"
               data-value="Suggestions"
@@ -83,29 +85,29 @@ exports[`Command > should render Command component to match snapshot 1`] = `
               <div
                 aria-hidden="true"
                 cmdk-group-heading=""
-                id="radix-:r4:"
+                id="radix-_r_4_"
               >
                 Suggestions
               </div>
               <div
-                aria-labelledby="radix-:r4:"
+                aria-labelledby="radix-_r_4_"
                 cmdk-group-items=""
                 role="group"
               >
                 <div
                   aria-disabled="false"
                   aria-selected="true"
-                  class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                  class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                   cmdk-item=""
                   data-disabled="false"
                   data-selected="true"
                   data-slot="command-item"
                   data-value="Calendar"
-                  id="radix-:r5:"
+                  id="radix-_r_5_"
                   role="option"
                 >
                   <svg
-                    class="mr-2 h-4 w-4"
+                    class="mr-2 size-4"
                     fill="none"
                     height="15"
                     viewBox="0 0 15 15"
@@ -126,17 +128,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                 <div
                   aria-disabled="false"
                   aria-selected="false"
-                  class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                  class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                   cmdk-item=""
                   data-disabled="false"
                   data-selected="false"
                   data-slot="command-item"
                   data-value="Search Emoji"
-                  id="radix-:r6:"
+                  id="radix-_r_6_"
                   role="option"
                 >
                   <svg
-                    class="mr-2 h-4 w-4"
+                    class="mr-2 size-4"
                     fill="none"
                     height="15"
                     viewBox="0 0 15 15"
@@ -157,17 +159,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                 <div
                   aria-disabled="false"
                   aria-selected="false"
-                  class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                  class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                   cmdk-item=""
                   data-disabled="false"
                   data-selected="false"
                   data-slot="command-item"
                   data-value="Launch"
-                  id="radix-:r7:"
+                  id="radix-_r_7_"
                   role="option"
                 >
                   <svg
-                    class="mr-2 h-4 w-4"
+                    class="mr-2 size-4"
                     fill="none"
                     height="15"
                     viewBox="0 0 15 15"
@@ -188,13 +190,13 @@ exports[`Command > should render Command component to match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="bg-border -mx-1 h-px"
+              class="-mx-1 h-px bg-border"
               cmdk-separator=""
               data-slot="command-separator"
               role="separator"
             />
             <div
-              class="text-foreground [&_[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium"
+              class="overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground"
               cmdk-group=""
               data-slot="command-group"
               data-value="Settings"
@@ -203,29 +205,29 @@ exports[`Command > should render Command component to match snapshot 1`] = `
               <div
                 aria-hidden="true"
                 cmdk-group-heading=""
-                id="radix-:r9:"
+                id="radix-_r_9_"
               >
                 Settings
               </div>
               <div
-                aria-labelledby="radix-:r9:"
+                aria-labelledby="radix-_r_9_"
                 cmdk-group-items=""
                 role="group"
               >
                 <div
                   aria-disabled="false"
                   aria-selected="false"
-                  class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                  class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                   cmdk-item=""
                   data-disabled="false"
                   data-selected="false"
                   data-slot="command-item"
                   data-value="Profile⌘P"
-                  id="radix-:ra:"
+                  id="radix-_r_a_"
                   role="option"
                 >
                   <svg
-                    class="mr-2 h-4 w-4"
+                    class="mr-2 size-4"
                     fill="none"
                     height="15"
                     viewBox="0 0 15 15"
@@ -243,7 +245,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                     Profile
                   </span>
                   <span
-                    class="text-muted-foreground ml-auto text-xs tracking-widest"
+                    class="ml-auto text-xs tracking-widest text-muted-foreground"
                     data-slot="command-shortcut"
                   >
                     ⌘P
@@ -252,17 +254,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                 <div
                   aria-disabled="false"
                   aria-selected="false"
-                  class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                  class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                   cmdk-item=""
                   data-disabled="false"
                   data-selected="false"
                   data-slot="command-item"
                   data-value="Mail⌘B"
-                  id="radix-:rb:"
+                  id="radix-_r_b_"
                   role="option"
                 >
                   <svg
-                    class="mr-2 h-4 w-4"
+                    class="mr-2 size-4"
                     fill="none"
                     height="15"
                     viewBox="0 0 15 15"
@@ -280,7 +282,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                     Mail
                   </span>
                   <span
-                    class="text-muted-foreground ml-auto text-xs tracking-widest"
+                    class="ml-auto text-xs tracking-widest text-muted-foreground"
                     data-slot="command-shortcut"
                   >
                     ⌘B
@@ -289,17 +291,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                 <div
                   aria-disabled="false"
                   aria-selected="false"
-                  class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                  class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                   cmdk-item=""
                   data-disabled="false"
                   data-selected="false"
                   data-slot="command-item"
                   data-value="Settings⌘S"
-                  id="radix-:rc:"
+                  id="radix-_r_c_"
                   role="option"
                 >
                   <svg
-                    class="mr-2 h-4 w-4"
+                    class="mr-2 size-4"
                     fill="none"
                     height="15"
                     viewBox="0 0 15 15"
@@ -317,7 +319,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                     Settings
                   </span>
                   <span
-                    class="text-muted-foreground ml-auto text-xs tracking-widest"
+                    class="ml-auto text-xs tracking-widest text-muted-foreground"
                     data-slot="command-shortcut"
                   >
                     ⌘S
@@ -332,19 +334,21 @@ exports[`Command > should render Command component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="glass-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-lg border shadow-md"
+      class="glass-popover shadow-frost-md flex size-full flex-col overflow-hidden text-popover-foreground rounded-lg border shadow-md"
       cmdk-root=""
       data-slot="command"
       tabindex="-1"
     >
       <label
         cmdk-label=""
-        for="radix-:r2:"
-        id="radix-:r1:"
+        for="radix-_r_2_"
+        id="radix-_r_1_"
         style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
       />
       <div
-        class="flex h-9 items-center gap-2 border-b px-3"
+        class="
+        input-glass flex h-9 items-center gap-2 border-b px-3
+      "
         data-slot="command-input-wrapper"
       >
         <svg
@@ -371,15 +375,15 @@ exports[`Command > should render Command component to match snapshot 1`] = `
         </svg>
         <input
           aria-autocomplete="list"
-          aria-controls="radix-:r0:"
+          aria-controls="radix-_r_0_"
           aria-expanded="true"
-          aria-labelledby="radix-:r1:"
+          aria-labelledby="radix-_r_1_"
           autocomplete="off"
           autocorrect="off"
-          class="placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
           cmdk-input=""
           data-slot="command-input"
-          id="radix-:r2:"
+          id="radix-_r_2_"
           placeholder="Type a command or search..."
           role="combobox"
           spellcheck="false"
@@ -392,7 +396,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
         class="max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto"
         cmdk-list=""
         data-slot="command-list"
-        id="radix-:r0:"
+        id="radix-_r_0_"
         role="listbox"
         tabindex="-1"
       >
@@ -400,7 +404,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
           cmdk-list-sizer=""
         >
           <div
-            class="text-foreground [&_[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium"
+            class="overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground"
             cmdk-group=""
             data-slot="command-group"
             data-value="Suggestions"
@@ -409,29 +413,29 @@ exports[`Command > should render Command component to match snapshot 1`] = `
             <div
               aria-hidden="true"
               cmdk-group-heading=""
-              id="radix-:r4:"
+              id="radix-_r_4_"
             >
               Suggestions
             </div>
             <div
-              aria-labelledby="radix-:r4:"
+              aria-labelledby="radix-_r_4_"
               cmdk-group-items=""
               role="group"
             >
               <div
                 aria-disabled="false"
                 aria-selected="true"
-                class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                 cmdk-item=""
                 data-disabled="false"
                 data-selected="true"
                 data-slot="command-item"
                 data-value="Calendar"
-                id="radix-:r5:"
+                id="radix-_r_5_"
                 role="option"
               >
                 <svg
-                  class="mr-2 h-4 w-4"
+                  class="mr-2 size-4"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -452,17 +456,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-selected="false"
-                class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                 cmdk-item=""
                 data-disabled="false"
                 data-selected="false"
                 data-slot="command-item"
                 data-value="Search Emoji"
-                id="radix-:r6:"
+                id="radix-_r_6_"
                 role="option"
               >
                 <svg
-                  class="mr-2 h-4 w-4"
+                  class="mr-2 size-4"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -483,17 +487,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-selected="false"
-                class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                 cmdk-item=""
                 data-disabled="false"
                 data-selected="false"
                 data-slot="command-item"
                 data-value="Launch"
-                id="radix-:r7:"
+                id="radix-_r_7_"
                 role="option"
               >
                 <svg
-                  class="mr-2 h-4 w-4"
+                  class="mr-2 size-4"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -514,13 +518,13 @@ exports[`Command > should render Command component to match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="bg-border -mx-1 h-px"
+            class="-mx-1 h-px bg-border"
             cmdk-separator=""
             data-slot="command-separator"
             role="separator"
           />
           <div
-            class="text-foreground [&_[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium"
+            class="overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground"
             cmdk-group=""
             data-slot="command-group"
             data-value="Settings"
@@ -529,29 +533,29 @@ exports[`Command > should render Command component to match snapshot 1`] = `
             <div
               aria-hidden="true"
               cmdk-group-heading=""
-              id="radix-:r9:"
+              id="radix-_r_9_"
             >
               Settings
             </div>
             <div
-              aria-labelledby="radix-:r9:"
+              aria-labelledby="radix-_r_9_"
               cmdk-group-items=""
               role="group"
             >
               <div
                 aria-disabled="false"
                 aria-selected="false"
-                class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                 cmdk-item=""
                 data-disabled="false"
                 data-selected="false"
                 data-slot="command-item"
                 data-value="Profile⌘P"
-                id="radix-:ra:"
+                id="radix-_r_a_"
                 role="option"
               >
                 <svg
-                  class="mr-2 h-4 w-4"
+                  class="mr-2 size-4"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -569,7 +573,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                   Profile
                 </span>
                 <span
-                  class="text-muted-foreground ml-auto text-xs tracking-widest"
+                  class="ml-auto text-xs tracking-widest text-muted-foreground"
                   data-slot="command-shortcut"
                 >
                   ⌘P
@@ -578,17 +582,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-selected="false"
-                class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                 cmdk-item=""
                 data-disabled="false"
                 data-selected="false"
                 data-slot="command-item"
                 data-value="Mail⌘B"
-                id="radix-:rb:"
+                id="radix-_r_b_"
                 role="option"
               >
                 <svg
-                  class="mr-2 h-4 w-4"
+                  class="mr-2 size-4"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -606,7 +610,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                   Mail
                 </span>
                 <span
-                  class="text-muted-foreground ml-auto text-xs tracking-widest"
+                  class="ml-auto text-xs tracking-widest text-muted-foreground"
                   data-slot="command-shortcut"
                 >
                   ⌘B
@@ -615,17 +619,17 @@ exports[`Command > should render Command component to match snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-selected="false"
-                class="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                class="relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
                 cmdk-item=""
                 data-disabled="false"
                 data-selected="false"
                 data-slot="command-item"
                 data-value="Settings⌘S"
-                id="radix-:rc:"
+                id="radix-_r_c_"
                 role="option"
               >
                 <svg
-                  class="mr-2 h-4 w-4"
+                  class="mr-2 size-4"
                   fill="none"
                   height="15"
                   viewBox="0 0 15 15"
@@ -643,7 +647,7 @@ exports[`Command > should render Command component to match snapshot 1`] = `
                   Settings
                 </span>
                 <span
-                  class="text-muted-foreground ml-auto text-xs tracking-widest"
+                  class="ml-auto text-xs tracking-widest text-muted-foreground"
                   data-slot="command-shortcut"
                 >
                   ⌘S

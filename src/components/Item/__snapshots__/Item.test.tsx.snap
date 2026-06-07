@@ -6,7 +6,7 @@ exports[`Item > should render Item component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-transparent p-4 gap-4"
+        class="group/item flex flex-wrap items-center rounded-md border border-transparent text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 bg-transparent gap-4 p-4"
         data-size="default"
         data-slot="item"
         data-variant="default"
@@ -16,7 +16,7 @@ exports[`Item > should render Item component to match snapshot 1`] = `
           data-slot="item-content"
         >
           <div
-            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+            class="flex w-fit items-center gap-2 text-sm/snug font-medium"
             data-slot="item-title"
           >
             Title
@@ -27,7 +27,7 @@ exports[`Item > should render Item component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-transparent p-4 gap-4"
+      class="group/item flex flex-wrap items-center rounded-md border border-transparent text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 bg-transparent gap-4 p-4"
       data-size="default"
       data-slot="item"
       data-variant="default"
@@ -37,7 +37,7 @@ exports[`Item > should render Item component to match snapshot 1`] = `
         data-slot="item-content"
       >
         <div
-          class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          class="flex w-fit items-center gap-2 text-sm/snug font-medium"
           data-slot="item-title"
         >
           Title
@@ -105,7 +105,7 @@ exports[`Item > should render Item with description to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-transparent p-4 gap-4"
+        class="group/item flex flex-wrap items-center rounded-md border border-transparent text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 bg-transparent gap-4 p-4"
         data-size="default"
         data-slot="item"
         data-variant="default"
@@ -115,13 +115,13 @@ exports[`Item > should render Item with description to match snapshot 1`] = `
           data-slot="item-content"
         >
           <div
-            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+            class="flex w-fit items-center gap-2 text-sm/snug font-medium"
             data-slot="item-title"
           >
             Title
           </div>
           <p
-            class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+            class="line-clamp-2 text-sm/normal font-normal text-balance text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary"
             data-slot="item-description"
           >
             Description text
@@ -132,7 +132,7 @@ exports[`Item > should render Item with description to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-transparent p-4 gap-4"
+      class="group/item flex flex-wrap items-center rounded-md border border-transparent text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 bg-transparent gap-4 p-4"
       data-size="default"
       data-slot="item"
       data-variant="default"
@@ -142,13 +142,13 @@ exports[`Item > should render Item with description to match snapshot 1`] = `
         data-slot="item-content"
       >
         <div
-          class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          class="flex w-fit items-center gap-2 text-sm/snug font-medium"
           data-slot="item-title"
         >
           Title
         </div>
         <p
-          class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+          class="line-clamp-2 text-sm/normal font-normal text-balance text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary"
           data-slot="item-description"
         >
           Description text
@@ -216,13 +216,13 @@ exports[`Item > should render Item with icon media to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-transparent p-4 gap-4"
+        class="group/item flex flex-wrap items-center rounded-md border border-transparent text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 bg-transparent gap-4 p-4"
         data-size="default"
         data-slot="item"
         data-variant="default"
       >
         <div
-          class="flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5 size-8 border rounded-sm bg-muted [&_svg:not([class*='size-'])]:size-4"
+          class="flex shrink-0 items-center justify-center gap-2 group-has-data-[slot=item-description]/item:translate-y-0.5 group-has-data-[slot=item-description]/item:self-start [&_svg]:pointer-events-none glass-control-muted size-8 rounded-sm border bg-muted [&_svg:not([class*='size-'])]:size-4"
           data-slot="item-media"
           data-variant="icon"
         >
@@ -233,7 +233,7 @@ exports[`Item > should render Item with icon media to match snapshot 1`] = `
           data-slot="item-content"
         >
           <div
-            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+            class="flex w-fit items-center gap-2 text-sm/snug font-medium"
             data-slot="item-title"
           >
             Title
@@ -244,13 +244,13 @@ exports[`Item > should render Item with icon media to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-transparent p-4 gap-4"
+      class="group/item flex flex-wrap items-center rounded-md border border-transparent text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 bg-transparent gap-4 p-4"
       data-size="default"
       data-slot="item"
       data-variant="default"
     >
       <div
-        class="flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5 size-8 border rounded-sm bg-muted [&_svg:not([class*='size-'])]:size-4"
+        class="flex shrink-0 items-center justify-center gap-2 group-has-data-[slot=item-description]/item:translate-y-0.5 group-has-data-[slot=item-description]/item:self-start [&_svg]:pointer-events-none glass-control-muted size-8 rounded-sm border bg-muted [&_svg:not([class*='size-'])]:size-4"
         data-slot="item-media"
         data-variant="icon"
       >
@@ -261,7 +261,7 @@ exports[`Item > should render Item with icon media to match snapshot 1`] = `
         data-slot="item-content"
       >
         <div
-          class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          class="flex w-fit items-center gap-2 text-sm/snug font-medium"
           data-slot="item-title"
         >
           Title
@@ -329,7 +329,7 @@ exports[`Item > should render Item with outline variant to match snapshot 1`] = 
   "baseElement": <body>
     <div>
       <div
-        class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
+        class="group/item flex flex-wrap items-center rounded-md border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 glass-card border-(--glass-edge) gap-4 p-4"
         data-size="default"
         data-slot="item"
         data-variant="outline"
@@ -339,7 +339,7 @@ exports[`Item > should render Item with outline variant to match snapshot 1`] = 
           data-slot="item-content"
         >
           <div
-            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+            class="flex w-fit items-center gap-2 text-sm/snug font-medium"
             data-slot="item-title"
           >
             Title
@@ -350,7 +350,7 @@ exports[`Item > should render Item with outline variant to match snapshot 1`] = 
   </body>,
   "container": <div>
     <div
-      class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
+      class="group/item flex flex-wrap items-center rounded-md border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-accent/50 glass-card border-(--glass-edge) gap-4 p-4"
       data-size="default"
       data-slot="item"
       data-variant="outline"
@@ -360,7 +360,7 @@ exports[`Item > should render Item with outline variant to match snapshot 1`] = 
         data-slot="item-content"
       >
         <div
-          class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          class="flex w-fit items-center gap-2 text-sm/snug font-medium"
           data-slot="item-title"
         >
           Title

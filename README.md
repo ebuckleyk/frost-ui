@@ -56,6 +56,51 @@ The raw `@ebuckleyk/frost-ui/tailwind.css` entry imports Tailwind, Frost UI desi
   ```
 - CSS is opt-in. Tailwind v4 apps should prefer `@ebuckleyk/frost-ui/tailwind.css`; existing compiled-CSS consumers can keep `@ebuckleyk/frost-ui/styles.css`.
 
+### DatePicker
+
+`DatePicker` is exported as a first-class component:
+
+```tsx
+import { DatePicker } from '@ebuckleyk/frost-ui/components/DatePicker';
+
+function Example() {
+  const [date, setDate] = React.useState<Date>();
+
+  return <DatePicker date={date} onDateChange={setDate} />;
+}
+```
+
+It supports controlled and uncontrolled usage, custom placeholder text, custom date format strings, and button/calendar class overrides.
+
+### NativeSelect and Direction
+
+`NativeSelect` is available for mobile-friendly native form menus that still use the Frost UI input glass treatment:
+
+```tsx
+import { NativeSelect, NativeSelectOption } from '@ebuckleyk/frost-ui/components/NativeSelect';
+
+function Example() {
+  return (
+    <NativeSelect defaultValue="done">
+      <NativeSelectOption value="todo">Todo</NativeSelectOption>
+      <NativeSelectOption value="done">Done</NativeSelectOption>
+    </NativeSelect>
+  );
+}
+```
+
+`DirectionProvider` and `useDirection` are exported from `@ebuckleyk/frost-ui/components/Direction` for RTL-aware layouts.
+
+### Default Backgrounds
+
+Frost UI includes three optional page/app background utilities:
+
+- `.bg-frost-ambient` - subtle token-driven ambient background.
+- `.bg-gradient-frost` - soft blue/cyan frost gradient.
+- `.bg-frost-purple` - modern purple frost gradient.
+
+These presets are also available from the Storybook background toolbar for release previews, including explicit dark-mode background entries.
+
 ### EventCalendar Slots
 
 The EventCalendar component supports render-slot props so consuming UIs can swap pieces without forking:
@@ -75,6 +120,10 @@ Example:
   renderEventDetails={(event) => <CustomEventDetails event={event} />}
 />
 ```
+
+### Component Backlog
+
+See `COMPONENT_GAPS.md` for the shadcn-aligned component gap backlog. Current recommended addition is `DataTable`.
 
 ### How to update library
 

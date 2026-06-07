@@ -152,7 +152,7 @@ function FileDropArea({ ...props }: ScopedProps<FileDropAreaProps>) {
 
   return (
     <div data-slot="file-drop-area" {...rootProps}>
-      <input data-slot="file-drop-input" {...getInputProps()} />
+      <input data-slot="file-drop-input" {...getInputProps({ disabled })} />
       {children}
     </div>
   );
@@ -206,8 +206,10 @@ type FileDropFileItemProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
 };
 function FileDropFileItem({ ...props }: ScopedProps<FileDropFileItemProps>) {
   const { __scopeFileDrop, className, children, fileInfo, ...fileItemProps } = props;
+  const { disabled } = useFileDropContext(FILE_DROP_FILE_ITEM_NAME, __scopeFileDrop);
+
   return (
-    <FileDropFileItemProvider fileInfo={fileInfo} scope={__scopeFileDrop}>
+    <FileDropFileItemProvider disabled={disabled} fileInfo={fileInfo} scope={__scopeFileDrop}>
       <Item
         {...fileItemProps}
         variant="outline"
@@ -234,20 +236,25 @@ type FileDropFileItemRemoveProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 };
 function FileDropFileItemRemove({ ...props }: ScopedProps<FileDropFileItemRemoveProps>) {
   const { className, onClick, onRemove, disabled: buttonDisabled, __scopeFileDrop, ...buttonProps } = props;
-  const { remove, disabled } = useFileDropContext(FILE_DROP_FILE_ITEM_REMOVE_NAME, props.__scopeFileDrop);
-  const { fileInfo } = useFileDropFileItemContext(FILE_DROP_FILE_ITEM_REMOVE_NAME, __scopeFileDrop);
+  const { remove, disabled } = useFileDropContext(FILE_DROP_FILE_ITEM_REMOVE_NAME, __scopeFileDrop);
+  const { disabled: itemDisabled, fileInfo } = useFileDropFileItemContext(
+    FILE_DROP_FILE_ITEM_REMOVE_NAME,
+    __scopeFileDrop,
+  );
+  const isDisabled = disabled || itemDisabled || buttonDisabled;
+
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       onClick?.(event);
-      if (event.defaultPrevented || disabled || buttonDisabled) return;
+      if (event.defaultPrevented || isDisabled) return;
       if (onRemove) {
         onRemove(fileInfo);
         return;
       }
       remove(fileInfo);
     },
-    [buttonDisabled, disabled, fileInfo, onClick, onRemove, remove],
+    [fileInfo, isDisabled, onClick, onRemove, remove],
   );
 
   return (
@@ -264,7 +271,7 @@ function FileDropFileItemRemove({ ...props }: ScopedProps<FileDropFileItemRemove
           className,
         )}
         data-slot="file-drop-remove"
-        disabled={disabled || buttonDisabled}
+        disabled={isDisabled}
         onClick={handleClick}
         type="button"
       >
@@ -283,11 +290,14 @@ type FileDropFileItemContentProps = React.HtmlHTMLAttributes<HTMLDivElement>;
 function FileDropFileItemContent({ className, __scopeFileDrop, ...props }: ScopedProps<FileDropFileItemContentProps>) {
   const { fileInfo } = useFileDropFileItemContext(FILE_DROP_FILE_ITEM_CONTENT_NAME, __scopeFileDrop);
   const file = fileInfo.file;
-  const details = [formatBytes(file.size, 0), file.type].filter(Boolean).join(' • ');
+  const fileSize = formatBytes(file.size, 0);
   return (
     <ItemContent className={cn('min-w-0 gap-0.5', className)} {...props}>
       <ItemTitle className="w-full min-w-0 truncate text-sm font-medium">{file.name}</ItemTitle>
-      <ItemDescription className="line-clamp-1 text-xs text-muted-foreground/70">{details}</ItemDescription>
+      <ItemDescription className="line-clamp-1 text-xs text-muted-foreground/70">
+        <span>{fileSize}</span>
+        {file.type && <span className="before:px-1 before:content-['/']">{file.type}</span>}
+      </ItemDescription>
     </ItemContent>
   );
 }

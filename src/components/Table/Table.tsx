@@ -4,7 +4,12 @@ import { cn } from '@/lib/utils';
 
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
-    <div data-slot="table-container" className="relative w-full overflow-x-auto">
+    <div
+      data-slot="table-container"
+      className="
+        glass-card relative w-full overflow-x-auto rounded-lg
+      "
+    >
       <table data-slot="table" className={cn('w-full caption-bottom text-sm', className)} {...props} />
     </div>
   );
@@ -35,7 +40,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
       data-slot="table-footer"
       className={cn(
         `
-          border-t bg-muted/50 font-medium
+          border-t bg-muted/45 font-medium
           [&>tr]:last:border-b-0
         `,
         className,
@@ -52,8 +57,8 @@ function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
       className={cn(
         `
           border-b transition-colors
-          hover:bg-muted/50
-          data-[state=selected]:bg-muted
+          hover:bg-accent/35
+          data-[state=selected]:bg-accent/45
         `,
         className,
       )}

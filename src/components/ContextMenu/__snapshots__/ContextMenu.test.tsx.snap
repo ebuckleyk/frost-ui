@@ -6,7 +6,10 @@ exports[`ContextMenu > should render ContextMenu component to match snapshot 1`]
   "baseElement": <body>
     <div>
       <span
-        class="flex h-[150px] w-[200px] items-center justify-center rounded-md border border-dashed text-sm"
+        class="
+          flex h-[150px] w-[200px] items-center justify-center rounded-md border
+          border-dashed text-sm
+        "
         data-slot="context-menu-trigger"
         data-state="closed"
       >
@@ -16,7 +19,10 @@ exports[`ContextMenu > should render ContextMenu component to match snapshot 1`]
   </body>,
   "container": <div>
     <span
-      class="flex h-[150px] w-[200px] items-center justify-center rounded-md border border-dashed text-sm"
+      class="
+          flex h-[150px] w-[200px] items-center justify-center rounded-md border
+          border-dashed text-sm
+        "
       data-slot="context-menu-trigger"
       data-state="closed"
     >

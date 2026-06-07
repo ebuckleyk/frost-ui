@@ -6,7 +6,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="glass-card flex flex-col rounded-xl py-6 gap-6 text-card-foreground shadow-lg w-[380px]"
+        class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground w-[380px]"
         data-slot="card"
       >
         <div
@@ -20,7 +20,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             Notifications
           </div>
           <div
-            class="text-muted-foreground text-sm"
+            class="text-sm text-muted-foreground"
             data-slot="card-description"
           >
             You have 3 unread messages.
@@ -31,7 +31,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           data-slot="card-content"
         >
           <div
-            class=" flex items-center space-x-4 rounded-md border p-4"
+            class="flex items-center space-x-4 rounded-md border p-4"
           >
             <svg
               aria-hidden="true"
@@ -63,7 +63,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               class="flex-1 space-y-1"
             >
               <p
-                class="text-sm font-medium leading-none"
+                class="text-sm leading-none font-medium"
               >
                 Push Notifications
               </p>
@@ -75,7 +75,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             </div>
             <button
               aria-checked="false"
-              class="peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+              class="glass-control-muted peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border shadow-xs transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input/60 dark:data-[state=unchecked]:bg-input/60"
               data-slot="switch"
               data-state="unchecked"
               role="switch"
@@ -83,7 +83,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               value="on"
             >
               <span
-                class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+                class="shadow-frost-sm pointer-events-none block size-4 rounded-full bg-background ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0 dark:data-[state=checked]:bg-primary-foreground dark:data-[state=unchecked]:bg-foreground"
                 data-slot="switch-thumb"
                 data-state="unchecked"
               />
@@ -91,16 +91,21 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           </div>
           <div>
             <div
-              class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+              class="
+                mb-4 grid grid-cols-[25px_1fr] items-start pb-4
+                last:mb-0 last:pb-0
+              "
             >
               <span
-                class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
+                class="
+                flex size-2 translate-y-1 rounded-full bg-sky-500
+              "
               />
               <div
                 class="space-y-1"
               >
                 <p
-                  class="text-sm font-medium leading-none"
+                  class="text-sm leading-none font-medium"
                 >
                   Your call has been confirmed.
                 </p>
@@ -112,16 +117,21 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+              class="
+                mb-4 grid grid-cols-[25px_1fr] items-start pb-4
+                last:mb-0 last:pb-0
+              "
             >
               <span
-                class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
+                class="
+                flex size-2 translate-y-1 rounded-full bg-sky-500
+              "
               />
               <div
                 class="space-y-1"
               >
                 <p
-                  class="text-sm font-medium leading-none"
+                  class="text-sm leading-none font-medium"
                 >
                   You have a new message!
                 </p>
@@ -133,16 +143,21 @@ exports[`Card > should render Card component to match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+              class="
+                mb-4 grid grid-cols-[25px_1fr] items-start pb-4
+                last:mb-0 last:pb-0
+              "
             >
               <span
-                class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
+                class="
+                flex size-2 translate-y-1 rounded-full bg-sky-500
+              "
               />
               <div
                 class="space-y-1"
               >
                 <p
-                  class="text-sm font-medium leading-none"
+                  class="text-sm leading-none font-medium"
                 >
                   Your subscription is expiring soon!
                 </p>
@@ -160,12 +175,12 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           data-slot="card-footer"
         >
           <button
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] bg-primary/[var(--glass-button)] text-primary-foreground hover:bg-primary/60 border border-primary/20 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+            class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px h-9 px-4 py-2 has-[>svg]:px-3 w-full"
             data-slot="button"
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-check mr-2 h-4 w-4"
+              class="lucide lucide-check mr-2 size-4"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -188,7 +203,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="glass-card flex flex-col rounded-xl py-6 gap-6 text-card-foreground shadow-lg w-[380px]"
+      class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground w-[380px]"
       data-slot="card"
     >
       <div
@@ -202,7 +217,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           Notifications
         </div>
         <div
-          class="text-muted-foreground text-sm"
+          class="text-sm text-muted-foreground"
           data-slot="card-description"
         >
           You have 3 unread messages.
@@ -213,7 +228,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
         data-slot="card-content"
       >
         <div
-          class=" flex items-center space-x-4 rounded-md border p-4"
+          class="flex items-center space-x-4 rounded-md border p-4"
         >
           <svg
             aria-hidden="true"
@@ -245,7 +260,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             class="flex-1 space-y-1"
           >
             <p
-              class="text-sm font-medium leading-none"
+              class="text-sm leading-none font-medium"
             >
               Push Notifications
             </p>
@@ -257,7 +272,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           </div>
           <button
             aria-checked="false"
-            class="peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            class="glass-control-muted peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border shadow-xs transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input/60 dark:data-[state=unchecked]:bg-input/60"
             data-slot="switch"
             data-state="unchecked"
             role="switch"
@@ -265,7 +280,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             value="on"
           >
             <span
-              class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+              class="shadow-frost-sm pointer-events-none block size-4 rounded-full bg-background ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0 dark:data-[state=checked]:bg-primary-foreground dark:data-[state=unchecked]:bg-foreground"
               data-slot="switch-thumb"
               data-state="unchecked"
             />
@@ -273,16 +288,21 @@ exports[`Card > should render Card component to match snapshot 1`] = `
         </div>
         <div>
           <div
-            class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+            class="
+                mb-4 grid grid-cols-[25px_1fr] items-start pb-4
+                last:mb-0 last:pb-0
+              "
           >
             <span
-              class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
+              class="
+                flex size-2 translate-y-1 rounded-full bg-sky-500
+              "
             />
             <div
               class="space-y-1"
             >
               <p
-                class="text-sm font-medium leading-none"
+                class="text-sm leading-none font-medium"
               >
                 Your call has been confirmed.
               </p>
@@ -294,16 +314,21 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+            class="
+                mb-4 grid grid-cols-[25px_1fr] items-start pb-4
+                last:mb-0 last:pb-0
+              "
           >
             <span
-              class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
+              class="
+                flex size-2 translate-y-1 rounded-full bg-sky-500
+              "
             />
             <div
               class="space-y-1"
             >
               <p
-                class="text-sm font-medium leading-none"
+                class="text-sm leading-none font-medium"
               >
                 You have a new message!
               </p>
@@ -315,16 +340,21 @@ exports[`Card > should render Card component to match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+            class="
+                mb-4 grid grid-cols-[25px_1fr] items-start pb-4
+                last:mb-0 last:pb-0
+              "
           >
             <span
-              class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"
+              class="
+                flex size-2 translate-y-1 rounded-full bg-sky-500
+              "
             />
             <div
               class="space-y-1"
             >
               <p
-                class="text-sm font-medium leading-none"
+                class="text-sm leading-none font-medium"
               >
                 Your subscription is expiring soon!
               </p>
@@ -342,12 +372,12 @@ exports[`Card > should render Card component to match snapshot 1`] = `
         data-slot="card-footer"
       >
         <button
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] bg-primary/[var(--glass-button)] text-primary-foreground hover:bg-primary/60 border border-primary/20 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+          class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px h-9 px-4 py-2 has-[>svg]:px-3 w-full"
           data-slot="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-check mr-2 h-4 w-4"
+            class="lucide lucide-check mr-2 size-4"
             fill="none"
             height="24"
             stroke="currentColor"

@@ -11,14 +11,14 @@ exports[`Progress > should render Progress component to match snapshot 1`] = `
         <div
           aria-valuemax="100"
           aria-valuemin="0"
-          class="bg-primary/20 relative h-2 overflow-hidden rounded-full w-full"
+          class="input-glass relative h-2 overflow-hidden rounded-full bg-primary/15 w-full"
           data-max="100"
           data-slot="progress"
           data-state="indeterminate"
           role="progressbar"
         >
           <div
-            class="bg-primary h-full w-full flex-1 transition-all"
+            class="shadow-frost-glow size-full flex-1 bg-primary transition-all"
             data-max="100"
             data-slot="progress-indicator"
             data-state="indeterminate"
@@ -35,14 +35,14 @@ exports[`Progress > should render Progress component to match snapshot 1`] = `
       <div
         aria-valuemax="100"
         aria-valuemin="0"
-        class="bg-primary/20 relative h-2 overflow-hidden rounded-full w-full"
+        class="input-glass relative h-2 overflow-hidden rounded-full bg-primary/15 w-full"
         data-max="100"
         data-slot="progress"
         data-state="indeterminate"
         role="progressbar"
       >
         <div
-          class="bg-primary h-full w-full flex-1 transition-all"
+          class="shadow-frost-glow size-full flex-1 bg-primary transition-all"
           data-max="100"
           data-slot="progress-indicator"
           data-state="indeterminate"

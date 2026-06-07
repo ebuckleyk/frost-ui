@@ -1,0 +1,164 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NativeSelect > should render NativeSelect component to match snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <span
+        class="relative inline-flex w-fit items-center"
+      >
+        <select
+          class="input-glass flex w-full min-w-0 appearance-none rounded-md border-input bg-transparent px-3 py-1 pr-8 text-base shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 md:text-sm focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
+          data-size="default"
+          data-slot="native-select"
+        >
+          <optgroup
+            class="bg-popover text-popover-foreground"
+            data-slot="native-select-optgroup"
+            label="Engineering"
+          >
+            <option
+              class="bg-popover text-popover-foreground"
+              data-slot="native-select-option"
+              selected=""
+              value="frontend"
+            >
+              Frontend
+            </option>
+            <option
+              class="bg-popover text-popover-foreground"
+              data-slot="native-select-option"
+              value="backend"
+            >
+              Backend
+            </option>
+          </optgroup>
+        </select>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down 
+          pointer-events-none absolute right-2.5 size-4 shrink-0
+          text-muted-foreground opacity-70"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </span>
+    </div>
+  </body>,
+  "container": <div>
+    <span
+      class="relative inline-flex w-fit items-center"
+    >
+      <select
+        class="input-glass flex w-full min-w-0 appearance-none rounded-md border-input bg-transparent px-3 py-1 pr-8 text-base shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 md:text-sm focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
+        data-size="default"
+        data-slot="native-select"
+      >
+        <optgroup
+          class="bg-popover text-popover-foreground"
+          data-slot="native-select-optgroup"
+          label="Engineering"
+        >
+          <option
+            class="bg-popover text-popover-foreground"
+            data-slot="native-select-option"
+            selected=""
+            value="frontend"
+          >
+            Frontend
+          </option>
+          <option
+            class="bg-popover text-popover-foreground"
+            data-slot="native-select-option"
+            value="backend"
+          >
+            Backend
+          </option>
+        </optgroup>
+      </select>
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-chevron-down 
+          pointer-events-none absolute right-2.5 size-4 shrink-0
+          text-muted-foreground opacity-70"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m6 9 6 6 6-6"
+        />
+      </svg>
+    </span>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
