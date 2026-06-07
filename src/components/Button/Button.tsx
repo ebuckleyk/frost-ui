@@ -8,7 +8,7 @@ const buttonVariants = cva(
   `
     inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium
     whitespace-nowrap ring-offset-background saturate-(--glass-saturation)
-    backdrop-blur-(--glass-blur) transition-colors
+    backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform]
     focus-visible:ring-[3px] focus-visible:ring-ring/50
     focus-visible:outline-none
     disabled:pointer-events-none disabled:opacity-50
@@ -21,26 +21,26 @@ const buttonVariants = cva(
       variant: {
         default: `
           shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary
-          text-primary-foreground hover:bg-primary/90
+          text-primary-foreground hover:bg-primary/90 active:translate-y-px
         `,
         destructive: `
           border border-destructive/30 bg-destructive/90
           text-destructive-foreground
-          hover:bg-destructive/75
+          hover:bg-destructive/75 active:translate-y-px
         `,
         outline: `
           border border-(--glass-edge) bg-transparent text-foreground
           shadow-none
-          hover:bg-accent/20 hover:text-accent-foreground
+          hover:bg-accent/20 hover:text-accent-foreground active:bg-accent/30
         `,
         secondary: `
           glass-control-muted text-secondary-foreground
-          hover:bg-secondary/40
+          hover:bg-secondary/40 active:bg-secondary/50
         `,
         ghost: `
           text-foreground
           saturate-100 backdrop-blur-none
-          hover:bg-accent/60 hover:text-accent-foreground
+          hover:bg-accent/45 hover:text-accent-foreground active:bg-accent/55
         `,
         link: `
           text-primary underline-offset-4

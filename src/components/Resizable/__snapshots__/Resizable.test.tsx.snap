@@ -6,20 +6,21 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="flex h-full w-full data-[panel-group-direction=vertical]:flex-col max-w-md rounded-lg border"
+        class="flex size-full data-[panel-group-direction=vertical]:flex-col max-w-md rounded-lg border"
         data-panel-group=""
         data-panel-group-direction="horizontal"
-        data-panel-group-id=":r0:"
+        data-panel-group-id="_r_0_"
         data-slot="resizable-panel-group"
         style="display: flex; flex-direction: row; height: 100%; overflow: hidden; width: 100%;"
       >
         <div
           class=""
           data-panel=""
-          data-panel-group-id=":r0:"
-          data-panel-id=":r1:"
+          data-panel-group-id="_r_0_"
+          data-panel-id="_r_1_"
           data-panel-size="50.0"
           data-slot="resizable-panel"
+          id="_r_1_"
           style="flex-basis: 0px; flex-grow: 50; flex-shrink: 1; overflow: hidden;"
         >
           <div
@@ -33,11 +34,11 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90"
+          class="relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:translate-x-0 data-[panel-group-direction=vertical]:after:-translate-y-1/2 [&[data-panel-group-direction=vertical]>div]:rotate-90"
           data-panel-group-direction="horizontal"
-          data-panel-group-id=":r0:"
+          data-panel-group-id="_r_0_"
           data-panel-resize-handle-enabled="true"
-          data-panel-resize-handle-id=":r2:"
+          data-panel-resize-handle-id="_r_2_"
           data-resize-handle=""
           data-resize-handle-state="inactive"
           data-slot="resizable-handle"
@@ -48,27 +49,29 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
         <div
           class=""
           data-panel=""
-          data-panel-group-id=":r0:"
-          data-panel-id=":r3:"
+          data-panel-group-id="_r_0_"
+          data-panel-id="_r_3_"
           data-panel-size="50.0"
           data-slot="resizable-panel"
+          id="_r_3_"
           style="flex-basis: 0px; flex-grow: 50; flex-shrink: 1; overflow: hidden;"
         >
           <div
-            class="flex h-full w-full data-[panel-group-direction=vertical]:flex-col"
+            class="flex size-full data-[panel-group-direction=vertical]:flex-col"
             data-panel-group=""
             data-panel-group-direction="vertical"
-            data-panel-group-id=":r4:"
+            data-panel-group-id="_r_4_"
             data-slot="resizable-panel-group"
             style="display: flex; flex-direction: column; height: 100%; overflow: hidden; width: 100%;"
           >
             <div
               class=""
               data-panel=""
-              data-panel-group-id=":r4:"
-              data-panel-id=":r5:"
+              data-panel-group-id="_r_4_"
+              data-panel-id="_r_5_"
               data-panel-size="25.0"
               data-slot="resizable-panel"
+              id="_r_5_"
               style="flex-basis: 0px; flex-grow: 25; flex-shrink: 1; overflow: hidden;"
             >
               <div
@@ -82,11 +85,11 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90"
+              class="relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:translate-x-0 data-[panel-group-direction=vertical]:after:-translate-y-1/2 [&[data-panel-group-direction=vertical]>div]:rotate-90"
               data-panel-group-direction="vertical"
-              data-panel-group-id=":r4:"
+              data-panel-group-id="_r_4_"
               data-panel-resize-handle-enabled="true"
-              data-panel-resize-handle-id=":r6:"
+              data-panel-resize-handle-id="_r_6_"
               data-resize-handle=""
               data-resize-handle-state="inactive"
               data-slot="resizable-handle"
@@ -97,10 +100,11 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
             <div
               class=""
               data-panel=""
-              data-panel-group-id=":r4:"
-              data-panel-id=":r7:"
+              data-panel-group-id="_r_4_"
+              data-panel-id="_r_7_"
               data-panel-size="75.0"
               data-slot="resizable-panel"
+              id="_r_7_"
               style="flex-basis: 0px; flex-grow: 75; flex-shrink: 1; overflow: hidden;"
             >
               <div
@@ -120,20 +124,21 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="flex h-full w-full data-[panel-group-direction=vertical]:flex-col max-w-md rounded-lg border"
+      class="flex size-full data-[panel-group-direction=vertical]:flex-col max-w-md rounded-lg border"
       data-panel-group=""
       data-panel-group-direction="horizontal"
-      data-panel-group-id=":r0:"
+      data-panel-group-id="_r_0_"
       data-slot="resizable-panel-group"
       style="display: flex; flex-direction: row; height: 100%; overflow: hidden; width: 100%;"
     >
       <div
         class=""
         data-panel=""
-        data-panel-group-id=":r0:"
-        data-panel-id=":r1:"
+        data-panel-group-id="_r_0_"
+        data-panel-id="_r_1_"
         data-panel-size="50.0"
         data-slot="resizable-panel"
+        id="_r_1_"
         style="flex-basis: 0px; flex-grow: 50; flex-shrink: 1; overflow: hidden;"
       >
         <div
@@ -147,11 +152,11 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90"
+        class="relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:translate-x-0 data-[panel-group-direction=vertical]:after:-translate-y-1/2 [&[data-panel-group-direction=vertical]>div]:rotate-90"
         data-panel-group-direction="horizontal"
-        data-panel-group-id=":r0:"
+        data-panel-group-id="_r_0_"
         data-panel-resize-handle-enabled="true"
-        data-panel-resize-handle-id=":r2:"
+        data-panel-resize-handle-id="_r_2_"
         data-resize-handle=""
         data-resize-handle-state="inactive"
         data-slot="resizable-handle"
@@ -162,27 +167,29 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
       <div
         class=""
         data-panel=""
-        data-panel-group-id=":r0:"
-        data-panel-id=":r3:"
+        data-panel-group-id="_r_0_"
+        data-panel-id="_r_3_"
         data-panel-size="50.0"
         data-slot="resizable-panel"
+        id="_r_3_"
         style="flex-basis: 0px; flex-grow: 50; flex-shrink: 1; overflow: hidden;"
       >
         <div
-          class="flex h-full w-full data-[panel-group-direction=vertical]:flex-col"
+          class="flex size-full data-[panel-group-direction=vertical]:flex-col"
           data-panel-group=""
           data-panel-group-direction="vertical"
-          data-panel-group-id=":r4:"
+          data-panel-group-id="_r_4_"
           data-slot="resizable-panel-group"
           style="display: flex; flex-direction: column; height: 100%; overflow: hidden; width: 100%;"
         >
           <div
             class=""
             data-panel=""
-            data-panel-group-id=":r4:"
-            data-panel-id=":r5:"
+            data-panel-group-id="_r_4_"
+            data-panel-id="_r_5_"
             data-panel-size="25.0"
             data-slot="resizable-panel"
+            id="_r_5_"
             style="flex-basis: 0px; flex-grow: 25; flex-shrink: 1; overflow: hidden;"
           >
             <div
@@ -196,11 +203,11 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90"
+            class="relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:outline-none data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:translate-x-0 data-[panel-group-direction=vertical]:after:-translate-y-1/2 [&[data-panel-group-direction=vertical]>div]:rotate-90"
             data-panel-group-direction="vertical"
-            data-panel-group-id=":r4:"
+            data-panel-group-id="_r_4_"
             data-panel-resize-handle-enabled="true"
-            data-panel-resize-handle-id=":r6:"
+            data-panel-resize-handle-id="_r_6_"
             data-resize-handle=""
             data-resize-handle-state="inactive"
             data-slot="resizable-handle"
@@ -211,10 +218,11 @@ exports[`Resizable > should render Resizable component to match snapshot 1`] = `
           <div
             class=""
             data-panel=""
-            data-panel-group-id=":r4:"
-            data-panel-id=":r7:"
+            data-panel-group-id="_r_4_"
+            data-panel-id="_r_7_"
             data-panel-size="75.0"
             data-slot="resizable-panel"
+            id="_r_7_"
             style="flex-basis: 0px; flex-grow: 75; flex-shrink: 1; overflow: hidden;"
           >
             <div

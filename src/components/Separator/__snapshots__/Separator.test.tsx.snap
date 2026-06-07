@@ -9,7 +9,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
         class="space-y-1"
       >
         <h4
-          class="text-sm font-medium leading-none"
+          class="text-sm leading-none font-medium"
         >
           Radix Primitives
         </h4>
@@ -20,7 +20,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
         </p>
       </div>
       <div
-        class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-4"
+        class="shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-4"
         data-orientation="horizontal"
         data-slot="separator-root"
         role="none"
@@ -32,7 +32,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
           Blog
         </div>
         <div
-          class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
+          class="shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
           data-orientation="vertical"
           data-slot="separator-root"
           role="none"
@@ -41,7 +41,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
           Docs
         </div>
         <div
-          class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
+          class="shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
           data-orientation="vertical"
           data-slot="separator-root"
           role="none"
@@ -57,7 +57,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
       class="space-y-1"
     >
       <h4
-        class="text-sm font-medium leading-none"
+        class="text-sm leading-none font-medium"
       >
         Radix Primitives
       </h4>
@@ -68,7 +68,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
       </p>
     </div>
     <div
-      class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-4"
+      class="shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-4"
       data-orientation="horizontal"
       data-slot="separator-root"
       role="none"
@@ -80,7 +80,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
         Blog
       </div>
       <div
-        class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
+        class="shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
         data-orientation="vertical"
         data-slot="separator-root"
         role="none"
@@ -89,7 +89,7 @@ exports[`Separator > should render Separator component to match snapshot 1`] = `
         Docs
       </div>
       <div
-        class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
+        class="shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
         data-orientation="vertical"
         data-slot="separator-root"
         role="none"

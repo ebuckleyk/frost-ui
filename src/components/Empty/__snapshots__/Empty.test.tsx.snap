@@ -6,7 +6,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"
+        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
         data-slot="empty"
       >
         <div
@@ -14,7 +14,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
           data-slot="empty-header"
         >
           <div
-            class="flex shrink-0 items-center justify-center mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-transparent"
+            class="mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-transparent"
             data-slot="empty-icon"
             data-variant="default"
           >
@@ -27,7 +27,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
             No results
           </div>
           <div
-            class="text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4"
+            class="text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary"
             data-slot="empty-description"
           >
             Try adjusting your search
@@ -38,7 +38,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"
+      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
       data-slot="empty"
     >
       <div
@@ -46,7 +46,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
         data-slot="empty-header"
       >
         <div
-          class="flex shrink-0 items-center justify-center mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-transparent"
+          class="mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-transparent"
           data-slot="empty-icon"
           data-variant="default"
         >
@@ -59,7 +59,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
           No results
         </div>
         <div
-          class="text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4"
+          class="text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary"
           data-slot="empty-description"
         >
           Try adjusting your search
@@ -127,7 +127,7 @@ exports[`Empty > should render Empty with content to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"
+        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
         data-slot="empty"
       >
         <div
@@ -152,7 +152,7 @@ exports[`Empty > should render Empty with content to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"
+      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
       data-slot="empty"
     >
       <div
@@ -234,7 +234,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"
+        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
         data-slot="empty"
       >
         <div
@@ -242,7 +242,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
           data-slot="empty-header"
         >
           <div
-            class="mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6"
+            class="mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 glass-control-muted flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-6"
             data-slot="empty-icon"
             data-variant="icon"
           >
@@ -255,7 +255,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
             No results
           </div>
           <div
-            class="text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4"
+            class="text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary"
             data-slot="empty-description"
           >
             Try adjusting your search
@@ -266,7 +266,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"
+      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
       data-slot="empty"
     >
       <div
@@ -274,7 +274,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
         data-slot="empty-header"
       >
         <div
-          class="mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6"
+          class="mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 glass-control-muted flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-6"
           data-slot="empty-icon"
           data-variant="icon"
         >
@@ -287,7 +287,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
           No results
         </div>
         <div
-          class="text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4"
+          class="text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary"
           data-slot="empty-description"
         >
           Try adjusting your search

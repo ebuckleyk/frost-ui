@@ -42,7 +42,7 @@ function Slider({
         data-slot="slider-track"
         className={cn(
           `
-            relative grow overflow-hidden rounded-full bg-muted
+            input-glass relative grow overflow-hidden rounded-full bg-muted
             data-[orientation=horizontal]:h-1.5
             data-[orientation=horizontal]:w-full
             data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5
@@ -52,7 +52,7 @@ function Slider({
         <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(`
-            absolute bg-primary
+            shadow-frost-glow absolute bg-primary
             data-[orientation=horizontal]:h-full
             data-[orientation=vertical]:w-full
           `)}
@@ -63,7 +63,7 @@ function Slider({
           data-slot="slider-thumb"
           key={index}
           className="
-            shadow-frost-sm block size-4 shrink-0 rounded-full border
+            glass-control shadow-frost-sm block size-4 shrink-0 rounded-full border
             border-primary bg-background ring-ring/50 transition-[color,box-shadow]
             hover:ring-4
             focus-visible:ring-4 focus-visible:outline-none

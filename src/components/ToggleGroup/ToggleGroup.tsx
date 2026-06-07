@@ -31,6 +31,8 @@ function ToggleGroup({
           data-[variant=outline]:border-(--glass-edge)
           data-[variant=outline]:bg-transparent
           data-[variant=outline]:shadow-none
+          data-[variant=outline]:saturate-(--glass-saturation)
+          data-[variant=outline]:backdrop-blur-(--glass-blur)
         `,
         className,
       )}

@@ -111,12 +111,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <th
-                  class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   King's Treasury
                 </th>
                 <th
-                  class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   People's happiness
                 </th>
@@ -129,12 +129,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <td
-                  class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Empty
                 </td>
                 <td
-                  class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Overflowing
                 </td>
@@ -143,12 +143,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <td
-                  class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Modest
                 </td>
                 <td
-                  class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Satisfied
                 </td>
@@ -157,12 +157,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <td
-                  class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Full
                 </td>
                 <td
-                  class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Ecstatic
                 </td>
@@ -290,12 +290,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <th
-                class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
               >
                 King's Treasury
               </th>
               <th
-                class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
               >
                 People's happiness
               </th>
@@ -308,12 +308,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <td
-                class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Empty
               </td>
               <td
-                class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Overflowing
               </td>
@@ -322,12 +322,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <td
-                class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Modest
               </td>
               <td
-                class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Satisfied
               </td>
@@ -336,12 +336,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <td
-                class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Full
               </td>
               <td
-                class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Ecstatic
               </td>

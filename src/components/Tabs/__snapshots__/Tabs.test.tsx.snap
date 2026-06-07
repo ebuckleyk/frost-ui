@@ -13,7 +13,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
       >
         <div
           aria-orientation="horizontal"
-          class="bg-muted text-muted-foreground h-9 items-center justify-center rounded-lg p-[3px] grid w-full grid-cols-2"
+          class="glass-control-muted h-9 items-center justify-center rounded-lg p-[3px] text-muted-foreground grid w-full grid-cols-2"
           data-orientation="horizontal"
           data-slot="tabs-list"
           role="tablist"
@@ -21,14 +21,14 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
           tabindex="0"
         >
           <button
-            aria-controls="radix-:r0:-content-account"
+            aria-controls="radix-_r_0_-content-account"
             aria-selected="true"
-            class="data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+            class="inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-muted-foreground transition-[color,background-color,box-shadow] hover:bg-accent/20 hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background/30 data-[state=active]:text-foreground data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
             data-orientation="horizontal"
             data-radix-collection-item=""
             data-slot="tabs-trigger"
             data-state="active"
-            id="radix-:r0:-trigger-account"
+            id="radix-_r_0_-trigger-account"
             role="tab"
             tabindex="-1"
             type="button"
@@ -36,14 +36,14 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
             Account
           </button>
           <button
-            aria-controls="radix-:r0:-content-password"
+            aria-controls="radix-_r_0_-content-password"
             aria-selected="false"
-            class="data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+            class="inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-muted-foreground transition-[color,background-color,box-shadow] hover:bg-accent/20 hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background/30 data-[state=active]:text-foreground data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
             data-orientation="horizontal"
             data-radix-collection-item=""
             data-slot="tabs-trigger"
             data-state="inactive"
-            id="radix-:r0:-trigger-password"
+            id="radix-_r_0_-trigger-password"
             role="tab"
             tabindex="-1"
             type="button"
@@ -52,18 +52,18 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
           </button>
         </div>
         <div
-          aria-labelledby="radix-:r0:-trigger-account"
+          aria-labelledby="radix-_r_0_-trigger-account"
           class="flex-1 outline-none"
           data-orientation="horizontal"
           data-slot="tabs-content"
           data-state="active"
-          id="radix-:r0:-content-account"
+          id="radix-_r_0_-content-account"
           role="tabpanel"
           style="animation-duration: 0s;"
           tabindex="0"
         >
           <div
-            class="glass-card flex flex-col rounded-xl py-6 gap-6 text-card-foreground shadow-lg"
+            class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
             data-slot="card"
           >
             <div
@@ -77,7 +77,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
                 Account
               </div>
               <div
-                class="text-muted-foreground text-sm"
+                class="text-sm text-muted-foreground"
                 data-slot="card-description"
               >
                 Make changes to your account here. Click save when you're done.
@@ -98,7 +98,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
                   Name
                 </label>
                 <input
-                  class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+                  class="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30 input-glass focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
                   data-slot="input"
                   id="name"
                   value="Pedro Duarte"
@@ -115,7 +115,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
                   Username
                 </label>
                 <input
-                  class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+                  class="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30 input-glass focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
                   data-slot="input"
                   id="username"
                   value="@peduarte"
@@ -127,7 +127,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
               data-slot="card-footer"
             >
               <button
-                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] bg-primary/[var(--glass-button)] text-primary-foreground hover:bg-primary/60 border border-primary/20 h-9 px-4 py-2 has-[>svg]:px-3"
+                class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px h-9 px-4 py-2 has-[>svg]:px-3"
                 data-slot="button"
               >
                 Save changes
@@ -136,13 +136,13 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
           </div>
         </div>
         <div
-          aria-labelledby="radix-:r0:-trigger-password"
+          aria-labelledby="radix-_r_0_-trigger-password"
           class="flex-1 outline-none"
           data-orientation="horizontal"
           data-slot="tabs-content"
           data-state="inactive"
           hidden=""
-          id="radix-:r0:-content-password"
+          id="radix-_r_0_-content-password"
           role="tabpanel"
           tabindex="0"
         />
@@ -158,7 +158,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
     >
       <div
         aria-orientation="horizontal"
-        class="bg-muted text-muted-foreground h-9 items-center justify-center rounded-lg p-[3px] grid w-full grid-cols-2"
+        class="glass-control-muted h-9 items-center justify-center rounded-lg p-[3px] text-muted-foreground grid w-full grid-cols-2"
         data-orientation="horizontal"
         data-slot="tabs-list"
         role="tablist"
@@ -166,14 +166,14 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
         tabindex="0"
       >
         <button
-          aria-controls="radix-:r0:-content-account"
+          aria-controls="radix-_r_0_-content-account"
           aria-selected="true"
-          class="data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+          class="inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-muted-foreground transition-[color,background-color,box-shadow] hover:bg-accent/20 hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background/30 data-[state=active]:text-foreground data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-slot="tabs-trigger"
           data-state="active"
-          id="radix-:r0:-trigger-account"
+          id="radix-_r_0_-trigger-account"
           role="tab"
           tabindex="-1"
           type="button"
@@ -181,14 +181,14 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
           Account
         </button>
         <button
-          aria-controls="radix-:r0:-content-password"
+          aria-controls="radix-_r_0_-content-password"
           aria-selected="false"
-          class="data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+          class="inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-muted-foreground transition-[color,background-color,box-shadow] hover:bg-accent/20 hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background/30 data-[state=active]:text-foreground data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-slot="tabs-trigger"
           data-state="inactive"
-          id="radix-:r0:-trigger-password"
+          id="radix-_r_0_-trigger-password"
           role="tab"
           tabindex="-1"
           type="button"
@@ -197,18 +197,18 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
         </button>
       </div>
       <div
-        aria-labelledby="radix-:r0:-trigger-account"
+        aria-labelledby="radix-_r_0_-trigger-account"
         class="flex-1 outline-none"
         data-orientation="horizontal"
         data-slot="tabs-content"
         data-state="active"
-        id="radix-:r0:-content-account"
+        id="radix-_r_0_-content-account"
         role="tabpanel"
         style="animation-duration: 0s;"
         tabindex="0"
       >
         <div
-          class="glass-card flex flex-col rounded-xl py-6 gap-6 text-card-foreground shadow-lg"
+          class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
           data-slot="card"
         >
           <div
@@ -222,7 +222,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
               Account
             </div>
             <div
-              class="text-muted-foreground text-sm"
+              class="text-sm text-muted-foreground"
               data-slot="card-description"
             >
               Make changes to your account here. Click save when you're done.
@@ -243,7 +243,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
                 Name
               </label>
               <input
-                class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+                class="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30 input-glass focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
                 data-slot="input"
                 id="name"
                 value="Pedro Duarte"
@@ -260,7 +260,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
                 Username
               </label>
               <input
-                class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+                class="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30 input-glass focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
                 data-slot="input"
                 id="username"
                 value="@peduarte"
@@ -272,7 +272,7 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
             data-slot="card-footer"
           >
             <button
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive backdrop-blur-[var(--glass-blur)] saturate-[var(--glass-saturation)] bg-primary/[var(--glass-button)] text-primary-foreground hover:bg-primary/60 border border-primary/20 h-9 px-4 py-2 has-[>svg]:px-3"
+              class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px h-9 px-4 py-2 has-[>svg]:px-3"
               data-slot="button"
             >
               Save changes
@@ -281,13 +281,13 @@ exports[`Tabs > should render Tabs component to match snapshot 1`] = `
         </div>
       </div>
       <div
-        aria-labelledby="radix-:r0:-trigger-password"
+        aria-labelledby="radix-_r_0_-trigger-password"
         class="flex-1 outline-none"
         data-orientation="horizontal"
         data-slot="tabs-content"
         data-state="inactive"
         hidden=""
-        id="radix-:r0:-content-password"
+        id="radix-_r_0_-content-password"
         role="tabpanel"
         tabindex="0"
       />

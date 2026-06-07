@@ -10,19 +10,19 @@ exports[`Slider > should render Slider component to match snapshot 1`] = `
       >
         <span
           aria-disabled="false"
-          class="relative flex touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col w-full"
+          class="relative flex touch-none items-center select-none data-disabled:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col w-full"
           data-orientation="horizontal"
           data-slot="slider"
           dir="ltr"
           style="--radix-slider-thumb-transform: translateX(-50%);"
         >
           <span
-            class="bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
+            class="input-glass relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
             data-orientation="horizontal"
             data-slot="slider-track"
           >
             <span
-              class="bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+              class="shadow-frost-glow absolute bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
               data-orientation="horizontal"
               data-slot="slider-range"
               style="left: 0%; right: 50%;"
@@ -36,7 +36,13 @@ exports[`Slider > should render Slider component to match snapshot 1`] = `
               aria-valuemax="100"
               aria-valuemin="0"
               aria-valuenow="50"
-              class="border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+              class="
+            glass-control shadow-frost-sm block size-4 shrink-0 rounded-full border
+            border-primary bg-background ring-ring/50 transition-[color,box-shadow]
+            hover:ring-4
+            focus-visible:ring-4 focus-visible:outline-none
+            disabled:pointer-events-none disabled:opacity-50
+          "
               data-orientation="horizontal"
               data-radix-collection-item=""
               data-slot="slider-thumb"
@@ -55,19 +61,19 @@ exports[`Slider > should render Slider component to match snapshot 1`] = `
     >
       <span
         aria-disabled="false"
-        class="relative flex touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col w-full"
+        class="relative flex touch-none items-center select-none data-disabled:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col w-full"
         data-orientation="horizontal"
         data-slot="slider"
         dir="ltr"
         style="--radix-slider-thumb-transform: translateX(-50%);"
       >
         <span
-          class="bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
+          class="input-glass relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
           data-orientation="horizontal"
           data-slot="slider-track"
         >
           <span
-            class="bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            class="shadow-frost-glow absolute bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
             data-orientation="horizontal"
             data-slot="slider-range"
             style="left: 0%; right: 50%;"
@@ -81,7 +87,13 @@ exports[`Slider > should render Slider component to match snapshot 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="50"
-            class="border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+            class="
+            glass-control shadow-frost-sm block size-4 shrink-0 rounded-full border
+            border-primary bg-background ring-ring/50 transition-[color,box-shadow]
+            hover:ring-4
+            focus-visible:ring-4 focus-visible:outline-none
+            disabled:pointer-events-none disabled:opacity-50
+          "
             data-orientation="horizontal"
             data-radix-collection-item=""
             data-slot="slider-thumb"
