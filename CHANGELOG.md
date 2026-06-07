@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.16.0
+
+### Minor Changes
+
+- 64cf4a3: "css improvements"
+
 ## 1.15.1
 
 ### Patch Changes
