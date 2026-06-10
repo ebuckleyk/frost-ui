@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.17.0
+
+### Minor Changes
+
+- 64930d7: Add line variant support to Tabs.
+
 ## 1.16.0
 
 ### Minor Changes
