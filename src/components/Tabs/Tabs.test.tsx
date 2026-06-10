@@ -65,4 +65,32 @@ describe('Tabs', () => {
     const result = render(<Component />);
     expect(result).toMatchSnapshot();
   });
+
+  it('should render line variant classes without leaking the variant prop', () => {
+    const result = render(
+      <Tabs defaultValue="account">
+        <TabsList variant="line" className="w-full">
+          <TabsTrigger value="account">Account</TabsTrigger>
+          <TabsTrigger value="password">Password</TabsTrigger>
+        </TabsList>
+      </Tabs>,
+    );
+
+    const tabList = result.getByRole('tablist');
+    const accountTab = result.getByRole('tab', { name: 'Account' });
+
+    expect(tabList).toHaveAttribute('data-variant', 'line');
+    expect(tabList).not.toHaveAttribute('variant');
+    expect(tabList).toHaveClass('group/tabs-list', 'bg-transparent', 'p-0', 'border-b');
+    expect(tabList).not.toHaveClass('glass-control-muted', 'rounded-lg', 'p-[3px]');
+
+    expect(accountTab).not.toHaveAttribute('data-variant');
+    expect(accountTab).toHaveClass(
+      'group-data-[variant=line]/tabs-list:bg-transparent',
+      'group-data-[variant=line]/tabs-list:border-b-2',
+      'group-data-[variant=line]/tabs-list:data-[state=active]:border-b-primary',
+      'group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent',
+      'group-data-[variant=line]/tabs-list:data-[state=active]:shadow-none',
+    );
+  });
 });

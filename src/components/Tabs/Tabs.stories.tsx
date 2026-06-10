@@ -59,6 +59,46 @@ function TabsDemo() {
     </Tabs>
   );
 }
+
+function LineTabsDemo() {
+  return (
+    <Tabs defaultValue="overview" className="w-[400px]">
+      <TabsList variant="line" className="w-full justify-start">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="activity">Activity</TabsTrigger>
+        <TabsTrigger value="settings">Settings</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview">
+        <Card>
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+            <CardDescription>Review account status and recent usage.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">Line tabs keep the content surface visually quiet.</p>
+          </CardContent>
+        </Card>
+      </TabsContent>
+      <TabsContent value="activity">
+        <Card>
+          <CardHeader>
+            <CardTitle>Activity</CardTitle>
+            <CardDescription>Track recent account events.</CardDescription>
+          </CardHeader>
+        </Card>
+      </TabsContent>
+      <TabsContent value="settings">
+        <Card>
+          <CardHeader>
+            <CardTitle>Settings</CardTitle>
+            <CardDescription>Manage tab-specific configuration.</CardDescription>
+          </CardHeader>
+        </Card>
+      </TabsContent>
+    </Tabs>
+  );
+}
+
 type ComponentType = React.ComponentProps<typeof Tabs>;
 const meta: Meta<ComponentType> = {
   component: Tabs,
@@ -70,4 +110,8 @@ export default meta;
 type Story = StoryObj<ComponentType>;
 export const Demo: Story = {
   render: TabsDemo,
+};
+
+export const Line: Story = {
+  render: LineTabsDemo,
 };
