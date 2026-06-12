@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.17.1
+
+### Patch Changes
+
+- a642311: Fix the Chart component folder import export.
+
 ## 1.17.0
 
 ### Minor Changes
