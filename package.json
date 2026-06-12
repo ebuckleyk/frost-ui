@@ -16,6 +16,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./components/Chart": {
+      "types": "./dist/types/components/Chart/index.d.ts",
+      "import": "./dist/components/Chart/Chart.js"
+    },
     "./components/*": {
       "types": "./dist/types/components/*.d.ts",
       "import": "./dist/components/*.js"
