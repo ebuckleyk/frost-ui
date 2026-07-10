@@ -2,8 +2,8 @@
   "name": "@ebuckleyk/frost-ui",
   "version": "1.18.0",
   "description": "React component library for ebuckleyk applications utilizing glassmorphism",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -14,26 +14,27 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.mjs"
     },
     "./components/Chart": {
       "types": "./dist/types/components/Chart/index.d.ts",
-      "import": "./dist/components/Chart/Chart.js"
+      "import": "./dist/components/Chart/Chart.mjs"
     },
     "./components/*": {
-      "types": "./dist/types/components/*.d.ts",
-      "import": "./dist/components/*.js"
+      "types": "./dist/types/components/*/index.d.ts",
+      "import": "./dist/components/*/*.mjs"
     },
     "./hooks/*": {
       "types": "./dist/types/hooks/*.d.ts",
-      "import": "./dist/hooks/*.js"
+      "import": "./dist/hooks/*.mjs"
     },
     "./styles.css": "./dist/styles/frostui.css",
     "./tailwind.css": "./dist/styles/tailwind.css",
     "./utilities.css": "./dist/styles/utilities.css",
-    "./presets/theme": "./dist/styles/theme-preset.js"
+    "./presets/theme": "./dist/styles/theme-preset.mjs"
   },
   "scripts": {
+    "prebuild": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "rollup -c --bundleConfigAsCjs",
     "format": "prettier --write \"src/**/*.{js,ts,tsx,mjs,cjs,json}\"",
     "storybook": "storybook dev -p 6006",

@@ -15,15 +15,10 @@ type ThemeProviderState = {
   setTheme: (theme: Theme) => void;
 };
 
-const initialState: ThemeProviderState = {
-  theme: 'system',
-  setTheme: () => null,
-};
-
 const MEDIA = '(prefers-color-scheme: dark)';
 const isServer = typeof window === 'undefined';
 
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
 export function ThemeProvider({
   children,
@@ -31,7 +26,7 @@ export function ThemeProvider({
   storageKey = 'ebuckleyk/frost-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [themeState, setThemeState] = useState<Theme>(() => theme || getTheme(storageKey, theme));
+  const [themeState, setThemeState] = useState<Theme>(() => getTheme(storageKey, theme));
 
   const applyTheme = useCallback((t: Theme) => {
     const root = window.document.documentElement;
@@ -60,8 +55,8 @@ export function ThemeProvider({
 
   const setTheme = useCallback(
     (t: Theme) => {
+      setThemeState(t);
       try {
-        setThemeState(t);
         localStorage.setItem(storageKey, t);
       } catch {
         // unsupported
@@ -75,13 +70,12 @@ export function ThemeProvider({
     const handleStorage = (e: StorageEvent) => {
       if (e.key !== storageKey) return;
 
-      const t = (e.newValue || themeState) as Theme;
-      setTheme(t);
+      if (isTheme(e.newValue)) setThemeState(e.newValue);
     };
 
     window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
-  }, [setTheme, storageKey, themeState]);
+  }, [storageKey]);
 
   // always listen to System preference
   useEffect(() => {
@@ -94,19 +88,17 @@ export function ThemeProvider({
     return () => media.removeListener(handleMediaQuery);
   }, [handleMediaQuery]);
 
-  // whenever theme changes, apply it
-  useEffect(() => {
-    setTheme(theme || 'system');
-  }, [applyTheme, setTheme, theme]);
-
   useEffect(() => {
     applyTheme(themeState);
   }, [applyTheme, themeState]);
 
-  const providerValue: ThemeProviderState = {
-    theme: themeState,
-    setTheme,
-  };
+  const providerValue = React.useMemo<ThemeProviderState>(
+    () => ({
+      theme: themeState,
+      setTheme,
+    }),
+    [setTheme, themeState],
+  );
 
   return (
     <ThemeProviderContext.Provider {...props} value={providerValue}>
@@ -132,11 +124,12 @@ const getSystemTheme = (e?: MediaQueryList | MediaQueryListEvent): Theme => {
 
 const getTheme = (key: string, fallback: Theme): Theme => {
   if (isServer) return fallback;
-  let theme: Theme = fallback;
   try {
-    theme = (localStorage.getItem(key) as Theme) || undefined;
+    const storedTheme = localStorage.getItem(key);
+    return isTheme(storedTheme) ? storedTheme : fallback;
   } catch {
-    /* empty */
+    return fallback;
   }
-  return theme || fallback;
 };
+
+const isTheme = (value: string | null): value is Theme => value === 'dark' || value === 'light' || value === 'system';

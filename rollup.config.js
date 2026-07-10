@@ -12,12 +12,15 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 import packageJson from './package.json';
 
+const peerDependencies = Object.keys(packageJson.peerDependencies || {});
+const isPeerDependency = (id) => peerDependencies.some((dependency) => id === dependency || id.startsWith(`${dependency}/`));
+
 /**
  * @type {import('rollup').RollupOptions}
  */
 const config = {
   input: ['src/index.ts', 'src/styles/index.ts', 'src/styles/theme-preset.js'],
-  external: Object.keys(packageJson.peerDependencies || {}),
+  external: isPeerDependency,
   output: [
     {
       dir: 'dist',
@@ -27,9 +30,9 @@ const config = {
       preserveModulesRoot: 'src',
       entryFileNames: (chunkInfo) => {
         if (chunkInfo.name.includes('node_modules')) {
-          return chunkInfo.name.replace('node_modules', 'external') + '.js';
+          return chunkInfo.name.replace('node_modules', 'external') + '.mjs';
         }
-        return '[name].js';
+        return '[name].mjs';
       },
     },
   ],
@@ -84,6 +87,6 @@ const typesConfig = {
   output: [{ file: 'dist/index.d.ts', format: 'esm' }],
   plugins: [dts()],
   // https://stackoverflow.com/questions/71848226/creating-react-library-with-rollup-js-i-get-error-null-reading-usestate/7260405
-  external: [/\.(css|less|scss)$/, ...(Object.keys(packageJson.peerDependencies) || {})],
+  external: (id) => /\.(css|less|scss)$/.test(id) || isPeerDependency(id),
 };
 export default [config, typesConfig];

@@ -133,10 +133,19 @@ const events: EventCalendarEvent[] = [
 
 const Component = () => {
   const ref = React.useRef<InstanceType<typeof FullCalendar>>(null);
-  return <EventCalendar ref={ref} events={events} />;
+  return <EventCalendar ref={ref} events={events} calendarProps={{ initialDate: '2026-06-06' }} />;
 };
 
 describe('EventCalendar', () => {
+  beforeAll(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(2026, 5, 6, 12));
+  });
+
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+
   it('should render EventCalendar component to match snapshot', () => {
     const result = render(<Component />);
     expect(result).toMatchSnapshot();

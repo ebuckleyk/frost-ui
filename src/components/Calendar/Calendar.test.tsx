@@ -9,6 +9,7 @@ const Component = () => {
     <Calendar
       mode="single"
       startMonth={new Date(2024, 4)}
+      defaultMonth={new Date(2026, 5, 6)}
       selected={date}
       className="
       rounded-md border shadow-sm
@@ -18,6 +19,15 @@ const Component = () => {
 };
 
 describe('Calendar', () => {
+  beforeAll(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(2026, 5, 6, 12));
+  });
+
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+
   it('should render Calendar component to match snapshot', () => {
     const result = render(<Component />);
     expect(result).toMatchSnapshot();
