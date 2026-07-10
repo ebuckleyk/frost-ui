@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.19.0
+
+### Minor Changes
+
+- c233feb: Fix component subpath exports and ESM package output, restore persisted theme behavior, and improve build and calendar test reliability.
+
 ## 1.18.0
 
 ### Minor Changes
