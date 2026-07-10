@@ -32,6 +32,7 @@ export * from './HoverCard';
 export * from './Input';
 export * from './InputGroup';
 export * from './InputOTP';
+export * from './Icons';
 export * from './Item';
 export * from './Kbd';
 export * from './Label';
