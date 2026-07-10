@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import './utilities.css';
 
 @source '../components';
 
@@ -355,6 +356,27 @@
 
 /* Glassmorphism Utility Classes */
 @layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklch, var(--color-muted-foreground) 35%, transparent) transparent;
+  }
+
+  .scrollbar-gutter-stable {
+    scrollbar-gutter: stable;
+  }
+
+  .contain-content {
+    contain: content;
+  }
+
   .glass {
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
@@ -511,7 +533,8 @@
   .dark .bg-frost-ambient {
     background:
       radial-gradient(circle at 20% 10%, color-mix(in oklch, var(--primary) 6%, transparent), transparent 34%),
-      radial-gradient(circle at 78% 0%, color-mix(in oklch, var(--accent) 6%, transparent), transparent 30%), var(--background);
+      radial-gradient(circle at 78% 0%, color-mix(in oklch, var(--accent) 6%, transparent), transparent 30%),
+      var(--background);
     background-size:
       140% 140%,
       100% 100%,
@@ -564,7 +587,11 @@
   .toaster [data-sonner-toast] {
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    background: color-mix(in oklch, var(--color-popover) calc(var(--glass-popover) * 100%), var(--glass-ambient-sm)) !important;
+    background: color-mix(
+      in oklch,
+      var(--color-popover) calc(var(--glass-popover) * 100%),
+      var(--glass-ambient-sm)
+    ) !important;
     border-color: var(--glass-edge) !important;
     box-shadow:
       inset 0 1px 0 var(--glass-highlight-soft),

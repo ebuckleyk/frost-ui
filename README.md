@@ -35,12 +35,29 @@ The raw `@ebuckleyk/frost-ui/tailwind.css` entry imports Tailwind, Frost UI desi
 ### CSS entrypoints
 
 - **Tailwind v4 apps:** import `@ebuckleyk/frost-ui/tailwind.css` from your app CSS. This keeps Frost UI theme/base/utility CSS raw so your app's Tailwind build can generate both Frost UI component utilities and your app-local utilities from your own `@source` directives.
+- **Utilities only:** import `@ebuckleyk/frost-ui/utilities.css` after Tailwind when a Tailwind-v4 library needs the shadcn-aligned `scroll-fade` and `shimmer` utilities without Frost UI's theme or base styles.
 - **Compiled CSS compatibility:** existing consumers can continue importing `@ebuckleyk/frost-ui/styles.css` from JavaScript/TypeScript. This is precompiled CSS and is kept for backward compatibility, but it cannot scan/generate utilities that only exist in a consuming app.
+
+### Scroll fade and shimmer utilities
+
+The raw Tailwind entrypoints expose the complete utility APIs, including directional and parameterized forms:
+
+```css
+@import 'tailwindcss';
+@import '@ebuckleyk/frost-ui/utilities.css';
+```
+
+```tsx
+<div className="scroll-fade-y overflow-y-auto">...</div>
+<p className="shimmer shimmer-duration-1500">Generating response...</p>
+```
+
+The common non-parameterized classes are also included in `@ebuckleyk/frost-ui/styles.css`. Parameterized classes such as `scroll-fade-8`, `shimmer-duration-1500`, and `shimmer-color-primary` require a raw Tailwind entrypoint so the consuming app can generate the requested values.
 
 ### Peer dependencies
 
 - Required: `react`, `react-dom`
-- Optional (install only what you use): Radix UI packages, `@base-ui/react`, `date-fns`, `cmdk`, `lucide-react`, `sonner`, `vaul`, `react-hook-form`, `react-day-picker`, `recharts`, FullCalendar packages, `slate`, `input-otp`, `embla-carousel-react`, `react-dropzone`, and `dompurify`.
+- Optional (install only what you use): Radix UI packages, `@base-ui/react`, `@shadcn/react`, `date-fns`, `cmdk`, `lucide-react`, `sonner`, `vaul`, `react-hook-form`, `react-day-picker`, `recharts`, FullCalendar packages, `slate`, `input-otp`, `embla-carousel-react`, `react-dropzone`, and `dompurify`.
 - Full list: see `package.json` `peerDependencies`.
 
 ### Tree-shaking imports
@@ -90,6 +107,16 @@ function Example() {
 ```
 
 `DirectionProvider` and `useDirection` are exported from `@ebuckleyk/frost-ui/components/Direction` for RTL-aware layouts.
+
+### Conversation components
+
+`Attachment`, `Bubble`, `Marker`, and `Message` provide composable conversation surfaces. `MessageScroller` adds streaming-aware transcript scrolling and requires the optional `@shadcn/react` peer dependency:
+
+```sh
+npm i @shadcn/react
+```
+
+Each component supports direct, tree-shakable imports such as `@ebuckleyk/frost-ui/components/Attachment`.
 
 ### Default Backgrounds
 
