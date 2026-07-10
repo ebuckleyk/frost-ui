@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.18.0
+
+### Minor Changes
+
+- bda1fbe: Add the Attachment, Bubble, Marker, Message, and Message Scroller components from the latest shadcn catalog, adapted to Frost UI styling. Add importable scroll-fade and shimmer utilities for consuming Tailwind libraries.
+
 ## 1.17.1
 
 ### Patch Changes
