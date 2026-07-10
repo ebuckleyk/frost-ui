@@ -6,7 +6,7 @@
 
     /* Modules */
     "module": "ESNext", // Generate modern JS modules
-    "moduleResolution": "node10", //Follow node.js rules for finding modules
+    "moduleResolution": "bundler", // Resolve modern package exports used by bundled dependencies
 
     /* Emit */
     "declaration": true, // output .d.ts file for library types
