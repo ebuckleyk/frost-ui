@@ -114,6 +114,7 @@ const preview: Preview = {
     backgrounds: {
       value: 'frost-ambient',
     },
+    theme: 'dark',
   },
 };
 

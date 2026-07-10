@@ -14,7 +14,7 @@ function FieldSet({ className, ...props }: React.ComponentProps<'fieldset'>) {
     <fieldset
       data-slot="field-set"
       className={cn(
-        'flex flex-col gap-6',
+        'flex flex-col gap-5',
         `
           has-[>[data-slot=checkbox-group]]:gap-3
           has-[>[data-slot=radio-group]]:gap-3
@@ -36,8 +36,8 @@ function FieldLegend({
       data-slot="field-legend"
       data-variant={variant}
       className={cn(
-        'mb-3 font-medium',
-        'data-[variant=legend]:text-base',
+        'mb-2.5 font-medium',
+        'data-[variant=legend]:text-sm',
         `
         data-[variant=label]:text-sm
       `,
@@ -54,9 +54,9 @@ function FieldGroup({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="field-group"
       className={cn(
         `
-          group/field-group @container/field-group flex w-full flex-col gap-7
+          group/field-group @container/field-group flex w-full flex-col gap-5
           data-[slot=checkbox-group]:gap-3
-          *:data-[slot=field-group]:gap-4
+          *:data-[slot=field-group]:gap-3
         `,
         className,
       )}
@@ -67,7 +67,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<'div'>) {
 
 const fieldVariants = cva(
   `
-    group/field flex w-full gap-3
+    group/field flex w-full gap-2.5
     data-[invalid=true]:text-destructive
   `,
   {
@@ -153,7 +153,7 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>)
         `
           has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col
           has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border
-          *:data-[slot=field]:p-4
+          *:data-[slot=field]:p-3
         `,
         `
           has-data-[state=checked]:border-primary

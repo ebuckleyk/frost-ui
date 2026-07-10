@@ -6,11 +6,11 @@ exports[`Card > should render Card component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground w-[380px]"
+        class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground w-[380px]"
         data-slot="card"
       >
         <div
-          class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+          class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4"
           data-slot="card-header"
         >
           <div
@@ -27,7 +27,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="px-6 grid gap-4"
+          class="px-5 grid gap-4"
           data-slot="card-content"
         >
           <div
@@ -171,7 +171,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="flex items-center px-6 [.border-t]:pt-6"
+          class="flex items-center px-5 [.border-t]:pt-4"
           data-slot="card-footer"
         >
           <button
@@ -203,11 +203,11 @@ exports[`Card > should render Card component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground w-[380px]"
+      class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground w-[380px]"
       data-slot="card"
     >
       <div
-        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4"
         data-slot="card-header"
       >
         <div
@@ -224,7 +224,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="px-6 grid gap-4"
+        class="px-5 grid gap-4"
         data-slot="card-content"
       >
         <div
@@ -368,7 +368,7 @@ exports[`Card > should render Card component to match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="flex items-center px-6 [.border-t]:pt-6"
+        class="flex items-center px-5 [.border-t]:pt-4"
         data-slot="card-footer"
       >
         <button

@@ -33,7 +33,7 @@ function AccordionTrigger({ className, children, ...props }: React.ComponentProp
         data-slot="accordion-trigger"
         className={cn(
           `
-            flex flex-1 items-start justify-between gap-4 rounded-md py-4
+            flex flex-1 items-start justify-between gap-3 rounded-md py-3
             text-left text-sm font-medium transition-all outline-none
             hover:underline
             focus-visible:border-ring focus-visible:ring-[3px]
@@ -68,7 +68,7 @@ function AccordionContent({ className, children, ...props }: React.ComponentProp
       "
       {...props}
     >
-      <div className={cn('pt-0 pb-4', className)}>{children}</div>
+      <div className={cn('pt-0 pb-3', className)}>{children}</div>
     </AccordionPrimitive.Content>
   );
 }

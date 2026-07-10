@@ -28,7 +28,7 @@ function HoverCardContent({
         className={cn(
           `
             glass-popover shadow-frost-md z-50 w-64
-            origin-(--radix-hover-card-content-transform-origin) rounded-md p-4 text-popover-foreground
+            origin-(--radix-hover-card-content-transform-origin) rounded-md p-3 text-popover-foreground
             outline-none
             data-[side=bottom]:slide-in-from-top-2
             data-[side=left]:slide-in-from-right-2

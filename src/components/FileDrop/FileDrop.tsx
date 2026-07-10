@@ -132,7 +132,7 @@ function FileDropArea({ ...props }: ScopedProps<FileDropAreaProps>) {
 
   const rootClassName = cn(
     `
-      glass-card flex w-full flex-col items-center rounded-2xl border p-6
+      glass-card flex w-full flex-col items-center rounded-xl border p-5
       transition-[background-color,border-color,box-shadow,opacity] duration-200 ease-in-out
     `,
     isDragAccept && 'shadow-frost-glow border-primary/40 bg-primary/10',

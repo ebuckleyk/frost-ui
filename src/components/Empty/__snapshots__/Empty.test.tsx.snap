@@ -6,7 +6,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
+        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-6 text-center text-balance md:p-8"
         data-slot="empty"
       >
         <div
@@ -21,7 +21,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
             Icon
           </div>
           <div
-            class="text-lg font-medium tracking-tight"
+            class="text-base font-medium tracking-tight"
             data-slot="empty-title"
           >
             No results
@@ -38,7 +38,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
+      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-6 text-center text-balance md:p-8"
       data-slot="empty"
     >
       <div
@@ -53,7 +53,7 @@ exports[`Empty > should render Empty component to match snapshot 1`] = `
           Icon
         </div>
         <div
-          class="text-lg font-medium tracking-tight"
+          class="text-base font-medium tracking-tight"
           data-slot="empty-title"
         >
           No results
@@ -127,7 +127,7 @@ exports[`Empty > should render Empty with content to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
+        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-6 text-center text-balance md:p-8"
         data-slot="empty"
       >
         <div
@@ -135,14 +135,14 @@ exports[`Empty > should render Empty with content to match snapshot 1`] = `
           data-slot="empty-header"
         >
           <div
-            class="text-lg font-medium tracking-tight"
+            class="text-base font-medium tracking-tight"
             data-slot="empty-title"
           >
             No results
           </div>
         </div>
         <div
-          class="flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance"
+          class="flex w-full max-w-sm min-w-0 flex-col items-center gap-3 text-sm text-balance"
           data-slot="empty-content"
         >
           Content here
@@ -152,7 +152,7 @@ exports[`Empty > should render Empty with content to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
+      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-6 text-center text-balance md:p-8"
       data-slot="empty"
     >
       <div
@@ -160,14 +160,14 @@ exports[`Empty > should render Empty with content to match snapshot 1`] = `
         data-slot="empty-header"
       >
         <div
-          class="text-lg font-medium tracking-tight"
+          class="text-base font-medium tracking-tight"
           data-slot="empty-title"
         >
           No results
         </div>
       </div>
       <div
-        class="flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance"
+        class="flex w-full max-w-sm min-w-0 flex-col items-center gap-3 text-sm text-balance"
         data-slot="empty-content"
       >
         Content here
@@ -234,7 +234,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
+        class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-6 text-center text-balance md:p-8"
         data-slot="empty"
       >
         <div
@@ -249,7 +249,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
             Icon
           </div>
           <div
-            class="text-lg font-medium tracking-tight"
+            class="text-base font-medium tracking-tight"
             data-slot="empty-title"
           >
             No results
@@ -266,7 +266,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-6 text-center text-balance md:p-12"
+      class="glass-card flex min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-6 text-center text-balance md:p-8"
       data-slot="empty"
     >
       <div
@@ -281,7 +281,7 @@ exports[`Empty > should render Empty with icon variant to match snapshot 1`] = `
           Icon
         </div>
         <div
-          class="text-lg font-medium tracking-tight"
+          class="text-base font-medium tracking-tight"
           data-slot="empty-title"
         >
           No results

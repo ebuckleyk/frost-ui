@@ -36,10 +36,10 @@ const typographyVariants = cva('', {
       h3: 'scroll-m-20 text-2xl font-semibold tracking-tight',
       h4: 'scroll-m-20 text-xl font-semibold tracking-tight',
       p: `
-        leading-7
-        not-first:mt-6
+        leading-6
+        not-first:mt-4
       `,
-      blockquote: 'mt-6 border-l-2 pl-6 italic',
+      blockquote: 'mt-4 border-l-2 pl-4 italic',
       table: 'w-full',
       thead: '',
       tr: `
@@ -47,27 +47,27 @@ const typographyVariants = cva('', {
         even:bg-muted
       `,
       th: `
-        border px-4 py-2 text-left font-bold
+        border px-3 py-2 text-left font-bold
         [[align=center]]:text-center
         [[align=right]]:text-right
       `,
       tbody: '',
       td: `
-        border px-4 py-2 text-left
+        border px-3 py-2 text-left
         [[align=center]]:text-center
         [[align=right]]:text-right
       `,
       ul: `
-        my-6 ml-6 list-disc
-        [&>li]:mt-2
+        my-4 ml-5 list-disc
+        [&>li]:mt-1.5
       `,
       li: '',
       code: `
         relative rounded-sm bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm
         font-semibold
       `,
-      lead: 'text-xl text-muted-foreground',
-      large: 'text-lg font-semibold',
+      lead: 'text-lg text-muted-foreground',
+      large: 'text-base font-semibold',
       small: 'text-sm leading-none font-medium',
       muted: 'text-sm text-muted-foreground',
     },

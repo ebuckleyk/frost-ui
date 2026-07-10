@@ -49,7 +49,7 @@ function DialogContent({ className, children, ...props }: React.ComponentProps<t
           `
             glass-dialog shadow-frost-lg fixed top-[50%] left-[50%] z-50 grid
             w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%]
-            gap-4 rounded-lg p-6 duration-200
+            gap-3 rounded-lg p-5 duration-200
             data-[state=closed]:animate-out data-[state=closed]:fade-out-0
             data-[state=closed]:zoom-out-95
             data-[state=open]:animate-in data-[state=open]:fade-in-0
@@ -117,7 +117,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<typeof Dialog
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn('text-lg leading-none font-semibold', className)}
+      className={cn('text-base leading-none font-semibold', className)}
       {...props}
     />
   );
