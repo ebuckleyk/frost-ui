@@ -334,7 +334,7 @@
   }
 
   .richtext-editor [data-slate-editor] > * + * {
-    margin-top: 1em;
+    margin-top: 0.75em;
   }
 
   @layer base {

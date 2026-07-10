@@ -42,15 +42,15 @@ function CommandDialog({
       <DialogContent className="overflow-hidden p-0">
         <Command
           className="
-            **:data-[slot=command-input-wrapper]:h-12
+            **:data-[slot=command-input-wrapper]:h-10
             [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0
             [&_[cmdk-input-wrapper]_svg]:size-5
             [&_[cmdk-item]_svg]:size-5
             **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:font-medium
             **:[[cmdk-group-heading]]:text-muted-foreground
             **:[[cmdk-group]]:px-2
-            **:[[cmdk-input]]:h-12
-            **:[[cmdk-item]]:px-2 **:[[cmdk-item]]:py-3
+            **:[[cmdk-input]]:h-10
+            **:[[cmdk-item]]:px-2 **:[[cmdk-item]]:py-2
           "
         >
           {children}
@@ -73,7 +73,7 @@ function CommandInput({ className, ...props }: React.ComponentProps<typeof Comma
         data-slot="command-input"
         className={cn(
           `
-            flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none
+            flex h-9 w-full rounded-md bg-transparent py-2 text-sm outline-none
             placeholder:text-muted-foreground
             disabled:cursor-not-allowed disabled:opacity-50
           `,
@@ -105,7 +105,7 @@ function CommandEmpty({ ...props }: React.ComponentProps<typeof CommandPrimitive
     <CommandPrimitive.Empty
       data-slot="command-empty"
       className="
-    py-6 text-center text-sm
+    py-4 text-center text-sm
   "
       {...props}
     />

@@ -48,6 +48,27 @@ describe('ThemeProvider', () => {
     expect(document.documentElement).toHaveClass('light');
   });
 
+  it('applies changes to the theme prop', () => {
+    const { rerender } = render(
+      <ThemeProvider storageKey={storageKey} theme="dark">
+        <ThemeConsumer />
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByRole('button')).toHaveTextContent('dark');
+    expect(document.documentElement).toHaveClass('dark');
+
+    rerender(
+      <ThemeProvider storageKey={storageKey} theme="light">
+        <ThemeConsumer />
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByRole('button')).toHaveTextContent('light');
+    expect(document.documentElement).toHaveClass('light');
+    expect(document.documentElement).not.toHaveClass('dark');
+  });
+
   it('throws when useTheme is used outside ThemeProvider', () => {
     expect(() => render(<ThemeConsumer />)).toThrow('useTheme must be used within a ThemeProvider');
   });

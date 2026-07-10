@@ -22,10 +22,11 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 
 export function ThemeProvider({
   children,
-  theme = 'system',
+  theme: themeProp,
   storageKey = 'ebuckleyk/frost-ui-theme',
   ...props
 }: ThemeProviderProps) {
+  const theme = themeProp ?? 'system';
   const [themeState, setThemeState] = useState<Theme>(() => getTheme(storageKey, theme));
 
   const applyTheme = useCallback((t: Theme) => {
@@ -64,6 +65,11 @@ export function ThemeProvider({
     },
     [storageKey],
   );
+
+  // Keep externally controlled themes in sync, such as Storybook globals.
+  useEffect(() => {
+    if (themeProp !== undefined) setThemeState(themeProp);
+  }, [themeProp]);
 
   // localStorage event handling
   useEffect(() => {

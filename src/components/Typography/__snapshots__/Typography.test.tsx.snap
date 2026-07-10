@@ -12,7 +12,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The Joke Tax Chronicles
         </h1>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           Once upon a time, in a far-off land, there was a very lazy king who spent all day lounging on his throne. One day, his advisors came to him with a problem: the kingdom was running out of money.
         </p>
@@ -22,7 +22,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The King's Plan
         </h2>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           The king thought long and hard, and finally came up with
            
@@ -35,7 +35,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           : he would tax the jokes in the kingdom.
         </p>
         <blockquote
-          class="mt-6 border-l-2 pl-6 italic"
+          class="mt-4 border-l-2 pl-4 italic"
         >
           "After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."
         </blockquote>
@@ -45,12 +45,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The Joke Tax
         </h3>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           The king's subjects were not amused. They grumbled and complained, but the king was firm:
         </p>
         <ul
-          class="my-6 ml-6 list-disc [&>li]:mt-2"
+          class="my-4 ml-5 list-disc [&>li]:mt-1.5"
         >
           <li
             class=""
@@ -69,7 +69,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           </li>
         </ul>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           As a result, people stopped telling jokes, and the kingdom fell into a gloom. But there was one person who refused to let the king's foolishness get him down: a court jester named Jokester.
         </p>
@@ -79,12 +79,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           Jokester's Revolt
         </h3>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           Jokester began sneaking into the castle in the middle of the night and leaving jokes all over the place: under the king's pillow, in his soup, even in the royal toilet. The king was furious, but he couldn't seem to stop Jokester.
         </p>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And once they started laughing, they couldn't stop.
         </p>
@@ -94,7 +94,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           The People's Rebellion
         </h3>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           The people of the kingdom, feeling uplifted by the laughter, started to tell jokes and puns again, and soon the entire kingdom was in on the joke.
         </p>
@@ -111,12 +111,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <th
-                  class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   King's Treasury
                 </th>
                 <th
-                  class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   People's happiness
                 </th>
@@ -129,12 +129,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <td
-                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Empty
                 </td>
                 <td
-                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Overflowing
                 </td>
@@ -143,12 +143,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <td
-                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Modest
                 </td>
                 <td
-                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Satisfied
                 </td>
@@ -157,12 +157,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
                 class="m-0 border-t p-0 even:bg-muted"
               >
                 <td
-                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Full
                 </td>
                 <td
-                  class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                  class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
                 >
                   Ecstatic
                 </td>
@@ -171,12 +171,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
           </table>
         </div>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.
         </p>
         <p
-          class="leading-7 not-first:mt-6"
+          class="leading-6 not-first:mt-4"
         >
           The moral of the story is: never underestimate the power of a good laugh and always be careful of bad ideas.
         </p>
@@ -191,7 +191,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The Joke Tax Chronicles
       </h1>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         Once upon a time, in a far-off land, there was a very lazy king who spent all day lounging on his throne. One day, his advisors came to him with a problem: the kingdom was running out of money.
       </p>
@@ -201,7 +201,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The King's Plan
       </h2>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         The king thought long and hard, and finally came up with
          
@@ -214,7 +214,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         : he would tax the jokes in the kingdom.
       </p>
       <blockquote
-        class="mt-6 border-l-2 pl-6 italic"
+        class="mt-4 border-l-2 pl-4 italic"
       >
         "After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."
       </blockquote>
@@ -224,12 +224,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The Joke Tax
       </h3>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         The king's subjects were not amused. They grumbled and complained, but the king was firm:
       </p>
       <ul
-        class="my-6 ml-6 list-disc [&>li]:mt-2"
+        class="my-4 ml-5 list-disc [&>li]:mt-1.5"
       >
         <li
           class=""
@@ -248,7 +248,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         </li>
       </ul>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         As a result, people stopped telling jokes, and the kingdom fell into a gloom. But there was one person who refused to let the king's foolishness get him down: a court jester named Jokester.
       </p>
@@ -258,12 +258,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         Jokester's Revolt
       </h3>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         Jokester began sneaking into the castle in the middle of the night and leaving jokes all over the place: under the king's pillow, in his soup, even in the royal toilet. The king was furious, but he couldn't seem to stop Jokester.
       </p>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And once they started laughing, they couldn't stop.
       </p>
@@ -273,7 +273,7 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         The People's Rebellion
       </h3>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         The people of the kingdom, feeling uplifted by the laughter, started to tell jokes and puns again, and soon the entire kingdom was in on the joke.
       </p>
@@ -290,12 +290,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <th
-                class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
               >
                 King's Treasury
               </th>
               <th
-                class="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right"
               >
                 People's happiness
               </th>
@@ -308,12 +308,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <td
-                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Empty
               </td>
               <td
-                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Overflowing
               </td>
@@ -322,12 +322,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <td
-                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Modest
               </td>
               <td
-                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Satisfied
               </td>
@@ -336,12 +336,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
               class="m-0 border-t p-0 even:bg-muted"
             >
               <td
-                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Full
               </td>
               <td
-                class="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
+                class="border px-3 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right"
               >
                 Ecstatic
               </td>
@@ -350,12 +350,12 @@ exports[`Typography > should render Typography component to match snapshot 1`] =
         </table>
       </div>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.
       </p>
       <p
-        class="leading-7 not-first:mt-6"
+        class="leading-6 not-first:mt-4"
       >
         The moral of the story is: never underestimate the power of a good laugh and always be careful of bad ideas.
       </p>

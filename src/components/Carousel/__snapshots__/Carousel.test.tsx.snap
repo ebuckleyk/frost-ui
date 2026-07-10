@@ -29,7 +29,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
                 class="p-1"
               >
                 <div
-                  class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                  class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                   data-slot="card"
                 >
                   <div
@@ -55,7 +55,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
                 class="p-1"
               >
                 <div
-                  class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                  class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                   data-slot="card"
                 >
                   <div
@@ -81,7 +81,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
                 class="p-1"
               >
                 <div
-                  class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                  class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                   data-slot="card"
                 >
                   <div
@@ -107,7 +107,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
                 class="p-1"
               >
                 <div
-                  class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                  class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                   data-slot="card"
                 >
                   <div
@@ -133,7 +133,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
                 class="p-1"
               >
                 <div
-                  class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                  class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                   data-slot="card"
                 >
                   <div
@@ -241,7 +241,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
               class="p-1"
             >
               <div
-                class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                 data-slot="card"
               >
                 <div
@@ -267,7 +267,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
               class="p-1"
             >
               <div
-                class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                 data-slot="card"
               >
                 <div
@@ -293,7 +293,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
               class="p-1"
             >
               <div
-                class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                 data-slot="card"
               >
                 <div
@@ -319,7 +319,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
               class="p-1"
             >
               <div
-                class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                 data-slot="card"
               >
                 <div
@@ -345,7 +345,7 @@ exports[`Carousel > should render Carousel component to match snapshot 1`] = `
               class="p-1"
             >
               <div
-                class="glass-card shadow-frost-sm flex flex-col gap-6 rounded-xl py-6 text-card-foreground"
+                class="glass-card shadow-frost-sm flex flex-col gap-4 rounded-xl py-5 text-card-foreground"
                 data-slot="card"
               >
                 <div

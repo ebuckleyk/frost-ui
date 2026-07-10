@@ -45,7 +45,7 @@ function AlertDialogContent({ className, ...props }: React.ComponentProps<typeof
           `
             glass-dialog shadow-frost-lg fixed top-[50%] left-[50%] z-50 grid
             w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%]
-            gap-4 rounded-lg p-6 duration-200
+            gap-3 rounded-lg p-5 duration-200
             data-[state=closed]:animate-out data-[state=closed]:fade-out-0
             data-[state=closed]:zoom-out-95
             data-[state=open]:animate-in data-[state=open]:fade-in-0
@@ -96,7 +96,7 @@ function AlertDialogTitle({ className, ...props }: React.ComponentProps<typeof A
   return (
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
-      className={cn('text-lg font-semibold', className)}
+      className={cn('text-base font-semibold', className)}
       {...props}
     />
   );

@@ -158,7 +158,7 @@ function RichTextArea({ ...props }: ScopedProps<RichTextAreaProps>) {
       role="textbox"
       className={cn(
         `
-          richtext-editor glass-card shadow-frost-sm min-h-32 rounded-md p-4
+          richtext-editor glass-card shadow-frost-sm min-h-32 rounded-md p-3
           text-foreground transition-[border-color,box-shadow]
           focus-within:border-ring focus-within:ring-[3px]
           focus-within:ring-ring/50
