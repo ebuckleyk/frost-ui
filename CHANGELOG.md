@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.20.0
+
+### Minor Changes
+
+- eab6021: Refine component typography and spacing for a more premium, compact density, and synchronize explicit theme prop changes so Storybook dark and light themes update immediately.
+
 ## 1.19.0
 
 ### Minor Changes
