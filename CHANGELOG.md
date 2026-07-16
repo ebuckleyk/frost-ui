@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.21.0
+
+### Minor Changes
+
+- f13be4c: Upgrade Recharts to v3 and Storybook to v10.5.0.
+
 ## 1.20.0
 
 ### Minor Changes
