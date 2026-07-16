@@ -35,7 +35,7 @@
   },
   "scripts": {
     "prebuild": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "tsc --emitDeclarationOnly && rollup -c --bundleConfigAsCjs",
     "format": "prettier --write \"src/**/*.{js,ts,tsx,mjs,cjs,json}\"",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build -o docs-build",

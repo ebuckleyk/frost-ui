@@ -9,11 +9,35 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import sizes from 'rollup-plugin-sizes';
 import { visualizer } from 'rollup-plugin-visualizer';
+import ts from 'typescript';
 
 import packageJson from './package.json';
 
 const peerDependencies = Object.keys(packageJson.peerDependencies || {});
-const isPeerDependency = (id) => peerDependencies.some((dependency) => id === dependency || id.startsWith(`${dependency}/`));
+const isPeerDependency = (id) =>
+  peerDependencies.some((dependency) => id === dependency || id.startsWith(`${dependency}/`));
+
+// Keep Rollup from receiving raw TypeScript when the declaration emitter cannot resolve a source path.
+const transpileTypeScript = () => ({
+  name: 'transpile-typescript',
+  transform(code, id) {
+    if (!/\.[cm]?tsx?$/.test(id)) {
+      return null;
+    }
+
+    return {
+      code: ts.transpileModule(code, {
+        compilerOptions: {
+          jsx: ts.JsxEmit.React,
+          module: ts.ModuleKind.ESNext,
+          target: ts.ScriptTarget.ES2016,
+        },
+        fileName: id,
+      }).outputText,
+      map: null,
+    };
+  },
+});
 
 /**
  * @type {import('rollup').RollupOptions}
@@ -43,8 +67,9 @@ const config = {
     }),
     peerDepsExternal(),
     resolve(),
-    commonjs(),
     typescript({ tsconfig: './tsconfig.json', exclude: ['**/*.test.ts', '**/*.stories.ts'] }),
+    transpileTypeScript(),
+    commonjs(),
     postcss({
       extensions: ['.css'],
       minimize: true,
