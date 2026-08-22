@@ -45,6 +45,7 @@ export * from './NavigationMenu';
 export * from './Pagination';
 export * from './Popover';
 export * from './Progress';
+export * from './Questionnaire';
 export * from './RadioGroup';
 export * from './Resizable';
 export * from './RichText';
