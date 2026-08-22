@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.22.0
+
+### Minor Changes
+
+- 321f5a4: Add the accessible multi-step Questionnaire component and restore pointer cursors for enabled buttons.
+
 ## 1.21.0
 
 ### Minor Changes
