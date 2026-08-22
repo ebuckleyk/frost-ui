@@ -118,6 +118,27 @@ npm i @shadcn/react
 
 Each component supports direct, tree-shakable imports such as `@ebuckleyk/frost-ui/components/Attachment`.
 
+### Questionnaire
+
+`Questionnaire` provides an accessible, multi-step form flow with single or multiple choices, freeform answers, required validation, optional skips, progress, and keyboard shortcuts:
+
+```tsx
+import {
+  Questionnaire,
+  QuestionnaireActions,
+  QuestionnaireChoice,
+  QuestionnaireChoices,
+  QuestionnaireError,
+  QuestionnaireItem,
+  QuestionnaireNext,
+  QuestionnaireProgress,
+  QuestionnaireSubmit,
+  QuestionnaireTitle,
+} from '@ebuckleyk/frost-ui/components/Questionnaire';
+```
+
+Pass the ordered item definitions to `Questionnaire`, then compose each item from its title, choices or freeform input, error state, and navigation actions.
+
 ### Default Backgrounds
 
 Frost UI includes three optional page/app background utilities:
