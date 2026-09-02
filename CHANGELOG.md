@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.23.0
+
+### Minor Changes
+
+- 2b36ec1: Replace the legacy RichText API with the controlled RichTextEditor, typed document serialization utilities, safe link support, and a read-only renderer. Add the reusable controlled TagsInput with freeform entry, normalization, validation, paste handling, limits, and suggestions.
+
 ## 1.22.0
 
 ### Minor Changes
