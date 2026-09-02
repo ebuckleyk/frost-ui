@@ -1,241 +1,461 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
+import DOMPurify from 'dompurify';
 import escapeHtml from 'escape-html';
-import { Descendant, Editor, Node, Element as SlateElement, Text, Transforms } from 'slate';
-import { RenderElementProps, RenderLeafProps, RenderPlaceholderProps } from 'slate-react';
+import { Editor, Range, Element as SlateElement, Node as SlateNode, Text, Transforms } from 'slate';
+import type { RenderElementProps, RenderLeafProps, RenderPlaceholderProps } from 'slate-react';
 
-import { CustomEditor, CustomElement } from './RichText.types';
+import type {
+  RichTextAlignment,
+  RichTextBlock,
+  RichTextBlockType,
+  RichTextEditorInstance,
+  RichTextElement,
+  RichTextInline,
+  RichTextLink,
+  RichTextListItem,
+  RichTextMark,
+  RichTextText,
+  RichTextValue,
+} from './RichText.types';
 
-const LIST_TYPES = ['numbered-list', 'bulleted-list'];
-const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify'];
+export const EMPTY_RICH_TEXT_VALUE: RichTextValue = [{ type: 'paragraph', children: [{ text: '' }] }];
 
-export const serializeToPlainText = (nodes: Node[]): string => {
-  if (!nodes?.length) return '';
-  return nodes.map((n) => (Node.isNode(n) ? Node.string(n) : '')).join('\n');
-};
+const LIST_TYPES = new Set<RichTextBlockType>(['numbered-list', 'bulleted-list']);
+const ALLOWED_PROTOCOLS = new Set(['http:', 'https:', 'mailto:']);
+const BLOCK_TAGS = new Set(['ADDRESS', 'ARTICLE', 'ASIDE', 'DIV', 'FOOTER', 'HEADER', 'MAIN', 'NAV', 'SECTION']);
 
-const _serialize = (node: Descendant): string => {
-  if (Text.isText(node)) {
-    let str = escapeHtml(node.text);
-    if (node.bold) str = `<strong>${str}</strong>`;
-    if (node.italic) str = `<em>${str}</em>`;
-    if (node.code) str = `<pre><code>${str}</code></pre>`;
-    if (node.underline) str = `<u>${str}</u>`;
-    return str;
+export function cloneRichTextValue(value: RichTextValue): RichTextValue {
+  return JSON.parse(JSON.stringify(value)) as RichTextValue;
+}
+
+export function normalizeRichTextUrl(value: string): string | null {
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+
+  const candidate = /^[a-z][a-z\d+.-]*:/i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  try {
+    const url = new URL(candidate);
+    return ALLOWED_PROTOCOLS.has(url.protocol) ? url.toString() : null;
+  } catch {
+    return null;
   }
+}
 
-  const children = node.children?.map((n) => _serialize(n as any)).join('');
+function serializeText(node: RichTextText): string {
+  let output = escapeHtml(node.text);
+  if (node.bold) output = `<strong>${output}</strong>`;
+  if (node.italic) output = `<em>${output}</em>`;
+  if (node.underline) output = `<u>${output}</u>`;
+  if (node.code) output = `<code>${output}</code>`;
+  return output;
+}
 
-  switch (node.type) {
-    case 'block-quote':
-      return `<blockquote>${children}</blockquote>`;
-    case 'bulleted-list':
-      return `<ul>${children}</ul>`;
-    case 'numbered-list':
-      return `<ol>${children}</ol>`;
-    case 'list-item':
-      return `<li>${children}</li>`;
-    case 'h1':
-      return `<h1>${children}</h1>`;
-    case 'h2':
-      return `<h2>${children}</h2>`;
-    case 'h3':
-      return `<h3>${children}</h3>`;
-    case 'h4':
-      return `<h4>${children}</h4>`;
-    case 'h5':
-      return `<h5>${children}</h5>`;
-    case 'h6':
-      return `<h6>${children}</h6>`;
-    default:
-      return `<p>${children}</p>`;
-  }
-};
-export const serializeToHTML = (nodes: Node[]): string => {
-  if (!nodes?.length) return '';
-  const result = nodes.map((n) => (Node.isNode(n) ? _serialize(n as any) : '')).join('');
-  return result ? `<span data-testid='slate-serialized-html'>${result}</span>` : '';
-};
+function serializeInline(node: RichTextInline): string {
+  if (Text.isText(node)) return serializeText(node);
 
-export const isMarkActive = (editor: CustomEditor, format: string): boolean => {
-  const marks = Editor.marks(editor) as { [key: string]: any };
-  return marks ? marks[format] === true : false;
-};
+  const children = node.children.map(serializeText).join('');
+  const url = normalizeRichTextUrl(node.url);
+  return url ? `<a href="${escapeHtml(url)}">${children}</a>` : children;
+}
 
-export const isBlockActive = (editor: CustomEditor, format: string): boolean => {
-  const blockType = TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type';
-  const { selection } = editor;
-  if (!selection) return false;
+function alignmentAttribute(element: { align?: RichTextAlignment }): string {
+  return element.align ? ` style="text-align: ${element.align}"` : '';
+}
 
-  const [match] = Array.from(
-    Editor.nodes(editor, {
-      at: Editor.unhangRange(editor, selection),
-      match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && n[blockType] === format,
-    }),
+function serializeElement(element: RichTextElement): string {
+  const children = element.children.map((child) =>
+    SlateElement.isElement(child) ? serializeElement(child) : serializeInline(child),
   );
-
-  return !!match;
-};
-
-export const isFormatActive = (editor: CustomEditor, format: string) => {
-  const [match] = Editor.nodes(editor, {
-    match: (n) => {
-      const t = n as any;
-      return t[format] === true;
-    },
-    mode: 'all',
-  });
-  return !!match;
-};
-
-export const toggleMark = (editor: CustomEditor, format: string) => {
-  const isActive = isMarkActive(editor, format);
-
-  if (isActive) {
-    Editor.removeMark(editor, format);
-  } else {
-    Editor.addMark(editor, format, true);
+  const content = children.join('');
+  switch (element.type) {
+    case 'link':
+      return serializeInline(element);
+    case 'block-quote':
+      return `<blockquote${alignmentAttribute(element)}>${content}</blockquote>`;
+    case 'bulleted-list':
+      return `<ul${alignmentAttribute(element)}>${content}</ul>`;
+    case 'numbered-list':
+      return `<ol${alignmentAttribute(element)}>${content}</ol>`;
+    case 'list-item':
+      return `<li${alignmentAttribute(element)}>${content}</li>`;
+    case 'heading-1':
+      return `<h1${alignmentAttribute(element)}>${content}</h1>`;
+    case 'heading-2':
+      return `<h2${alignmentAttribute(element)}>${content}</h2>`;
+    case 'heading-3':
+      return `<h3${alignmentAttribute(element)}>${content}</h3>`;
+    case 'heading-4':
+      return `<h4${alignmentAttribute(element)}>${content}</h4>`;
+    case 'heading-5':
+      return `<h5${alignmentAttribute(element)}>${content}</h5>`;
+    case 'heading-6':
+      return `<h6${alignmentAttribute(element)}>${content}</h6>`;
+    case 'paragraph':
+      return `<p${alignmentAttribute(element)}>${content}</p>`;
   }
-};
+}
 
-export const toggleBlock = (editor: CustomEditor, format: string) => {
-  const isActive = isBlockActive(editor, format);
-  const isList = LIST_TYPES.includes(format);
+export function serializeRichTextToHtml(value: RichTextValue): string {
+  return value.map(serializeElement).join('');
+}
+
+function inlinePlainText(nodes: RichTextInline[]): string {
+  return nodes.map((node) => (Text.isText(node) ? node.text : inlinePlainText(node.children))).join('');
+}
+
+function blockPlainText(element: RichTextElement, listIndex?: number): string {
+  if (element.type === 'link') return inlinePlainText(element.children);
+  if (element.type === 'bulleted-list' || element.type === 'numbered-list') {
+    return element.children
+      .map((item, index) => blockPlainText(item, element.type === 'numbered-list' ? index + 1 : undefined))
+      .join('\n');
+  }
+  const text = inlinePlainText(element.children as RichTextInline[]);
+  if (element.type === 'list-item') return `${listIndex ? `${listIndex}.` : '•'} ${text}`;
+  return text;
+}
+
+export function serializeRichTextToPlainText(value: RichTextValue): string {
+  return value.map((element) => blockPlainText(element)).join('\n');
+}
+
+export function isRichTextEmpty(value: RichTextValue | null | undefined): boolean {
+  return !value?.some((element) => SlateNode.string(element).trim().length > 0);
+}
+
+function getAlignment(element: HTMLElement): RichTextAlignment | undefined {
+  const alignment = element.style.textAlign;
+  return alignment === 'left' || alignment === 'center' || alignment === 'right' || alignment === 'justify'
+    ? alignment
+    : undefined;
+}
+
+function mergeMarks(text: RichTextText, marks: Partial<Omit<RichTextText, 'text'>>): RichTextText {
+  return { ...text, ...marks };
+}
+
+function parseInlineNodes(
+  nodes: NodeListOf<ChildNode> | ChildNode[],
+  marks: Partial<Omit<RichTextText, 'text'>> = {},
+): RichTextInline[] {
+  const output: RichTextInline[] = [];
+
+  Array.from(nodes).forEach((node) => {
+    if (node.nodeType === globalThis.Node.TEXT_NODE) {
+      if (node.textContent) output.push({ text: node.textContent, ...marks });
+      return;
+    }
+    if (!(node instanceof HTMLElement)) return;
+
+    const tag = node.tagName;
+    if (tag === 'BR') {
+      output.push({ text: '\n', ...marks });
+      return;
+    }
+
+    const nextMarks = { ...marks };
+    if (tag === 'STRONG' || tag === 'B') nextMarks.bold = true;
+    if (tag === 'EM' || tag === 'I') nextMarks.italic = true;
+    if (tag === 'U') nextMarks.underline = true;
+    if (tag === 'CODE') nextMarks.code = true;
+
+    const children = parseInlineNodes(node.childNodes, nextMarks);
+    if (tag === 'A') {
+      const url = normalizeRichTextUrl(node.getAttribute('href') ?? '');
+      if (url) {
+        output.push({
+          type: 'link',
+          url,
+          children: children.flatMap((child) =>
+            Text.isText(child) ? [child] : child.children.map((text) => mergeMarks(text, nextMarks)),
+          ),
+        });
+        return;
+      }
+    }
+    output.push(...children);
+  });
+
+  return output.length > 0 ? output : [{ text: '', ...marks }];
+}
+
+function parseList(element: HTMLElement, type: 'bulleted-list' | 'numbered-list'): RichTextBlock {
+  const items = Array.from(element.children)
+    .filter((child): child is HTMLElement => child instanceof HTMLElement && child.tagName === 'LI')
+    .map<RichTextListItem>((item) => ({
+      type: 'list-item',
+      align: getAlignment(item),
+      children: parseInlineNodes(item.childNodes),
+    }));
+  return {
+    type,
+    align: getAlignment(element),
+    children: items.length > 0 ? items : [{ type: 'list-item', children: [{ text: '' }] }],
+  };
+}
+
+function parseBlock(element: HTMLElement): RichTextBlock[] {
+  const align = getAlignment(element);
+  const children = parseInlineNodes(element.childNodes);
+
+  switch (element.tagName) {
+    case 'P':
+      return [{ type: 'paragraph', align, children }];
+    case 'BLOCKQUOTE':
+      return [{ type: 'block-quote', align, children }];
+    case 'UL':
+      return [parseList(element, 'bulleted-list')];
+    case 'OL':
+      return [parseList(element, 'numbered-list')];
+    case 'H1':
+    case 'H2':
+    case 'H3':
+    case 'H4':
+    case 'H5':
+    case 'H6':
+      return [{ type: `heading-${element.tagName.slice(1)}`, align, children } as RichTextBlock];
+    default: {
+      const nestedBlocks = Array.from(element.children)
+        .filter((child): child is HTMLElement => child instanceof HTMLElement && isBlockElement(child))
+        .flatMap(parseBlock);
+      return nestedBlocks.length > 0 ? nestedBlocks : [{ type: 'paragraph', align, children }];
+    }
+  }
+}
+
+function isBlockElement(element: HTMLElement): boolean {
+  return /^(P|BLOCKQUOTE|UL|OL|H[1-6])$/.test(element.tagName) || BLOCK_TAGS.has(element.tagName);
+}
+
+export function deserializeRichTextFromHtml(html: string): RichTextValue {
+  if (typeof DOMParser === 'undefined') return cloneRichTextValue(EMPTY_RICH_TEXT_VALUE);
+
+  const sanitized = DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
+      'a',
+      'b',
+      'blockquote',
+      'br',
+      'code',
+      'div',
+      'em',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'i',
+      'li',
+      'ol',
+      'p',
+      'span',
+      'strong',
+      'u',
+      'ul',
+    ],
+    ALLOWED_ATTR: ['href', 'style'],
+    ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i,
+  });
+  const document = new DOMParser().parseFromString(sanitized, 'text/html');
+  const value: RichTextValue = [];
+  let looseInline: RichTextInline[] = [];
+
+  const flushInline = () => {
+    if (looseInline.length === 0) return;
+    value.push({ type: 'paragraph', children: looseInline });
+    looseInline = [];
+  };
+
+  Array.from(document.body.childNodes).forEach((node) => {
+    if (node instanceof HTMLElement && isBlockElement(node)) {
+      flushInline();
+      value.push(...parseBlock(node));
+    } else {
+      looseInline.push(...parseInlineNodes([node]));
+    }
+  });
+  flushInline();
+
+  return value.length > 0 ? value : cloneRichTextValue(EMPTY_RICH_TEXT_VALUE);
+}
+
+export function isMarkActive(editor: RichTextEditorInstance, mark: RichTextMark): boolean {
+  return Editor.marks(editor)?.[mark] === true;
+}
+
+export function toggleMark(editor: RichTextEditorInstance, mark: RichTextMark): void {
+  if (isMarkActive(editor, mark)) Editor.removeMark(editor, mark);
+  else Editor.addMark(editor, mark, true);
+}
+
+export function isBlockActive(editor: RichTextEditorInstance, format: RichTextBlockType | RichTextAlignment): boolean {
+  if (!editor.selection) return false;
+  const isAlignment = format === 'left' || format === 'center' || format === 'right' || format === 'justify';
+  const [match] = Editor.nodes(editor, {
+    at: Editor.unhangRange(editor, editor.selection),
+    match: (node) =>
+      !Editor.isEditor(node) &&
+      SlateElement.isElement(node) &&
+      (isAlignment ? 'align' in node && node.align === format : node.type === format),
+  });
+  return Boolean(match);
+}
+
+export function toggleBlock(editor: RichTextEditorInstance, format: RichTextBlockType | RichTextAlignment): void {
+  const active = isBlockActive(editor, format);
+  const isAlignment = format === 'left' || format === 'center' || format === 'right' || format === 'justify';
+  const isList = !isAlignment && LIST_TYPES.has(format);
 
   Transforms.unwrapNodes(editor, {
-    match: (n) =>
-      !Editor.isEditor(n) &&
-      SlateElement.isElement(n) &&
-      LIST_TYPES.includes(n.type) &&
-      !TEXT_ALIGN_TYPES.includes(format),
+    match: (node) =>
+      !Editor.isEditor(node) && SlateElement.isElement(node) && LIST_TYPES.has(node.type as RichTextBlockType),
     split: true,
   });
 
-  let newProperties: Partial<SlateElement>;
-  if (TEXT_ALIGN_TYPES.includes(format)) {
-    newProperties = {
-      align: isActive ? undefined : (format as any),
-    };
+  if (isAlignment) {
+    Transforms.setNodes(editor, { align: active ? undefined : format });
+    return;
+  }
+
+  Transforms.setNodes<RichTextElement>(editor, {
+    type: active ? 'paragraph' : isList ? 'list-item' : format,
+  } as Partial<RichTextElement>);
+
+  if (!active && isList) {
+    Transforms.wrapNodes(editor, { type: format, children: [] } as RichTextElement);
+  }
+}
+
+export function getActiveLink(editor: RichTextEditorInstance): [RichTextLink, number[]] | undefined {
+  if (!editor.selection) return undefined;
+  const entry = Editor.above(editor, {
+    match: (node) => SlateElement.isElement(node) && node.type === 'link',
+  });
+  return entry ? ([entry[0] as RichTextLink, entry[1]] as [RichTextLink, number[]]) : undefined;
+}
+
+export function upsertLink(editor: RichTextEditorInstance, url: string): void {
+  const normalized = normalizeRichTextUrl(url);
+  if (!normalized || !editor.selection) return;
+  const activeLink = getActiveLink(editor);
+  if (activeLink) {
+    Transforms.setNodes(editor, { url: normalized }, { at: activeLink[1] });
+    return;
+  }
+
+  if (Range.isCollapsed(editor.selection)) {
+    Transforms.insertNodes(editor, { type: 'link', url: normalized, children: [{ text: normalized }] });
   } else {
-    newProperties = {
-      type: isActive ? 'paragraph' : isList ? 'list-item' : (format as any),
-    };
+    Transforms.wrapNodes(editor, { type: 'link', url: normalized, children: [] }, { split: true });
+    Transforms.collapse(editor, { edge: 'end' });
   }
-  Transforms.setNodes<SlateElement>(editor, newProperties);
+}
 
-  if (!isActive && isList) {
-    const block: CustomElement = { type: format as any, children: [] };
-    Transforms.wrapNodes(editor, block);
-  }
-};
+export function removeLink(editor: RichTextEditorInstance): void {
+  Transforms.unwrapNodes(editor, { match: (node) => SlateElement.isElement(node) && node.type === 'link' });
+}
 
-export const toggleFormat = (editor: CustomEditor, format: string) => {
-  const isActive = isFormatActive(editor, format);
-  Transforms.setNodes(editor, { [format]: isActive ? null : true }, { match: Text.isText, split: true });
-};
+export function withLinks(editor: RichTextEditorInstance): RichTextEditorInstance {
+  const { isInline } = editor;
+  editor.isInline = (element) => (element.type === 'link' ? true : isInline(element));
+  return editor;
+}
 
-export const renderElement = (props: RenderElementProps): React.ReactElement => {
-  const style = { textAlign: props.element.align };
-  switch (props.element.type) {
+export function renderRichTextElement({ attributes, children, element }: RenderElementProps): React.ReactElement {
+  switch (element.type) {
+    case 'link':
+      return (
+        <a
+          {...attributes}
+          href={normalizeRichTextUrl(element.url) ?? undefined}
+          className="text-primary underline underline-offset-4"
+        >
+          {children}
+        </a>
+      );
     case 'block-quote':
       return (
         <blockquote
-          dir={props.element.align === 'left' ? 'ltr' : props.element.align === 'right' ? 'rtl' : props.attributes.dir}
-          style={style}
-          {...props.attributes}
+          {...attributes}
+          style={{ textAlign: element.align }}
+          className="border-l-2 border-border pl-3 text-muted-foreground"
         >
-          {props.children}
+          {children}
         </blockquote>
       );
     case 'bulleted-list':
       return (
-        <ul style={style} {...props.attributes}>
-          {props.children}
+        <ul {...attributes} style={{ textAlign: element.align }} className="list-disc pl-6">
+          {children}
         </ul>
       );
     case 'numbered-list':
       return (
-        <ol style={style} {...props.attributes}>
-          {props.children}
+        <ol {...attributes} style={{ textAlign: element.align }} className="list-decimal pl-6">
+          {children}
         </ol>
       );
     case 'list-item':
       return (
-        <li style={style} {...props.attributes}>
-          {props.children}
+        <li {...attributes} style={{ textAlign: element.align }}>
+          {children}
         </li>
       );
-    case 'h1':
+    case 'heading-1':
       return (
-        <h1 style={style} {...props.attributes}>
-          {props.children}
+        <h1 {...attributes} style={{ textAlign: element.align }} className="text-2xl font-semibold">
+          {children}
         </h1>
       );
-    case 'h2':
+    case 'heading-2':
       return (
-        <h2 style={style} {...props.attributes}>
-          {props.children}
+        <h2 {...attributes} style={{ textAlign: element.align }} className="text-xl font-semibold">
+          {children}
         </h2>
       );
-    case 'h3':
+    case 'heading-3':
       return (
-        <h3 style={style} {...props.attributes}>
-          {props.children}
+        <h3 {...attributes} style={{ textAlign: element.align }} className="text-lg font-semibold">
+          {children}
         </h3>
       );
-    case 'h4':
+    case 'heading-4':
       return (
-        <h4 style={style} {...props.attributes}>
-          {props.children}
+        <h4 {...attributes} style={{ textAlign: element.align }} className="font-semibold">
+          {children}
         </h4>
       );
-    case 'h5':
+    case 'heading-5':
       return (
-        <h5 style={style} {...props.attributes}>
-          {props.children}
+        <h5 {...attributes} style={{ textAlign: element.align }} className="font-semibold">
+          {children}
         </h5>
       );
-    case 'h6':
+    case 'heading-6':
       return (
-        <h6 style={style} {...props.attributes}>
-          {props.children}
+        <h6 {...attributes} style={{ textAlign: element.align }} className="font-semibold">
+          {children}
         </h6>
       );
-    case 'code':
+    case 'paragraph':
       return (
-        <pre {...props.attributes}>
-          <code>{props.children}</code>
-        </pre>
-      );
-    default:
-      return (
-        <p style={style} {...props.attributes}>
-          {props.children}
+        <p {...attributes} style={{ textAlign: element.align }}>
+          {children}
         </p>
       );
   }
-};
+}
 
-export const renderLeaf = (props: RenderLeafProps): React.ReactElement => {
-  if (props.leaf.bold) props.children = <strong>{props.children}</strong>;
-  if (props.leaf.italic) props.children = <em>{props.children}</em>;
-  if (props.leaf.code) {
-    props.children = (
-      <code
-        className="
-          shadow-frost-sm rounded-md border border-border/80 bg-muted px-1.5 py-0.5
-          font-mono text-[0.875em] font-medium text-foreground
-          dark:border-primary/25 dark:bg-primary/10 dark:text-primary
-        "
-      >
-        {props.children}
-      </code>
-    );
-  }
-  if (props.leaf.underline) props.children = <u>{props.children}</u>;
-  return <span {...props.attributes}>{props.children}</span>;
-};
+export function renderRichTextLeaf({ attributes, children, leaf }: RenderLeafProps): React.ReactElement {
+  let output = children;
+  if (leaf.bold) output = <strong>{output}</strong>;
+  if (leaf.italic) output = <em>{output}</em>;
+  if (leaf.underline) output = <u>{output}</u>;
+  if (leaf.code) output = <code className="rounded-sm bg-muted px-1 py-0.5 font-mono text-[0.875em]">{output}</code>;
+  return <span {...attributes}>{output}</span>;
+}
 
-export const renderPlaceholder = (props: RenderPlaceholderProps): React.ReactElement => {
-  return <p {...props.attributes}>{props.children}</p>;
-};
+export function renderRichTextPlaceholder({ attributes, children }: RenderPlaceholderProps): React.ReactElement {
+  return <span {...attributes}>{children}</span>;
+}

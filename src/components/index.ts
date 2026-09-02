@@ -61,6 +61,7 @@ export * from './Spinner';
 export * from './Switch';
 export * from './Table';
 export * from './Tabs';
+export * from './TagsInput';
 export * from './Textarea';
 export * from './ThemeProvider';
 export * from './Toggle';
