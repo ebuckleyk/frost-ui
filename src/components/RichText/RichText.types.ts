@@ -1,47 +1,83 @@
-import { BaseEditor } from 'slate';
-import { HistoryEditor } from 'slate-history';
-import { ReactEditor } from 'slate-react';
+import type { BaseEditor } from 'slate';
+import type { HistoryEditor } from 'slate-history';
+import type { ReactEditor } from 'slate-react';
 
-type FormattedText = { text: string; bold?: true; italic?: true; underline?: true; code?: true };
-type CustomText = FormattedText;
+export type RichTextAlignment = 'left' | 'center' | 'right' | 'justify';
 
-type ParagraphElement = {
-  type: 'paragraph' | 'list-item';
-  align?: 'left' | 'center' | 'right' | 'justify' | undefined;
-  children: CustomText[];
+export type RichTextText = {
+  text: string;
+  bold?: true;
+  italic?: true;
+  underline?: true;
+  code?: true;
 };
 
-type HeadingElement = {
-  type: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  align?: 'left' | 'center' | 'right' | 'justify' | undefined;
-  children: CustomText[];
+export type RichTextLink = {
+  type: 'link';
+  url: string;
+  children: RichTextText[];
 };
 
-type CodeElement = {
-  type: 'code';
-  align?: 'left' | 'center' | 'right' | 'justify' | undefined;
-  children: CustomText[];
+export type RichTextInline = RichTextText | RichTextLink;
+
+type RichTextTextBlock<Type extends string> = {
+  type: Type;
+  align?: RichTextAlignment;
+  children: RichTextInline[];
 };
 
-type ListElement = {
+export type RichTextParagraph = RichTextTextBlock<'paragraph'>;
+export type RichTextHeading = RichTextTextBlock<
+  'heading-1' | 'heading-2' | 'heading-3' | 'heading-4' | 'heading-5' | 'heading-6'
+>;
+export type RichTextBlockQuote = RichTextTextBlock<'block-quote'>;
+export type RichTextListItem = RichTextTextBlock<'list-item'>;
+
+export type RichTextList = {
   type: 'bulleted-list' | 'numbered-list';
-  align?: 'left' | 'center' | 'right' | 'justify' | undefined;
-  children: CustomText[];
+  align?: RichTextAlignment;
+  children: RichTextListItem[];
 };
 
-type QuoteElement = {
-  type: 'block-quote';
-  align?: 'left' | 'center' | 'right' | 'justify' | undefined;
-  children: CustomText[];
-};
+export type RichTextElement =
+  | RichTextParagraph
+  | RichTextHeading
+  | RichTextBlockQuote
+  | RichTextListItem
+  | RichTextList
+  | RichTextLink;
 
-export type CustomElement = ParagraphElement | HeadingElement | CodeElement | ListElement | QuoteElement;
-export type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
+export type RichTextBlock = Exclude<RichTextElement, RichTextLink>;
+
+/** A serializable Frost rich-text document. */
+export type RichTextValue = RichTextBlock[];
+
+export type RichTextMark = 'bold' | 'italic' | 'underline' | 'code';
+export type RichTextBlockType =
+  | 'paragraph'
+  | 'heading-1'
+  | 'heading-2'
+  | 'heading-3'
+  | 'heading-4'
+  | 'heading-5'
+  | 'heading-6'
+  | 'block-quote'
+  | 'bulleted-list'
+  | 'numbered-list';
+
+export type RichTextToolbarCapability =
+  | RichTextMark
+  | Exclude<RichTextBlockType, 'paragraph'>
+  | `align-${RichTextAlignment}`
+  | 'link';
+export type RichTextToolbarPreset = 'basic' | 'document';
+
+export type RichTextEditorInstance = BaseEditor & ReactEditor & HistoryEditor;
 
 declare module 'slate' {
   interface CustomTypes {
-    Editor: CustomEditor;
-    Element: CustomElement;
-    Text: CustomText;
+    Editor: RichTextEditorInstance;
+    Element: RichTextElement;
+    Text: RichTextText;
   }
 }

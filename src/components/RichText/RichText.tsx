@@ -1,8 +1,11 @@
+'use client';
+
 import * as React from 'react';
 import {
   CodeIcon,
   FontBoldIcon,
   FontItalicIcon,
+  Link1Icon,
   QuoteIcon,
   TextAlignCenterIcon,
   TextAlignJustifyIcon,
@@ -10,283 +13,457 @@ import {
   TextAlignRightIcon,
   UnderlineIcon,
 } from '@radix-ui/react-icons';
-import isHotkey from 'is-hotkey';
-import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, List, ListOrdered } from 'lucide-react';
-import { createEditor, Descendant } from 'slate';
+import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, List, ListOrdered, Unlink } from 'lucide-react';
+import { createEditor, Editor, Transforms, type Descendant, type Range } from 'slate';
 import { withHistory } from 'slate-history';
-import { Editable, Slate, useSlate, withReact } from 'slate-react';
-import { EditableProps } from 'slate-react/dist/components/editable';
+import { Editable, ReactEditor, Slate, useSlate, withReact } from 'slate-react';
 
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/Button';
+import { Input } from '@/components/Input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover';
 import { Toggle } from '@/components/Toggle';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/Tooltip';
 
-import { createContextScope, Scope } from '../../lib/createContext';
-import * as richTextUtils from './RichText.utils';
+import { getRichTextShortcut } from './RichText.shortcuts';
+import type {
+  RichTextAlignment,
+  RichTextBlockType,
+  RichTextMark,
+  RichTextToolbarCapability,
+  RichTextToolbarPreset,
+  RichTextValue,
+} from './RichText.types';
+import {
+  cloneRichTextValue,
+  getActiveLink,
+  isBlockActive,
+  isMarkActive,
+  normalizeRichTextUrl,
+  removeLink,
+  renderRichTextElement,
+  renderRichTextLeaf,
+  renderRichTextPlaceholder,
+  toggleBlock,
+  toggleMark,
+  upsertLink,
+  withLinks,
+} from './RichText.utils';
 
-const HOTKEYS: { [key: string]: string } = {
-  'mod+b': 'bold',
-  'mod+i': 'italic',
-  'mod+u': 'underline',
-  'mod+`': 'code',
+const BASIC_CAPABILITIES = ['bold', 'italic', 'underline', 'link', 'bulleted-list', 'numbered-list'] as const;
+const DOCUMENT_CAPABILITIES = [
+  'bold',
+  'italic',
+  'underline',
+  'code',
+  'link',
+  'heading-1',
+  'heading-2',
+  'heading-3',
+  'heading-4',
+  'heading-5',
+  'heading-6',
+  'block-quote',
+  'bulleted-list',
+  'numbered-list',
+  'align-left',
+  'align-center',
+  'align-right',
+  'align-justify',
+] as const;
+
+type RichTextEditorContextValue = {
+  disabled: boolean;
+  readOnly: boolean;
+  linkOpen: boolean;
+  linkUrl: string;
+  savedSelection: Range | null;
+  setLinkOpen: (open: boolean) => void;
+  setLinkUrl: (url: string) => void;
+  openLinkEditor: () => void;
 };
 
-enum TOOLBAR_OPTION {
-  BOLD = 'bold',
-  ITALIC = 'italic',
-  UNDERLINE = 'underline',
-  CODE = 'code',
-  H1 = 'h1',
-  H2 = 'h2',
-  H3 = 'h3',
-  H4 = 'h4',
-  H5 = 'h5',
-  H6 = 'h6',
-  BULLETED_LIST = 'bulleted-list',
-  NUMBERED_LIST = 'numbered-list',
-  ALIGN_LEFT = 'left',
-  ALIGN_RIGHT = 'right',
-  ALIGN_CENTER = 'center',
-  ALIGN_JUSTIFY = 'justify',
-  BLOCK_QUOTE = 'block-quote',
+const RichTextEditorContext = React.createContext<RichTextEditorContextValue | null>(null);
+
+function useRichTextEditorContext(): RichTextEditorContextValue {
+  const context = React.useContext(RichTextEditorContext);
+  if (!context) throw new Error('RichTextEditor components must be used inside RichTextEditor.');
+  return context;
 }
 
-type ToolbarOption = {
-  option: TOOLBAR_OPTION;
-  icon: React.ComponentType;
-  isMark?: boolean;
+function resolveCapabilities(
+  toolbar: RichTextToolbarPreset | readonly RichTextToolbarCapability[],
+): readonly RichTextToolbarCapability[] {
+  if (Array.isArray(toolbar)) return toolbar;
+  return toolbar === 'document' ? DOCUMENT_CAPABILITIES : BASIC_CAPABILITIES;
+}
+
+export type RichTextEditorProps = {
+  value: RichTextValue;
+  onValueChange: (value: RichTextValue) => void;
+  toolbar?: RichTextToolbarPreset | readonly RichTextToolbarCapability[] | false;
+  placeholder?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  invalid?: boolean;
+  id?: string;
+  name?: string;
+  className?: string;
+  toolbarClassName?: string;
+  contentClassName?: string;
+  autoFocus?: boolean;
+  spellCheck?: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
+  onFocus?: React.FocusEventHandler<HTMLDivElement>;
+  onBlur?: React.FocusEventHandler<HTMLDivElement>;
+  children?: React.ReactNode;
 };
 
-const FORMAT_GROUP: ToolbarOption[] = [
-  { option: TOOLBAR_OPTION.BOLD, icon: FontBoldIcon, isMark: true },
-  { option: TOOLBAR_OPTION.ITALIC, icon: FontItalicIcon, isMark: true },
-  { option: TOOLBAR_OPTION.UNDERLINE, icon: UnderlineIcon, isMark: true },
-  { option: TOOLBAR_OPTION.CODE, icon: CodeIcon, isMark: true },
-  { option: TOOLBAR_OPTION.BLOCK_QUOTE, icon: QuoteIcon },
-];
-const HEADINGS_GROUP: ToolbarOption[] = [
-  { option: TOOLBAR_OPTION.H1, icon: Heading1 },
-  { option: TOOLBAR_OPTION.H2, icon: Heading2 },
-  { option: TOOLBAR_OPTION.H3, icon: Heading3 },
-  { option: TOOLBAR_OPTION.H4, icon: Heading4 },
-  { option: TOOLBAR_OPTION.H5, icon: Heading5 },
-  { option: TOOLBAR_OPTION.H6, icon: Heading6 },
-];
+export function RichTextEditor({
+  value,
+  onValueChange,
+  toolbar = 'basic',
+  placeholder = 'Write something…',
+  disabled = false,
+  readOnly = false,
+  invalid = false,
+  id,
+  name,
+  className,
+  toolbarClassName,
+  contentClassName,
+  autoFocus,
+  spellCheck = true,
+  onFocus,
+  onBlur,
+  children,
+  'aria-label': ariaLabel = 'Rich text editor',
+  'aria-labelledby': ariaLabelledBy,
+  'aria-describedby': ariaDescribedBy,
+}: RichTextEditorProps): React.ReactElement {
+  const editor = React.useMemo(() => withLinks(withHistory(withReact(createEditor()))), []);
+  const lastValueFingerprint = React.useRef(JSON.stringify(value));
+  const [linkOpen, setLinkOpen] = React.useState(false);
+  const [linkUrl, setLinkUrl] = React.useState('');
+  const [savedSelection, setSavedSelection] = React.useState<Range | null>(null);
+  const isReadOnly = readOnly || disabled;
 
-const ALIGNMENT_GROUP: ToolbarOption[] = [
-  { option: TOOLBAR_OPTION.BULLETED_LIST, icon: List },
-  { option: TOOLBAR_OPTION.NUMBERED_LIST, icon: ListOrdered },
-  { option: TOOLBAR_OPTION.ALIGN_LEFT, icon: TextAlignLeftIcon },
-  { option: TOOLBAR_OPTION.ALIGN_CENTER, icon: TextAlignCenterIcon },
-  { option: TOOLBAR_OPTION.ALIGN_RIGHT, icon: TextAlignRightIcon },
-  { option: TOOLBAR_OPTION.ALIGN_JUSTIFY, icon: TextAlignJustifyIcon },
-];
+  React.useEffect(() => {
+    const fingerprint = JSON.stringify(value);
+    if (fingerprint === lastValueFingerprint.current) return;
+    lastValueFingerprint.current = fingerprint;
+    editor.children = cloneRichTextValue(value) as Descendant[];
+    editor.selection = null;
+    editor.history = { undos: [], redos: [] };
+    editor.onChange();
+  }, [editor, value]);
 
-/**
- * RichText
- */
-const RICHTEXT_NAME = 'RichText';
-type ScopedProps<P> = P & { __scopeRichText?: Scope };
-const [createRichTextContext, createRichTextScope] = createContextScope(RICHTEXT_NAME);
+  const openLinkEditor = React.useCallback(() => {
+    if (isReadOnly) return;
+    if (!editor.selection) Transforms.select(editor, Editor.end(editor, []));
+    if (!editor.selection) return;
+    setSavedSelection(editor.selection);
+    setLinkUrl(getActiveLink(editor)?.[0].url ?? '');
+    setLinkOpen(true);
+  }, [editor, isReadOnly]);
 
-export type RichTextValue = Descendant;
-type RichTextProps = React.PropsWithChildren<
-  Pick<
-    EditableProps,
-    | 'onFocus'
-    | 'onBlur'
-    | 'className'
-    | 'readOnly'
-    | 'spellCheck'
-    | 'autoFocus'
-    | 'placeholder'
-    | 'autoCorrect'
-    | 'value'
-  > & {
-    onChange?: ((value: RichTextValue[]) => void) | undefined;
-  }
->;
-
-type RichTextContextValue = Pick<
-  RichTextProps,
-  'placeholder' | 'spellCheck' | 'readOnly' | 'autoFocus' | 'autoCorrect' | 'onBlur' | 'onFocus'
->;
-
-const [RichTextProvider, useRichTextContext] = createRichTextContext<RichTextContextValue>(RICHTEXT_NAME);
-const SLATE_INIT_VALUE = [{ type: 'paragraph', children: [{ text: '' }] }] satisfies Descendant[];
-
-function RichText({ ...props }: ScopedProps<RichTextProps>) {
-  const { __scopeRichText, children, onChange, ...rest } = props;
-  const editor = React.useMemo(() => withHistory(withReact(createEditor())), []);
-  return (
-    <RichTextProvider scope={__scopeRichText} {...rest}>
-      <Slate editor={editor} initialValue={SLATE_INIT_VALUE} onChange={onChange}>
-        {children}
-      </Slate>
-    </RichTextProvider>
+  const context = React.useMemo<RichTextEditorContextValue>(
+    () => ({
+      disabled,
+      readOnly: isReadOnly,
+      linkOpen,
+      linkUrl,
+      savedSelection,
+      setLinkOpen,
+      setLinkUrl,
+      openLinkEditor,
+    }),
+    [disabled, isReadOnly, linkOpen, linkUrl, openLinkEditor, savedSelection],
   );
-}
 
-/**
- * RichTextArea
- */
-const RICHTEXTAREA_NAME = 'RichTextArea';
-
-type RichTextAreaProps = React.HtmlHTMLAttributes<HTMLDivElement>;
-function RichTextArea({ ...props }: ScopedProps<RichTextAreaProps>) {
-  const { __scopeRichText, className } = props;
-  const context = useRichTextContext(RICHTEXTAREA_NAME, __scopeRichText);
-  const editor = useSlate();
-
-  const onKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      for (const hotKey in HOTKEYS) {
-        if (isHotkey(hotKey, event)) {
-          event.preventDefault();
-          const mark = HOTKEYS[hotKey];
-          richTextUtils.toggleMark(editor, mark);
-        }
-      }
+  const handleChange = React.useCallback(
+    (nextValue: Descendant[]) => {
+      if (!editor.operations.some((operation) => operation.type !== 'set_selection')) return;
+      const canonicalValue = cloneRichTextValue(nextValue as RichTextValue);
+      lastValueFingerprint.current = JSON.stringify(canonicalValue);
+      onValueChange(canonicalValue);
     },
-    [editor],
+    [editor, onValueChange],
   );
-  return (
-    <Editable
-      {...context}
-      onFocus={context.onFocus}
-      onBlur={context.onBlur}
-      data-slate-editor={'richtext-editor'}
-      role="textbox"
-      className={cn(
-        `
-          richtext-editor glass-card shadow-frost-sm min-h-32 rounded-md p-3
-          text-foreground transition-[border-color,box-shadow]
-          focus-within:border-ring focus-within:ring-[3px]
-          focus-within:ring-ring/50
-        `,
-        className,
-      )}
-      onKeyDown={onKeyDown}
-      renderElement={richTextUtils.renderElement}
-      renderLeaf={richTextUtils.renderLeaf}
-      renderPlaceholder={richTextUtils.renderPlaceholder}
-    />
-  );
-}
 
-/**
- * RichTextToolbar
- */
-type ToolbarOptions = {
-  bold?: boolean;
-  italic?: boolean;
-  underline?: boolean;
-  code?: boolean;
-  h1?: boolean;
-  h2?: boolean;
-  h3?: boolean;
-  h4?: boolean;
-  h5?: boolean;
-  h6?: boolean;
-  'bulleted-list'?: boolean;
-  'numbered-list'?: boolean;
-  left?: boolean;
-  right?: boolean;
-  center?: boolean;
-  justify?: boolean;
-  'block-quote'?: boolean;
-};
-type RichTextToolbarProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
-  toolbar?: ToolbarOptions;
-};
-
-type ToolbarOptionProps = {
-  format: string;
-  Icon: React.ComponentType<React.HtmlHTMLAttributes<HTMLDivElement>>;
-};
-
-const BlockButton = ({ format, Icon }: ToolbarOptionProps) => {
-  const editor = useSlate();
-  const isActive = richTextUtils.isBlockActive(editor, format);
-  const toggleBlock = React.useCallback(() => {
-    richTextUtils.toggleBlock(editor, format);
-  }, [editor, format]);
-  return (
-    <Toggle
-      aria-label={format}
-      pressed={isActive}
-      onPressedChange={toggleBlock}
-      variant="outline"
-      className="data-[state=on]:shadow-frost-sm shadow-none"
-    >
-      <Icon className="size-3" />
-    </Toggle>
-  );
-};
-
-const MarkButton = ({ format, Icon }: ToolbarOptionProps) => {
-  const editor = useSlate();
-  const isActive = richTextUtils.isMarkActive(editor, format);
-  const toggleMark = React.useCallback(() => {
-    richTextUtils.toggleMark(editor, format);
-  }, [editor, format]);
-  return (
-    <Toggle
-      aria-label={format}
-      pressed={isActive}
-      onPressedChange={toggleMark}
-      variant="outline"
-      className="data-[state=on]:shadow-frost-sm shadow-none"
-    >
-      <Icon className="size-3" />
-    </Toggle>
-  );
-};
-
-const DEFAULT_TOOLBAR_CONFIG: ToolbarOptions = {
-  [TOOLBAR_OPTION.BOLD]: true,
-  [TOOLBAR_OPTION.ITALIC]: true,
-  [TOOLBAR_OPTION.UNDERLINE]: true,
-  [TOOLBAR_OPTION.CODE]: true,
-  [TOOLBAR_OPTION.H1]: true,
-  [TOOLBAR_OPTION.H2]: true,
-  [TOOLBAR_OPTION.H3]: true,
-  [TOOLBAR_OPTION.H4]: true,
-  [TOOLBAR_OPTION.H5]: true,
-  [TOOLBAR_OPTION.H6]: true,
-  [TOOLBAR_OPTION.BULLETED_LIST]: true,
-  [TOOLBAR_OPTION.NUMBERED_LIST]: true,
-  [TOOLBAR_OPTION.ALIGN_LEFT]: true,
-  [TOOLBAR_OPTION.ALIGN_RIGHT]: true,
-  [TOOLBAR_OPTION.ALIGN_CENTER]: true,
-  [TOOLBAR_OPTION.ALIGN_JUSTIFY]: true,
-  [TOOLBAR_OPTION.BLOCK_QUOTE]: true,
-};
-
-function RichTextToolbar({ ...props }: ScopedProps<RichTextToolbarProps>) {
-  const { className, toolbar = DEFAULT_TOOLBAR_CONFIG } = props;
   return (
     <div
+      data-slot="rich-text-editor"
+      data-disabled={disabled || undefined}
+      data-readonly={readOnly || undefined}
       className={cn(
         `
-          glass-card shadow-frost-sm flex flex-wrap gap-1 rounded-md p-1
+          input-glass overflow-hidden rounded-md border border-input
+          bg-transparent bg-clip-padding text-sm transition-[border-color,box-shadow]
+          focus-within:border-ring focus-within:ring-[3px]
+          focus-within:ring-ring/50
+          data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50
+          dark:bg-input/30
         `,
+        invalid && 'border-destructive ring-[3px] ring-destructive/20 dark:ring-destructive/40',
         className,
       )}
     >
-      {[FORMAT_GROUP, HEADINGS_GROUP, ALIGNMENT_GROUP].map((group) => {
-        return group.map((g, k) => {
-          const enabled = toolbar[g.option];
-          if (!enabled) return <></>;
-
-          return g.isMark ? (
-            <MarkButton key={k} Icon={g.icon} format={g.option} />
-          ) : (
-            <BlockButton key={k} Icon={g.icon} format={g.option} />
-          );
-        });
-      })}
+      <Slate editor={editor} initialValue={cloneRichTextValue(value)} onChange={handleChange}>
+        <RichTextEditorContext.Provider value={context}>
+          {children ?? (
+            <>
+              {toolbar !== false && (
+                <RichTextEditorToolbar capabilities={resolveCapabilities(toolbar)} className={toolbarClassName} />
+              )}
+              <RichTextEditorContent
+                id={id}
+                placeholder={placeholder}
+                className={contentClassName}
+                autoFocus={autoFocus}
+                spellCheck={spellCheck}
+                aria-invalid={invalid || undefined}
+                aria-label={ariaLabelledBy ? undefined : ariaLabel}
+                aria-labelledby={ariaLabelledBy}
+                aria-describedby={ariaDescribedBy}
+                onFocus={onFocus}
+                onBlur={onBlur}
+              />
+            </>
+          )}
+        </RichTextEditorContext.Provider>
+      </Slate>
+      {name && <input type="hidden" name={name} value={JSON.stringify(value)} disabled={disabled} />}
     </div>
   );
 }
 
-export { RichText, RichTextArea, RichTextToolbar, createRichTextScope };
+export type RichTextEditorContentProps = Omit<
+  React.ComponentProps<typeof Editable>,
+  'renderElement' | 'renderLeaf' | 'renderPlaceholder'
+>;
+
+export function RichTextEditorContent({
+  className,
+  onKeyDown,
+  ...props
+}: RichTextEditorContentProps): React.ReactElement {
+  const editor = useSlate();
+  const { disabled, readOnly, openLinkEditor } = useRichTextEditorContext();
+
+  const handleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown?.(event);
+      if (event.defaultPrevented || readOnly) return;
+
+      const shortcut = getRichTextShortcut(event);
+      if (shortcut && shortcut !== 'link') {
+        event.preventDefault();
+        toggleMark(editor, shortcut);
+      } else if (shortcut === 'link') {
+        event.preventDefault();
+        openLinkEditor();
+      }
+    },
+    [editor, onKeyDown, openLinkEditor, readOnly],
+  );
+
+  return (
+    <Editable
+      {...props}
+      role="textbox"
+      readOnly={readOnly}
+      aria-disabled={disabled || undefined}
+      renderElement={renderRichTextElement}
+      renderLeaf={renderRichTextLeaf}
+      renderPlaceholder={renderRichTextPlaceholder}
+      onKeyDown={handleKeyDown}
+      className={cn(
+        `
+          min-h-32 px-3 py-2.5 text-foreground outline-none
+          [&_blockquote]:my-2 [&_h1]:my-2 [&_h2]:my-2 [&_h3]:my-2
+          [&_ol]:my-2 [&_p]:my-1 [&_ul]:my-2
+        `,
+        disabled && 'pointer-events-none',
+        className,
+      )}
+    />
+  );
+}
+
+type ToolbarControl = {
+  capability: RichTextToolbarCapability;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  kind: 'mark' | 'block' | 'alignment';
+  format: RichTextMark | RichTextBlockType | RichTextAlignment;
+};
+
+const TOOLBAR_CONTROLS: readonly ToolbarControl[] = [
+  { capability: 'bold', label: 'Bold', icon: FontBoldIcon, kind: 'mark', format: 'bold' },
+  { capability: 'italic', label: 'Italic', icon: FontItalicIcon, kind: 'mark', format: 'italic' },
+  { capability: 'underline', label: 'Underline', icon: UnderlineIcon, kind: 'mark', format: 'underline' },
+  { capability: 'code', label: 'Inline code', icon: CodeIcon, kind: 'mark', format: 'code' },
+  { capability: 'heading-1', label: 'Heading 1', icon: Heading1, kind: 'block', format: 'heading-1' },
+  { capability: 'heading-2', label: 'Heading 2', icon: Heading2, kind: 'block', format: 'heading-2' },
+  { capability: 'heading-3', label: 'Heading 3', icon: Heading3, kind: 'block', format: 'heading-3' },
+  { capability: 'heading-4', label: 'Heading 4', icon: Heading4, kind: 'block', format: 'heading-4' },
+  { capability: 'heading-5', label: 'Heading 5', icon: Heading5, kind: 'block', format: 'heading-5' },
+  { capability: 'heading-6', label: 'Heading 6', icon: Heading6, kind: 'block', format: 'heading-6' },
+  { capability: 'block-quote', label: 'Block quote', icon: QuoteIcon, kind: 'block', format: 'block-quote' },
+  { capability: 'bulleted-list', label: 'Bulleted list', icon: List, kind: 'block', format: 'bulleted-list' },
+  { capability: 'numbered-list', label: 'Numbered list', icon: ListOrdered, kind: 'block', format: 'numbered-list' },
+  { capability: 'align-left', label: 'Align left', icon: TextAlignLeftIcon, kind: 'alignment', format: 'left' },
+  { capability: 'align-center', label: 'Align center', icon: TextAlignCenterIcon, kind: 'alignment', format: 'center' },
+  { capability: 'align-right', label: 'Align right', icon: TextAlignRightIcon, kind: 'alignment', format: 'right' },
+  { capability: 'align-justify', label: 'Justify', icon: TextAlignJustifyIcon, kind: 'alignment', format: 'justify' },
+];
+
+function FormattingControl({ control }: { control: ToolbarControl }): React.ReactElement {
+  const editor = useSlate();
+  const { disabled, readOnly } = useRichTextEditorContext();
+  const active =
+    control.kind === 'mark'
+      ? isMarkActive(editor, control.format as RichTextMark)
+      : isBlockActive(editor, control.format as RichTextBlockType | RichTextAlignment);
+
+  const handlePressedChange = React.useCallback(() => {
+    if (control.kind === 'mark') toggleMark(editor, control.format as RichTextMark);
+    else toggleBlock(editor, control.format as RichTextBlockType | RichTextAlignment);
+    ReactEditor.focus(editor);
+  }, [control, editor]);
+
+  const Icon = control.icon;
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Toggle
+          type="button"
+          size="sm"
+          aria-label={control.label}
+          pressed={active}
+          disabled={disabled || readOnly}
+          onMouseDown={(event) => event.preventDefault()}
+          onPressedChange={handlePressedChange}
+        >
+          <Icon className="size-4" />
+        </Toggle>
+      </TooltipTrigger>
+      <TooltipContent>{control.label}</TooltipContent>
+    </Tooltip>
+  );
+}
+
+function LinkControl(): React.ReactElement {
+  const editor = useSlate();
+  const linkInputId = React.useId();
+  const { disabled, readOnly, linkOpen, linkUrl, savedSelection, setLinkOpen, setLinkUrl, openLinkEditor } =
+    useRichTextEditorContext();
+  const active = Boolean(getActiveLink(editor));
+  const normalizedUrl = normalizeRichTextUrl(linkUrl);
+
+  const restoreSelection = React.useCallback(() => {
+    if (savedSelection) Transforms.select(editor, savedSelection);
+  }, [editor, savedSelection]);
+
+  const handleSubmit = React.useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
+      if (!normalizedUrl) return;
+      restoreSelection();
+      upsertLink(editor, normalizedUrl);
+      setLinkOpen(false);
+      ReactEditor.focus(editor);
+    },
+    [editor, normalizedUrl, restoreSelection, setLinkOpen],
+  );
+
+  const handleRemove = React.useCallback(() => {
+    restoreSelection();
+    removeLink(editor);
+    setLinkOpen(false);
+    ReactEditor.focus(editor);
+  }, [editor, restoreSelection, setLinkOpen]);
+
+  const label = active ? 'Edit link' : 'Add link';
+  return (
+    <Popover open={linkOpen} onOpenChange={setLinkOpen}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <PopoverTrigger asChild>
+            <Button
+              type="button"
+              size="icon-xs"
+              variant="ghost"
+              aria-label={label}
+              aria-pressed={active}
+              disabled={disabled || readOnly}
+              className="size-8"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={openLinkEditor}
+            >
+              <Link1Icon />
+            </Button>
+          </PopoverTrigger>
+        </TooltipTrigger>
+        <TooltipContent>{label}</TooltipContent>
+      </Tooltip>
+      <PopoverContent align="start" onOpenAutoFocus={(event) => event.preventDefault()}>
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <label htmlFor={linkInputId} className="text-sm font-medium">
+            Link URL
+          </label>
+          <Input
+            id={linkInputId}
+            value={linkUrl}
+            onChange={(event) => setLinkUrl(event.target.value)}
+            placeholder="https://example.com"
+            autoFocus
+            aria-invalid={linkUrl.length > 0 && !normalizedUrl ? true : undefined}
+          />
+          {linkUrl.length > 0 && !normalizedUrl && (
+            <p className="text-xs text-destructive">Enter a safe HTTP, HTTPS, or mailto URL.</p>
+          )}
+          <div className="flex justify-end gap-2 pt-1">
+            {active && (
+              <Button type="button" size="sm" variant="ghost" onClick={handleRemove}>
+                <Unlink /> Remove link
+              </Button>
+            )}
+            <Button type="submit" size="sm" disabled={!normalizedUrl}>
+              Apply link
+            </Button>
+          </div>
+        </form>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+export type RichTextEditorToolbarProps = React.ComponentProps<'div'> & {
+  capabilities?: readonly RichTextToolbarCapability[];
+};
+
+export function RichTextEditorToolbar({
+  capabilities = BASIC_CAPABILITIES,
+  className,
+  ...props
+}: RichTextEditorToolbarProps): React.ReactElement {
+  const enabled = React.useMemo(() => new Set(capabilities), [capabilities]);
+  return (
+    <div
+      role="toolbar"
+      aria-label="Text formatting"
+      data-slot="rich-text-editor-toolbar"
+      className={cn('flex min-h-10 flex-wrap items-center gap-0.5 border-b border-border/70 px-1.5 py-1', className)}
+      {...props}
+    >
+      {TOOLBAR_CONTROLS.map((control) =>
+        enabled.has(control.capability) ? <FormattingControl key={control.capability} control={control} /> : null,
+      )}
+      {enabled.has('link') ? <LinkControl /> : null}
+    </div>
+  );
+}

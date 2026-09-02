@@ -1,84 +1,101 @@
 import * as React from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Button } from '../Button';
-import { Form, FormControl, FormField, FormItem, FormLabel } from '../Form';
-import { toast } from '../Sonner';
-import { RichText, RichTextArea, RichTextToolbar } from './RichText';
-import type { RichTextValue } from './RichText';
+import { Field, FieldDescription, FieldLabel } from '../Field';
+import { RichTextEditor } from './RichText';
+import type { RichTextValue } from './RichText.types';
+import { serializeRichTextToHtml, serializeRichTextToPlainText } from './RichText.utils';
+import { RichTextRenderer } from './RichTextRenderer';
 
-function RichTextDemo() {
+const EMPTY_VALUE: RichTextValue = [{ type: 'paragraph', children: [{ text: '' }] }];
+const PERSISTED_VALUE: RichTextValue = [
+  { type: 'heading-2', children: [{ text: 'A persisted document' }] },
+  {
+    type: 'paragraph',
+    children: [
+      { text: 'This value was loaded from application state. Visit ' },
+      { type: 'link', url: 'https://example.com', children: [{ text: 'Example' }] },
+      { text: ' for details.' },
+    ],
+  },
+  { type: 'bulleted-list', children: [{ type: 'list-item', children: [{ text: 'Existing list item', bold: true }] }] },
+];
+
+function EditorExample({ initialValue = EMPTY_VALUE, ...props }: Partial<React.ComponentProps<typeof RichTextEditor>>) {
+  const [value, setValue] = React.useState(initialValue);
+  return <RichTextEditor {...props} value={value} onValueChange={setValue} />;
+}
+
+function ControlledExample() {
+  const [value, setValue] = React.useState<RichTextValue>([
+    { type: 'paragraph', children: [{ text: 'Edit this value.' }] },
+  ]);
   return (
-    <RichText>
-      <RichTextToolbar />
-      <RichTextArea className="h-[250px] w-full" />
-    </RichText>
+    <div className="space-y-3">
+      <RichTextEditor value={value} onValueChange={setValue} />
+      <Button type="button" variant="outline" onClick={() => setValue(EMPTY_VALUE)}>
+        Reset externally
+      </Button>
+      <pre className="max-h-48 overflow-auto rounded-md border p-3 text-xs">{JSON.stringify(value, null, 2)}</pre>
+    </div>
   );
 }
-// .min(1, 'Text must be entered')
-const formSchema = z.object({
-  richText: z.custom<RichTextValue>().array().optional(),
-});
-function RichTextFormDemo() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-  });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast('You submitted', {
-      description: (
-        <pre>
-          <code>{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+
+function FormExample() {
+  const [value, setValue] = React.useState(EMPTY_VALUE);
+  const [submitted, setSubmitted] = React.useState('');
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="richText"
-          render={({ field }) => {
-            return (
-              <FormItem>
-                <FormLabel>Rich Text</FormLabel>
-                <FormControl>
-                  <RichText
-                    onBlur={field.onBlur}
-                    readOnly={field.disabled}
-                    onChange={(f) => {
-                      form.setValue('richText', f);
-                    }}
-                  >
-                    <RichTextToolbar />
-                    <RichTextArea className="h-[250px] w-full" />
-                  </RichText>
-                </FormControl>
-              </FormItem>
-            );
-          }}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+    <form
+      className="space-y-3"
+      onSubmit={(event) => {
+        event.preventDefault();
+        setSubmitted(new FormData(event.currentTarget).get('body')?.toString() ?? '');
+      }}
+    >
+      <Field>
+        <FieldLabel htmlFor="story-body">Body</FieldLabel>
+        <RichTextEditor id="story-body" name="body" value={value} onValueChange={setValue} aria-label="Body" />
+        <FieldDescription>The hidden form value is the canonical JSON document.</FieldDescription>
+      </Field>
+      <Button type="submit">Submit</Button>
+      {submitted ? <output className="block text-xs">Submitted {submitted.length} characters</output> : null}
+    </form>
   );
 }
-type ComponentType = React.ComponentProps<typeof RichText>;
-const meta: Meta<ComponentType> = {
-  component: RichText,
-  subcomponents: { RichTextArea, RichTextToolbar },
-};
+
+function SerializationExample() {
+  const [value, setValue] = React.useState(PERSISTED_VALUE);
+  return (
+    <div className="space-y-4">
+      <RichTextEditor value={value} onValueChange={setValue} toolbar="document" />
+      <div className="grid gap-3 md:grid-cols-2">
+        <pre className="overflow-auto rounded-md border p-3 text-xs">{serializeRichTextToHtml(value)}</pre>
+        <pre className="overflow-auto rounded-md border p-3 text-xs">{serializeRichTextToPlainText(value)}</pre>
+      </div>
+    </div>
+  );
+}
+
+const meta = {
+  title: 'Components/RichTextEditor',
+  component: RichTextEditor,
+  args: { value: EMPTY_VALUE, onValueChange: () => undefined },
+} satisfies Meta<typeof RichTextEditor>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-type Story = StoryObj<ComponentType>;
-export const Demo: Story = {
-  render: RichTextDemo,
+export const Basic: Story = { render: () => <EditorExample placeholder="Write an update…" /> };
+export const DocumentToolbar: Story = { render: () => <EditorExample toolbar="document" /> };
+export const ControlledValue: Story = { render: () => <ControlledExample /> };
+export const ExistingPersistedValue: Story = { render: () => <EditorExample initialValue={PERSISTED_VALUE} /> };
+export const ReadOnly: Story = { render: () => <RichTextRenderer value={PERSISTED_VALUE} /> };
+export const Links: Story = {
+  render: () => <EditorExample initialValue={PERSISTED_VALUE} toolbar={['bold', 'italic', 'link']} />,
 };
-
-export const RichTextForm: Story = {
-  render: RichTextFormDemo,
+export const FormIntegration: Story = { render: () => <FormExample /> };
+export const Serialization: Story = { render: () => <SerializationExample /> };
+export const Disabled: Story = {
+  render: () => <RichTextEditor value={PERSISTED_VALUE} onValueChange={() => undefined} disabled />,
 };
