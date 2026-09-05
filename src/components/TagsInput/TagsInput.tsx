@@ -153,7 +153,11 @@ export function TagsInput({
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (disabled || readOnly) return;
-      if (event.key === 'Enter' || (commitOnComma && event.key === ',')) {
+      if (event.key === 'Tab' && !event.shiftKey) {
+        if (!inputValue) return;
+        event.preventDefault();
+        commitInput();
+      } else if (event.key === 'Enter' || (commitOnComma && event.key === ',')) {
         if (!inputValue) return;
         event.preventDefault();
         commitInput();

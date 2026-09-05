@@ -14,8 +14,27 @@ function TextNode({ node }: { node: RichTextText }): React.ReactElement {
   return <>{content}</>;
 }
 
-function InlineNode({ node }: { node: RichTextInline }): React.ReactElement {
+function InlineNode({
+  node,
+  onHashtagClick,
+}: {
+  node: RichTextInline;
+  onHashtagClick?: (tag: string) => void;
+}): React.ReactElement {
   if ('text' in node) return <TextNode node={node} />;
+  if (node.type === 'hashtag') {
+    return onHashtagClick ? (
+      <button
+        type="button"
+        className="mx-0.5 rounded-sm bg-primary/10 px-1 text-primary hover:bg-primary/20"
+        onClick={() => onHashtagClick(node.tag)}
+      >
+        #{node.tag}
+      </button>
+    ) : (
+      <span className="mx-0.5 rounded-sm bg-primary/10 px-1 text-primary">#{node.tag}</span>
+    );
+  }
   const url = normalizeRichTextUrl(node.url);
   const content = node.children.map((child, index) => <TextNode key={index} node={child} />);
   return url ? (
@@ -27,14 +46,22 @@ function InlineNode({ node }: { node: RichTextInline }): React.ReactElement {
   );
 }
 
-function ElementNode({ element }: { element: RichTextElement }): React.ReactElement {
-  if (element.type === 'link') return <InlineNode node={element} />;
+function ElementNode({
+  element,
+  onHashtagClick,
+}: {
+  element: RichTextElement;
+  onHashtagClick?: (tag: string) => void;
+}): React.ReactElement {
+  if (element.type === 'link' || element.type === 'hashtag') {
+    return <InlineNode node={element} onHashtagClick={onHashtagClick} />;
+  }
   const style = { textAlign: element.align };
   const children = element.children.map((child, index) =>
-    'text' in child || child.type === 'link' ? (
-      <InlineNode key={index} node={child} />
+    'text' in child || child.type === 'link' || child.type === 'hashtag' ? (
+      <InlineNode key={index} node={child} onHashtagClick={onHashtagClick} />
     ) : (
-      <ElementNode key={index} element={child} />
+      <ElementNode key={index} element={child} onHashtagClick={onHashtagClick} />
     ),
   );
 
@@ -100,13 +127,21 @@ function ElementNode({ element }: { element: RichTextElement }): React.ReactElem
   }
 }
 
-export type RichTextRendererProps = React.ComponentProps<'div'> & { value: RichTextValue };
+export type RichTextRendererProps = React.ComponentProps<'div'> & {
+  value: RichTextValue;
+  onHashtagClick?: (tag: string) => void;
+};
 
-export function RichTextRenderer({ value, className, ...props }: RichTextRendererProps): React.ReactElement {
+export function RichTextRenderer({
+  value,
+  onHashtagClick,
+  className,
+  ...props
+}: RichTextRendererProps): React.ReactElement {
   return (
     <div data-slot="rich-text-renderer" className={cn('space-y-2 text-sm text-foreground', className)} {...props}>
       {value.map((element, index) => (
-        <ElementNode key={index} element={element} />
+        <ElementNode key={index} element={element} onHashtagClick={onHashtagClick} />
       ))}
     </div>
   );

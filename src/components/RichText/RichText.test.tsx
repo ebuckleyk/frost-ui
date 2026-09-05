@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { createEditor, Editor, Transforms } from 'slate';
 import { useSlate } from 'slate-react';
 
@@ -9,6 +9,8 @@ import type { RichTextValue } from './RichText.types';
 import {
   deserializeRichTextFromHtml,
   getActiveLink,
+  getRichTextHashtagChange,
+  getRichTextHashtags,
   isRichTextEmpty,
   removeLink,
   serializeRichTextToHtml,
@@ -32,6 +34,15 @@ const EXISTING_VALUE: RichTextValue = [
 ];
 
 describe('RichTextEditor', () => {
+  it('animates intrinsic height changes and respects reduced motion', () => {
+    render(<RichTextEditor value={EXISTING_VALUE} onValueChange={vi.fn()} />);
+
+    expect(document.querySelector('[data-slot="rich-text-editor"]')).toHaveClass(
+      'transition-[height,border-color,box-shadow]',
+      'motion-reduce:transition-none',
+    );
+  });
+
   it('renders a controlled initial value and external replacement', () => {
     const onValueChange = vi.fn();
     const { rerender } = render(<RichTextEditor value={EXISTING_VALUE} onValueChange={onValueChange} />);
@@ -144,6 +155,92 @@ describe('RichTextEditor', () => {
       expect(onValueChange).toHaveBeenLastCalledWith([{ type: 'paragraph', children: [{ text: 'Updated' }] }]),
     );
   });
+
+  it('offers and inserts structured hashtag suggestions', async () => {
+    const onValueChange = vi.fn();
+
+    function TypeHashtag() {
+      const editor = useSlate();
+      return (
+        <button
+          onClick={() => {
+            Transforms.select(editor, Editor.end(editor, []));
+            Transforms.insertText(editor, '#rea');
+          }}
+        >
+          Type hashtag
+        </button>
+      );
+    }
+
+    render(
+      <RichTextEditor
+        value={[{ type: 'paragraph', children: [{ text: '' }] }]}
+        onValueChange={onValueChange}
+        hashtags={{ suggestions: ['React', 'Reading'] }}
+      >
+        <RichTextEditorContent />
+        <TypeHashtag />
+      </RichTextEditor>,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Type hashtag' }));
+    fireEvent.click(await screen.findByRole('option', { name: '#React' }));
+
+    await waitFor(() =>
+      expect(onValueChange).toHaveBeenLastCalledWith([
+        {
+          type: 'paragraph',
+          children: [{ text: '' }, { type: 'hashtag', tag: 'React', children: [{ text: '' }] }, { text: ' ' }],
+        },
+      ]),
+    );
+  });
+
+  it('reports hashtag additions and removals from controlled values', async () => {
+    const onHashtagsChange = vi.fn();
+    const first: RichTextValue = [
+      { type: 'paragraph', children: [{ type: 'hashtag', tag: 'react', children: [{ text: '' }] }] },
+    ];
+    const second: RichTextValue = [
+      {
+        type: 'paragraph',
+        children: [
+          { type: 'hashtag', tag: 'design', children: [{ text: '' }] },
+          { type: 'hashtag', tag: 'design', children: [{ text: '' }] },
+        ],
+      },
+    ];
+    const { rerender } = render(
+      <RichTextEditor value={first} onValueChange={vi.fn()} hashtags={{ onHashtagsChange }} />,
+    );
+
+    rerender(<RichTextEditor value={second} onValueChange={vi.fn()} hashtags={{ onHashtagsChange }} />);
+    await waitFor(() =>
+      expect(onHashtagsChange).toHaveBeenLastCalledWith({
+        values: ['design', 'design'],
+        uniqueValues: ['design'],
+        totalCount: 2,
+        uniqueCount: 1,
+        added: ['design', 'design'],
+        removed: ['react'],
+      }),
+    );
+  });
+
+  it('exposes hashtag clicks without hiding the structured value', async () => {
+    const onHashtagClick = vi.fn();
+    render(
+      <RichTextEditor
+        value={[{ type: 'paragraph', children: [{ type: 'hashtag', tag: 'react', children: [{ text: '' }] }] }]}
+        onValueChange={vi.fn()}
+        hashtags={{ onHashtagClick }}
+        toolbar={false}
+      />,
+    );
+
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: '#react' })));
+    expect(onHashtagClick).toHaveBeenCalledWith('react');
+  });
 });
 
 describe('rich text editing commands', () => {
@@ -234,5 +331,35 @@ describe('rich text serialization', () => {
     expect(isRichTextEmpty([{ type: 'paragraph', children: [{ text: '  ' }] }])).toBe(true);
     expect(isRichTextEmpty([{ type: 'paragraph', children: [{ text: 'Content' }] }])).toBe(false);
     expect(isRichTextEmpty(undefined)).toBe(true);
+  });
+
+  it('serializes, deserializes, and summarizes structured hashtags', () => {
+    const value: RichTextValue = [
+      {
+        type: 'paragraph',
+        children: [
+          { text: 'Topics: ' },
+          { type: 'hashtag', tag: 'design', children: [{ text: '' }] },
+          { text: ' and ' },
+          { type: 'hashtag', tag: 'design', children: [{ text: '' }] },
+        ],
+      },
+    ];
+
+    expect(serializeRichTextToHtml(value)).toBe(
+      '<p>Topics: <span data-hashtag="design">#design</span> and <span data-hashtag="design">#design</span></p>',
+    );
+    expect(serializeRichTextToPlainText(value)).toBe('Topics: #design and #design');
+    expect(deserializeRichTextFromHtml(serializeRichTextToHtml(value))).toEqual(value);
+    expect(getRichTextHashtags(value)).toEqual({
+      values: ['design', 'design'],
+      uniqueValues: ['design'],
+      totalCount: 2,
+      uniqueCount: 1,
+    });
+    expect(getRichTextHashtagChange(value, [{ type: 'paragraph', children: [{ text: '' }] }])).toMatchObject({
+      added: [],
+      removed: ['design', 'design'],
+    });
   });
 });
