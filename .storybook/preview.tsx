@@ -84,7 +84,7 @@ const preview: Preview = {
     theme: {
       name: 'Theme',
       description: 'Component Theme',
-      defaultValue: 'dark',
+      defaultValue: 'light',
       toolbar: {
         title: 'Theme',
         icon: 'circlehollow',
@@ -114,7 +114,7 @@ const preview: Preview = {
     backgrounds: {
       value: 'frost-ambient',
     },
-    theme: 'dark',
+    theme: 'light',
   },
 };
 

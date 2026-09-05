@@ -14,7 +14,7 @@ import {
   UnderlineIcon,
 } from '@radix-ui/react-icons';
 import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, List, ListOrdered, Unlink } from 'lucide-react';
-import { createEditor, Editor, Transforms, type Descendant, type Range } from 'slate';
+import { createEditor, Editor, Range, Element as SlateElement, Transforms, type Descendant } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, Slate, useSlate, withReact } from 'slate-react';
 
@@ -29,6 +29,7 @@ import { getRichTextShortcut } from './RichText.shortcuts';
 import type {
   RichTextAlignment,
   RichTextBlockType,
+  RichTextHashtagOptions,
   RichTextMark,
   RichTextToolbarCapability,
   RichTextToolbarPreset,
@@ -37,8 +38,11 @@ import type {
 import {
   cloneRichTextValue,
   getActiveLink,
+  getRichTextHashtagChange,
+  insertRichTextHashtag,
   isBlockActive,
   isMarkActive,
+  normalizeRichTextHashtag,
   normalizeRichTextUrl,
   removeLink,
   renderRichTextElement,
@@ -75,11 +79,18 @@ const DOCUMENT_CAPABILITIES = [
 type RichTextEditorContextValue = {
   disabled: boolean;
   readOnly: boolean;
+  hashtagQuery: string | null;
+  hashtagSuggestions: string[];
+  activeHashtagIndex: number;
   linkOpen: boolean;
   linkUrl: string;
   savedSelection: Range | null;
   setLinkOpen: (open: boolean) => void;
   setLinkUrl: (url: string) => void;
+  setActiveHashtagIndex: (index: number) => void;
+  commitHashtag: (tag: string) => void;
+  closeHashtagSuggestions: () => void;
+  onHashtagClick?: (tag: string) => void;
   openLinkEditor: () => void;
 };
 
@@ -98,15 +109,39 @@ function resolveCapabilities(
   return toolbar === 'document' ? DOCUMENT_CAPABILITIES : BASIC_CAPABILITIES;
 }
 
+type HashtagMatch = { query: string; range: Range };
+
+function getHashtagMatch(editor: ReturnType<typeof createEditor>): HashtagMatch | null {
+  if (!editor.selection || !Range.isCollapsed(editor.selection)) return null;
+  const block = Editor.above(editor, {
+    at: editor.selection.anchor,
+    match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && Editor.isBlock(editor, node),
+  });
+  if (!block) return null;
+
+  const cursor = editor.selection.anchor;
+  const text = Editor.string(editor, { anchor: Editor.start(editor, block[1]), focus: cursor });
+  const match = text.match(/(?:^|\s)#([\p{L}\p{N}_-]*)$/u);
+  if (!match) return null;
+  const start = Editor.before(editor, cursor, { distance: match[1].length + 1 });
+  return start ? { query: match[1], range: { anchor: start, focus: cursor } } : null;
+}
+
 export type RichTextEditorProps = {
+  /** The canonical serializable document. */
   value: RichTextValue;
+  /** Receives each canonical document update. */
   onValueChange: (value: RichTextValue) => void;
+  /** A toolbar preset, explicit capability list, or false to hide the toolbar. */
   toolbar?: RichTextToolbarPreset | readonly RichTextToolbarCapability[] | false;
+  /** Enables structured hashtag entry and configures suggestions and callbacks. */
+  hashtags?: RichTextHashtagOptions | false;
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
   invalid?: boolean;
   id?: string;
+  /** Adds hidden form data containing the JSON-serialized canonical document. */
   name?: string;
   className?: string;
   toolbarClassName?: string;
@@ -125,6 +160,7 @@ export function RichTextEditor({
   value,
   onValueChange,
   toolbar = 'basic',
+  hashtags = false,
   placeholder = 'Write something…',
   disabled = false,
   readOnly = false,
@@ -144,11 +180,57 @@ export function RichTextEditor({
   'aria-describedby': ariaDescribedBy,
 }: RichTextEditorProps): React.ReactElement {
   const editor = React.useMemo(() => withLinks(withHistory(withReact(createEditor()))), []);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
   const lastValueFingerprint = React.useRef(JSON.stringify(value));
+  const previousHashtagValue = React.useRef(cloneRichTextValue(value));
+  const [height, setHeight] = React.useState<number>();
+  const [hashtagMatch, setHashtagMatch] = React.useState<HashtagMatch | null>(null);
+  const [activeHashtagIndex, setActiveHashtagIndex] = React.useState(0);
   const [linkOpen, setLinkOpen] = React.useState(false);
   const [linkUrl, setLinkUrl] = React.useState('');
   const [savedSelection, setSavedSelection] = React.useState<Range | null>(null);
   const isReadOnly = readOnly || disabled;
+  const hashtagOptions = hashtags || undefined;
+  const hashtagsEnabled = Boolean(hashtagOptions);
+  const hashtagSuggestionSource = hashtagOptions?.suggestions;
+  const allowFreeformHashtags = hashtagOptions?.allowFreeform !== false;
+  const onHashtagClick = hashtagOptions?.onHashtagClick;
+  const onHashtagsChange = hashtagOptions?.onHashtagsChange;
+  const onHashtagSearch = hashtagOptions?.onSearch;
+  const hashtagSuggestions = React.useMemo(() => {
+    if (!hashtagMatch || !hashtagsEnabled) return [];
+    const query = hashtagMatch.query.toLocaleLowerCase();
+    const suggestions = Array.from(
+      new Set(
+        (hashtagSuggestionSource ?? [])
+          .map(normalizeRichTextHashtag)
+          .filter((tag): tag is string => Boolean(tag))
+          .filter((tag) => tag.toLocaleLowerCase().startsWith(query)),
+      ),
+    );
+    if (allowFreeformHashtags && hashtagMatch.query && !suggestions.some((tag) => tag.toLocaleLowerCase() === query)) {
+      suggestions.push(hashtagMatch.query);
+    }
+    return suggestions;
+  }, [allowFreeformHashtags, hashtagMatch, hashtagsEnabled, hashtagSuggestionSource]);
+
+  React.useLayoutEffect(() => {
+    const container = containerRef.current;
+    const content = contentRef.current;
+    if (!container || !content) return;
+
+    const updateHeight = () => {
+      const styles = window.getComputedStyle(container);
+      const borderHeight = (parseFloat(styles.borderTopWidth) || 0) + (parseFloat(styles.borderBottomWidth) || 0);
+      setHeight(content.getBoundingClientRect().height + borderHeight);
+    };
+
+    updateHeight();
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(content);
+    return () => resizeObserver.disconnect();
+  }, []);
 
   React.useEffect(() => {
     const fingerprint = JSON.stringify(value);
@@ -159,6 +241,33 @@ export function RichTextEditor({
     editor.history = { undos: [], redos: [] };
     editor.onChange();
   }, [editor, value]);
+
+  React.useEffect(() => {
+    const change = getRichTextHashtagChange(previousHashtagValue.current, value);
+    previousHashtagValue.current = cloneRichTextValue(value);
+    if (change.added.length > 0 || change.removed.length > 0) onHashtagsChange?.(change);
+  }, [onHashtagsChange, value]);
+
+  React.useEffect(() => {
+    if (hashtagMatch) onHashtagSearch?.(hashtagMatch.query);
+  }, [hashtagMatch, onHashtagSearch]);
+
+  const closeHashtagSuggestions = React.useCallback(() => {
+    setHashtagMatch(null);
+    setActiveHashtagIndex(0);
+  }, []);
+
+  const commitHashtag = React.useCallback(
+    (tag: string) => {
+      if (!hashtagMatch || isReadOnly) return;
+      Transforms.select(editor, hashtagMatch.range);
+      Transforms.delete(editor);
+      insertRichTextHashtag(editor, tag);
+      closeHashtagSuggestions();
+      ReactEditor.focus(editor);
+    },
+    [closeHashtagSuggestions, editor, hashtagMatch, isReadOnly],
+  );
 
   const openLinkEditor = React.useCallback(() => {
     if (isReadOnly) return;
@@ -173,69 +282,98 @@ export function RichTextEditor({
     () => ({
       disabled,
       readOnly: isReadOnly,
+      hashtagQuery: hashtagMatch?.query ?? null,
+      hashtagSuggestions,
+      activeHashtagIndex,
       linkOpen,
       linkUrl,
       savedSelection,
       setLinkOpen,
       setLinkUrl,
+      setActiveHashtagIndex,
+      commitHashtag,
+      closeHashtagSuggestions,
+      onHashtagClick,
       openLinkEditor,
     }),
-    [disabled, isReadOnly, linkOpen, linkUrl, openLinkEditor, savedSelection],
+    [
+      activeHashtagIndex,
+      closeHashtagSuggestions,
+      commitHashtag,
+      disabled,
+      hashtagMatch,
+      hashtagSuggestions,
+      isReadOnly,
+      linkOpen,
+      linkUrl,
+      onHashtagClick,
+      openLinkEditor,
+      savedSelection,
+    ],
   );
 
   const handleChange = React.useCallback(
     (nextValue: Descendant[]) => {
+      setHashtagMatch(hashtagsEnabled && !isReadOnly ? getHashtagMatch(editor) : null);
+      setActiveHashtagIndex(0);
       if (!editor.operations.some((operation) => operation.type !== 'set_selection')) return;
       const canonicalValue = cloneRichTextValue(nextValue as RichTextValue);
       lastValueFingerprint.current = JSON.stringify(canonicalValue);
       onValueChange(canonicalValue);
     },
-    [editor, onValueChange],
+    [editor, hashtagsEnabled, isReadOnly, onValueChange],
   );
 
   return (
     <div
+      ref={containerRef}
       data-slot="rich-text-editor"
       data-disabled={disabled || undefined}
       data-readonly={readOnly || undefined}
       className={cn(
         `
           input-glass overflow-hidden rounded-md border border-input
-          bg-transparent bg-clip-padding text-sm transition-[border-color,box-shadow]
+          bg-transparent bg-clip-padding text-sm
+          transition-[height,border-color,box-shadow] duration-200 ease-out
           focus-within:border-ring focus-within:ring-[3px]
           focus-within:ring-ring/50
-          data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50
+          data-[disabled=true]:cursor-not-allowed
+          data-[disabled=true]:opacity-50 motion-reduce:transition-none
           dark:bg-input/30
         `,
         invalid && 'border-destructive ring-[3px] ring-destructive/20 dark:ring-destructive/40',
         className,
       )}
+      style={{ height }}
     >
-      <Slate editor={editor} initialValue={cloneRichTextValue(value)} onChange={handleChange}>
-        <RichTextEditorContext.Provider value={context}>
-          {children ?? (
-            <>
-              {toolbar !== false && (
-                <RichTextEditorToolbar capabilities={resolveCapabilities(toolbar)} className={toolbarClassName} />
-              )}
-              <RichTextEditorContent
-                id={id}
-                placeholder={placeholder}
-                className={contentClassName}
-                autoFocus={autoFocus}
-                spellCheck={spellCheck}
-                aria-invalid={invalid || undefined}
-                aria-label={ariaLabelledBy ? undefined : ariaLabel}
-                aria-labelledby={ariaLabelledBy}
-                aria-describedby={ariaDescribedBy}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
-            </>
-          )}
-        </RichTextEditorContext.Provider>
-      </Slate>
-      {name && <input type="hidden" name={name} value={JSON.stringify(value)} disabled={disabled} />}
+      <div ref={contentRef}>
+        <Slate editor={editor} initialValue={cloneRichTextValue(value)} onChange={handleChange}>
+          <RichTextEditorContext.Provider value={context}>
+            {children ?? (
+              <>
+                {toolbar !== false && (
+                  <RichTextEditorToolbar capabilities={resolveCapabilities(toolbar)} className={toolbarClassName} />
+                )}
+                <RichTextEditorContent
+                  id={id}
+                  placeholder={placeholder}
+                  className={contentClassName}
+                  autoFocus={autoFocus}
+                  spellCheck={spellCheck}
+                  aria-invalid={invalid || undefined}
+                  aria-label={ariaLabelledBy ? undefined : ariaLabel}
+                  aria-labelledby={ariaLabelledBy}
+                  aria-describedby={ariaDescribedBy}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                />
+              </>
+            )}
+            {hashtagsEnabled ? <RichTextHashtagSuggestions /> : null}
+          </RichTextEditorContext.Provider>
+        </Slate>
+        {name && <input type="hidden" name={name} value={JSON.stringify(value)} disabled={disabled} />}
+      </div>
     </div>
   );
 }
@@ -251,12 +389,50 @@ export function RichTextEditorContent({
   ...props
 }: RichTextEditorContentProps): React.ReactElement {
   const editor = useSlate();
-  const { disabled, readOnly, openLinkEditor } = useRichTextEditorContext();
+  const {
+    activeHashtagIndex,
+    closeHashtagSuggestions,
+    commitHashtag,
+    disabled,
+    hashtagQuery,
+    hashtagSuggestions,
+    onHashtagClick,
+    openLinkEditor,
+    readOnly,
+    setActiveHashtagIndex,
+  } = useRichTextEditorContext();
+  const renderElement = React.useCallback(
+    (renderProps: Parameters<typeof renderRichTextElement>[0]) => renderRichTextElement(renderProps, onHashtagClick),
+    [onHashtagClick],
+  );
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       onKeyDown?.(event);
       if (event.defaultPrevented || readOnly) return;
+
+      if (hashtagQuery !== null) {
+        if (event.key === 'ArrowDown' && hashtagSuggestions.length > 0) {
+          event.preventDefault();
+          setActiveHashtagIndex((activeHashtagIndex + 1) % hashtagSuggestions.length);
+          return;
+        }
+        if (event.key === 'ArrowUp' && hashtagSuggestions.length > 0) {
+          event.preventDefault();
+          setActiveHashtagIndex((activeHashtagIndex - 1 + hashtagSuggestions.length) % hashtagSuggestions.length);
+          return;
+        }
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeHashtagSuggestions();
+          return;
+        }
+        if ((event.key === 'Enter' || event.key === 'Tab') && hashtagSuggestions[activeHashtagIndex]) {
+          event.preventDefault();
+          commitHashtag(hashtagSuggestions[activeHashtagIndex]);
+          return;
+        }
+      }
 
       const shortcut = getRichTextShortcut(event);
       if (shortcut && shortcut !== 'link') {
@@ -267,7 +443,18 @@ export function RichTextEditorContent({
         openLinkEditor();
       }
     },
-    [editor, onKeyDown, openLinkEditor, readOnly],
+    [
+      activeHashtagIndex,
+      closeHashtagSuggestions,
+      commitHashtag,
+      editor,
+      hashtagQuery,
+      hashtagSuggestions,
+      onKeyDown,
+      openLinkEditor,
+      readOnly,
+      setActiveHashtagIndex,
+    ],
   );
 
   return (
@@ -276,7 +463,7 @@ export function RichTextEditorContent({
       role="textbox"
       readOnly={readOnly}
       aria-disabled={disabled || undefined}
-      renderElement={renderRichTextElement}
+      renderElement={renderElement}
       renderLeaf={renderRichTextLeaf}
       renderPlaceholder={renderRichTextPlaceholder}
       onKeyDown={handleKeyDown}
@@ -290,6 +477,40 @@ export function RichTextEditorContent({
         className,
       )}
     />
+  );
+}
+
+function RichTextHashtagSuggestions(): React.ReactElement | null {
+  const { activeHashtagIndex, commitHashtag, hashtagQuery, hashtagSuggestions, setActiveHashtagIndex } =
+    useRichTextEditorContext();
+  if (hashtagQuery === null) return null;
+
+  if (hashtagSuggestions.length === 0) return null;
+
+  return (
+    <div
+      role="listbox"
+      aria-label="Hashtag suggestions"
+      className="border-t border-border/70 bg-popover p-1 text-popover-foreground"
+    >
+      {hashtagSuggestions.map((tag, index) => (
+        <button
+          key={tag}
+          type="button"
+          role="option"
+          aria-selected={index === activeHashtagIndex}
+          className={cn(
+            'flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm outline-none',
+            index === activeHashtagIndex && 'bg-accent text-accent-foreground',
+          )}
+          onMouseDown={(event) => event.preventDefault()}
+          onMouseEnter={() => setActiveHashtagIndex(index)}
+          onClick={() => commitHashtag(tag)}
+        >
+          #{tag}
+        </button>
+      ))}
+    </div>
   );
 }
 

@@ -18,7 +18,13 @@ export type RichTextLink = {
   children: RichTextText[];
 };
 
-export type RichTextInline = RichTextText | RichTextLink;
+export type RichTextHashtag = {
+  type: 'hashtag';
+  tag: string;
+  children: [{ text: '' }];
+};
+
+export type RichTextInline = RichTextText | RichTextLink | RichTextHashtag;
 
 type RichTextTextBlock<Type extends string> = {
   type: Type;
@@ -45,9 +51,10 @@ export type RichTextElement =
   | RichTextBlockQuote
   | RichTextListItem
   | RichTextList
-  | RichTextLink;
+  | RichTextLink
+  | RichTextHashtag;
 
-export type RichTextBlock = Exclude<RichTextElement, RichTextLink>;
+export type RichTextBlock = Exclude<RichTextElement, RichTextLink | RichTextHashtag>;
 
 /** A serializable Frost rich-text document. */
 export type RichTextValue = RichTextBlock[];
@@ -73,6 +80,31 @@ export type RichTextToolbarCapability =
 export type RichTextToolbarPreset = 'basic' | 'document';
 
 export type RichTextEditorInstance = BaseEditor & ReactEditor & HistoryEditor;
+
+export type RichTextHashtagSummary = {
+  values: string[];
+  uniqueValues: string[];
+  totalCount: number;
+  uniqueCount: number;
+};
+
+export type RichTextHashtagChange = RichTextHashtagSummary & {
+  added: string[];
+  removed: string[];
+};
+
+export type RichTextHashtagOptions = {
+  /** Local suggestions filtered as the user types after `#`. */
+  suggestions?: readonly string[];
+  /** Allows a typed query to become a hashtag when it is not in `suggestions`. Defaults to true. */
+  allowFreeform?: boolean;
+  /** Called with the active query, suitable for loading remote suggestions. */
+  onSearch?: (query: string) => void;
+  /** Called when an interactive hashtag is selected in the editor or renderer. */
+  onHashtagClick?: (tag: string) => void;
+  /** Reports the complete hashtag summary and occurrence-level additions and removals. */
+  onHashtagsChange?: (change: RichTextHashtagChange) => void;
+};
 
 declare module 'slate' {
   interface CustomTypes {

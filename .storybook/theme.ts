@@ -1,7 +1,7 @@
 import { create } from 'storybook/theming/create';
 
 export default create({
-  base: 'dark',
+  base: 'light',
   brandTitle: 'Frost',
   brandUrl: 'https://ebuckleyk.com',
   brandImage: 'favicons/favicon-32x32.png',

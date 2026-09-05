@@ -10,6 +10,9 @@ import type {
   RichTextBlockType,
   RichTextEditorInstance,
   RichTextElement,
+  RichTextHashtag,
+  RichTextHashtagChange,
+  RichTextHashtagSummary,
   RichTextInline,
   RichTextLink,
   RichTextListItem,
@@ -23,6 +26,7 @@ export const EMPTY_RICH_TEXT_VALUE: RichTextValue = [{ type: 'paragraph', childr
 const LIST_TYPES = new Set<RichTextBlockType>(['numbered-list', 'bulleted-list']);
 const ALLOWED_PROTOCOLS = new Set(['http:', 'https:', 'mailto:']);
 const BLOCK_TAGS = new Set(['ADDRESS', 'ARTICLE', 'ASIDE', 'DIV', 'FOOTER', 'HEADER', 'MAIN', 'NAV', 'SECTION']);
+const HASHTAG_PATTERN = /^[\p{L}\p{N}_-]+$/u;
 
 export function cloneRichTextValue(value: RichTextValue): RichTextValue {
   return JSON.parse(JSON.stringify(value)) as RichTextValue;
@@ -41,6 +45,11 @@ export function normalizeRichTextUrl(value: string): string | null {
   }
 }
 
+export function normalizeRichTextHashtag(value: string): string | null {
+  const tag = value.trim().replace(/^#/, '');
+  return tag && HASHTAG_PATTERN.test(tag) ? tag : null;
+}
+
 function serializeText(node: RichTextText): string {
   let output = escapeHtml(node.text);
   if (node.bold) output = `<strong>${output}</strong>`;
@@ -52,6 +61,11 @@ function serializeText(node: RichTextText): string {
 
 function serializeInline(node: RichTextInline): string {
   if (Text.isText(node)) return serializeText(node);
+
+  if (node.type === 'hashtag') {
+    const tag = normalizeRichTextHashtag(node.tag);
+    return tag ? `<span data-hashtag="${escapeHtml(tag)}">#${escapeHtml(tag)}</span>` : '';
+  }
 
   const children = node.children.map(serializeText).join('');
   const url = normalizeRichTextUrl(node.url);
@@ -69,6 +83,7 @@ function serializeElement(element: RichTextElement): string {
   const content = children.join('');
   switch (element.type) {
     case 'link':
+    case 'hashtag':
       return serializeInline(element);
     case 'block-quote':
       return `<blockquote${alignmentAttribute(element)}>${content}</blockquote>`;
@@ -100,11 +115,16 @@ export function serializeRichTextToHtml(value: RichTextValue): string {
 }
 
 function inlinePlainText(nodes: RichTextInline[]): string {
-  return nodes.map((node) => (Text.isText(node) ? node.text : inlinePlainText(node.children))).join('');
+  return nodes
+    .map((node) =>
+      Text.isText(node) ? node.text : node.type === 'hashtag' ? `#${node.tag}` : inlinePlainText(node.children),
+    )
+    .join('');
 }
 
 function blockPlainText(element: RichTextElement, listIndex?: number): string {
   if (element.type === 'link') return inlinePlainText(element.children);
+  if (element.type === 'hashtag') return `#${element.tag}`;
   if (element.type === 'bulleted-list' || element.type === 'numbered-list') {
     return element.children
       .map((item, index) => blockPlainText(item, element.type === 'numbered-list' ? index + 1 : undefined))
@@ -120,7 +140,37 @@ export function serializeRichTextToPlainText(value: RichTextValue): string {
 }
 
 export function isRichTextEmpty(value: RichTextValue | null | undefined): boolean {
-  return !value?.some((element) => SlateNode.string(element).trim().length > 0);
+  return !value?.some(
+    (element) =>
+      SlateNode.string(element).trim().length > 0 ||
+      Array.from(SlateNode.elements(element)).some(([node]) => node.type === 'hashtag'),
+  );
+}
+
+export function getRichTextHashtags(value: RichTextValue | null | undefined): RichTextHashtagSummary {
+  const values: string[] = [];
+  value?.forEach((block) => {
+    for (const [node] of SlateNode.elements(block)) {
+      if (node.type === 'hashtag') values.push(node.tag);
+    }
+  });
+  const uniqueValues = Array.from(new Set(values));
+  return { values, uniqueValues, totalCount: values.length, uniqueCount: uniqueValues.length };
+}
+
+export function getRichTextHashtagChange(
+  previous: RichTextValue | null | undefined,
+  current: RichTextValue | null | undefined,
+): RichTextHashtagChange {
+  const summary = getRichTextHashtags(current);
+  const remainingPrevious = [...getRichTextHashtags(previous).values];
+  const added = summary.values.filter((tag) => {
+    const index = remainingPrevious.indexOf(tag);
+    if (index === -1) return true;
+    remainingPrevious.splice(index, 1);
+    return false;
+  });
+  return { ...summary, added, removed: remainingPrevious };
 }
 
 function getAlignment(element: HTMLElement): RichTextAlignment | undefined {
@@ -160,6 +210,13 @@ function parseInlineNodes(
     if (tag === 'CODE') nextMarks.code = true;
 
     const children = parseInlineNodes(node.childNodes, nextMarks);
+    if (tag === 'SPAN' && node.hasAttribute('data-hashtag')) {
+      const hashtag = normalizeRichTextHashtag(node.getAttribute('data-hashtag') ?? node.textContent ?? '');
+      if (hashtag) {
+        output.push({ type: 'hashtag', tag: hashtag, children: [{ text: '' }] });
+        return;
+      }
+    }
     if (tag === 'A') {
       const url = normalizeRichTextUrl(node.getAttribute('href') ?? '');
       if (url) {
@@ -254,7 +311,7 @@ export function deserializeRichTextFromHtml(html: string): RichTextValue {
       'u',
       'ul',
     ],
-    ALLOWED_ATTR: ['href', 'style'],
+    ALLOWED_ATTR: ['data-hashtag', 'href', 'style'],
     ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i,
   });
   const document = new DOMParser().parseFromString(sanitized, 'text/html');
@@ -357,12 +414,24 @@ export function removeLink(editor: RichTextEditorInstance): void {
 }
 
 export function withLinks(editor: RichTextEditorInstance): RichTextEditorInstance {
-  const { isInline } = editor;
-  editor.isInline = (element) => (element.type === 'link' ? true : isInline(element));
+  const { isInline, isVoid } = editor;
+  editor.isInline = (element) => (element.type === 'link' || element.type === 'hashtag' ? true : isInline(element));
+  editor.isVoid = (element) => (element.type === 'hashtag' ? true : isVoid(element));
   return editor;
 }
 
-export function renderRichTextElement({ attributes, children, element }: RenderElementProps): React.ReactElement {
+export function insertRichTextHashtag(editor: RichTextEditorInstance, tag: string): boolean {
+  const normalized = normalizeRichTextHashtag(tag);
+  if (!normalized || !editor.selection) return false;
+  const hashtag: RichTextHashtag = { type: 'hashtag', tag: normalized, children: [{ text: '' }] };
+  Transforms.insertNodes(editor, [hashtag, { text: ' ' }]);
+  return true;
+}
+
+export function renderRichTextElement(
+  { attributes, children, element }: RenderElementProps,
+  onHashtagClick?: (tag: string) => void,
+): React.ReactElement {
   switch (element.type) {
     case 'link':
       return (
@@ -373,6 +442,26 @@ export function renderRichTextElement({ attributes, children, element }: RenderE
         >
           {children}
         </a>
+      );
+    case 'hashtag':
+      return (
+        <span {...attributes} className="mx-0.5 inline-block">
+          <span contentEditable={false}>
+            {onHashtagClick ? (
+              <button
+                type="button"
+                className="rounded-sm bg-primary/10 px-1 text-primary hover:bg-primary/20"
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => onHashtagClick(element.tag)}
+              >
+                #{element.tag}
+              </button>
+            ) : (
+              <span className="rounded-sm bg-primary/10 px-1 text-primary">#{element.tag}</span>
+            )}
+          </span>
+          {children}
+        </span>
       );
     case 'block-quote':
       return (

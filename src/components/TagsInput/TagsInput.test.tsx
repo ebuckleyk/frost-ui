@@ -22,6 +22,24 @@ describe('TagsInput', () => {
     expect(screen.getByText('Audio')).toBeVisible();
   });
 
+  it('adds a freeform tag with Tab and keeps focus in the input', () => {
+    render(<ControlledTagsInput />);
+    const input = screen.getByRole('combobox', { name: 'Tags' });
+
+    input.focus();
+    fireEvent.change(input, { target: { value: 'Podcast' } });
+    expect(fireEvent.keyDown(input, { key: 'Tab' })).toBe(false);
+    expect(screen.getByText('Podcast')).toBeVisible();
+    expect(input).toHaveFocus();
+  });
+
+  it('allows Tab to move focus when there is no tag to commit', () => {
+    render(<ControlledTagsInput />);
+    const input = screen.getByRole('combobox', { name: 'Tags' });
+
+    expect(fireEvent.keyDown(input, { key: 'Tab' })).toBe(true);
+  });
+
   it('removes tags with the chip button and empty-input Backspace', () => {
     render(<ControlledTagsInput value={['Podcast', 'Audio']} />);
     const input = screen.getByRole('combobox', { name: 'Tags' });
