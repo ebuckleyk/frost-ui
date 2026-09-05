@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.24.0
+
+### Minor Changes
+
+- 6631f81: Add structured RichTextEditor hashtags with suggestions, callbacks, extraction utilities, serialization, and read-only rendering. Smooth editor height changes, allow TagsInput to commit with Tab while retaining focus, refresh the dark primary theme, and expand Storybook documentation and examples.
+
 ## 1.23.0
 
 ### Minor Changes
