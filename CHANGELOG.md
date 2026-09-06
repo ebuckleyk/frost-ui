@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.24.3
+
+### Patch Changes
+
+- 5860498: Standardize Toggle pressed states on the primary theme color so selected controls share a consistent interaction language.
+
 ## 1.24.2
 
 ### Patch Changes
