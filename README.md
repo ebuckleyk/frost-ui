@@ -118,6 +118,28 @@ npm i @shadcn/react
 
 Each component supports direct, tree-shakable imports such as `@ebuckleyk/frost-ui/components/Attachment`.
 
+### RichTextEditor emoji picker
+
+Emoji insertion is opt-in. Add `emoji` to an explicit toolbar capability list to show the picker alongside the requested formatting controls:
+
+```tsx
+import { EMPTY_RICH_TEXT_VALUE, RichTextEditor, type RichTextValue } from '@ebuckleyk/frost-ui';
+
+function Editor() {
+  const [value, setValue] = React.useState<RichTextValue>(EMPTY_RICH_TEXT_VALUE);
+
+  return (
+    <RichTextEditor
+      value={value}
+      onValueChange={setValue}
+      toolbar={['bold', 'italic', 'emoji']}
+    />
+  );
+}
+```
+
+The emoji picker is excluded from the default `basic` and `document` presets. Its code and emoji data load only after the picker is first opened, and subsequent openings reuse the loaded picker.
+
 ### Questionnaire
 
 `Questionnaire` provides an accessible, multi-step form flow with single or multiple choices, freeform answers, required validation, optional skips, progress, and keyboard shortcuts:

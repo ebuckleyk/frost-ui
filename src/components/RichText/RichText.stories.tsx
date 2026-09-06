@@ -218,7 +218,7 @@ const meta = {
       description: {
         component: `A controlled Slate-based editor with formatting, links, structured hashtags, safe serialization, and read-only rendering.
 
-Store the serializable \`RichTextValue\` in application state and pass every update back through \`value\`. Use \`toolbar="document"\` for the full formatting set or provide an explicit capability array. Hashtags are opt-in inline nodes: type \`#\`, filter with the keyboard, and commit with Enter, Tab, or a pointer. Arrow keys move through suggestions and Escape closes them.
+Store the serializable \`RichTextValue\` in application state and pass every update back through \`value\`. Use \`toolbar="document"\` for the full formatting set or provide an explicit capability array. Add \`"emoji"\` to that array to opt into emoji insertion; the picker and its data load only when opened. Hashtags are opt-in inline nodes: type \`#\`, filter with the keyboard, and commit with Enter, Tab, or a pointer. Arrow keys move through suggestions and Escape closes them.
 
 The canonical JSON value is the persistence format. Use \`serializeRichTextToHtml\` or \`serializeRichTextToPlainText\` at output boundaries, \`RichTextRenderer\` for read-only display, and \`getRichTextHashtags\` for occurrence and unique counts. \`onHashtagsChange\` reports complete, added, and removed hashtag occurrences.`,
       },
@@ -325,6 +325,22 @@ export const Links: Story = {
   value={value}
   onValueChange={setValue}
   toolbar={['bold', 'italic', 'link']}
+/>`,
+        language: 'tsx',
+      },
+    },
+  },
+};
+export const Emoji: Story = {
+  render: () => <EditorExample toolbar={['bold', 'italic', 'emoji']} />,
+  parameters: {
+    docs: {
+      description: { story: 'Emoji insertion is opt-in and its picker is loaded only when opened.' },
+      source: {
+        code: `<RichTextEditor
+  value={value}
+  onValueChange={setValue}
+  toolbar={['bold', 'italic', 'emoji']}
 />`,
         language: 'tsx',
       },

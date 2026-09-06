@@ -66,6 +66,29 @@ describe('RichTextEditor', () => {
     expect(screen.getByRole('button', { name: 'Bulleted list' })).toBeVisible();
     expect(screen.getByRole('button', { name: 'Numbered list' })).toBeVisible();
     expect(screen.queryByRole('button', { name: 'Heading 1' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Insert emoji' })).not.toBeInTheDocument();
+  });
+
+  it('lazily opens the emoji picker only when explicitly enabled', async () => {
+    render(<RichTextEditor value={EXISTING_VALUE} onValueChange={vi.fn()} toolbar={['bold', 'italic', 'emoji']} />);
+
+    const emojiControl = screen.getByRole('button', { name: 'Insert emoji' });
+    expect(emojiControl).toBeVisible();
+    expect(emojiControl).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.queryByPlaceholderText('Search emoji')).not.toBeInTheDocument();
+
+    fireEvent.click(emojiControl);
+
+    expect(emojiControl).toHaveAttribute('aria-pressed', 'true');
+    const emojiSearch = await screen.findByPlaceholderText('Search emoji');
+    expect(emojiSearch).toBeVisible();
+
+    fireEvent.click(emojiControl);
+    expect(emojiControl).toHaveAttribute('aria-pressed', 'false');
+
+    fireEvent.click(emojiControl);
+    expect(screen.getByPlaceholderText('Search emoji')).toBe(emojiSearch);
+    expect(emojiSearch).toBeVisible();
   });
 
   it('exposes document formatting controls with customer-readable labels', () => {
