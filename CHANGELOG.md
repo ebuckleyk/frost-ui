@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.24.4
+
+### Patch Changes
+
+- 673f441: Add opt-in animated tab panels and a sliding selected-tab indicator.
+
 ## 1.24.3
 
 ### Patch Changes
