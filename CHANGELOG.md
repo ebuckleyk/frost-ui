@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.25.0
+
+### Minor Changes
+
+- 56445bd: Add an opt-in, lazily loaded emoji picker to the RichTextEditor toolbar. Preserve smooth intrinsic-height animation while typing, reuse the loaded picker for responsive subsequent openings, provide smooth scrollbar-free browsing, and place the caret after inserted emoji.
+
 ## 1.24.4
 
 ### Patch Changes
