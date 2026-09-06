@@ -361,6 +361,28 @@
 
 /* Glassmorphism Utility Classes */
 @layer utilities {
+  /* Pressed Toggle state must remain distinct from transient hover feedback. */
+  :is([data-slot='toggle'], [data-slot='toggle-group-item']):is([data-state='on'], [aria-pressed='true']) {
+    border-color: color-mix(in oklch, var(--primary) 50%, transparent) !important;
+    background-color: color-mix(in oklch, var(--primary) 20%, transparent) !important;
+    color: var(--primary) !important;
+  }
+
+  :is([data-slot='toggle'], [data-slot='toggle-group-item']):is([data-state='on'], [aria-pressed='true']):hover {
+    background-color: color-mix(in oklch, var(--primary) 20%, transparent) !important;
+  }
+
+  :is([data-slot='toggle'], [data-slot='toggle-group-item']):is([data-state='on'], [aria-pressed='true']):active {
+    background-color: color-mix(in oklch, var(--primary) 25%, transparent) !important;
+  }
+
+  :is([data-slot='toggle'], [data-slot='toggle-group-item'])[data-variant='outline']:is(
+    [data-state='on'],
+    [aria-pressed='true']
+  ) {
+    border-color: color-mix(in oklch, var(--primary) 65%, transparent) !important;
+  }
+
   .scrollbar-none {
     scrollbar-width: none;
   }

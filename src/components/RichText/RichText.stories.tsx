@@ -1,9 +1,11 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Transforms } from 'slate';
+import { useSlate } from 'slate-react';
 
 import { Button } from '../Button';
 import { Field, FieldDescription, FieldLabel } from '../Field';
-import { RichTextEditor } from './RichText';
+import { RichTextEditor, RichTextEditorContent, RichTextEditorToolbar } from './RichText';
 import type { RichTextValue } from './RichText.types';
 import { getRichTextHashtags, serializeRichTextToHtml, serializeRichTextToPlainText } from './RichText.utils';
 import { RichTextRenderer } from './RichTextRenderer';
@@ -186,6 +188,27 @@ function HashtagsExample() {
   );
 }
 
+function ActiveFormattingExample() {
+  const [value, setValue] = React.useState<RichTextValue>([
+    { type: 'paragraph', children: [{ text: 'Bold formatting is active.', bold: true }] },
+  ]);
+  return (
+    <RichTextEditor value={value} onValueChange={setValue} toolbar="document">
+      <RichTextEditorToolbar />
+      <SelectBoldText />
+      <RichTextEditorContent />
+    </RichTextEditor>
+  );
+}
+
+function SelectBoldText() {
+  const editor = useSlate();
+  React.useEffect(() => {
+    Transforms.select(editor, { anchor: { path: [0, 0], offset: 0 }, focus: { path: [0, 0], offset: 4 } });
+  }, [editor]);
+  return null;
+}
+
 const meta = {
   title: 'Components/RichTextEditor',
   component: RichTextEditor,
@@ -226,6 +249,16 @@ export const DocumentToolbar: Story = {
       source: {
         code: '<RichTextEditor value={value} onValueChange={setValue} toolbar="document" />',
         language: 'tsx',
+      },
+    },
+  },
+};
+export const ActiveFormatting: Story = {
+  render: () => <ActiveFormattingExample />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Bold is selected on load so the toolbar exposes the standard primary Toggle selected state.',
       },
     },
   },

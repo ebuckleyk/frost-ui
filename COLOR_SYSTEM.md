@@ -25,7 +25,8 @@ The Tailwind preset in `src/styles/theme-preset.js` maps directly to these OKLCH
 
 - Light mode uses near-white blue-neutral surfaces with muted blue borders.
 - Dark mode uses deep navy-neutral surfaces with clearer glass edges while keeping primary actions close to the light-mode brand blue.
-- Accent surfaces use a cooler cyan-green hue so hover, selected, and ambient states do not all read as the same blue.
+- Primary uses Frost's blue family for primary actions and selected, active, or pressed controls.
+- Accent surfaces use a cooler cyan-green hue for hover feedback, ambient surfaces, and supporting emphasis.
 - Destructive colors stay warm red for clear semantic separation.
 
 ## Accessibility Guidance
@@ -34,6 +35,12 @@ The Tailwind preset in `src/styles/theme-preset.js` maps directly to these OKLCH
 - Use `text-muted-foreground` for supporting copy, labels, descriptions, and captions.
 - Avoid placing `text-muted-foreground` on `bg-muted` for essential information.
 - Use `focus-visible:ring-ring/50` or the existing component focus classes for keyboard-visible focus.
+
+## Interactive State Guidance
+
+- Use `primary` for primary actions and selected, active, or pressed controls that represent a committed interaction state.
+- Use `accent` for hover feedback, ambient surfaces, subtle supporting emphasis, and other non-selected interaction feedback.
+- Keep selected state and keyboard focus visually distinct: selected state conveys the control's value, while the focus ring conveys keyboard location.
 
 ## Consumer Guidance
 

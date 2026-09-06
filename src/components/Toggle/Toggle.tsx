@@ -14,8 +14,7 @@ const toggleVariants = cva(
     focus-visible:ring-ring/50
     disabled:pointer-events-none disabled:opacity-50
     aria-invalid:border-destructive aria-invalid:ring-destructive/20
-    data-[state=on]:bg-accent/55
-    data-[state=on]:text-accent-foreground dark:aria-invalid:ring-destructive/40
+    dark:aria-invalid:ring-destructive/40
     [&_svg]:pointer-events-none [&_svg]:shrink-0
     [&_svg:not([class*='size-'])]:size-4
   `,
@@ -25,10 +24,18 @@ const toggleVariants = cva(
         default: `
           border border-transparent bg-transparent shadow-none
           hover:bg-accent/20 hover:text-accent-foreground active:bg-accent/30
+          aria-pressed:border-primary/50 aria-pressed:bg-primary/20 aria-pressed:text-primary
+          aria-pressed:hover:bg-primary/20 aria-pressed:hover:text-primary aria-pressed:active:bg-primary/25
+          data-[state=on]:border-primary/50 data-[state=on]:bg-primary/20 data-[state=on]:text-primary
+          data-[state=on]:hover:bg-primary/20 data-[state=on]:hover:text-primary data-[state=on]:active:bg-primary/25
         `,
         outline: `
           glass-control border border-(--glass-edge) bg-transparent shadow-none
           hover:bg-accent/20 hover:text-accent-foreground active:bg-accent/30
+          aria-pressed:border-primary/65 aria-pressed:bg-primary/20 aria-pressed:text-primary
+          aria-pressed:hover:bg-primary/20 aria-pressed:hover:text-primary aria-pressed:active:bg-primary/25
+          data-[state=on]:border-primary/65 data-[state=on]:bg-primary/20 data-[state=on]:text-primary
+          data-[state=on]:hover:bg-primary/20 data-[state=on]:hover:text-primary data-[state=on]:active:bg-primary/25
         `,
       },
       size: {
@@ -51,7 +58,12 @@ function Toggle({
   ...props
 }: React.ComponentProps<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>) {
   return (
-    <TogglePrimitive.Root data-slot="toggle" className={cn(toggleVariants({ variant, size, className }))} {...props} />
+    <TogglePrimitive.Root
+      data-slot="toggle"
+      data-variant={variant ?? 'default'}
+      className={cn(toggleVariants({ variant, size, className }))}
+      {...props}
+    />
   );
 }
 

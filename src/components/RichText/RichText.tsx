@@ -566,7 +566,6 @@ function FormattingControl({ control }: { control: ToolbarControl }): React.Reac
           aria-label={control.label}
           pressed={active}
           disabled={disabled || readOnly}
-          className="aria-pressed:bg-accent/55 aria-pressed:text-accent-foreground"
           onMouseDown={(event) => event.preventDefault()}
           onPressedChange={handlePressedChange}
         >
@@ -615,19 +614,18 @@ function LinkControl(): React.ReactElement {
       <Tooltip>
         <TooltipTrigger asChild>
           <PopoverTrigger asChild>
-            <Button
+            <Toggle
               type="button"
-              size="icon-xs"
-              variant="ghost"
+              size="sm"
               aria-label={label}
-              aria-pressed={active}
+              pressed={active}
               disabled={disabled || readOnly}
-              className="size-8 aria-pressed:bg-accent/55 aria-pressed:text-accent-foreground"
+              className="size-8"
               onMouseDown={(event) => event.preventDefault()}
-              onClick={openLinkEditor}
+              onPressedChange={openLinkEditor}
             >
               <Link1Icon />
-            </Button>
+            </Toggle>
           </PopoverTrigger>
         </TooltipTrigger>
         <TooltipContent>{label}</TooltipContent>

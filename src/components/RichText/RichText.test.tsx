@@ -94,7 +94,33 @@ describe('RichTextEditor', () => {
     );
     const boldControl = screen.getByRole('button', { name: 'Bold' });
     await waitFor(() => expect(boldControl).toHaveAttribute('aria-pressed', 'true'));
-    expect(boldControl).toHaveClass('aria-pressed:bg-accent/55', 'aria-pressed:text-accent-foreground');
+    expect(boldControl).toHaveClass('aria-pressed:bg-primary/20', 'aria-pressed:text-primary');
+  });
+
+  it('updates the standard Toggle pressed state after applying formatting', async () => {
+    function SelectText() {
+      const editor = useSlate();
+      React.useEffect(() => {
+        Transforms.select(editor, { anchor: { path: [0, 0], offset: 0 }, focus: { path: [0, 0], offset: 4 } });
+      }, [editor]);
+      return null;
+    }
+
+    const onValueChange = vi.fn();
+    render(
+      <RichTextEditor value={[{ type: 'paragraph', children: [{ text: 'Bold' }] }]} onValueChange={onValueChange}>
+        <RichTextEditorToolbar />
+        <SelectText />
+        <RichTextEditorContent />
+      </RichTextEditor>,
+    );
+    const boldControl = screen.getByRole('button', { name: 'Bold' });
+
+    await waitFor(() => expect(boldControl).toHaveAttribute('aria-pressed', 'false'));
+    fireEvent.click(boldControl);
+
+    await waitFor(() => expect(boldControl).toHaveAttribute('aria-pressed', 'true'));
+    expect(onValueChange).toHaveBeenLastCalledWith([{ type: 'paragraph', children: [{ text: 'Bold', bold: true }] }]);
   });
 
   it('supports read-only and disabled states', () => {
