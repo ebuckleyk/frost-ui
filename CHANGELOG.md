@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.24.2
+
+### Patch Changes
+
+- 3ce7deb: Make active RichTextEditor toolbar formatting and link controls visibly distinguishable.
+
 ## 1.24.1
 
 ### Patch Changes
