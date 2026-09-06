@@ -92,7 +92,9 @@ describe('RichTextEditor', () => {
         <RichTextEditorContent />
       </RichTextEditor>,
     );
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Bold' })).toHaveAttribute('aria-pressed', 'true'));
+    const boldControl = screen.getByRole('button', { name: 'Bold' });
+    await waitFor(() => expect(boldControl).toHaveAttribute('aria-pressed', 'true'));
+    expect(boldControl).toHaveClass('aria-pressed:bg-accent/55', 'aria-pressed:text-accent-foreground');
   });
 
   it('supports read-only and disabled states', () => {
