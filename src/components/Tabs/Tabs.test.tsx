@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 
 import { Button } from '../Button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../Card';
@@ -92,5 +92,43 @@ describe('Tabs', () => {
       'group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent',
       'group-data-[variant=line]/tabs-list:data-[state=active]:shadow-none',
     );
+  });
+
+  it('animates the selected indicator and active panel without leaking the animated prop', async () => {
+    const offsetLeft = vi.spyOn(HTMLElement.prototype, 'offsetLeft', 'get').mockImplementation(function () {
+      return this.textContent === 'Activity' ? 120 : 0;
+    });
+    const offsetWidth = vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(120);
+
+    const result = render(
+      <Tabs defaultValue="account" animated>
+        <TabsList>
+          <TabsTrigger value="account">Account</TabsTrigger>
+          <TabsTrigger value="activity">Activity</TabsTrigger>
+        </TabsList>
+        <TabsContent value="account">Account content</TabsContent>
+        <TabsContent value="activity">Activity content</TabsContent>
+      </Tabs>,
+    );
+
+    const root = result.getByText('Account content').closest('[data-slot="tabs"]');
+    const content = result.getByRole('tabpanel');
+    const indicator = root?.querySelector<HTMLElement>('[data-slot="tabs-indicator"]');
+
+    expect(root).toHaveAttribute('data-animated', 'true');
+    expect(root).not.toHaveAttribute('animated');
+    expect(indicator).toHaveStyle({ transform: 'translateX(0px)', width: '120px' });
+    expect(content).toHaveClass(
+      'group-data-[animated=true]/tabs:data-[state=active]:animate-in',
+      'group-data-[animated=true]/tabs:data-[state=active]:fade-in-0',
+      'group-data-[animated=true]/tabs:data-[state=active]:slide-in-from-bottom-1',
+      'group-data-[animated=true]/tabs:data-[state=active]:motion-reduce:animate-none',
+    );
+
+    fireEvent.mouseDown(result.getByRole('tab', { name: 'Activity' }), { button: 0, ctrlKey: false });
+    await waitFor(() => expect(indicator).toHaveStyle({ transform: 'translateX(120px)', width: '120px' }));
+
+    offsetLeft.mockRestore();
+    offsetWidth.mockRestore();
   });
 });
