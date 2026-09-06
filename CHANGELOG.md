@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.24.1
+
+### Patch Changes
+
+- 519d2d1: Restore the near-white primary foreground in dark mode while retaining the brighter primary color.
+
 ## 1.24.0
 
 ### Minor Changes
