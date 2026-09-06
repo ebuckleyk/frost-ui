@@ -54,6 +54,7 @@
     "url": "https://github.com/ebuckleyk/frost-ui.git"
   },
   "dependencies": {
+    "frimousse": "^0.3.0",
     "tw-animate-css": "^1.2.9"
   },
   "devDependencies": {

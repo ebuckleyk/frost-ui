@@ -13,7 +13,18 @@ import {
   TextAlignRightIcon,
   UnderlineIcon,
 } from '@radix-ui/react-icons';
-import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, List, ListOrdered, Unlink } from 'lucide-react';
+import {
+  Heading1,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
+  List,
+  ListOrdered,
+  Smile,
+  Unlink,
+} from 'lucide-react';
 import { createEditor, Editor, Range, Element as SlateElement, Transforms, type Descendant } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, Slate, useSlate, withReact } from 'slate-react';
@@ -29,6 +40,7 @@ import { getRichTextShortcut } from './RichText.shortcuts';
 import type {
   RichTextAlignment,
   RichTextBlockType,
+  RichTextEditorInstance,
   RichTextHashtagOptions,
   RichTextMark,
   RichTextToolbarCapability,
@@ -76,7 +88,10 @@ const DOCUMENT_CAPABILITIES = [
   'align-justify',
 ] as const;
 
+const LazyRichTextEmojiPicker = React.lazy(() => import('./RichTextEmojiPicker'));
+
 type RichTextEditorContextValue = {
+  editor: RichTextEditorInstance;
   disabled: boolean;
   readOnly: boolean;
   hashtagQuery: string | null;
@@ -132,7 +147,10 @@ export type RichTextEditorProps = {
   value: RichTextValue;
   /** Receives each canonical document update. */
   onValueChange: (value: RichTextValue) => void;
-  /** A toolbar preset, explicit capability list, or false to hide the toolbar. */
+  /**
+   * A toolbar preset, explicit capability list, or false to hide the toolbar.
+   * Add `emoji` to an explicit list to lazily enable emoji insertion.
+   */
   toolbar?: RichTextToolbarPreset | readonly RichTextToolbarCapability[] | false;
   /** Enables structured hashtag entry and configures suggestions and callbacks. */
   hashtags?: RichTextHashtagOptions | false;
@@ -184,7 +202,6 @@ export function RichTextEditor({
   const contentRef = React.useRef<HTMLDivElement>(null);
   const lastValueFingerprint = React.useRef(JSON.stringify(value));
   const previousHashtagValue = React.useRef(cloneRichTextValue(value));
-  const [height, setHeight] = React.useState<number>();
   const [hashtagMatch, setHashtagMatch] = React.useState<HashtagMatch | null>(null);
   const [activeHashtagIndex, setActiveHashtagIndex] = React.useState(0);
   const [linkOpen, setLinkOpen] = React.useState(false);
@@ -220,16 +237,25 @@ export function RichTextEditor({
     const content = contentRef.current;
     if (!container || !content) return;
 
+    const styles = window.getComputedStyle(container);
+    const borderHeight = (parseFloat(styles.borderTopWidth) || 0) + (parseFloat(styles.borderBottomWidth) || 0);
+    let animationFrame = 0;
+
     const updateHeight = () => {
-      const styles = window.getComputedStyle(container);
-      const borderHeight = (parseFloat(styles.borderTopWidth) || 0) + (parseFloat(styles.borderBottomWidth) || 0);
-      setHeight(content.getBoundingClientRect().height + borderHeight);
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => {
+        const nextHeight = `${content.getBoundingClientRect().height + borderHeight}px`;
+        if (container.style.height !== nextHeight) container.style.height = nextHeight;
+      });
     };
 
     updateHeight();
     const resizeObserver = new ResizeObserver(updateHeight);
     resizeObserver.observe(content);
-    return () => resizeObserver.disconnect();
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+    };
   }, []);
 
   React.useEffect(() => {
@@ -280,6 +306,7 @@ export function RichTextEditor({
 
   const context = React.useMemo<RichTextEditorContextValue>(
     () => ({
+      editor,
       disabled,
       readOnly: isReadOnly,
       hashtagQuery: hashtagMatch?.query ?? null,
@@ -301,6 +328,7 @@ export function RichTextEditor({
       closeHashtagSuggestions,
       commitHashtag,
       disabled,
+      editor,
       hashtagMatch,
       hashtagSuggestions,
       isReadOnly,
@@ -344,7 +372,6 @@ export function RichTextEditor({
         invalid && 'border-destructive ring-[3px] ring-destructive/20 dark:ring-destructive/40',
         className,
       )}
-      style={{ height }}
     >
       <div ref={contentRef}>
         <Slate editor={editor} initialValue={cloneRichTextValue(value)} onChange={handleChange}>
@@ -662,6 +689,81 @@ function LinkControl(): React.ReactElement {
   );
 }
 
+const EmojiControl = React.memo(function EmojiControl(): React.ReactElement {
+  const { disabled, editor, readOnly } = useRichTextEditorContext();
+  const [open, setOpen] = React.useState(false);
+  const [hasOpened, setHasOpened] = React.useState(false);
+  const savedSelection = React.useRef<Range | null>(null);
+
+  const handleOpenChange = React.useCallback(
+    (nextOpen: boolean) => {
+      if (nextOpen) {
+        setHasOpened(true);
+        if (editor.selection) savedSelection.current = editor.selection;
+      }
+      setOpen(nextOpen);
+    },
+    [editor],
+  );
+
+  const handleEmojiSelect = React.useCallback(
+    (emoji: string) => {
+      ReactEditor.focus(editor);
+      if (savedSelection.current) Transforms.select(editor, savedSelection.current);
+      Editor.insertText(editor, emoji);
+      setOpen(false);
+    },
+    [editor],
+  );
+
+  return (
+    <Popover open={open} onOpenChange={handleOpenChange}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <PopoverTrigger asChild>
+            <Toggle
+              type="button"
+              size="sm"
+              aria-label="Insert emoji"
+              aria-expanded={open}
+              pressed={open}
+              disabled={disabled || readOnly}
+              className="size-8"
+              onMouseDown={(event) => event.preventDefault()}
+              onPressedChange={handleOpenChange}
+            >
+              <Smile />
+            </Toggle>
+          </PopoverTrigger>
+        </TooltipTrigger>
+        <TooltipContent>Insert emoji</TooltipContent>
+      </Tooltip>
+      <PopoverContent
+        forceMount={hasOpened || undefined}
+        surface="solid"
+        motion="none"
+        align="start"
+        className="w-auto p-0 data-[state=closed]:pointer-events-none data-[state=closed]:invisible"
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+        }}
+      >
+        {hasOpened ? (
+          <React.Suspense
+            fallback={
+              <div className="flex h-80 w-65 items-center justify-center text-sm text-muted-foreground">
+                Loading emoji…
+              </div>
+            }
+          >
+            <LazyRichTextEmojiPicker onEmojiSelect={handleEmojiSelect} />
+          </React.Suspense>
+        ) : null}
+      </PopoverContent>
+    </Popover>
+  );
+});
+
 export type RichTextEditorToolbarProps = React.ComponentProps<'div'> & {
   capabilities?: readonly RichTextToolbarCapability[];
 };
@@ -684,6 +786,7 @@ export function RichTextEditorToolbar({
         enabled.has(control.capability) ? <FormattingControl key={control.capability} control={control} /> : null,
       )}
       {enabled.has('link') ? <LinkControl /> : null}
+      {enabled.has('emoji') ? <EmojiControl /> : null}
     </div>
   );
 }

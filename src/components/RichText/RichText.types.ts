@@ -76,7 +76,8 @@ export type RichTextToolbarCapability =
   | RichTextMark
   | Exclude<RichTextBlockType, 'paragraph'>
   | `align-${RichTextAlignment}`
-  | 'link';
+  | 'link'
+  | 'emoji';
 export type RichTextToolbarPreset = 'basic' | 'document';
 
 export type RichTextEditorInstance = BaseEditor & ReactEditor & HistoryEditor;
