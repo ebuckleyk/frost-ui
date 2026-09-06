@@ -6,7 +6,7 @@ import { ToggleGroup, ToggleGroupItem } from './ToggleGroup';
 
 function ToggleGroupDemo() {
   return (
-    <ToggleGroup type="single">
+    <ToggleGroup type="single" defaultValue="bold">
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <FontBoldIcon className="size-4" />
       </ToggleGroupItem>
@@ -22,7 +22,7 @@ function ToggleGroupDemo() {
 
 function OutlineToggleGroupDemo() {
   return (
-    <ToggleGroup type="multiple" variant="outline">
+    <ToggleGroup type="multiple" variant="outline" defaultValue={['italic']}>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <FontBoldIcon className="size-4" />
       </ToggleGroupItem>
