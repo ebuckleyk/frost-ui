@@ -566,6 +566,7 @@ function FormattingControl({ control }: { control: ToolbarControl }): React.Reac
           aria-label={control.label}
           pressed={active}
           disabled={disabled || readOnly}
+          className="aria-pressed:bg-accent/55 aria-pressed:text-accent-foreground"
           onMouseDown={(event) => event.preventDefault()}
           onPressedChange={handlePressedChange}
         >
@@ -621,7 +622,7 @@ function LinkControl(): React.ReactElement {
               aria-label={label}
               aria-pressed={active}
               disabled={disabled || readOnly}
-              className="size-8"
+              className="size-8 aria-pressed:bg-accent/55 aria-pressed:text-accent-foreground"
               onMouseDown={(event) => event.preventDefault()}
               onClick={openLinkEditor}
             >
