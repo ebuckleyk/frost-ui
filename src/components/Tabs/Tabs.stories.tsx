@@ -99,10 +99,54 @@ function LineTabsDemo() {
   );
 }
 
+function AnimatedTabsDemo() {
+  return (
+    <Tabs defaultValue="overview" animated className="w-[400px]">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="activity">Activity</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview">
+        <Card>
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+            <CardDescription>The newly selected panel fades and moves gently into place.</CardDescription>
+          </CardHeader>
+        </Card>
+      </TabsContent>
+      <TabsContent value="activity">
+        <Card>
+          <CardHeader>
+            <CardTitle>Activity</CardTitle>
+            <CardDescription>Reduced-motion preferences disable the panel animation.</CardDescription>
+          </CardHeader>
+        </Card>
+      </TabsContent>
+    </Tabs>
+  );
+}
+
 type ComponentType = React.ComponentProps<typeof Tabs>;
 const meta: Meta<ComponentType> = {
   component: Tabs,
   subcomponents: { TabsContent, TabsList, TabsTrigger },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Organizes related content into keyboard-accessible panels. Enable `animated` to slide the selected indicator between triggers and fade each newly selected panel into place. Animation is disabled by default and respects the user's reduced-motion preference.",
+      },
+    },
+  },
+  argTypes: {
+    animated: {
+      control: 'boolean',
+      description: 'Animates the selected indicator and newly selected tab panel.',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+    },
+  },
 };
 
 export default meta;
@@ -114,4 +158,16 @@ export const Demo: Story = {
 
 export const Line: Story = {
   render: LineTabsDemo,
+};
+
+export const Animated: Story = {
+  render: AnimatedTabsDemo,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pass `animated` to `Tabs` to slide the selected indicator between options and apply a short panel entrance transition. The content remains accessible and motion is removed when the user requests reduced motion.',
+      },
+    },
+  },
 };
