@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.27.0
+
+### Minor Changes
+
+- b084218: Add semantic info and warning Alert variants, and improve destructive Alert surfaces and dark-mode contrast.
+
 ## 1.26.0
 
 ### Minor Changes
