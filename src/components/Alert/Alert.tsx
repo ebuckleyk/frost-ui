@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { XIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
@@ -20,15 +21,40 @@ const alertVariants = cva(
           [&>svg]:text-current
         `,
       },
+      layout: {
+        default: '',
+        banner: `
+          min-h-16 py-4 pr-12
+          *:data-[slot=alert-action]:mt-2
+          sm:grid-cols-[calc(var(--spacing)*4)_minmax(0,1fr)_auto]
+          sm:gap-x-3
+          sm:*:data-[slot=alert-action]:col-start-3
+          sm:*:data-[slot=alert-action]:row-span-2
+          sm:*:data-[slot=alert-action]:row-start-1
+          sm:*:data-[slot=alert-action]:mt-0
+        `,
+        'banner-stacked': `
+          min-h-16 py-4 pr-12
+          *:data-[slot=alert-action]:mt-2
+        `,
+      },
     },
     defaultVariants: {
       variant: 'default',
+      layout: 'default',
     },
   },
 );
 
-function Alert({ className, variant, ...props }: React.ComponentProps<'div'> & VariantProps<typeof alertVariants>) {
-  return <div data-slot="alert" role="alert" className={cn(alertVariants({ variant }), className)} {...props} />;
+function Alert({
+  className,
+  variant,
+  layout,
+  ...props
+}: React.ComponentProps<'div'> & VariantProps<typeof alertVariants>) {
+  return (
+    <div data-slot="alert" role="alert" className={cn(alertVariants({ variant, layout }), className)} {...props} />
+  );
 }
 
 function AlertTitle({ className, ...props }: React.ComponentProps<'div'>) {
@@ -63,4 +89,42 @@ function AlertDescription({ className, ...props }: React.ComponentProps<'div'>) 
   );
 }
 
-export { Alert, AlertTitle, AlertDescription };
+function AlertAction({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      data-slot="alert-action"
+      className={cn('col-start-2 flex flex-wrap items-center gap-2 self-center', className)}
+      {...props}
+    />
+  );
+}
+
+function AlertClose({ className, children, type = 'button', ...props }: React.ComponentProps<'button'>) {
+  return (
+    <button
+      data-slot="alert-close"
+      type={type}
+      className={cn(
+        `
+          absolute top-2.5 right-2.5 inline-flex size-8 items-center justify-center
+          rounded-md text-current opacity-70 transition-[color,background-color,opacity]
+          hover:bg-current/10 hover:opacity-100
+          focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none
+          disabled:pointer-events-none disabled:opacity-50
+          [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+        `,
+        className,
+      )}
+      {...props}
+    >
+      {children ?? (
+        <>
+          <XIcon />
+          <span className="sr-only">Dismiss alert</span>
+        </>
+      )}
+    </button>
+  );
+}
+
+export { Alert, AlertTitle, AlertDescription, AlertAction, AlertClose };
