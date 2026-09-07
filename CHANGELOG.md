@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.26.0
+
+### Minor Changes
+
+- df77597: Add responsive and stacked Alert banner layouts with composable action and dismiss controls.
+
 ## 1.25.0
 
 ### Minor Changes
