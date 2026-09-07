@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { AlertCircleIcon, RefreshCwIcon, Terminal } from 'lucide-react';
+import { AlertCircleIcon, InfoIcon, RefreshCwIcon, Terminal, TriangleAlertIcon } from 'lucide-react';
 
 import { Button } from '../Button';
 import { Alert, AlertAction, AlertClose, AlertDescription, AlertTitle } from './Alert';
@@ -47,6 +47,33 @@ export default meta;
 type Story = StoryObj<ComponentType>;
 export const Demo: Story = {};
 
+export const Variants: Story = {
+  render: () => (
+    <div className="grid gap-4">
+      <Alert>
+        <Terminal />
+        <AlertTitle>Default alert</AlertTitle>
+        <AlertDescription>General guidance that does not require special attention.</AlertDescription>
+      </Alert>
+      <Alert variant="info">
+        <InfoIcon />
+        <AlertTitle>Information</AlertTitle>
+        <AlertDescription>A new dashboard is available for you to try.</AlertDescription>
+      </Alert>
+      <Alert variant="warning">
+        <TriangleAlertIcon />
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>Your session expires soon. Save your work before continuing.</AlertDescription>
+      </Alert>
+      <Alert variant="destructive">
+        <AlertCircleIcon />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>We couldn’t save your changes. Try again.</AlertDescription>
+      </Alert>
+    </div>
+  ),
+};
+
 export const ErrorBanner: Story = {
   render: function ErrorBannerStory() {
     const [visible, setVisible] = React.useState(true);
@@ -78,6 +105,26 @@ export const ErrorBanner: Story = {
       },
     },
   },
+};
+
+export const WarningBanner: Story = {
+  render: () => (
+    <Alert variant="warning" layout="banner">
+      <TriangleAlertIcon />
+      <AlertTitle>Your session expires soon</AlertTitle>
+      <AlertDescription>Save your work before continuing to avoid losing recent changes.</AlertDescription>
+    </Alert>
+  ),
+};
+
+export const InfoBanner: Story = {
+  render: () => (
+    <Alert variant="info" layout="banner">
+      <InfoIcon />
+      <AlertTitle>A new dashboard is available</AlertTitle>
+      <AlertDescription>You can switch back to the previous experience from settings.</AlertDescription>
+    </Alert>
+  ),
 };
 
 export const StaticBanner: Story = {
