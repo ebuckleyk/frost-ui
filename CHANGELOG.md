@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.27.1
+
+### Patch Changes
+
+- c4e1969: Lighten the destructive semantic color in dark mode for clearer Alert text and icon contrast.
+
 ## 1.27.0
 
 ### Minor Changes
