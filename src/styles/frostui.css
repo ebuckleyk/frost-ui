@@ -105,7 +105,7 @@
   --accent: oklch(0.28 0.04 190);
   --accent-foreground: oklch(0.94 0.012 235);
 
-  --destructive: oklch(0.65 0.13 25); /* Bright red for errors */
+  --destructive: oklch(0.82 0.13 25); /* Bright red for errors */
   --destructive-foreground: oklch(0.98 0 0); /* White text (WCAG AAA: 8.9:1) */
   --warning: oklch(0.78 0.15 75);
   --info: var(--primary);
