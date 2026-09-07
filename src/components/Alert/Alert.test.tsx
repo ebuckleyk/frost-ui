@@ -53,6 +53,15 @@ describe('Alert', () => {
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 
+  it.each([
+    ['warning', 'border-warning/30!', 'bg-warning/10!', 'text-warning'],
+    ['info', 'border-info/30!', 'bg-info/10!', 'text-info'],
+  ] as const)('applies the %s semantic treatment', (variant, border, background, foreground) => {
+    render(<Alert variant={variant}>Message</Alert>);
+
+    expect(screen.getByRole('alert')).toHaveClass(border, background, foreground);
+  });
+
   it('keeps actions in the content column for a stacked banner', () => {
     render(
       <Alert layout="banner-stacked">
