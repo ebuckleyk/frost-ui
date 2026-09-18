@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.28.0
+
+### Minor Changes
+
+- 00dde63: Add the opt-in `bg-frost-immersive` light and dark background treatment, with matching Storybook presets and review stories.
+
 ## 1.27.1
 
 ### Patch Changes
