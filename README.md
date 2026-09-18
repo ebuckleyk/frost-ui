@@ -163,13 +163,15 @@ Pass the ordered item definitions to `Questionnaire`, then compose each item fro
 
 ### Default Backgrounds
 
-Frost UI includes three optional page/app background utilities:
+Frost UI includes four optional page/app background utilities:
 
 - `.bg-frost-ambient` - subtle token-driven ambient background.
-- `.bg-gradient-frost` - soft blue/cyan frost gradient.
-- `.bg-frost-purple` - modern purple frost gradient.
+- `.bg-gradient-frost` - blue/cyan atmospheric treatment.
+- `.bg-frost-purple` - soft purple treatment.
+- `.bg-frost-immersive` - high-contrast violet/indigo atmosphere for focused creative surfaces.
 
 These presets are also available from the Storybook background toolbar for release previews, including explicit dark-mode background entries.
+The immersive treatment is opt-in and does not replace the default application background or dark theme. It does not alter global theme tokens.
 
 ### EventCalendar Slots
 

@@ -71,6 +71,16 @@ const preview: Preview = {
           value:
             'radial-gradient(circle at 18% 12%, oklch(0.58 0.14 302 / 0.22), transparent 34%), radial-gradient(circle at 82% 0%, oklch(0.54 0.11 258 / 0.2), transparent 32%), linear-gradient(135deg, oklch(0.18 0.03 292), oklch(0.14 0.025 270) 52%, oklch(0.16 0.02 235))',
         },
+        'frost-immersive': {
+          name: 'frost-immersive',
+          value:
+            'radial-gradient(circle at 18% 8%, oklch(0.82 0.1 305 / 0.3), transparent 38%), radial-gradient(circle at 80% 4%, oklch(0.82 0.08 255 / 0.22), transparent 36%), linear-gradient(135deg, oklch(0.985 0.012 292), oklch(0.955 0.022 275) 52%, oklch(0.975 0.014 235))',
+        },
+        'frost-immersive-dark': {
+          name: 'frost-immersive-dark',
+          value:
+            'radial-gradient(circle at 18% 8%, oklch(0.64 0.22 302 / 0.4), transparent 38%), radial-gradient(circle at 72% 0%, oklch(0.54 0.18 270 / 0.28), transparent 42%), linear-gradient(135deg, oklch(0.16 0.04 292), oklch(0.115 0.025 270) 55%, oklch(0.12 0.02 245))',
+        },
         image: {
           name: 'image',
           value:

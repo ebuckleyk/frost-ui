@@ -43,11 +43,13 @@ Dark mode increases blur, edge visibility, and shadow depth while keeping popove
 - `.glass-control-muted` - secondary controls, toggles, switches, and subtle controls.
 - `.input-glass` - inputs, textareas, selects, chips, sliders, checkboxes, and radios.
 - `.shadow-frost-sm`, `.shadow-frost-md`, `.shadow-frost-lg`, `.shadow-frost-glow` - elevation helpers.
-- `.bg-frost-ambient` - optional page/app background treatment.
-- `.bg-gradient-frost` - soft blue/cyan page background treatment.
-- `.bg-frost-purple` - soft purple page background treatment.
+- `.bg-frost-ambient` - subtle atmospheric treatment.
+- `.bg-gradient-frost` - blue/cyan atmospheric treatment.
+- `.bg-frost-purple` - soft purple atmospheric treatment.
+- `.bg-frost-immersive` - high-contrast violet/indigo atmosphere for focused creative surfaces.
 
 Glass surfaces avoid strong internal gradients so text, icons, and form labels stay readable. Background presets carry the subtle color atmosphere behind the components instead.
+The immersive preset is opt-in: it layers a stronger atmosphere behind restrained glass surfaces without replacing the default application background or dark theme, and without changing global theme tokens.
 
 ## Component Coverage
 
