@@ -7,20 +7,23 @@ https://ebuckleyk.github.io/frost-ui/
 ### Installation (Vite + Tailwind v4)
 
 1. Install package and core peer deps:
-    - `npm i @ebuckleyk/frost-ui react react-dom`
-    - `npm i -D tailwindcss @tailwindcss/vite`
+   - `npm i @ebuckleyk/frost-ui react react-dom`
+   - `npm i -D tailwindcss @tailwindcss/vite`
 2. Add Tailwind to Vite:
-    - `vite.config.ts`:
-      ```ts
-     import { defineConfig } from 'vite';
-     import react from '@vitejs/plugin-react';
+   - `vite.config.ts`:
+
+     ```ts
      import tailwindcss from '@tailwindcss/vite';
+     import react from '@vitejs/plugin-react';
+     import { defineConfig } from 'vite';
 
      export default defineConfig({
-        plugins: [react(), tailwindcss()],
-      });
-      ```
+       plugins: [react(), tailwindcss()],
+     });
+     ```
+
 3. Import the raw Tailwind CSS entry from your app stylesheet and add only your app-local sources:
+
    ```css
    @import '@ebuckleyk/frost-ui/tailwind.css';
 
@@ -57,7 +60,7 @@ The common non-parameterized classes are also included in `@ebuckleyk/frost-ui/s
 ### Peer dependencies
 
 - Required: `react`, `react-dom`
-- Optional (install only what you use): Radix UI packages, `@base-ui/react`, `@shadcn/react`, `date-fns`, `cmdk`, `lucide-react`, `sonner`, `vaul`, `react-hook-form`, `react-day-picker`, `recharts`, FullCalendar packages, `slate`, `input-otp`, `embla-carousel-react`, `react-dropzone`, and `dompurify`.
+- Optional (install only what you use): Radix UI packages, `@base-ui/react`, `@shadcn/react`, `date-fns`, `cmdk`, `lucide-react`, `media-chrome`, `sonner`, `vaul`, `react-hook-form`, `react-day-picker`, `recharts`, FullCalendar packages, `slate`, `input-otp`, `embla-carousel-react`, `react-dropzone`, and `dompurify`.
 - Full list: see `package.json` `peerDependencies`.
 
 ### Tree-shaking imports
@@ -128,17 +131,67 @@ import { EMPTY_RICH_TEXT_VALUE, RichTextEditor, type RichTextValue } from '@ebuc
 function Editor() {
   const [value, setValue] = React.useState<RichTextValue>(EMPTY_RICH_TEXT_VALUE);
 
+  return <RichTextEditor value={value} onValueChange={setValue} toolbar={['bold', 'italic', 'emoji']} />;
+}
+```
+
+The emoji picker is excluded from the default `basic` and `document` presets. Its code and emoji data load only after the picker is first opened, and subsequent openings reuse the loaded picker.
+
+### Video
+
+`Video` is a Frost-themed Media Chrome player. Install its optional peer dependency, then import the component from its dedicated entrypoint. Keeping Video out of the root entrypoint means apps that do not use video do not need to install Media Chrome:
+
+```sh
+npm i media-chrome
+```
+
+```tsx
+import { Video } from '@ebuckleyk/frost-ui/components/Video';
+
+export function ProductTour() {
   return (
-    <RichTextEditor
-      value={value}
-      onValueChange={setValue}
-      toolbar={['bold', 'italic', 'emoji']}
+    <Video
+      src="/videos/product-tour.mp4"
+      poster="/videos/product-tour.webp"
+      captions={[{ src: '/captions/en.vtt', srcLang: 'en', label: 'English', default: true }]}
+      chapters={[{ src: '/chapters.vtt', srcLang: 'en', label: 'Chapters', default: true }]}
+      thumbnails={{ src: '/storyboard.vtt' }}
+      mediaProps={{ playsInline: true }}
     />
   );
 }
 ```
 
-The emoji picker is excluded from the default `basic` and `document` presets. Its code and emoji data load only after the picker is first opened, and subsequent openings reuse the loaded picker.
+Use `controls={<VideoAdvancedControls />}` for seek buttons, settings menus, casting, AirPlay, and error feedback. `VideoControls` and the exported `Video*Button`, `Video*Range`, and `Video*Display` primitives support custom layouts using only Frost UI imports. Pass `controls={false}` for ambient media, and use `mediaProps` for native video attributes and event handlers.
+
+Controller capabilities such as `defaultDuration`, `defaultStreamType`, `defaultSubtitles`, `lang`, `noHotkeys`, and keyboard seek offsets are accepted directly by `Video`. Transport-specific playback engines such as HLS, DASH, YouTube, and Vimeo are intentionally not bundled by this component.
+
+#### Media Chrome feature coverage
+
+The component follows Media Chrome's getting-started patterns while keeping the public surface Frost-native:
+
+| Use case                                              | Frost UI API                                              |
+| ----------------------------------------------------- | --------------------------------------------------------- |
+| Basic and responsive player                           | `Video`; use `className` for container size/aspect ratio  |
+| Captions, chapters, thumbnails                        | `captions`, `chapters`, and `thumbnails` WebVTT props     |
+| Multiple sources or custom tracks                     | `sources`, `tracks`, `VideoSource`, and `VideoTrack`      |
+| Advanced controls and settings                        | `controls={<VideoAdvancedControls />}`                    |
+| Custom or standalone-style controls                   | Compose `VideoControls` with exported `Video*` primitives |
+| Disabled controls                                     | `controls={false}`                                        |
+| Autoplay, loop, preload, native events                | `mediaProps`                                              |
+| Keyboard, gestures, live state, language, breakpoints | Pass Media Controller props directly to `Video`           |
+
+Media Chrome's animated icons, state synchronization, responsive breakpoints, and platform-aware control visibility remain active underneath the Frost styling. For localized control strings, load a Media Chrome language module once in your application and set `lang` on `Video`:
+
+```tsx
+import 'media-chrome/lang/es';
+
+import { Video } from '@ebuckleyk/frost-ui/components/Video';
+
+<Video lang="es" src="/videos/product-tour.mp4" />;
+```
+
+Streaming adapters and provider-specific media elements stay composable rather than becoming hard dependencies: use a custom control composition around the appropriate Media Chrome-compatible media element when an MP4/WebM source is not sufficient.
 
 ### Questionnaire
 

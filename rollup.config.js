@@ -39,11 +39,24 @@ const transpileTypeScript = () => ({
   },
 });
 
+const preserveVideoClientDirective = () => ({
+  name: 'preserve-video-client-directive',
+  generateBundle(_options, bundle) {
+    const videoChunk = bundle['components/Video/Video.mjs'];
+    if (videoChunk?.type !== 'chunk') {
+      this.error('Expected the dedicated Video entry chunk to be emitted.');
+    }
+    if (!videoChunk.code.startsWith("'use client';")) {
+      videoChunk.code = `'use client';\n${videoChunk.code}`;
+    }
+  },
+});
+
 /**
  * @type {import('rollup').RollupOptions}
  */
 const config = {
-  input: ['src/index.ts', 'src/styles/index.ts', 'src/styles/theme-preset.js'],
+  input: ['src/index.ts', 'src/components/Video/Video.tsx', 'src/styles/index.ts', 'src/styles/theme-preset.js'],
   external: isPeerDependency,
   output: [
     {
@@ -97,6 +110,7 @@ const config = {
     terser(),
     sizes(),
     visualizer(),
+    preserveVideoClientDirective(),
   ],
   onwarn(warning, warn) {
     if (warning.code === 'MODULE_LEVEL_DIRECTIVE' && warning.message.includes(`"use client"`)) return;
