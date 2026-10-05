@@ -39,15 +39,17 @@ const transpileTypeScript = () => ({
   },
 });
 
-const preserveVideoClientDirective = () => ({
-  name: 'preserve-video-client-directive',
+const preserveOptInClientDirectives = () => ({
+  name: 'preserve-opt-in-client-directives',
   generateBundle(_options, bundle) {
-    const videoChunk = bundle['components/Video/Video.mjs'];
-    if (videoChunk?.type !== 'chunk') {
-      this.error('Expected the dedicated Video entry chunk to be emitted.');
-    }
-    if (!videoChunk.code.startsWith("'use client';")) {
-      videoChunk.code = `'use client';\n${videoChunk.code}`;
+    for (const name of ['Video', 'Chat']) {
+      const clientChunk = bundle[`components/${name}/${name}.mjs`];
+      if (clientChunk?.type !== 'chunk') {
+        this.error('Expected the dedicated client entry chunk to be emitted.');
+      }
+      if (!clientChunk.code.startsWith("'use client';")) {
+        clientChunk.code = `'use client';\n${clientChunk.code}`;
+      }
     }
   },
 });
@@ -56,7 +58,13 @@ const preserveVideoClientDirective = () => ({
  * @type {import('rollup').RollupOptions}
  */
 const config = {
-  input: ['src/index.ts', 'src/components/Video/Video.tsx', 'src/styles/index.ts', 'src/styles/theme-preset.js'],
+  input: [
+    'src/index.ts',
+    'src/components/Video/Video.tsx',
+    'src/components/Chat/Chat.tsx',
+    'src/styles/index.ts',
+    'src/styles/theme-preset.js',
+  ],
   external: isPeerDependency,
   output: [
     {
@@ -110,7 +118,7 @@ const config = {
     terser(),
     sizes(),
     visualizer(),
-    preserveVideoClientDirective(),
+    preserveOptInClientDirectives(),
   ],
   onwarn(warning, warn) {
     if (warning.code === 'MODULE_LEVEL_DIRECTIVE' && warning.message.includes(`"use client"`)) return;

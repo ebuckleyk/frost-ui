@@ -257,3 +257,9 @@ See `COMPONENT_GAPS.md` for the shadcn-aligned component gap backlog. Current re
 3. Select `major|minor|patch` _Unless introducing breaking changes, use minor or patch_
 4. Run `git commit -am <commit message>`
 5. Run `git push origin main`
+
+### Assistant chat
+
+The opt-in `@ebuckleyk/frost-ui/components/Chat` entrypoint connects Frost conversation and composer components to an application-owned `@assistant-ui/react` runtime. Install `@assistant-ui/react@0.15.23`; Chat is deliberately absent from the root exports. Existing Bubble, Message, and MessageScroller components remain unchanged.
+
+See [Chat integration and VibeCore handoff](src/components/Chat/README.md) for installation, a minimal ExternalStoreRuntime example, custom result composition, scrolling, accessibility, and stop semantics. Storybook includes local examples that require no AI service or credentials.
