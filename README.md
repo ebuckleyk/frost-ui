@@ -76,6 +76,15 @@ The common non-parameterized classes are also included in `@ebuckleyk/frost-ui/s
   ```
 - CSS is opt-in. Tailwind v4 apps should prefer `@ebuckleyk/frost-ui/tailwind.css`; existing compiled-CSS consumers can keep `@ebuckleyk/frost-ui/styles.css`.
 
+### CurrencyInput
+
+`CurrencyInput` formats amounts using an explicit currency code and locale while
+preserving exact decimal-string values and incomplete editable drafts. Install its
+optional peer with `npm i react-number-format`. Excess precision is rejected by
+default; validation and rounding remain explicit application decisions. See the
+[CurrencyInput guide](src/components/CurrencyInput/README.md) for controlled values,
+form integration, paste handling, API adapters, and exact read-only formatting.
+
 ### PhoneInput
 
 `PhoneInput` provides country selection and telephone formatting with separate editable

@@ -69,3 +69,4 @@ export * from './Toggle';
 export * from './ToggleGroup';
 export * from './Tooltip';
 export * from './Typography';
+export * from './CurrencyInput';
