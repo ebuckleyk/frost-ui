@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.32.0
+
+### Minor Changes
+
+- cddc5c7: Add CurrencyInput with locale-aware formatting, exact decimal-string drafts, explicit precision and paste handling, accessibility, form examples, and exact read-only formatting and opt-in rounding utilities. Requires the optional react-number-format peer dependency.
+
 ## 1.31.0
 
 ### Minor Changes
