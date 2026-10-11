@@ -9,14 +9,14 @@ import { Button } from '../Button';
 import { Input } from '../Input';
 import { Textarea } from '../Textarea';
 
-function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
+function InputGroup({ className, glass = true, ...props }: React.ComponentProps<'div'> & { glass?: boolean }) {
   return (
     <div
       data-slot="input-group"
       role="group"
       className={cn(
+        glass && 'input-glass',
         `
-        input-glass
           group/input-group relative flex h-8 w-full min-w-0 items-center
           rounded-lg border border-input transition-colors outline-none
           in-data-[slot=combobox-content]:focus-within:border-inherit

@@ -76,6 +76,13 @@ The common non-parameterized classes are also included in `@ebuckleyk/frost-ui/s
   ```
 - CSS is opt-in. Tailwind v4 apps should prefer `@ebuckleyk/frost-ui/tailwind.css`; existing compiled-CSS consumers can keep `@ebuckleyk/frost-ui/styles.css`.
 
+### PhoneInput
+
+`PhoneInput` provides country selection and telephone formatting with separate editable
+drafts, E.164 candidates, and extensions. Install its optional peer with
+`npm i libphonenumber-js @radix-ui/react-select @radix-ui/react-scroll-area`. See the [PhoneInput guide](src/components/PhoneInput/README.md)
+for controlled values, translations, and application-owned validation.
+
 ### DatePicker
 
 `DatePicker` is exported as a first-class component:

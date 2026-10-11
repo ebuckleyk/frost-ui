@@ -42,7 +42,7 @@ const transpileTypeScript = () => ({
 const preserveOptInClientDirectives = () => ({
   name: 'preserve-opt-in-client-directives',
   generateBundle(_options, bundle) {
-    for (const name of ['Video', 'Chat']) {
+    for (const name of ['Video', 'Chat', 'PhoneInput']) {
       const clientChunk = bundle[`components/${name}/${name}.mjs`];
       if (clientChunk?.type !== 'chunk') {
         this.error('Expected the dedicated client entry chunk to be emitted.');

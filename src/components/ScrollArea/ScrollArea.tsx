@@ -5,20 +5,60 @@ import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 
 import { cn } from '@/lib/utils';
 
-function ScrollArea({ className, children, ...props }: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+export type ScrollAreaProps = React.ComponentProps<typeof ScrollAreaPrimitive.Root> & {
+  viewportProps?: React.ComponentProps<typeof ScrollAreaPrimitive.Viewport>;
+  renderViewport?: (viewport: React.ReactElement) => React.ReactNode;
+  scrollbarClassName?: string;
+  scrollbarThumbClassName?: string;
+};
+
+// Select's asChild viewport supplies an overflow shorthand. Normalize it before
+// ScrollArea adds its axis styles, so React never mixes shorthand and longhands.
+function ScrollAreaViewport({ style, ...props }: React.ComponentProps<typeof ScrollAreaPrimitive.Viewport>) {
+  if (!style || !('overflow' in style)) return <ScrollAreaPrimitive.Viewport style={style} {...props} />;
+  const { overflow, ...axisStyle } = style;
+  const axes = overflow?.split(/\s+/);
+  return (
+    <ScrollAreaPrimitive.Viewport
+      {...props}
+      style={{
+        ...(axes
+          ? {
+              overflowX: axes[0] as React.CSSProperties['overflowX'],
+              overflowY: (axes[1] ?? axes[0]) as React.CSSProperties['overflowY'],
+            }
+          : {}),
+        ...axisStyle,
+      }}
+    />
+  );
+}
+
+function ScrollArea({
+  className,
+  children,
+  viewportProps,
+  renderViewport,
+  scrollbarClassName,
+  scrollbarThumbClassName,
+  ...props
+}: ScrollAreaProps) {
+  const viewport = (
+    <ScrollAreaViewport
+      {...viewportProps}
+      data-slot="scroll-area-viewport"
+      className={cn(
+        `size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1`,
+        viewportProps?.className,
+      )}
+    >
+      {children}
+    </ScrollAreaViewport>
+  );
   return (
     <ScrollAreaPrimitive.Root data-slot="scroll-area" className={cn('relative', className)} {...props}>
-      <ScrollAreaPrimitive.Viewport
-        data-slot="scroll-area-viewport"
-        className="
-          size-full rounded-[inherit] transition-[color,box-shadow] outline-none
-          focus-visible:ring-[3px] focus-visible:ring-ring/50
-          focus-visible:outline-1
-        "
-      >
-        {children}
-      </ScrollAreaPrimitive.Viewport>
-      <ScrollBar />
+      {renderViewport ? renderViewport(viewport) : viewport}
+      <ScrollBar className={scrollbarClassName} thumbClassName={scrollbarThumbClassName} />
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
   );
@@ -27,8 +67,9 @@ function ScrollArea({ className, children, ...props }: React.ComponentProps<type
 function ScrollBar({
   className,
   orientation = 'vertical',
+  thumbClassName,
   ...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
+}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> & { thumbClassName?: string }) {
   return (
     <ScrollAreaPrimitive.ScrollAreaScrollbar
       data-slot="scroll-area-scrollbar"
@@ -49,7 +90,7 @@ function ScrollBar({
     >
       <ScrollAreaPrimitive.ScrollAreaThumb
         data-slot="scroll-area-thumb"
-        className="relative flex-1 rounded-full bg-border"
+        className={cn('relative flex-1 rounded-full bg-border', thumbClassName)}
       />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );

@@ -22,17 +22,20 @@ function SelectTrigger({
   className,
   size = 'default',
   children,
+  glass = true,
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
   size?: 'sm' | 'default';
+  glass?: boolean;
 }) {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       data-size={size}
       className={cn(
+        glass && 'input-glass',
         `
-          input-glass flex w-fit items-center justify-between gap-2 rounded-md border
+          flex w-fit items-center justify-between gap-2 rounded-md border
           border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap
           shadow-xs transition-[color,box-shadow] outline-none
           focus-visible:border-ring focus-visible:ring-[3px]
@@ -69,8 +72,12 @@ function SelectContent({
   className,
   children,
   position = 'popper',
+  renderViewport,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Content>) {
+}: React.ComponentProps<typeof SelectPrimitive.Content> & {
+  /** Compose the Select viewport with another scroll container using asChild. */
+  renderViewport?: (viewport: React.ReactElement<{ children: React.ReactNode; asChild?: boolean }>) => React.ReactNode;
+}) {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
@@ -102,20 +109,36 @@ function SelectContent({
         position={position}
         {...props}
       >
-        <SelectScrollUpButton />
-        <SelectPrimitive.Viewport
-          className={cn(
-            'p-1',
-            position === 'popper' &&
-              `
+        {renderViewport ? (
+          renderViewport(
+            <SelectPrimitive.Viewport
+              style={{ overflow: undefined, overflowX: 'hidden', overflowY: 'auto' }}
+              className={cn(
+                'max-h-[min(18rem,var(--radix-select-content-available-height))] p-1 pr-3',
+                position === 'popper' && 'w-full min-w-(--radix-select-trigger-width)',
+              )}
+            >
+              {children}
+            </SelectPrimitive.Viewport>,
+          )
+        ) : (
+          <>
+            <SelectScrollUpButton />
+            <SelectPrimitive.Viewport
+              className={cn(
+                'p-1',
+                position === 'popper' &&
+                  `
                 h-(--radix-select-trigger-height) w-full
                 min-w-(--radix-select-trigger-width) scroll-my-1
               `,
-          )}
-        >
-          {children}
-        </SelectPrimitive.Viewport>
-        <SelectScrollDownButton />
+              )}
+            >
+              {children}
+            </SelectPrimitive.Viewport>
+            <SelectScrollDownButton />
+          </>
+        )}
       </SelectPrimitive.Content>
     </SelectPrimitive.Portal>
   );

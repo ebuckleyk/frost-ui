@@ -5,17 +5,19 @@ import { cn } from '@/lib/utils';
 
 export type NativeSelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> & {
   size?: 'default' | 'sm';
+  glass?: boolean;
 };
 
-function NativeSelect({ className, children, size = 'default', ...props }: NativeSelectProps) {
+function NativeSelect({ className, children, size = 'default', glass = true, ...props }: NativeSelectProps) {
   return (
     <span className="relative inline-flex w-fit items-center">
       <select
         data-slot="native-select"
         data-size={size}
         className={cn(
+          glass && 'input-glass',
           `
-            input-glass flex w-full min-w-0 appearance-none rounded-md
+            flex w-full min-w-0 appearance-none rounded-md
             border-input bg-transparent px-3 py-1 pr-8 text-base
             shadow-xs transition-[color,box-shadow] outline-none
             disabled:pointer-events-none disabled:cursor-not-allowed

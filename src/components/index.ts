@@ -43,6 +43,7 @@ export * from './MessageScroller';
 export * from './NativeSelect';
 export * from './NavigationMenu';
 export * from './Pagination';
+export * from './PhoneInput';
 export * from './Popover';
 export * from './Progress';
 export * from './Questionnaire';
