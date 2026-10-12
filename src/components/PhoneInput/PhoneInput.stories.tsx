@@ -46,6 +46,23 @@ export const CountrySelection: Story = {
   },
 };
 export const Extension: Story = { args: { defaultCountry: 'US', defaultValue: '2133734253 ext. 42' } };
+export const RestrictedCountries: Story = {
+  args: {
+    countries: ['US', 'CA'],
+    labels: {
+      country: 'Country / calling code',
+      countryPlaceholder: 'Select country',
+      US: 'United States',
+      CA: 'Canada',
+    },
+  },
+};
+export const RestrictedWithDefault: Story = {
+  args: { countries: ['US', 'CA'], defaultCountry: 'US' },
+};
+export const RestrictedExcludedDraft: Story = {
+  args: { countries: ['US', 'CA'], defaultCountry: 'US', defaultValue: '+442079460018' },
+};
 export const CustomScrollbar: Story = {
   args: {
     defaultCountry: 'US',

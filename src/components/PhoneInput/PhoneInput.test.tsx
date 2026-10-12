@@ -11,6 +11,133 @@ async function selectCountry(user: ReturnType<typeof userEvent.setup>, name: str
 }
 
 describe('PhoneInput', () => {
+  it('restricts choices to accepted countries and starts with a neutral placeholder', async () => {
+    const user = userEvent.setup();
+    render(<PhoneInput countries={['US', 'CA', 'US']} />);
+    const trigger = screen.getByRole('combobox');
+    expect(trigger).toHaveTextContent('Select country');
+    trigger.focus();
+    await user.keyboard('[Enter]');
+    expect((await screen.findAllByRole('option')).map((option) => option.textContent)).toEqual(['US (+1)', 'CA (+1)']);
+    await user.click(screen.getByRole('option', { name: 'CA (+1)' }));
+    expect(trigger).toHaveTextContent('CA (+1)');
+  });
+
+  it.each(['US', 'CA'] as const)('uses a permitted default country %s for national input', (country) => {
+    const onValueChange = vi.fn();
+    render(<PhoneInput countries={['US', 'CA']} defaultCountry={country} onValueChange={onValueChange} />);
+    expect(screen.getByRole('combobox')).toHaveTextContent(`${country} (+1)`);
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '2133734253' } });
+    expect(onValueChange).toHaveBeenLastCalledWith(expect.objectContaining({ country, e164: '+12133734253' }));
+  });
+
+  it.each([undefined, 'GB'] as const)(
+    'does not assume a country with default %s outside the choices',
+    (defaultCountry) => {
+      const onValueChange = vi.fn();
+      render(<PhoneInput countries={['US', 'CA']} defaultCountry={defaultCountry} onValueChange={onValueChange} />);
+      fireEvent.change(screen.getByRole('textbox'), { target: { value: '213' } });
+      expect(screen.getByRole('combobox')).toHaveTextContent('Select country');
+      expect(onValueChange).toHaveBeenLastCalledWith(
+        expect.objectContaining({ draft: '213', country: undefined, e164: undefined }),
+      );
+    },
+  );
+
+  it.each([
+    ['+44 (20) 7946-0018 x42', 'GB', '+442079460018'],
+    ['+33 6 12 34 56 78', 'FR', '+33612345678'],
+    ['+80012345678', undefined, '+80012345678'],
+    ['+999123', undefined, undefined],
+  ])(
+    'preserves excluded or unknown paste %s without adding or reinterpreting countries',
+    async (draft, country, e164) => {
+      const user = userEvent.setup();
+      const onValueChange = vi.fn();
+      render(<PhoneInput countries={['US', 'CA']} defaultCountry="US" onValueChange={onValueChange} />);
+      await user.click(screen.getByRole('textbox'));
+      await user.paste(draft!);
+      expect(screen.getByRole('textbox')).toHaveValue(draft);
+      expect(screen.getByRole('combobox')).toHaveTextContent('Select country');
+      expect(onValueChange).toHaveBeenLastCalledWith(expect.objectContaining({ draft, country, e164 }));
+      screen.getByRole('combobox').focus();
+      await user.keyboard('[Enter]');
+      expect((await screen.findAllByRole('option')).map((option) => option.textContent)).toEqual([
+        'US (+1)',
+        'CA (+1)',
+      ]);
+      await user.click(screen.getByRole('option', { name: 'US (+1)' }));
+      expect(screen.getByRole('textbox')).toHaveValue(draft);
+      expect(onValueChange).toHaveBeenLastCalledWith(expect.objectContaining({ draft, country, e164 }));
+    },
+  );
+
+  it.each([
+    ['+12133734253', 'US'],
+    ['+14165550123', 'CA'],
+  ])('selects the permitted country detected from paste %s', async (draft, country) => {
+    const user = userEvent.setup();
+    const onCountryChange = vi.fn();
+    render(<PhoneInput countries={['US', 'CA']} onCountryChange={onCountryChange} />);
+    await user.click(screen.getByRole('textbox'));
+    await user.paste(draft);
+    expect(screen.getByRole('combobox')).toHaveTextContent(`${country} (+1)`);
+    expect(onCountryChange).toHaveBeenLastCalledWith(country);
+  });
+
+  it.each(['Call 2133734253', '+44 invalid', '2133734253 x12a', '+1', '2222222222'])(
+    'keeps invalid or incomplete restricted drafts editable: %s',
+    (draft) => {
+      const onValueChange = vi.fn();
+      render(<PhoneInput countries={['US', 'CA']} onValueChange={onValueChange} />);
+      fireEvent.change(screen.getByRole('textbox'), { target: { value: draft } });
+      expect(screen.getByRole('textbox')).toHaveValue(draft);
+      expect(onValueChange).toHaveBeenLastCalledWith(expect.objectContaining({ draft, country: undefined }));
+      expect(onValueChange.mock.lastCall?.[0].e164).toBeUndefined();
+      expect(screen.getByRole('combobox')).toHaveTextContent('Select country');
+    },
+  );
+
+  it('supports localized placeholders and accessible labels, including an empty accepted list', () => {
+    render(
+      <PhoneInput
+        countries={[]}
+        defaultCountry="US"
+        aria-label="Téléphone"
+        labels={{ country: 'Pays', countryPlaceholder: 'Choisir un pays' }}
+      />,
+    );
+    expect(screen.getByRole('combobox', { name: 'Pays' })).toHaveTextContent('Choisir un pays');
+    expect(screen.getByRole('textbox', { name: 'Téléphone' })).toHaveValue('');
+  });
+
+  it('updates restricted controlled values and country policy without emitting changes', () => {
+    const onValueChange = vi.fn();
+    const { rerender } = render(
+      <PhoneInput countries={['US', 'CA']} defaultCountry="US" value="+442079460018" onValueChange={onValueChange} />,
+    );
+    expect(screen.getByRole('textbox')).toHaveValue('+442079460018');
+    expect(screen.getByRole('combobox')).toHaveTextContent('Select country');
+    rerender(
+      <PhoneInput countries={['US', 'CA']} defaultCountry="US" value="+14165550123" onValueChange={onValueChange} />,
+    );
+    expect(screen.getByRole('combobox')).toHaveTextContent('CA (+1)');
+    rerender(<PhoneInput countries={['CA']} defaultCountry="US" value="213" onValueChange={onValueChange} />);
+    expect(screen.getByRole('combobox')).toHaveTextContent('Select country');
+    expect(onValueChange).not.toHaveBeenCalled();
+  });
+
+  it('retains International and all countries when countries is omitted', async () => {
+    const user = userEvent.setup();
+    render(<PhoneInput defaultValue="+442079460018" />);
+    expect(screen.getByRole('combobox')).toHaveTextContent('GB (+44)');
+    screen.getByRole('combobox').focus();
+    await user.keyboard('[Enter]');
+    expect((await screen.findAllByRole('option')).map((option) => option.textContent)).toEqual(
+      expect.arrayContaining(['International', 'US (+1)', 'CA (+1)', 'GB (+44)']),
+    );
+  });
+
   it('shares the select and scroll-area viewport, exposes popup styling, and restores focus on Escape', async () => {
     const user = userEvent.setup();
     render(
@@ -212,7 +339,7 @@ describe('PhoneInput', () => {
     expect(screen.getByRole('combobox', { name: 'Pays' })).toHaveFocus();
     await user.keyboard('[Enter]');
     expect(await screen.findByRole('option', { name: 'France (+33)' })).toBeInTheDocument();
-    await user.keyboard('[ArrowDown][Enter]');
+    await user.keyboard('[Home][Enter]');
     expect(onCountryChange).toHaveBeenLastCalledWith('FR');
     await user.tab();
     expect(ref.current).toHaveFocus();
@@ -265,6 +392,45 @@ describe('PhoneInput', () => {
     expect(screen.getByRole('textbox')).toHaveValue('020 7946 0018');
   });
 
+  it.each(['deleteContentBackward', 'deleteContentForward'])(
+    'preserves digits and caret when %s removes a separator from an excluded draft',
+    (inputType) => {
+      const onValueChange = vi.fn();
+      const onCountryChange = vi.fn();
+      render(
+        <PhoneInput
+          countries={['US', 'CA']}
+          defaultValue="+44 20 7946-0018"
+          onValueChange={onValueChange}
+          onCountryChange={onCountryChange}
+        />,
+      );
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      fireEvent.input(input, {
+        inputType,
+        target: { value: '+4420 7946-0018', selectionStart: 3, selectionEnd: 3 },
+      });
+      expect(input).toHaveValue('+4420 7946-0018');
+      expect(input.selectionStart).toBe(3);
+      expect(onValueChange).toHaveBeenLastCalledWith(
+        expect.objectContaining({ draft: '+4420 7946-0018', country: 'GB', e164: '+442079460018' }),
+      );
+      expect(onCountryChange).not.toHaveBeenCalled();
+      expect(screen.getByRole('combobox')).toHaveTextContent('Select country');
+    },
+  );
+
+  it('keeps the caret beside user-supplied separators in an unknown international draft', () => {
+    render(<PhoneInput countries={['US', 'CA']} defaultValue="+999  123" />);
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    fireEvent.input(input, {
+      inputType: 'deleteContentBackward',
+      target: { value: '+999 123', selectionStart: 5, selectionEnd: 5 },
+    });
+    expect(input).toHaveValue('+999 123');
+    expect(input.selectionStart).toBe(5);
+  });
+
   it('handles mobile input-event separator deletion and calls the native change handler', () => {
     const onValueChange = vi.fn();
     const onChange = vi.fn();
@@ -280,10 +446,10 @@ describe('PhoneInput', () => {
     expect(onChange).toHaveBeenCalledOnce();
   });
 
-  it('preserves extensions through country changes and keeps explicitly inferred countries in a restricted menu', async () => {
+  it('preserves extensions through country changes in an unrestricted menu', async () => {
     const user = userEvent.setup();
     const onValueChange = vi.fn();
-    render(<PhoneInput defaultValue="+12133734253 x42" countries={['GB']} onValueChange={onValueChange} />);
+    render(<PhoneInput defaultValue="+12133734253 x42" onValueChange={onValueChange} />);
     expect(screen.getByRole('combobox')).toHaveTextContent('US (+1)');
     await selectCountry(user, 'GB (+44)');
     expect(onValueChange.mock.lastCall?.[0]).toMatchObject({ country: 'GB', e164: '+442133734253', extension: '42' });

@@ -28,8 +28,9 @@ export type PhoneInputProps = Omit<InputProps, 'value' | 'defaultValue' | 'onCha
   onValueChange?: (value: PhoneInputValue) => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onCountryChange?: (country: CountryCode | undefined) => void;
+  /** Strict picker choices. Omit for all countries and International; an empty list permits no selection. Does not validate input. */
   countries?: readonly CountryCode[];
-  labels?: Partial<Record<CountryCode | 'country' | 'international', string>>;
+  labels?: Partial<Record<CountryCode | 'country' | 'international' | 'countryPlaceholder', string>>;
   inputClassName?: string;
   countryTriggerClassName?: string;
   countryContentClassName?: string;
@@ -82,7 +83,7 @@ export function PhoneInput({
   onValueChange,
   onChange,
   onCountryChange,
-  countries = allCountries,
+  countries,
   labels,
   className,
   inputClassName,
@@ -99,7 +100,24 @@ export function PhoneInput({
   const [uncontrolledDraft, setDraft] = React.useState(defaultValue);
   const [selectedCountry, setCountry] = React.useState(defaultCountry);
   const draft = value === undefined ? uncontrolledDraft : value;
-  const state = normalizePhoneInput(draft, selectedCountry);
+  const restricted = countries !== undefined;
+  const isPermitted = (country?: CountryCode) => country !== undefined && (!restricted || countries.includes(country));
+  const shouldPreserveDraft = (raw: string, country?: CountryCode) =>
+    restricted && raw.trimStart().startsWith('+') && !isPermitted(country);
+
+  function normalizeDraft(raw: string, country?: CountryCode): PhoneInputValue {
+    const next = normalizePhoneInput(raw, isPermitted(country) ? country : undefined);
+    // Keep excluded/unknown international drafts intact for application validation.
+    // Retain the actual detected country in the payload, separate from the picker.
+    if (shouldPreserveDraft(raw, next.country)) {
+      return { ...next, draft: raw };
+    }
+    return next;
+  }
+
+  const state = normalizeDraft(draft, selectedCountry);
+  const pickerCountry = isPermitted(state.country) ? state.country : undefined;
+  const countryOptions = Array.from(new Set(countries ?? allCountries));
   const inputRef = React.useRef<HTMLInputElement | null>(null);
   const pendingCaret = React.useRef<{ draft: string; position: number } | null>(null);
 
@@ -129,12 +147,17 @@ export function PhoneInput({
       )}
     >
       <Select
-        value={state.country ?? 'international'}
+        value={pickerCountry ?? (restricted ? '' : 'international')}
         disabled={disabled || readOnly}
         onValueChange={(selection) => {
           const country = (selection === 'international' ? undefined : selection) as CountryCode | undefined;
           let nextDraft = draft;
-          if (country && draft.trimStart().startsWith('+') && !state.unsupported) {
+          if (
+            country &&
+            draft.trimStart().startsWith('+') &&
+            !state.unsupported &&
+            (!restricted || isPermitted(state.country))
+          ) {
             const formatter = new AsYouType();
             formatter.input(draft.split(/\s*(?:;ext=|ext\.?\s*|x\s*|#\s*)/i)[0]);
             const national = formatter.getNumber()?.formatNational() ?? formatter.getNationalNumber();
@@ -144,7 +167,7 @@ export function PhoneInput({
               nextDraft = national + suffix;
             }
           }
-          publish(normalizePhoneInput(nextDraft, country));
+          publish(normalizeDraft(nextDraft, country));
         }}
       >
         <SelectTrigger
@@ -158,7 +181,7 @@ export function PhoneInput({
           aria-describedby={props['aria-describedby']}
           aria-invalid={props['aria-invalid']}
         >
-          <SelectValue />
+          <SelectValue placeholder={labels?.countryPlaceholder ?? 'Select country'} />
         </SelectTrigger>
         <SelectContent
           className={countryContentClassName}
@@ -173,8 +196,8 @@ export function PhoneInput({
             </ScrollArea>
           )}
         >
-          <SelectItem value="international">{labels?.international ?? 'International'}</SelectItem>
-          {Array.from(new Set([...countries, ...(state.country ? [state.country] : [])])).map((country) => (
+          {!restricted && <SelectItem value="international">{labels?.international ?? 'International'}</SelectItem>}
+          {countryOptions.map((country) => (
             <SelectItem key={country} value={country}>
               {labels?.[country] ?? country} (+{getCountryCallingCode(country)})
             </SelectItem>
@@ -203,6 +226,7 @@ export function PhoneInput({
           if (
             state.extension === undefined &&
             !state.unsupported &&
+            !shouldPreserveDraft(state.draft, state.country) &&
             raw.length < state.draft.length &&
             raw.replace(/[^\d+]/g, '') === state.draft.replace(/[^\d+]/g, '') &&
             (inputType === 'deleteContentBackward' || inputType === 'deleteContentForward')
@@ -215,10 +239,13 @@ export function PhoneInput({
               if (backwards) position = index;
             }
           }
-          const next = normalizePhoneInput(raw, state.country);
+          const next = normalizeDraft(raw, pickerCountry);
           pendingCaret.current = {
             draft: next.draft,
-            position: next.unsupported ? position : caretPosition(raw, next.draft, position),
+            position:
+              next.unsupported || shouldPreserveDraft(next.draft, next.country)
+                ? position
+                : caretPosition(raw, next.draft, position),
           };
           publish(next);
           onChange?.(event);
