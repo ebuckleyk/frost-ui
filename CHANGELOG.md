@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.32.2
+
+### Patch Changes
+
+- 9ffe57d: Shift the light-mode warning semantic token toward yellow.
+
 ## 1.32.1
 
 ### Patch Changes
