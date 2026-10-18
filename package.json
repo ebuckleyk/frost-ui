@@ -49,6 +49,7 @@
     "release": "changeset publish",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:typography-types": "tsc -p tsconfig.typography.json",
     "test:chat-package": "node scripts/check-chat-package.mjs"
   },
   "keywords": [],

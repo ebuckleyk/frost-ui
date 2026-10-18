@@ -6,6 +6,8 @@ import { XIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
+import { typographyVariants } from '../Typography';
+
 function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
@@ -117,7 +119,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<typeof Dialog
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn('text-base leading-none font-semibold', className)}
+      className={cn(typographyVariants({ variant: 'cardTitle' }), className)}
       {...props}
     />
   );
@@ -127,7 +129,7 @@ function DialogDescription({ className, ...props }: React.ComponentProps<typeof 
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn(typographyVariants({ variant: 'supporting', tone: 'muted' }), className)}
       {...props}
     />
   );

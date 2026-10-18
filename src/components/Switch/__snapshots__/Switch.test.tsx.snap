@@ -25,7 +25,7 @@ exports[`Switch > should render Switch component to match snapshot 1`] = `
           />
         </button>
         <label
-          class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+          class="text-sm/5 font-medium tracking-normal flex items-center gap-2 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
           data-slot="label"
           for="airplane-mode"
         >
@@ -55,7 +55,7 @@ exports[`Switch > should render Switch component to match snapshot 1`] = `
         />
       </button>
       <label
-        class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+        class="text-sm/5 font-medium tracking-normal flex items-center gap-2 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
         data-slot="label"
         for="airplane-mode"
       >

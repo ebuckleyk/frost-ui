@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 
 import { Label } from '../Label';
 import { Separator } from '../Separator';
+import { typographyVariants } from '../Typography';
 
 function FieldSet({ className, ...props }: React.ComponentProps<'fieldset'>) {
   return (
@@ -35,14 +36,7 @@ function FieldLegend({
     <legend
       data-slot="field-legend"
       data-variant={variant}
-      className={cn(
-        'mb-2.5 font-medium',
-        'data-[variant=legend]:text-sm',
-        `
-        data-[variant=label]:text-sm
-      `,
-        className,
-      )}
+      className={cn('mb-2.5', typographyVariants({ variant: 'label' }), className)}
       {...props}
     />
   );
@@ -132,7 +126,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="field-content"
       className={cn(
         `
-        group/field-content flex flex-1 flex-col gap-1.5 leading-snug
+        group/field-content flex flex-1 flex-col gap-1.5
       `,
         className,
       )}
@@ -146,8 +140,9 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>)
     <Label
       data-slot="field-label"
       className={cn(
+        typographyVariants({ variant: 'label' }),
         `
-          group/field-label peer/field-label flex w-fit gap-2 leading-snug
+          group/field-label peer/field-label flex w-fit gap-2
           group-data-[disabled=true]/field:opacity-50
         `,
         `
@@ -172,8 +167,9 @@ function FieldTitle({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="field-label"
       className={cn(
+        typographyVariants({ variant: 'label' }),
         `
-          flex w-fit items-center gap-2 text-sm/snug font-medium
+          flex w-fit items-center gap-2
           group-data-[disabled=true]/field:opacity-50
         `,
         className,
@@ -188,10 +184,8 @@ function FieldDescription({ className, ...props }: React.ComponentProps<'p'>) {
     <p
       data-slot="field-description"
       className={cn(
-        `
-          text-sm/normal font-normal text-muted-foreground
-          group-has-data-[orientation=horizontal]/field:text-balance
-        `,
+        typographyVariants({ variant: 'supporting', tone: 'muted' }),
+        'group-has-data-[orientation=horizontal]/field:text-balance',
         `
           last:mt-0
           nth-last-2:-mt-1
@@ -282,7 +276,7 @@ function FieldError({
     <div
       role="alert"
       data-slot="field-error"
-      className={cn('text-sm font-normal text-destructive', className)}
+      className={cn(typographyVariants({ variant: 'supporting', tone: 'destructive' }), className)}
       {...props}
     >
       {content}

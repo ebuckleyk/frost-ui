@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
@@ -8,6 +9,12 @@ const NODES = [
   'h2',
   'h3',
   'h4',
+  'h5',
+  'h6',
+  'span',
+  'div',
+  'a',
+  'label',
   'p',
   'blockquote',
   'table',
@@ -22,7 +29,7 @@ const NODES = [
   'small',
 ] as const;
 
-const typographyVariants = cva('', {
+const proseVariants = cva('', {
   variants: {
     variant: {
       h1: `
@@ -35,6 +42,12 @@ const typographyVariants = cva('', {
       `,
       h3: 'scroll-m-20 text-2xl font-semibold tracking-tight',
       h4: 'scroll-m-20 text-xl font-semibold tracking-tight',
+      h5: 'scroll-m-20 text-lg font-semibold tracking-tight',
+      h6: 'scroll-m-20 text-base font-semibold tracking-tight',
+      span: '',
+      div: '',
+      a: '',
+      label: '',
       p: `
         leading-6
         not-first:mt-4
@@ -77,37 +90,108 @@ const typographyVariants = cva('', {
   },
 });
 
-type Typographies = { [E in (typeof NODES)[number]]: PrimitiveForwardRefComponent<E> };
-type TypographyPropsWithRef<E extends React.ElementType> = React.ComponentPropsWithRef<E> &
-  VariantProps<typeof typographyVariants>;
+/** Spacing-neutral application roles; color and layout belong to separate concerns. */
+const typographyVariants = cva('', {
+  variants: {
+    variant: {
+      heading1: 'text-[1.75rem]/tight font-semibold tracking-tight',
+      heading2: 'text-2xl/tight font-semibold tracking-tight',
+      heading3: 'text-xl/snug font-semibold tracking-tight',
+      heading4: 'text-lg/snug font-semibold tracking-tight',
+      heading5: 'text-base/snug font-semibold tracking-tight',
+      heading6: 'text-sm/snug font-semibold tracking-tight',
+      pageTitle: 'text-2xl/tight font-semibold tracking-tight sm:text-3xl/tight',
+      sectionTitle: 'text-xl/snug font-semibold tracking-tight',
+      cardTitle: 'text-base/snug font-semibold tracking-tight',
+      body: 'text-base/6 font-normal tracking-normal',
+      supporting: 'text-sm/5 font-normal tracking-normal',
+      caption: 'text-xs/4 font-normal tracking-normal',
+      label: 'text-sm/5 font-medium tracking-normal',
+      control: 'text-sm/5 font-medium tracking-normal',
+      badge: 'text-xs/4 font-semibold tracking-normal',
+      metric: 'text-2xl/tight font-semibold tracking-tight tabular-nums',
+      eyebrow: 'text-xs/4 font-semibold tracking-wide uppercase',
+    },
+    tone: {
+      default: '',
+      muted: 'text-muted-foreground',
+      destructive: 'text-destructive',
+    },
+  },
+  defaultVariants: { variant: 'body', tone: 'default' },
+});
 
-type PrimitiveForwardRefComponent<E extends React.ElementType> = React.ForwardRefExoticComponent<
-  TypographyPropsWithRef<E>
->;
-
-export type TypographyProps = React.HTMLAttributes<HTMLElement> & VariantProps<typeof typographyVariants>;
-
-const getEl = (v: string | undefined | null): React.ElementType | undefined => {
-  if (!v) return;
-  else if (v === 'lead' || v === 'muted') return 'p';
-  else if (v === 'large') return 'div';
-  else return;
+export type TypographyVariant = NonNullable<VariantProps<typeof typographyVariants>['variant']>;
+type VisualProps = {
+  /** Application role, or an explicit legacy document style. Never changes the element. */
+  variant?: TypographyVariant | NonNullable<VariantProps<typeof proseVariants>['variant']>;
+  tone?: VariantProps<typeof typographyVariants>['tone'];
+  asChild?: boolean;
 };
+export type TypographyProps<E extends React.ElementType = 'p'> = VisualProps & {
+  as?: E;
+} & Omit<React.ComponentPropsWithRef<E>, keyof VisualProps | 'as'>;
+type TypographyComponent<N extends React.ElementType> = <E extends React.ElementType = N>(
+  props: TypographyProps<E>,
+) => React.ReactElement | null;
+type Typographies = { [N in (typeof NODES)[number]]: TypographyComponent<N> };
 
-const Typography = NODES.reduce((primitive, node) => {
-  const Node = React.forwardRef((props: TypographyPropsWithRef<typeof node>, forwardedRef: unknown) => {
-    const { className, variant = node, ...typographyProps } = props;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const Comp: any = getEl(variant) ? getEl(variant) : node;
+const applicationDefaults: Partial<Record<(typeof NODES)[number], TypographyVariant>> = {
+  h1: 'heading1',
+  h2: 'heading2',
+  h3: 'heading3',
+  h4: 'heading4',
+  h5: 'heading5',
+  h6: 'heading6',
+  small: 'caption',
+  label: 'label',
+};
+const applicationRoles = new Set<string>([
+  'heading1',
+  'heading2',
+  'heading3',
+  'heading4',
+  'heading5',
+  'heading6',
+  'pageTitle',
+  'sectionTitle',
+  'cardTitle',
+  'body',
+  'supporting',
+  'caption',
+  'label',
+  'control',
+  'badge',
+  'metric',
+  'eyebrow',
+]);
 
-    return <Comp className={cn(typographyVariants({ variant, className }))} {...typographyProps} ref={forwardedRef} />;
-  });
+function createTypography(prose: boolean): Typographies {
+  return Object.fromEntries(
+    NODES.map((node) => {
+      function Node({ as, asChild = false, className, variant, tone, ...props }: TypographyProps) {
+        const selected = variant ?? (prose ? node : (applicationDefaults[node] ?? 'body'));
+        const classes =
+          applicationRoles.has(selected) && (!prose || variant !== undefined)
+            ? typographyVariants({ variant: selected as TypographyVariant, tone })
+            : cn(
+                proseVariants({ variant: selected as VariantProps<typeof proseVariants>['variant'] }),
+                typographyVariants({ variant: null, tone }),
+              );
+        return React.createElement(asChild ? Slot : (as ?? node), {
+          ...props,
+          className: cn(classes, className),
+        });
+      }
+      Node.displayName = `${prose ? 'Prose' : 'Typography'}.${node}`;
+      return [node, Node];
+    }),
+  ) as unknown as Typographies;
+}
 
-  Node.displayName = `Typography.${node}`;
-
-  return { ...primitive, [node]: Node };
-}, {} as Typographies);
-
+const Typography = createTypography(false);
+/** Explicit document styles, including article spacing, lists, quotes and code. */
+const Prose = createTypography(true);
 const Text = Typography;
 
-export { Typography, Text };
+export { Typography, Text, Prose, typographyVariants, proseVariants };

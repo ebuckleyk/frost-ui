@@ -16,7 +16,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
         >
           <button
             aria-label="Previous"
-            class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
+            class="text-sm/5 font-medium tracking-normal inline-flex items-center justify-center gap-2 rounded-md whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
             data-slot="button"
           >
             <svg
@@ -39,7 +39,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
           </button>
           <button
             aria-label="Next"
-            class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
+            class="text-sm/5 font-medium tracking-normal inline-flex items-center justify-center gap-2 rounded-md whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
             data-slot="button"
           >
             <svg
@@ -1188,7 +1188,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
       >
         <button
           aria-label="Previous"
-          class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
+          class="text-sm/5 font-medium tracking-normal inline-flex items-center justify-center gap-2 rounded-md whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
           data-slot="button"
         >
           <svg
@@ -1211,7 +1211,7 @@ exports[`EventCalendar > should render EventCalendar component to match snapshot
         </button>
         <button
           aria-label="Next"
-          class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
+          class="text-sm/5 font-medium tracking-normal inline-flex items-center justify-center gap-2 rounded-md whitespace-nowrap ring-offset-background saturate-(--glass-saturation) backdrop-blur-(--glass-blur) transition-[color,background-color,border-color,box-shadow,transform] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-frost-sm hover:shadow-frost-glow border border-primary/25 bg-primary text-primary-foreground hover:bg-primary/90 active:translate-y-px size-8"
           data-slot="button"
         >
           <svg

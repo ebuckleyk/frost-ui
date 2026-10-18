@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Typography } from './Typography';
+import { Prose as Typography } from './Typography';
 
 function Component() {
   return (

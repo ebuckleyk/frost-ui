@@ -5,6 +5,8 @@ import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '@/lib/utils';
 
+import { typographyVariants } from '../Typography';
+
 function Drawer({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
   return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
 }
@@ -127,7 +129,7 @@ function DrawerTitle({ className, ...props }: React.ComponentProps<typeof Drawer
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn('font-semibold text-foreground', className)}
+      className={cn(typographyVariants({ variant: 'cardTitle' }), className)}
       {...props}
     />
   );
@@ -137,7 +139,7 @@ function DrawerDescription({ className, ...props }: React.ComponentProps<typeof 
   return (
     <DrawerPrimitive.Description
       data-slot="drawer-description"
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn(typographyVariants({ variant: 'supporting', tone: 'muted' }), className)}
       {...props}
     />
   );

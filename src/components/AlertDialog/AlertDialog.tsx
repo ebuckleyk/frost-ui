@@ -6,6 +6,8 @@ import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/Button';
 
+import { typographyVariants } from '../Typography';
+
 function AlertDialog({ ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
 }
@@ -96,7 +98,7 @@ function AlertDialogTitle({ className, ...props }: React.ComponentProps<typeof A
   return (
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
-      className={cn('text-base font-semibold', className)}
+      className={cn(typographyVariants({ variant: 'cardTitle' }), className)}
       {...props}
     />
   );
@@ -109,7 +111,7 @@ function AlertDialogDescription({
   return (
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn(typographyVariants({ variant: 'supporting', tone: 'muted' }), className)}
       {...props}
     />
   );
