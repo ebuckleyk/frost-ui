@@ -76,3 +76,44 @@ type Story = StoryObj<ComponentType>;
 export const Demo: Story = {
   render: (props) => <SheetDemo {...props} />,
 };
+
+/** Localize the accessible name of the built-in icon button. */
+export const LocalizedClose: Story = {
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Ouvrir</Button>
+      </SheetTrigger>
+      <SheetContent closeLabel="Fermer">
+        <SheetHeader>
+          <SheetTitle>Préférences</SheetTitle>
+          <SheetDescription>Modifiez vos préférences.</SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  ),
+};
+
+/** Replace the built-in button with a localized, touch-sized SheetClose. */
+export const CustomClose: Story = {
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Ouvrir</Button>
+      </SheetTrigger>
+      <SheetContent showCloseButton={false}>
+        <SheetHeader>
+          <SheetTitle>Préférences</SheetTitle>
+          <SheetDescription>Modifiez vos préférences.</SheetDescription>
+        </SheetHeader>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button variant="outline" className="min-h-11 min-w-11">
+              Fermer
+            </Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
+};
