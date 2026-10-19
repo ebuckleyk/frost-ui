@@ -55,7 +55,7 @@ module.exports = [
             '^(.+:)?glass-(card|control|control-muted|dialog|overlay|popover)$',
             '^(.+:)?input-glass$',
             '^(.+:)?shadow-frost-(sm|md|lg|glow)$',
-            '^(.+:)?bg-(gradient-frost|frost-(ambient|purple|immersive))$',
+            '^(.+:)?bg-(gradient-frost|frost-(ambient|purple|immersive|aurora))$',
             '^cn-.*$',
             '^frostui-.*$',
             '^richtext-.*$',

@@ -609,6 +609,39 @@
       linear-gradient(135deg, oklch(0.16 0.04 292), oklch(0.115 0.025 270) 55%, oklch(0.12 0.02 245));
   }
 
+  /* Atmosphere confined to a fixed-height top band (navigation area); content below sits on a flat surface.
+     Override the band with --frost-aurora-height. */
+  .bg-frost-aurora {
+    background:
+      radial-gradient(60% var(--frost-aurora-height, 22rem) at 18% 0%, oklch(0.82 0.1 305 / 0.34), transparent 72%),
+      radial-gradient(
+        48% calc(var(--frost-aurora-height, 22rem) * 0.85) at 80% 0%,
+        oklch(0.82 0.08 262 / 0.26),
+        transparent 72%
+      ),
+      linear-gradient(to bottom, oklch(0.975 0.014 292), oklch(0.985 0.005 280) var(--frost-aurora-height, 22rem));
+  }
+
+  .dark .bg-frost-aurora {
+    background:
+      radial-gradient(
+        70% var(--frost-aurora-height, 22rem) at 15% calc(var(--frost-aurora-height, 22rem) * -0.25),
+        oklch(0.6 0.19 305 / 0.22),
+        transparent 75%
+      ),
+      radial-gradient(
+        80% calc(var(--frost-aurora-height, 22rem) * 0.9) at 50% calc(var(--frost-aurora-height, 22rem) * -0.25),
+        oklch(0.56 0.16 280 / 0.22),
+        transparent 75%
+      ),
+      radial-gradient(
+        65% calc(var(--frost-aurora-height, 22rem) * 0.85) at 85% calc(var(--frost-aurora-height, 22rem) * -0.25),
+        oklch(0.56 0.16 262 / 0.28),
+        transparent 75%
+      ),
+      linear-gradient(to bottom, oklch(0.16 0.035 292), oklch(0.125 0.012 272) var(--frost-aurora-height, 22rem));
+  }
+
   .bg-frost-ambient-motion {
     animation: frost-ambient-drift 28s ease-in-out infinite;
   }
