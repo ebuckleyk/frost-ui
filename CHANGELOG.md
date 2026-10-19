@@ -1,5 +1,15 @@
 # @ebuckleyk/frost-ui
 
+## 1.34.0
+
+### Minor Changes
+
+- d26bea0: Add `bg-frost-aurora`, a violet/indigo background whose atmosphere stays in a top band (resizable with `--frost-aurora-height`) over a flat content surface, in light and dark mode.
+
+### Patch Changes
+
+- d26bea0: Keep the light-mode warning semantic token in the sRGB gamut so it renders yellow instead of clipping toward gold, with unchanged text contrast.
+
 ## 1.33.1
 
 ### Patch Changes
