@@ -31,7 +31,7 @@
 
   --destructive: oklch(0.58 0.22 25); /* Warm red for errors */
   --destructive-foreground: oklch(0.99 0 0); /* White text (WCAG AAA: 9.8:1) */
-  --warning: oklch(0.53 0.14 95);
+  --warning: oklch(0.53 0.11 102);
   --info: var(--primary);
 
   --border: oklch(0.86 0.014 235);
