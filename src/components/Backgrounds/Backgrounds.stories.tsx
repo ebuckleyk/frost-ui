@@ -13,6 +13,7 @@ const backgrounds = [
   ['Blue / cyan', 'bg-gradient-frost', 'Cool directional treatment'],
   ['Purple', 'bg-frost-purple', 'Soft purple treatment'],
   ['Immersive', 'bg-frost-immersive', 'Strong violet and indigo atmosphere'],
+  ['Aurora', 'bg-frost-aurora', 'Violet glow confined to the navigation band'],
 ] as const;
 
 const meta: Meta = {
@@ -72,6 +73,87 @@ export const Immersive: Story = {
 
         <p className="text-sm text-muted-foreground">
           Designed for opt-in creative workspaces, not the default application surface.
+        </p>
+      </div>
+    </main>
+  ),
+};
+
+export const Aurora: Story = {
+  parameters: {
+    backgrounds: { default: 'frost-aurora' },
+  },
+  render: () => (
+    <main className="bg-frost-aurora min-h-screen text-foreground">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
+        <div className="flex items-center gap-3">
+          <span className="text-lg font-semibold tracking-tight">Frost</span>
+          <Badge variant="secondary">Aurora</Badge>
+        </div>
+        <div className="hidden items-center gap-1 sm:flex">
+          <Button variant="ghost" size="sm">
+            Overview
+          </Button>
+          <Button variant="ghost" size="sm">
+            Projects
+          </Button>
+          <Button variant="ghost" size="sm">
+            Settings
+          </Button>
+        </div>
+        <Button size="sm">New project</Button>
+      </nav>
+
+      <div className="mx-auto max-w-6xl space-y-10 px-6 pt-10 pb-16">
+        <header className="max-w-2xl space-y-3">
+          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Aurora background</h1>
+          <p className="max-w-xl text-base/7 text-muted-foreground">
+            The violet and indigo glow stays in a fixed-height band behind navigation and the page heading. Content
+            below sits on a flat surface with no left-to-right hue shift, however tall the page gets.
+          </p>
+        </header>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {['Revenue', 'Active users', 'Conversion'].map((title, index) => (
+            <Card key={title}>
+              <CardHeader>
+                <CardDescription>{title}</CardDescription>
+                <CardTitle className="text-3xl">{['$48.2k', '2,318', '4.6%'][index]}</CardTitle>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>Project details</CardTitle>
+              <CardDescription>Left column content keeps the same neutral backdrop as the right.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Label htmlFor="aurora-project-name">Project name</Label>
+              <Input id="aurora-project-name" placeholder="Northern lights" />
+            </CardContent>
+            <CardFooter className="flex gap-3">
+              <Button>Save</Button>
+              <Button variant="outline">Cancel</Button>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Surfaces</CardTitle>
+              <CardDescription>Glass treatments read the same anywhere below the band.</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-3 text-sm">
+              <span className="glass-control rounded-md px-3 py-2">Glass control</span>
+              <span className="glass-control-muted rounded-md px-3 py-2">Muted control</span>
+              <span className="glass-popover rounded-md px-3 py-2">Popover surface</span>
+            </CardContent>
+          </Card>
+        </div>
+
+        <p className="text-sm text-muted-foreground">
+          Resize the band with <code>--frost-aurora-height</code> (default <code>22rem</code>).
         </p>
       </div>
     </main>
