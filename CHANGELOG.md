@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.35.0
+
+### Minor Changes
+
+- ca8d473: Add CodeBlock and Trace component families based on shadcn's Radix components, with Frost semantic colors, copy controls, numbered and diff lines, expandable tool output, and Storybook examples. Export useHighlightedCode with lazy syntax highlighting through the optional Shiki peer dependency.
+
 ## 1.34.0
 
 ### Minor Changes
