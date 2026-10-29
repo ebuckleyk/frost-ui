@@ -70,3 +70,5 @@ export * from './ToggleGroup';
 export * from './Tooltip';
 export * from './Typography';
 export * from './CurrencyInput';
+export * from './CodeBlock';
+export * from './Trace';

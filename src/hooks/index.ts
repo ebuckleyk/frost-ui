@@ -7,3 +7,4 @@ export * from './useMap';
 export * from './useMediaQuery';
 export * from './useScript';
 export * from './useIsMobile';
+export * from './useHighlightedCode';
