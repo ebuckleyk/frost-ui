@@ -2,8 +2,14 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-import type { RichTextElement, RichTextInline, RichTextText, RichTextValue } from './RichText.types';
-import { normalizeRichTextUrl } from './RichText.utils';
+import type {
+  RichTextElement,
+  RichTextInline,
+  RichTextText,
+  RichTextTokenOptions,
+  RichTextValue,
+} from './RichText.types';
+import { normalizeRichTextUrl, RichTextTokenChip } from './RichText.utils';
 
 function TextNode({ node }: { node: RichTextText }): React.ReactElement {
   let content: React.ReactNode = node.text;
@@ -17,11 +23,15 @@ function TextNode({ node }: { node: RichTextText }): React.ReactElement {
 function InlineNode({
   node,
   onHashtagClick,
+  tokens,
 }: {
   node: RichTextInline;
   onHashtagClick?: (tag: string) => void;
+  tokens?: readonly RichTextTokenOptions[];
 }): React.ReactElement {
   if ('text' in node) return <TextNode node={node} />;
+  if (node.type === 'token')
+    return <RichTextTokenChip node={node} config={tokens?.find((config) => config.kind === node.kind)} />;
   if (node.type === 'hashtag') {
     return onHashtagClick ? (
       <button
@@ -49,19 +59,21 @@ function InlineNode({
 function ElementNode({
   element,
   onHashtagClick,
+  tokens,
 }: {
   element: RichTextElement;
   onHashtagClick?: (tag: string) => void;
+  tokens?: readonly RichTextTokenOptions[];
 }): React.ReactElement {
-  if (element.type === 'link' || element.type === 'hashtag') {
-    return <InlineNode node={element} onHashtagClick={onHashtagClick} />;
+  if (element.type === 'link' || element.type === 'hashtag' || element.type === 'token') {
+    return <InlineNode node={element} onHashtagClick={onHashtagClick} tokens={tokens} />;
   }
   const style = { textAlign: element.align };
   const children = element.children.map((child, index) =>
-    'text' in child || child.type === 'link' || child.type === 'hashtag' ? (
-      <InlineNode key={index} node={child} onHashtagClick={onHashtagClick} />
+    'text' in child || child.type === 'link' || child.type === 'hashtag' || child.type === 'token' ? (
+      <InlineNode key={index} node={child} onHashtagClick={onHashtagClick} tokens={tokens} />
     ) : (
-      <ElementNode key={index} element={child} onHashtagClick={onHashtagClick} />
+      <ElementNode key={index} element={child} onHashtagClick={onHashtagClick} tokens={tokens} />
     ),
   );
 
@@ -130,18 +142,20 @@ function ElementNode({
 export type RichTextRendererProps = React.ComponentProps<'div'> & {
   value: RichTextValue;
   onHashtagClick?: (tag: string) => void;
+  tokens?: readonly RichTextTokenOptions[];
 };
 
 export function RichTextRenderer({
   value,
   onHashtagClick,
+  tokens,
   className,
   ...props
 }: RichTextRendererProps): React.ReactElement {
   return (
     <div data-slot="rich-text-renderer" className={cn('space-y-2 text-sm text-foreground', className)} {...props}>
       {value.map((element, index) => (
-        <ElementNode key={index} element={element} onHashtagClick={onHashtagClick} />
+        <ElementNode key={index} element={element} onHashtagClick={onHashtagClick} tokens={tokens} />
       ))}
     </div>
   );

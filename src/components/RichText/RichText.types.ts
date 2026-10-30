@@ -24,7 +24,47 @@ export type RichTextHashtag = {
   children: [{ text: '' }];
 };
 
-export type RichTextInline = RichTextText | RichTextLink | RichTextHashtag;
+export type RichTextToken = {
+  type: 'token';
+  kind: string;
+  value: string;
+  data?: Record<string, string>;
+  children: [{ text: '' }];
+};
+
+export type RichTextTokenSuggestion = {
+  value: string;
+  label: string;
+  description?: string;
+  group?: string;
+};
+
+export type RichTextTokenOptions = {
+  /** Unique kind. `hashtag` is reserved for the built-in preset. */
+  kind: string;
+  /** One character that opens suggestions after whitespace or at the start of a block. */
+  trigger: string;
+  suggestions?: readonly RichTextTokenSuggestion[];
+  /** Notify the app to load results and replace suggestions. */
+  onSearch?: (query: string) => void;
+  /** Defaults to false. */
+  allowFreeform?: boolean;
+  /** The visible and accessible chip label, also used by default for serialization. */
+  renderChip?: (node: RichTextToken) => string;
+  onTokenClick?: (node: RichTextToken, anchorEl: HTMLElement) => void;
+  getPlainText?: (node: RichTextToken) => string;
+  /** HTML inside the round-trip token wrapper. Sanitized before serialization. */
+  getHtml?: (node: RichTextToken) => string;
+};
+
+export type RichTextEditorHandle = {
+  /** Insert at the current/last selection, or the document end if there is none. */
+  insertToken: (token: Pick<RichTextToken, 'kind' | 'value' | 'data'>) => boolean;
+  /** Replace metadata on the exact node received by onTokenClick. Returns false for stale/deleted nodes. */
+  updateToken: (node: RichTextToken, data: Record<string, string>) => boolean;
+};
+
+export type RichTextInline = RichTextText | RichTextLink | RichTextHashtag | RichTextToken;
 
 type RichTextTextBlock<Type extends string> = {
   type: Type;
@@ -52,9 +92,10 @@ export type RichTextElement =
   | RichTextListItem
   | RichTextList
   | RichTextLink
-  | RichTextHashtag;
+  | RichTextHashtag
+  | RichTextToken;
 
-export type RichTextBlock = Exclude<RichTextElement, RichTextLink | RichTextHashtag>;
+export type RichTextBlock = Exclude<RichTextElement, RichTextLink | RichTextHashtag | RichTextToken>;
 
 /** A serializable Frost rich-text document. */
 export type RichTextValue = RichTextBlock[];

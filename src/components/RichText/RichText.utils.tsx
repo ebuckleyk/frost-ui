@@ -18,6 +18,8 @@ import type {
   RichTextListItem,
   RichTextMark,
   RichTextText,
+  RichTextToken,
+  RichTextTokenOptions,
   RichTextValue,
 } from './RichText.types';
 
@@ -59,9 +61,17 @@ function serializeText(node: RichTextText): string {
   return output;
 }
 
-function serializeInline(node: RichTextInline): string {
+function serializeInline(node: RichTextInline, tokens: readonly RichTextTokenOptions[]): string {
   if (Text.isText(node)) return serializeText(node);
 
+  if (node.type === 'token') {
+    const config = tokens.find((item) => item.kind === node.kind);
+    const content = config?.getHtml
+      ? DOMPurify.sanitize(config.getHtml(node))
+      : escapeHtml(getTokenLabel(node, config));
+    const data = node.data ? ` data-token-data="${escapeHtml(JSON.stringify(node.data))}"` : '';
+    return `<span data-token-kind="${escapeHtml(node.kind)}" data-token-value="${escapeHtml(node.value)}"${data}>${content}</span>`;
+  }
   if (node.type === 'hashtag') {
     const tag = normalizeRichTextHashtag(node.tag);
     return tag ? `<span data-hashtag="${escapeHtml(tag)}">#${escapeHtml(tag)}</span>` : '';
@@ -76,15 +86,16 @@ function alignmentAttribute(element: { align?: RichTextAlignment }): string {
   return element.align ? ` style="text-align: ${element.align}"` : '';
 }
 
-function serializeElement(element: RichTextElement): string {
+function serializeElement(element: RichTextElement, tokens: readonly RichTextTokenOptions[]): string {
   const children = element.children.map((child) =>
-    SlateElement.isElement(child) ? serializeElement(child) : serializeInline(child),
+    SlateElement.isElement(child) ? serializeElement(child, tokens) : serializeInline(child, tokens),
   );
   const content = children.join('');
   switch (element.type) {
     case 'link':
     case 'hashtag':
-      return serializeInline(element);
+    case 'token':
+      return serializeInline(element, tokens);
     case 'block-quote':
       return `<blockquote${alignmentAttribute(element)}>${content}</blockquote>`;
     case 'bulleted-list':
@@ -110,40 +121,50 @@ function serializeElement(element: RichTextElement): string {
   }
 }
 
-export function serializeRichTextToHtml(value: RichTextValue): string {
-  return value.map(serializeElement).join('');
+export function serializeRichTextToHtml(value: RichTextValue, tokens: readonly RichTextTokenOptions[] = []): string {
+  return value.map((element) => serializeElement(element, tokens)).join('');
 }
 
-function inlinePlainText(nodes: RichTextInline[]): string {
+function inlinePlainText(nodes: RichTextInline[], tokens: readonly RichTextTokenOptions[]): string {
   return nodes
     .map((node) =>
-      Text.isText(node) ? node.text : node.type === 'hashtag' ? `#${node.tag}` : inlinePlainText(node.children),
+      Text.isText(node)
+        ? node.text
+        : node.type === 'hashtag'
+          ? `#${node.tag}`
+          : node.type === 'token'
+            ? tokenPlainText(node, tokens)
+            : inlinePlainText(node.children, tokens),
     )
     .join('');
 }
 
-function blockPlainText(element: RichTextElement, listIndex?: number): string {
-  if (element.type === 'link') return inlinePlainText(element.children);
+function blockPlainText(element: RichTextElement, tokens: readonly RichTextTokenOptions[], listIndex?: number): string {
+  if (element.type === 'link') return inlinePlainText(element.children, tokens);
+  if (element.type === 'token') return tokenPlainText(element, tokens);
   if (element.type === 'hashtag') return `#${element.tag}`;
   if (element.type === 'bulleted-list' || element.type === 'numbered-list') {
     return element.children
-      .map((item, index) => blockPlainText(item, element.type === 'numbered-list' ? index + 1 : undefined))
+      .map((item, index) => blockPlainText(item, tokens, element.type === 'numbered-list' ? index + 1 : undefined))
       .join('\n');
   }
-  const text = inlinePlainText(element.children as RichTextInline[]);
+  const text = inlinePlainText(element.children as RichTextInline[], tokens);
   if (element.type === 'list-item') return `${listIndex ? `${listIndex}.` : '•'} ${text}`;
   return text;
 }
 
-export function serializeRichTextToPlainText(value: RichTextValue): string {
-  return value.map((element) => blockPlainText(element)).join('\n');
+export function serializeRichTextToPlainText(
+  value: RichTextValue,
+  tokens: readonly RichTextTokenOptions[] = [],
+): string {
+  return value.map((element) => blockPlainText(element, tokens)).join('\n');
 }
 
 export function isRichTextEmpty(value: RichTextValue | null | undefined): boolean {
   return !value?.some(
     (element) =>
       SlateNode.string(element).trim().length > 0 ||
-      Array.from(SlateNode.elements(element)).some(([node]) => node.type === 'hashtag'),
+      Array.from(SlateNode.elements(element)).some(([node]) => node.type === 'hashtag' || node.type === 'token'),
   );
 }
 
@@ -209,6 +230,27 @@ function parseInlineNodes(
     if (tag === 'U') nextMarks.underline = true;
     if (tag === 'CODE') nextMarks.code = true;
 
+    if (tag === 'SPAN' && node.hasAttribute('data-token-kind') && node.hasAttribute('data-token-value')) {
+      const kind = node.getAttribute('data-token-kind')!;
+      const value = node.getAttribute('data-token-value')!;
+      let data: Record<string, string> | undefined;
+      try {
+        const parsed: unknown = JSON.parse(node.getAttribute('data-token-data') ?? 'null');
+        if (
+          parsed &&
+          typeof parsed === 'object' &&
+          !Array.isArray(parsed) &&
+          Object.values(parsed).every((entry) => typeof entry === 'string')
+        )
+          data = parsed as Record<string, string>;
+      } catch {
+        /* Malformed metadata is discarded; the token remains readable. */
+      }
+      if (kind && value) {
+        output.push({ type: 'token', kind, value, ...(data ? { data } : {}), children: [{ text: '' }] });
+        return;
+      }
+    }
     const children = parseInlineNodes(node.childNodes, nextMarks);
     if (tag === 'SPAN' && node.hasAttribute('data-hashtag')) {
       const hashtag = normalizeRichTextHashtag(node.getAttribute('data-hashtag') ?? node.textContent ?? '');
@@ -311,7 +353,7 @@ export function deserializeRichTextFromHtml(html: string): RichTextValue {
       'u',
       'ul',
     ],
-    ALLOWED_ATTR: ['data-hashtag', 'href', 'style'],
+    ALLOWED_ATTR: ['data-hashtag', 'data-token-kind', 'data-token-value', 'data-token-data', 'href', 'style'],
     ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i,
   });
   const document = new DOMParser().parseFromString(sanitized, 'text/html');
@@ -415,8 +457,9 @@ export function removeLink(editor: RichTextEditorInstance): void {
 
 export function withLinks(editor: RichTextEditorInstance): RichTextEditorInstance {
   const { isInline, isVoid } = editor;
-  editor.isInline = (element) => (element.type === 'link' || element.type === 'hashtag' ? true : isInline(element));
-  editor.isVoid = (element) => (element.type === 'hashtag' ? true : isVoid(element));
+  editor.isInline = (element) =>
+    element.type === 'link' || element.type === 'hashtag' || element.type === 'token' ? true : isInline(element);
+  editor.isVoid = (element) => (element.type === 'hashtag' || element.type === 'token' ? true : isVoid(element));
   return editor;
 }
 
@@ -428,11 +471,97 @@ export function insertRichTextHashtag(editor: RichTextEditorInstance, tag: strin
   return true;
 }
 
+export function getTokenLabel(node: RichTextToken, config?: RichTextTokenOptions): string {
+  return (
+    config?.renderChip?.(node) ?? config?.suggestions?.find((item) => item.value === node.value)?.label ?? node.value
+  );
+}
+
+function tokenPlainText(node: RichTextToken, tokens: readonly RichTextTokenOptions[]): string {
+  const config = tokens.find((item) => item.kind === node.kind);
+  return config?.getPlainText?.(node) ?? getTokenLabel(node, config);
+}
+
+export function insertRichTextToken(
+  editor: RichTextEditorInstance,
+  token: Pick<RichTextToken, 'kind' | 'value' | 'data'>,
+): boolean {
+  if (!editor.selection || !token.kind || !token.value || token.kind === 'hashtag') return false;
+  Transforms.insertNodes(editor, [
+    { type: 'token', ...token, ...(token.data ? { data: { ...token.data } } : {}), children: [{ text: '' }] },
+    { text: ' ' },
+  ]);
+  return true;
+}
+
+export function updateRichTextToken(
+  editor: RichTextEditorInstance,
+  node: RichTextToken,
+  data: Record<string, string>,
+): boolean {
+  const [entry] = Editor.nodes(editor, { at: [], match: (candidate) => candidate === node });
+  if (!entry) return false;
+  Transforms.setNodes(editor, { data: { ...data } }, { at: entry[1] });
+  return true;
+}
+
+export function RichTextTokenChip({
+  node,
+  config,
+  onDelete,
+  disabled,
+}: {
+  node: RichTextToken;
+  config?: RichTextTokenOptions;
+  onDelete?: (node: RichTextToken) => void;
+  disabled?: boolean;
+}): React.ReactElement {
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      className="mx-0.5 rounded-sm bg-primary/10 px-1 text-primary hover:bg-primary/20 focus-visible:outline-2 focus-visible:outline-ring"
+      onMouseDown={(event) => event.preventDefault()}
+      onClick={(event) => config?.onTokenClick?.(node, event.currentTarget)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          event.stopPropagation();
+          config?.onTokenClick?.(node, event.currentTarget);
+        } else if (event.key === 'Backspace' && onDelete) {
+          event.preventDefault();
+          event.stopPropagation();
+          onDelete(node);
+        }
+      }}
+    >
+      {getTokenLabel(node, config)}
+    </button>
+  );
+}
+
 export function renderRichTextElement(
   { attributes, children, element }: RenderElementProps,
   onHashtagClick?: (tag: string) => void,
+  tokens: readonly RichTextTokenOptions[] = [],
+  onTokenDelete?: (node: RichTextToken) => void,
+  disabled?: boolean,
 ): React.ReactElement {
   switch (element.type) {
+    case 'token':
+      return (
+        <span {...attributes} className="inline-block">
+          <span contentEditable={false}>
+            <RichTextTokenChip
+              node={element}
+              config={tokens.find((config) => config.kind === element.kind)}
+              onDelete={onTokenDelete}
+              disabled={disabled}
+            />
+          </span>
+          {children}
+        </span>
+      );
     case 'link':
       return (
         <a

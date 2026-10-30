@@ -40,9 +40,12 @@ import { getRichTextShortcut } from './RichText.shortcuts';
 import type {
   RichTextAlignment,
   RichTextBlockType,
+  RichTextEditorHandle,
   RichTextEditorInstance,
   RichTextHashtagOptions,
   RichTextMark,
+  RichTextTokenOptions,
+  RichTextTokenSuggestion,
   RichTextToolbarCapability,
   RichTextToolbarPreset,
   RichTextValue,
@@ -52,6 +55,7 @@ import {
   getActiveLink,
   getRichTextHashtagChange,
   insertRichTextHashtag,
+  insertRichTextToken,
   isBlockActive,
   isMarkActive,
   normalizeRichTextHashtag,
@@ -62,9 +66,12 @@ import {
   renderRichTextPlaceholder,
   toggleBlock,
   toggleMark,
+  updateRichTextToken,
   upsertLink,
   withLinks,
 } from './RichText.utils';
+
+const EMPTY_TOKENS: readonly RichTextTokenOptions[] = [];
 
 const BASIC_CAPABILITIES = ['bold', 'italic', 'underline', 'link', 'bulleted-list', 'numbered-list'] as const;
 const DOCUMENT_CAPABILITIES = [
@@ -94,17 +101,20 @@ type RichTextEditorContextValue = {
   editor: RichTextEditorInstance;
   disabled: boolean;
   readOnly: boolean;
-  hashtagQuery: string | null;
-  hashtagSuggestions: string[];
-  activeHashtagIndex: number;
+  tokenQuery: string | null;
+  tokenSuggestions: RichTextTokenSuggestion[];
+  tokenKind?: string;
+  tokens: readonly RichTextTokenOptions[];
+  suggestionsId: string;
+  activeTokenIndex: number;
   linkOpen: boolean;
   linkUrl: string;
   savedSelection: Range | null;
   setLinkOpen: (open: boolean) => void;
   setLinkUrl: (url: string) => void;
-  setActiveHashtagIndex: (index: number) => void;
-  commitHashtag: (tag: string) => void;
-  closeHashtagSuggestions: () => void;
+  setActiveTokenIndex: (index: number) => void;
+  commitToken: (suggestion: RichTextTokenSuggestion) => void;
+  closeTokenSuggestions: () => void;
   onHashtagClick?: (tag: string) => void;
   openLinkEditor: () => void;
 };
@@ -124,9 +134,12 @@ function resolveCapabilities(
   return toolbar === 'document' ? DOCUMENT_CAPABILITIES : BASIC_CAPABILITIES;
 }
 
-type HashtagMatch = { query: string; range: Range };
+type TokenMatch = { query: string; range: Range; kind: string };
 
-function getHashtagMatch(editor: ReturnType<typeof createEditor>): HashtagMatch | null {
+function getTokenMatch(
+  editor: ReturnType<typeof createEditor>,
+  configs: readonly RichTextTokenOptions[],
+): TokenMatch | null {
   if (!editor.selection || !Range.isCollapsed(editor.selection)) return null;
   const block = Editor.above(editor, {
     at: editor.selection.anchor,
@@ -136,10 +149,15 @@ function getHashtagMatch(editor: ReturnType<typeof createEditor>): HashtagMatch 
 
   const cursor = editor.selection.anchor;
   const text = Editor.string(editor, { anchor: Editor.start(editor, block[1]), focus: cursor });
-  const match = text.match(/(?:^|\s)#([\p{L}\p{N}_-]*)$/u);
-  if (!match) return null;
-  const start = Editor.before(editor, cursor, { distance: match[1].length + 1 });
-  return start ? { query: match[1], range: { anchor: start, focus: cursor } } : null;
+  for (const config of configs) {
+    const startIndex = text.lastIndexOf(config.trigger);
+    if (startIndex < 0 || (startIndex > 0 && !/\s/u.test(text[startIndex - 1]))) continue;
+    const query = text.slice(startIndex + config.trigger.length);
+    if (!/^[\p{L}\p{N}_-]*$/u.test(query)) continue;
+    const start = Editor.before(editor, cursor, { distance: Array.from(query + config.trigger).length });
+    if (start) return { query, range: { anchor: start, focus: cursor }, kind: config.kind };
+  }
+  return null;
 }
 
 export type RichTextEditorProps = {
@@ -154,6 +172,8 @@ export type RichTextEditorProps = {
   toolbar?: RichTextToolbarPreset | readonly RichTextToolbarCapability[] | false;
   /** Enables structured hashtag entry and configures suggestions and callbacks. */
   hashtags?: RichTextHashtagOptions | false;
+  tokens?: readonly RichTextTokenOptions[];
+  ref?: React.Ref<RichTextEditorHandle>;
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
@@ -179,6 +199,8 @@ export function RichTextEditor({
   onValueChange,
   toolbar = 'basic',
   hashtags = false,
+  tokens = EMPTY_TOKENS,
+  ref,
   placeholder = 'Write something…',
   disabled = false,
   readOnly = false,
@@ -198,39 +220,99 @@ export function RichTextEditor({
   'aria-describedby': ariaDescribedBy,
 }: RichTextEditorProps): React.ReactElement {
   const editor = React.useMemo(() => withLinks(withHistory(withReact(createEditor()))), []);
+  const suggestionsId = React.useId();
+  const lastSelection = React.useRef<ReturnType<typeof Editor.rangeRef> | null>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
   const lastValueFingerprint = React.useRef(JSON.stringify(value));
   const previousHashtagValue = React.useRef(cloneRichTextValue(value));
-  const [hashtagMatch, setHashtagMatch] = React.useState<HashtagMatch | null>(null);
-  const [activeHashtagIndex, setActiveHashtagIndex] = React.useState(0);
+  const [tokenMatch, setTokenMatch] = React.useState<TokenMatch | null>(null);
+  const [activeTokenIndex, setActiveTokenIndex] = React.useState(0);
   const [linkOpen, setLinkOpen] = React.useState(false);
   const [linkUrl, setLinkUrl] = React.useState('');
   const [savedSelection, setSavedSelection] = React.useState<Range | null>(null);
   const isReadOnly = readOnly || disabled;
   const hashtagOptions = hashtags || undefined;
-  const hashtagsEnabled = Boolean(hashtagOptions);
-  const hashtagSuggestionSource = hashtagOptions?.suggestions;
-  const allowFreeformHashtags = hashtagOptions?.allowFreeform !== false;
   const onHashtagClick = hashtagOptions?.onHashtagClick;
   const onHashtagsChange = hashtagOptions?.onHashtagsChange;
-  const onHashtagSearch = hashtagOptions?.onSearch;
-  const hashtagSuggestions = React.useMemo(() => {
-    if (!hashtagMatch || !hashtagsEnabled) return [];
-    const query = hashtagMatch.query.toLocaleLowerCase();
-    const suggestions = Array.from(
-      new Set(
-        (hashtagSuggestionSource ?? [])
-          .map(normalizeRichTextHashtag)
-          .filter((tag): tag is string => Boolean(tag))
-          .filter((tag) => tag.toLocaleLowerCase().startsWith(query)),
-      ),
+  const tokenConfigs = React.useMemo(() => {
+    const kinds = new Set<string>();
+    const triggers = new Set<string>();
+    for (const config of tokens) {
+      if (
+        !config.kind ||
+        config.kind === 'hashtag' ||
+        kinds.has(config.kind) ||
+        Array.from(config.trigger).length !== 1 ||
+        /\s/u.test(config.trigger) ||
+        triggers.has(config.trigger) ||
+        (hashtagOptions && config.trigger === '#')
+      ) {
+        throw new Error('Token kinds and single-character triggers must be unique; hashtag is reserved.');
+      }
+      kinds.add(config.kind);
+      triggers.add(config.trigger);
+    }
+    const preset: RichTextTokenOptions[] = hashtagOptions
+      ? [
+          {
+            kind: 'hashtag',
+            trigger: '#',
+            suggestions: Array.from(
+              new Set(
+                (hashtagOptions.suggestions ?? [])
+                  .map(normalizeRichTextHashtag)
+                  .filter((tag): tag is string => Boolean(tag)),
+              ),
+            ).map((tag) => ({ value: tag, label: `#${tag}` })),
+            allowFreeform: hashtagOptions.allowFreeform !== false,
+            onSearch: hashtagOptions.onSearch,
+          },
+        ]
+      : [];
+    return [...preset, ...tokens];
+  }, [tokens, hashtagOptions]);
+  const activeConfig = tokenConfigs.find((config) => config.kind === tokenMatch?.kind);
+  const tokenSuggestions = React.useMemo(() => {
+    if (!tokenMatch || !activeConfig) return [];
+    const query = tokenMatch.query.toLocaleLowerCase();
+    const suggestions = (activeConfig.suggestions ?? []).filter(
+      (item) => item.value.toLocaleLowerCase().startsWith(query) || item.label.toLocaleLowerCase().startsWith(query),
     );
-    if (allowFreeformHashtags && hashtagMatch.query && !suggestions.some((tag) => tag.toLocaleLowerCase() === query)) {
-      suggestions.push(hashtagMatch.query);
+    if (
+      activeConfig.allowFreeform &&
+      tokenMatch.query &&
+      !suggestions.some((item) => item.value.toLocaleLowerCase() === query)
+    ) {
+      return [
+        ...suggestions,
+        { value: tokenMatch.query, label: activeConfig.kind === 'hashtag' ? `#${tokenMatch.query}` : tokenMatch.query },
+      ];
     }
     return suggestions;
-  }, [allowFreeformHashtags, hashtagMatch, hashtagsEnabled, hashtagSuggestionSource]);
+  }, [activeConfig, tokenMatch]);
+
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      insertToken(token) {
+        if (isReadOnly || !tokens.some((config) => config.kind === token.kind)) return false;
+        if (!editor.selection) Transforms.select(editor, lastSelection.current?.current ?? Editor.end(editor, []));
+        setTokenMatch(null);
+        return insertRichTextToken(editor, token);
+      },
+      updateToken(node, data) {
+        return !isReadOnly && updateRichTextToken(editor, node, data);
+      },
+    }),
+    [editor, isReadOnly, tokens],
+  );
+  React.useEffect(
+    () => () => {
+      lastSelection.current?.unref();
+    },
+    [],
+  );
 
   React.useLayoutEffect(() => {
     const container = containerRef.current;
@@ -262,6 +344,9 @@ export function RichTextEditor({
     const fingerprint = JSON.stringify(value);
     if (fingerprint === lastValueFingerprint.current) return;
     lastValueFingerprint.current = fingerprint;
+    lastSelection.current?.unref();
+    lastSelection.current = null;
+    setTokenMatch(null);
     editor.children = cloneRichTextValue(value) as Descendant[];
     editor.selection = null;
     editor.history = { undos: [], redos: [] };
@@ -274,25 +359,29 @@ export function RichTextEditor({
     if (change.added.length > 0 || change.removed.length > 0) onHashtagsChange?.(change);
   }, [onHashtagsChange, value]);
 
+  const searchQuery = tokenMatch?.query;
+  const searchKind = tokenMatch?.kind;
+  const onTokenSearch = activeConfig?.onSearch;
   React.useEffect(() => {
-    if (hashtagMatch) onHashtagSearch?.(hashtagMatch.query);
-  }, [hashtagMatch, onHashtagSearch]);
+    if (searchQuery !== undefined && !isReadOnly) onTokenSearch?.(searchQuery);
+  }, [searchQuery, searchKind, onTokenSearch, isReadOnly]);
 
-  const closeHashtagSuggestions = React.useCallback(() => {
-    setHashtagMatch(null);
-    setActiveHashtagIndex(0);
+  const closeTokenSuggestions = React.useCallback(() => {
+    setTokenMatch(null);
+    setActiveTokenIndex(0);
   }, []);
 
-  const commitHashtag = React.useCallback(
-    (tag: string) => {
-      if (!hashtagMatch || isReadOnly) return;
-      Transforms.select(editor, hashtagMatch.range);
+  const commitToken = React.useCallback(
+    (suggestion: RichTextTokenSuggestion) => {
+      if (!tokenMatch || !activeConfig || isReadOnly) return;
+      Transforms.select(editor, tokenMatch.range);
       Transforms.delete(editor);
-      insertRichTextHashtag(editor, tag);
-      closeHashtagSuggestions();
+      if (activeConfig.kind === 'hashtag') insertRichTextHashtag(editor, suggestion.value);
+      else insertRichTextToken(editor, { kind: activeConfig.kind, value: suggestion.value });
+      closeTokenSuggestions();
       ReactEditor.focus(editor);
     },
-    [closeHashtagSuggestions, editor, hashtagMatch, isReadOnly],
+    [closeTokenSuggestions, editor, tokenMatch, activeConfig, isReadOnly],
   );
 
   const openLinkEditor = React.useCallback(() => {
@@ -309,28 +398,34 @@ export function RichTextEditor({
       editor,
       disabled,
       readOnly: isReadOnly,
-      hashtagQuery: hashtagMatch?.query ?? null,
-      hashtagSuggestions,
-      activeHashtagIndex,
+      tokenQuery: activeConfig && !isReadOnly ? (tokenMatch?.query ?? null) : null,
+      tokenKind: activeConfig?.kind,
+      tokens,
+      suggestionsId,
+      tokenSuggestions,
+      activeTokenIndex,
       linkOpen,
       linkUrl,
       savedSelection,
       setLinkOpen,
       setLinkUrl,
-      setActiveHashtagIndex,
-      commitHashtag,
-      closeHashtagSuggestions,
+      setActiveTokenIndex,
+      commitToken,
+      closeTokenSuggestions,
       onHashtagClick,
       openLinkEditor,
     }),
     [
-      activeHashtagIndex,
-      closeHashtagSuggestions,
-      commitHashtag,
+      activeTokenIndex,
+      activeConfig,
+      tokens,
+      suggestionsId,
+      closeTokenSuggestions,
+      commitToken,
       disabled,
       editor,
-      hashtagMatch,
-      hashtagSuggestions,
+      tokenMatch,
+      tokenSuggestions,
       isReadOnly,
       linkOpen,
       linkUrl,
@@ -342,14 +437,18 @@ export function RichTextEditor({
 
   const handleChange = React.useCallback(
     (nextValue: Descendant[]) => {
-      setHashtagMatch(hashtagsEnabled && !isReadOnly ? getHashtagMatch(editor) : null);
-      setActiveHashtagIndex(0);
+      if (editor.selection) {
+        lastSelection.current?.unref();
+        lastSelection.current = Editor.rangeRef(editor, editor.selection);
+      }
+      setTokenMatch(!isReadOnly ? getTokenMatch(editor, tokenConfigs) : null);
+      setActiveTokenIndex(0);
       if (!editor.operations.some((operation) => operation.type !== 'set_selection')) return;
       const canonicalValue = cloneRichTextValue(nextValue as RichTextValue);
       lastValueFingerprint.current = JSON.stringify(canonicalValue);
       onValueChange(canonicalValue);
     },
-    [editor, hashtagsEnabled, isReadOnly, onValueChange],
+    [editor, tokenConfigs, isReadOnly, onValueChange],
   );
 
   return (
@@ -396,7 +495,7 @@ export function RichTextEditor({
                 />
               </>
             )}
-            {hashtagsEnabled ? <RichTextHashtagSuggestions /> : null}
+            {tokenConfigs.length > 0 ? <RichTextTokenSuggestions /> : null}
           </RichTextEditorContext.Provider>
         </Slate>
         {name && <input type="hidden" name={name} value={JSON.stringify(value)} disabled={disabled} />}
@@ -417,46 +516,63 @@ export function RichTextEditorContent({
 }: RichTextEditorContentProps): React.ReactElement {
   const editor = useSlate();
   const {
-    activeHashtagIndex,
-    closeHashtagSuggestions,
-    commitHashtag,
+    activeTokenIndex,
+    closeTokenSuggestions,
+    commitToken,
     disabled,
-    hashtagQuery,
-    hashtagSuggestions,
+    tokenQuery,
+    tokenSuggestions,
+    tokens,
+    suggestionsId,
     onHashtagClick,
     openLinkEditor,
     readOnly,
-    setActiveHashtagIndex,
+    setActiveTokenIndex,
   } = useRichTextEditorContext();
   const renderElement = React.useCallback(
-    (renderProps: Parameters<typeof renderRichTextElement>[0]) => renderRichTextElement(renderProps, onHashtagClick),
-    [onHashtagClick],
+    (renderProps: Parameters<typeof renderRichTextElement>[0]) =>
+      renderRichTextElement(
+        renderProps,
+        onHashtagClick,
+        tokens,
+        (node) => {
+          if (readOnly) return;
+          const path = ReactEditor.findPath(editor, node);
+          Transforms.removeNodes(editor, { at: path });
+          ReactEditor.focus(editor);
+        },
+        disabled,
+      ),
+    [onHashtagClick, tokens, editor, readOnly, disabled],
   );
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       onKeyDown?.(event);
-      if (event.defaultPrevented || readOnly) return;
+      if (event.defaultPrevented || readOnly || event.nativeEvent.isComposing) return;
 
-      if (hashtagQuery !== null) {
-        if (event.key === 'ArrowDown' && hashtagSuggestions.length > 0) {
+      if (tokenQuery !== null) {
+        if (event.key === 'ArrowDown' && tokenSuggestions.length > 0) {
           event.preventDefault();
-          setActiveHashtagIndex((activeHashtagIndex + 1) % hashtagSuggestions.length);
+          setActiveTokenIndex((activeTokenIndex + 1) % tokenSuggestions.length);
           return;
         }
-        if (event.key === 'ArrowUp' && hashtagSuggestions.length > 0) {
+        if (event.key === 'ArrowUp' && tokenSuggestions.length > 0) {
           event.preventDefault();
-          setActiveHashtagIndex((activeHashtagIndex - 1 + hashtagSuggestions.length) % hashtagSuggestions.length);
+          setActiveTokenIndex((activeTokenIndex - 1 + tokenSuggestions.length) % tokenSuggestions.length);
           return;
         }
         if (event.key === 'Escape') {
           event.preventDefault();
-          closeHashtagSuggestions();
+          closeTokenSuggestions();
           return;
         }
-        if ((event.key === 'Enter' || event.key === 'Tab') && hashtagSuggestions[activeHashtagIndex]) {
+        if (
+          (event.key === 'Enter' || event.key === 'Tab') &&
+          tokenSuggestions[Math.min(activeTokenIndex, tokenSuggestions.length - 1)]
+        ) {
           event.preventDefault();
-          commitHashtag(hashtagSuggestions[activeHashtagIndex]);
+          commitToken(tokenSuggestions[Math.min(activeTokenIndex, tokenSuggestions.length - 1)]);
           return;
         }
       }
@@ -471,16 +587,16 @@ export function RichTextEditorContent({
       }
     },
     [
-      activeHashtagIndex,
-      closeHashtagSuggestions,
-      commitHashtag,
+      activeTokenIndex,
+      closeTokenSuggestions,
+      commitToken,
       editor,
-      hashtagQuery,
-      hashtagSuggestions,
+      tokenQuery,
+      tokenSuggestions,
       onKeyDown,
       openLinkEditor,
       readOnly,
-      setActiveHashtagIndex,
+      setActiveTokenIndex,
     ],
   );
 
@@ -490,6 +606,12 @@ export function RichTextEditorContent({
       role="textbox"
       readOnly={readOnly}
       aria-disabled={disabled || undefined}
+      aria-controls={tokenQuery !== null && tokenSuggestions.length ? suggestionsId : undefined}
+      aria-activedescendant={
+        tokenQuery !== null && tokenSuggestions.length
+          ? `${suggestionsId}-${Math.min(activeTokenIndex, tokenSuggestions.length - 1)}`
+          : undefined
+      }
       renderElement={renderElement}
       renderLeaf={renderRichTextLeaf}
       renderPlaceholder={renderRichTextPlaceholder}
@@ -507,34 +629,41 @@ export function RichTextEditorContent({
   );
 }
 
-function RichTextHashtagSuggestions(): React.ReactElement | null {
-  const { activeHashtagIndex, commitHashtag, hashtagQuery, hashtagSuggestions, setActiveHashtagIndex } =
+function RichTextTokenSuggestions(): React.ReactElement | null {
+  const { activeTokenIndex, commitToken, tokenQuery, tokenKind, tokenSuggestions, setActiveTokenIndex, suggestionsId } =
     useRichTextEditorContext();
-  if (hashtagQuery === null) return null;
+  if (tokenQuery === null) return null;
 
-  if (hashtagSuggestions.length === 0) return null;
+  if (tokenSuggestions.length === 0) return null;
 
   return (
     <div
       role="listbox"
-      aria-label="Hashtag suggestions"
+      id={suggestionsId}
+      aria-label={tokenKind === 'hashtag' ? 'Hashtag suggestions' : 'Token suggestions'}
       className="border-t border-border/70 bg-popover p-1 text-popover-foreground"
     >
-      {hashtagSuggestions.map((tag, index) => (
+      {tokenSuggestions.map((suggestion, index) => (
         <button
-          key={tag}
+          key={suggestion.value}
+          id={`${suggestionsId}-${index}`}
+          tabIndex={-1}
           type="button"
           role="option"
-          aria-selected={index === activeHashtagIndex}
+          aria-selected={index === Math.min(activeTokenIndex, tokenSuggestions.length - 1)}
           className={cn(
             'flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm outline-none',
-            index === activeHashtagIndex && 'bg-accent text-accent-foreground',
+            index === Math.min(activeTokenIndex, tokenSuggestions.length - 1) && 'bg-accent text-accent-foreground',
           )}
           onMouseDown={(event) => event.preventDefault()}
-          onMouseEnter={() => setActiveHashtagIndex(index)}
-          onClick={() => commitHashtag(tag)}
+          onMouseEnter={() => setActiveTokenIndex(index)}
+          onClick={() => commitToken(suggestion)}
         >
-          #{tag}
+          <span>
+            {suggestion.label}
+            {suggestion.description ? ` — ${suggestion.description}` : ''}
+            {suggestion.group ? ` (${suggestion.group})` : ''}
+          </span>
         </button>
       ))}
     </div>
