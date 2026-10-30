@@ -1,12 +1,15 @@
 import * as React from 'react';
+import { Anchor as PopoverAnchor } from '@radix-ui/react-popover';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Transforms } from 'slate';
 import { useSlate } from 'slate-react';
 
 import { Button } from '../Button';
 import { Field, FieldDescription, FieldLabel } from '../Field';
+import { Input } from '../Input';
+import { Popover, PopoverContent } from '../Popover';
 import { RichTextEditor, RichTextEditorContent, RichTextEditorToolbar } from './RichText';
-import type { RichTextValue } from './RichText.types';
+import type { RichTextEditorHandle, RichTextToken, RichTextTokenOptions, RichTextValue } from './RichText.types';
 import { getRichTextHashtags, serializeRichTextToHtml, serializeRichTextToPlainText } from './RichText.utils';
 import { RichTextRenderer } from './RichTextRenderer';
 
@@ -109,7 +112,10 @@ const FORM_SOURCE = `const [body, setBody] = React.useState<RichTextValue>(EMPTY
   <Button type="submit">Submit</Button>
 </form>`;
 
-function EditorExample({ initialValue = EMPTY_VALUE, ...props }: Partial<React.ComponentProps<typeof RichTextEditor>>) {
+function EditorExample({
+  initialValue = EMPTY_VALUE,
+  ...props
+}: Partial<React.ComponentProps<typeof RichTextEditor>> & { initialValue?: RichTextValue }) {
   const [value, setValue] = React.useState(initialValue);
   return <RichTextEditor {...props} value={value} onValueChange={setValue} />;
 }
@@ -393,5 +399,87 @@ export const Disabled: Story = {
         language: 'tsx',
       },
     },
+  },
+};
+
+/** Two custom kinds and legacy hashtags share the same suggestion flow. */
+export const VariableChips: Story = {
+  render: function VariableChipsStory() {
+    const [value, setValue] = React.useState<RichTextValue>([{ type: 'paragraph', children: [{ text: 'Hello ' }] }]);
+    const editorRef = React.useRef<RichTextEditorHandle>(null);
+    const [editing, setEditing] = React.useState<{ node: RichTextToken; anchor: HTMLElement } | null>(null);
+    const [fallback, setFallback] = React.useState('');
+    const tokens: RichTextTokenOptions[] = [
+      {
+        kind: 'variable',
+        trigger: '{',
+        suggestions: [
+          { value: 'first_name', label: 'First name', description: 'Contact given name', group: 'Contact' },
+          { value: 'last_name', label: 'Last name', group: 'Contact' },
+        ],
+        renderChip: (node) =>
+          `${node.value === 'first_name' ? 'First name' : 'Last name'} · ${node.data?.fallback ?? 'there'}`,
+        onTokenClick: (node, anchor) => {
+          setFallback(node.data?.fallback ?? 'there');
+          setEditing({ node, anchor });
+        },
+        getPlainText: (node) => `{${node.value}}`,
+      },
+      {
+        kind: 'company',
+        trigger: '@',
+        suggestions: [
+          { value: 'acme', label: 'Acme' },
+          { value: 'frost', label: 'Frost' },
+        ],
+      },
+    ];
+    return (
+      <div className="w-full max-w-2xl space-y-4">
+        <p className="text-sm text-muted-foreground">
+          Type &#123; for a variable, @ for a company, or # for a hashtag. Click a variable to edit its fallback.
+        </p>
+        <Button
+          onClick={() =>
+            editorRef.current?.insertToken({ kind: 'variable', value: 'first_name', data: { fallback: 'there' } })
+          }
+        >
+          Insert first name
+        </Button>
+        <RichTextEditor
+          ref={editorRef}
+          value={value}
+          onValueChange={setValue}
+          tokens={tokens}
+          hashtags={{ suggestions: ['welcome', 'update'] }}
+        />
+        <Popover
+          open={Boolean(editing)}
+          onOpenChange={(open) => {
+            if (!open) setEditing(null);
+          }}
+        >
+          {editing && <PopoverAnchor virtualRef={{ current: editing.anchor }} />}
+          <PopoverContent onCloseAutoFocus={(event) => event.preventDefault()}>
+            <form
+              className="space-y-3"
+              onSubmit={(event) => {
+                event.preventDefault();
+                if (editing) editorRef.current?.updateToken(editing.node, { ...editing.node.data, fallback });
+                setEditing(null);
+              }}
+            >
+              <label htmlFor="token-fallback">Fallback</label>
+              <Input id="token-fallback" value={fallback} onChange={(event) => setFallback(event.target.value)} />
+              <Button type="submit">Save fallback</Button>
+            </form>
+          </PopoverContent>
+        </Popover>
+        <RichTextRenderer value={value} tokens={tokens.map((config) => ({ ...config, onTokenClick: undefined }))} />
+        <pre className="overflow-auto rounded-md bg-muted p-3 text-xs">
+          {serializeRichTextToPlainText(value, tokens)}
+        </pre>
+      </div>
+    );
   },
 };

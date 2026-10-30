@@ -8,6 +8,8 @@ export {
   getRichTextHashtagChange,
   getRichTextHashtags,
   insertRichTextHashtag,
+  insertRichTextToken,
+  updateRichTextToken,
   isRichTextEmpty,
   normalizeRichTextHashtag,
   normalizeRichTextUrl,
