@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.36.0
+
+### Minor Changes
+
+- c0e2ccc: Add configurable RichText token chips with multiple triggers, accessible suggestion navigation, external insertion and metadata updates, shared renderer labels, and HTML round-trip serialization. Preserve the existing hashtag API and stored documents as the built-in preset.
+
 ## 1.35.0
 
 ### Minor Changes
