@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.37.0
+
+### Minor Changes
+
+- a48c573: Add an `Audio` component that shares controls and styling with `Video`, and a `labels` prop for overriding built-in control text on `Video`, `VideoControls`, `VideoAdvancedControls`, `VideoSettingsMenu`, `Audio`, and `AudioControls`.
+
 ## 1.36.0
 
 ### Minor Changes
