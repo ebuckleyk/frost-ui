@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
-import { Video, VideoAdvancedControls, VideoControls, VideoPlayButton } from './Video';
+import { Video, VideoAdvancedControls, VideoControls, VideoPlayButton, VideoSettingsMenu } from './Video';
 
 const mediaTrackList = Object.assign(new EventTarget(), {
   length: 0,
@@ -100,5 +100,91 @@ describe('Video', () => {
     expect(container.querySelector('media-seek-forward-button')).toHaveAttribute('seekoffset', '15');
     expect(container.querySelector('media-cast-button')).toBeInTheDocument();
     expect(container.querySelector('media-airplay-button')).toBeInTheDocument();
+  });
+
+  it('leaves Media Chrome in charge of control text without label overrides', () => {
+    const { container } = render(<Video src="video.mp4" />);
+
+    expect(container.querySelector('media-play-button')?.getAttribute('aria-label')).toMatch(/^(play|pause)$/);
+    expect(container.querySelector('media-play-button [slot="tooltip-content"]')).not.toBeInTheDocument();
+  });
+
+  it('keeps default control label overrides when Media Chrome rewrites them', async () => {
+    const { container } = render(
+      <Video
+        src="video.mp4"
+        labels={{ playPause: 'Reproducir o pausar', playbackProgress: 'Progreso', volume: 'Volumen' }}
+      />,
+    );
+
+    const playButton = container.querySelector('media-play-button') as HTMLElement;
+    await waitFor(() => expect(playButton).toHaveAttribute('aria-label', 'Reproducir o pausar'));
+    expect(playButton.querySelector('[slot="tooltip-content"]')).toHaveTextContent('Reproducir o pausar');
+
+    playButton.setAttribute('aria-label', 'pause');
+    await waitFor(() => expect(playButton).toHaveAttribute('aria-label', 'Reproducir o pausar'));
+
+    const range = (selector: string) =>
+      (container.querySelector(selector) as HTMLElement & { range: HTMLElement }).range;
+    expect(range('media-time-range')).toHaveAttribute('aria-label', 'Progreso');
+    expect(range('media-volume-range')).toHaveAttribute('aria-label', 'Volumen');
+  });
+
+  it('overrides advanced control and settings menu text', async () => {
+    const { container } = render(
+      <Video
+        src="video.mp4"
+        controls={
+          <VideoAdvancedControls
+            seekBackwardOffset={10}
+            labels={{
+              airplay: 'Enviar por AirPlay',
+              audio: 'Pista',
+              captions: 'Subtítulos',
+              cast: 'Transmitir',
+              playbackSettings: 'Ajustes',
+              quality: 'Calidad',
+              seekBackward: (seconds) => `Retroceder ${seconds} segundos`,
+              speed: 'Velocidad',
+            }}
+          />
+        }
+      />,
+    );
+
+    await waitFor(() => {
+      expect(container.querySelector('media-seek-backward-button')).toHaveAttribute(
+        'aria-label',
+        'Retroceder 10 segundos',
+      );
+      expect(container.querySelector('media-settings-menu-button')).toHaveAttribute('aria-label', 'Ajustes');
+      expect(container.querySelector('media-cast-button')).toHaveAttribute('aria-label', 'Transmitir');
+      expect(container.querySelector('media-airplay-button')).toHaveAttribute('aria-label', 'Enviar por AirPlay');
+    });
+
+    const items = container.querySelectorAll('media-settings-menu-item');
+    expect(Array.from(items, (item) => item.firstChild?.textContent)).toEqual([
+      'Velocidad',
+      'Calidad',
+      'Subtítulos',
+      'Pista',
+    ]);
+    expect(Array.from(container.querySelectorAll('[slot="title"]'), (title) => title.textContent)).toEqual([
+      'Velocidad',
+      'Calidad',
+      'Subtítulos',
+      'Pista',
+    ]);
+  });
+
+  it('keeps English settings menu text by default', () => {
+    render(<VideoSettingsMenu />);
+
+    expect(Array.from(document.querySelectorAll('[slot="title"]'), (title) => title.textContent)).toEqual([
+      'Speed',
+      'Quality',
+      'Captions',
+      'Audio',
+    ]);
   });
 });

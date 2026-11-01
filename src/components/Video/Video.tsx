@@ -34,6 +34,8 @@ import {
 
 import { cn } from '@/lib/utils';
 
+import { LabeledControl, mediaThemeClassName } from './mediaShared';
+
 type VideoMediaProps = Omit<React.ComponentProps<'video'>, 'children' | 'controls' | 'poster' | 'src'>;
 
 type VideoSourceProps = React.ComponentProps<'source'> & { src: string };
@@ -69,14 +71,50 @@ type VideoProps = Omit<React.ComponentProps<typeof MediaController>, 'children'>
   children?: React.ReactNode;
   /** Replace the default control bar, or pass `false` to render no controls. */
   controls?: React.ReactNode | false;
+  /** Overrides for the default control text. Custom `controls` take their own `labels`. */
+  labels?: VideoControlLabels;
 };
 
-type VideoControlsProps = React.ComponentProps<typeof MediaControlBar>;
-type VideoAdvancedControlsProps = VideoControlsProps & {
+/** Each label replaces both the control's accessible name and its tooltip. */
+type VideoControlLabels = {
+  playbackProgress?: string;
+  playPause?: string;
+  muteUnmute?: string;
+  volume?: string;
+  toggleCaptions?: string;
+  playbackSpeed?: string;
+  pictureInPicture?: string;
+  fullscreen?: string;
+};
+type VideoSettingsMenuLabels = {
+  speed?: string;
+  quality?: string;
+  captions?: string;
+  audio?: string;
+};
+type VideoAdvancedControlLabels = Omit<VideoControlLabels, 'toggleCaptions' | 'playbackSpeed'> &
+  VideoSettingsMenuLabels & {
+    seekBackward?: (seconds: number) => string;
+    seekForward?: (seconds: number) => string;
+    playbackSettings?: string;
+    cast?: string;
+    airplay?: string;
+  };
+
+type VideoControlsProps = React.ComponentProps<typeof MediaControlBar> & {
+  /** Overrides for the default control text. Ignored when `children` are supplied. */
+  labels?: VideoControlLabels;
+};
+type VideoAdvancedControlsProps = Omit<VideoControlsProps, 'labels'> & {
   seekBackwardOffset?: number;
   seekForwardOffset?: number;
+  /** Overrides for the control and settings menu text. Control labels are ignored when `children` are supplied. */
+  labels?: VideoAdvancedControlLabels;
 };
-type VideoSettingsMenuProps = React.ComponentProps<typeof MediaSettingsMenu>;
+type VideoSettingsMenuProps = React.ComponentProps<typeof MediaSettingsMenu> & {
+  /** Overrides for the menu item and submenu title text. */
+  labels?: VideoSettingsMenuLabels;
+};
 
 const VideoAirplayButton = MediaAirplayButton;
 const VideoCaptionsButton = MediaCaptionsButton;
@@ -118,7 +156,7 @@ function VideoThumbnailTrack({
   return <VideoTrack default={defaultTrack} kind="metadata" label={label} {...props} />;
 }
 
-function VideoControls({ children, className, ...props }: VideoControlsProps) {
+function VideoControls({ children, className, labels, ...props }: VideoControlsProps) {
   return (
     <MediaControlBar
       data-slot="video-controls"
@@ -132,12 +170,14 @@ function VideoControls({ children, className, ...props }: VideoControlsProps) {
       )}
       {...props}
     >
-      {children ?? defaultControlItems}
+      {children ?? <DefaultControlItems labels={labels} />}
     </MediaControlBar>
   );
 }
 
-function VideoSettingsMenu({ className, ...props }: VideoSettingsMenuProps) {
+function VideoSettingsMenu({ className, labels, ...props }: VideoSettingsMenuProps) {
+  const { speed = 'Speed', quality = 'Quality', captions = 'Captions', audio = 'Audio' } = labels ?? {};
+
   return (
     <MediaSettingsMenu
       anchor="auto"
@@ -161,27 +201,27 @@ function VideoSettingsMenu({ className, ...props }: VideoSettingsMenuProps) {
       {...props}
     >
       <MediaSettingsMenuItem className="px-3">
-        Speed
+        {speed}
         <MediaPlaybackRateMenu slot="submenu" hidden>
-          <span slot="title">Speed</span>
+          <span slot="title">{speed}</span>
         </MediaPlaybackRateMenu>
       </MediaSettingsMenuItem>
       <MediaSettingsMenuItem className="px-3">
-        Quality
+        {quality}
         <MediaRenditionMenu slot="submenu" hidden>
-          <span slot="title">Quality</span>
+          <span slot="title">{quality}</span>
         </MediaRenditionMenu>
       </MediaSettingsMenuItem>
       <MediaSettingsMenuItem className="px-3">
-        Captions
+        {captions}
         <MediaCaptionsMenu slot="submenu" hidden>
-          <span slot="title">Captions</span>
+          <span slot="title">{captions}</span>
         </MediaCaptionsMenu>
       </MediaSettingsMenuItem>
       <MediaSettingsMenuItem className="px-3">
-        Audio
+        {audio}
         <MediaAudioTrackMenu slot="submenu" hidden>
-          <span slot="title">Audio</span>
+          <span slot="title">{audio}</span>
         </MediaAudioTrackMenu>
       </MediaSettingsMenuItem>
     </MediaSettingsMenu>
@@ -190,6 +230,7 @@ function VideoSettingsMenu({ className, ...props }: VideoSettingsMenuProps) {
 
 function VideoAdvancedControls({
   children,
+  labels,
   seekBackwardOffset = 5,
   seekForwardOffset = 15,
   ...props
@@ -197,35 +238,68 @@ function VideoAdvancedControls({
   return (
     <>
       <MediaErrorDialog slot="dialog" />
-      <VideoSettingsMenu />
+      <VideoSettingsMenu labels={labels} />
       <VideoControls {...props}>
         {children ?? (
           <>
-            <VideoTimeRange
-              aria-label="Playback progress"
+            <LabeledControl
+              as={VideoTimeRange}
+              defaultLabel="Playback progress"
+              label={labels?.playbackProgress}
+              tooltip={false}
               className="order-first mb-1 h-5 w-full basis-full [--media-range-padding:0.625rem]"
             />
-            <VideoPlayButton aria-label="Play or pause" />
-            <VideoSeekBackwardButton
-              aria-label={`Seek backward ${seekBackwardOffset} seconds`}
+            <LabeledControl as={VideoPlayButton} defaultLabel="Play or pause" label={labels?.playPause} />
+            <LabeledControl
+              as={VideoSeekBackwardButton}
+              defaultLabel={`Seek backward ${seekBackwardOffset} seconds`}
+              label={labels?.seekBackward?.(seekBackwardOffset)}
               seekOffset={seekBackwardOffset}
             />
-            <VideoSeekForwardButton
-              aria-label={`Seek forward ${seekForwardOffset} seconds`}
+            <LabeledControl
+              as={VideoSeekForwardButton}
+              defaultLabel={`Seek forward ${seekForwardOffset} seconds`}
+              label={labels?.seekForward?.(seekForwardOffset)}
               seekOffset={seekForwardOffset}
             />
-            <VideoMuteButton aria-label="Mute or unmute" />
-            <VideoVolumeRange
-              aria-label="Volume"
+            <LabeledControl as={VideoMuteButton} defaultLabel="Mute or unmute" label={labels?.muteUnmute} />
+            <LabeledControl
+              as={VideoVolumeRange}
+              defaultLabel="Volume"
+              label={labels?.volume}
+              tooltip={false}
               className="mr-1 hidden w-20 shrink-0 in-[[breakpointlg]]:inline-block"
             />
             <VideoTimeDisplay showDuration className="inline-flex shrink-0 whitespace-nowrap" />
             <span aria-hidden="true" className="min-w-2 flex-1" />
-            <MediaSettingsMenuButton aria-label="Playback settings" />
-            <VideoPipButton aria-label="Picture in picture" className="hidden in-[[breakpointsm]]:inline-flex" />
-            <VideoCastButton aria-label="Cast" className="hidden in-[[breakpointmd]]:inline-flex" />
-            <VideoAirplayButton aria-label="AirPlay" className="hidden in-[[breakpointmd]]:inline-flex" />
-            <VideoFullscreenButton aria-label="Enter or exit fullscreen" />
+            <LabeledControl
+              as={MediaSettingsMenuButton}
+              defaultLabel="Playback settings"
+              label={labels?.playbackSettings}
+            />
+            <LabeledControl
+              as={VideoPipButton}
+              defaultLabel="Picture in picture"
+              label={labels?.pictureInPicture}
+              className="hidden in-[[breakpointsm]]:inline-flex"
+            />
+            <LabeledControl
+              as={VideoCastButton}
+              defaultLabel="Cast"
+              label={labels?.cast}
+              className="hidden in-[[breakpointmd]]:inline-flex"
+            />
+            <LabeledControl
+              as={VideoAirplayButton}
+              defaultLabel="AirPlay"
+              label={labels?.airplay}
+              className="hidden in-[[breakpointmd]]:inline-flex"
+            />
+            <LabeledControl
+              as={VideoFullscreenButton}
+              defaultLabel="Enter or exit fullscreen"
+              label={labels?.fullscreen}
+            />
           </>
         )}
       </VideoControls>
@@ -233,32 +307,52 @@ function VideoAdvancedControls({
   );
 }
 
-const defaultControlItems = (
-  <>
-    <VideoTimeRange
-      aria-label="Playback progress"
-      className="order-first mb-1 h-5 w-full basis-full [--media-range-padding:0.625rem]"
-    />
-    <VideoPlayButton aria-label="Play or pause" />
-    <VideoMuteButton aria-label="Mute or unmute" />
-    <VideoVolumeRange aria-label="Volume" className="mx-2 hidden w-20 shrink-0 in-[[breakpointmd]]:inline-block" />
-    <VideoTimeDisplay showDuration className="inline-flex shrink-0 whitespace-nowrap" />
-    <span aria-hidden="true" className="min-w-2 flex-1" />
-    <VideoCaptionsButton aria-label="Toggle captions" />
-    <VideoPlaybackRateButton aria-label="Playback speed" className="hidden in-[[breakpointsm]]:inline-flex" />
-    <VideoPipButton aria-label="Picture in picture" className="hidden in-[[breakpointsm]]:inline-flex" />
-    <VideoFullscreenButton aria-label="Enter or exit fullscreen" />
-  </>
-);
-
-const defaultControls = <VideoControls />;
+function DefaultControlItems({ labels }: { labels?: VideoControlLabels }) {
+  return (
+    <>
+      <LabeledControl
+        as={VideoTimeRange}
+        defaultLabel="Playback progress"
+        label={labels?.playbackProgress}
+        tooltip={false}
+        className="order-first mb-1 h-5 w-full basis-full [--media-range-padding:0.625rem]"
+      />
+      <LabeledControl as={VideoPlayButton} defaultLabel="Play or pause" label={labels?.playPause} />
+      <LabeledControl as={VideoMuteButton} defaultLabel="Mute or unmute" label={labels?.muteUnmute} />
+      <LabeledControl
+        as={VideoVolumeRange}
+        defaultLabel="Volume"
+        label={labels?.volume}
+        tooltip={false}
+        className="mx-2 hidden w-20 shrink-0 in-[[breakpointmd]]:inline-block"
+      />
+      <VideoTimeDisplay showDuration className="inline-flex shrink-0 whitespace-nowrap" />
+      <span aria-hidden="true" className="min-w-2 flex-1" />
+      <LabeledControl as={VideoCaptionsButton} defaultLabel="Toggle captions" label={labels?.toggleCaptions} />
+      <LabeledControl
+        as={VideoPlaybackRateButton}
+        defaultLabel="Playback speed"
+        label={labels?.playbackSpeed}
+        className="hidden in-[[breakpointsm]]:inline-flex"
+      />
+      <LabeledControl
+        as={VideoPipButton}
+        defaultLabel="Picture in picture"
+        label={labels?.pictureInPicture}
+        className="hidden in-[[breakpointsm]]:inline-flex"
+      />
+      <LabeledControl as={VideoFullscreenButton} defaultLabel="Enter or exit fullscreen" label={labels?.fullscreen} />
+    </>
+  );
+}
 
 function Video({
   children,
   captions,
   chapters,
   className,
-  controls = defaultControls,
+  controls,
+  labels,
   mediaProps,
   mediaRef,
   poster,
@@ -277,26 +371,8 @@ function Video({
         `
           relative aspect-video w-full overflow-hidden rounded-xl border
           border-white/15 bg-black shadow-sm
-          [--media-button-icon-height:1.5rem]
-          [--media-control-background:transparent]
-          [--media-control-height:1.5rem]
-          [--media-control-hover-background:color-mix(in_oklch,var(--accent)_32%,transparent)]
-          [--media-control-padding:0.625rem]
-          [--media-focus-box-shadow:inset_0_0_0_2px_var(--primary)]
-          [--media-font-family:inherit]
-          [--media-font-size:0.75rem]
-          [--media-font-weight:500]
-          [--media-primary-color:var(--primary-foreground)]
-          [--media-range-bar-color:var(--primary)]
-          [--media-range-thumb-background:var(--primary)]
-          [--media-range-thumb-box-shadow:0_0_0_3px_color-mix(in_oklch,var(--primary)_24%,transparent)]
-          [--media-range-thumb-height:0.75rem]
-          [--media-range-thumb-width:0.75rem]
-          [--media-range-track-background:color-mix(in_oklch,var(--primary-foreground)_28%,transparent)]
-          [--media-range-track-border-radius:9999px]
-          [--media-range-track-height:0.25rem]
-          [--media-secondary-color:color-mix(in_oklch,var(--background)_72%,transparent)]
         `,
+        mediaThemeClassName,
         className,
       )}
       {...props}
@@ -326,7 +402,7 @@ function Video({
         {children}
       </video>
       <MediaLoadingIndicator data-slot="video-loading-indicator" />
-      {controls}
+      {controls === undefined ? <VideoControls labels={labels} /> : controls}
     </MediaController>
   );
 }
@@ -356,13 +432,16 @@ export {
   VideoTimeRange,
   VideoTrack,
   VideoVolumeRange,
+  type VideoAdvancedControlLabels,
   type VideoAdvancedControlsProps,
   type VideoCaptionTrackProps,
   type VideoChapterTrackProps,
+  type VideoControlLabels,
   type VideoControlsProps,
   type VideoMediaProps,
   type VideoProps,
   type VideoSourceProps,
+  type VideoSettingsMenuLabels,
   type VideoSettingsMenuProps,
   type VideoThumbnailTrackProps,
   type VideoTrackProps,

@@ -158,6 +158,61 @@ export const AdvancedControls: Story = {
   },
 };
 
+export const TranslatedLabels: Story = {
+  args: {
+    controls: (
+      <VideoAdvancedControls
+        labels={{
+          airplay: 'Enviar por AirPlay',
+          audio: 'Pista de audio',
+          captions: 'Subtítulos',
+          cast: 'Transmitir',
+          fullscreen: 'Pantalla completa',
+          muteUnmute: 'Silenciar o activar sonido',
+          pictureInPicture: 'Imagen en imagen',
+          playbackProgress: 'Progreso de reproducción',
+          playbackSettings: 'Ajustes de reproducción',
+          playPause: 'Reproducir o pausar',
+          quality: 'Calidad',
+          seekBackward: (seconds) => `Retroceder ${seconds} segundos`,
+          seekForward: (seconds) => `Avanzar ${seconds} segundos`,
+          speed: 'Velocidad',
+          volume: 'Volumen',
+        }}
+      />
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pass `labels` to replace built-in control text from your own locale files. Each button label replaces both the accessible name and the tooltip, and seek labels receive the offset. A label replaces Media Chrome’s state-aware names such as play/pause with one fixed string.',
+      },
+      source: {
+        language: 'tsx',
+        code: `import { Video, VideoAdvancedControls } from '@ebuckleyk/frost-ui/components/Video';
+
+<Video
+  src="/videos/movie.mp4"
+  controls={
+    <VideoAdvancedControls
+      labels={{
+        playPause: t('player.playPause'),
+        seekBackward: (seconds) => t('player.seekBackward', { seconds }),
+        seekForward: (seconds) => t('player.seekForward', { seconds }),
+        speed: t('player.speed'),
+      }}
+    />
+  }
+/>
+
+// The default controls take the same prop directly.
+<Video src="/videos/movie.mp4" labels={{ playPause: t('player.playPause') }} />`,
+      },
+    },
+  },
+};
+
 export const CustomControls: Story = {
   args: {
     controls: (

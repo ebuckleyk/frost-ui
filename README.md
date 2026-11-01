@@ -209,6 +209,49 @@ import { Video } from '@ebuckleyk/frost-ui/components/Video';
 
 Streaming adapters and provider-specific media elements stay composable rather than becoming hard dependencies: use a custom control composition around the appropriate Media Chrome-compatible media element when an MP4/WebM source is not sufficient.
 
+#### Control labels
+
+To supply control text from your own locale files, pass `labels` to `Video` (default controls), `VideoControls`, `VideoAdvancedControls`, `VideoSettingsMenu`, `Audio`, or `AudioControls`. Seek labels are functions that receive the offset:
+
+```tsx
+<Video
+  src="/videos/product-tour.mp4"
+  controls={
+    <VideoAdvancedControls
+      labels={{
+        playPause: t('player.playPause'),
+        seekBackward: (seconds) => t('player.seekBackward', { seconds }),
+        speed: t('player.speed'),
+      }}
+    />
+  }
+/>
+```
+
+A button label replaces both the accessible name and the tooltip with one fixed string, so it also replaces Media Chrome's state-aware names such as "play" and "pause". Controls without a label keep Media Chrome's own text, which follows `lang`.
+
+`labels` does not cover the following text, which Media Chrome renders itself:
+
+- **Follows `lang`:** the time display's accessible name, range value text, the player region's name, and the items Media Chrome generates inside settings submenus.
+- **`MediaErrorDialog`:** Media Chrome resolves these titles and messages once when it loads, so neither `labels` nor the `lang` prop changes them. `VideoAdvancedControls` always renders this dialog in English unless a translation was already active at load time.
+
+### Audio
+
+`Audio` shares its controls and styling with `Video`, renders a native `<audio>` element, and has no fixed 16:9 frame. It also needs the optional `media-chrome` peer and has its own entrypoint:
+
+```tsx
+import { Audio } from '@ebuckleyk/frost-ui/components/Audio';
+
+<Audio
+  src="/episodes/42.mp3"
+  artwork="/episodes/42.webp"
+  artworkAlt="Episode 42 cover"
+  mediaProps={{ 'aria-label': 'Episode 42' }}
+/>;
+```
+
+The default controls are play, seek backward and forward, the timeline, mute, volume, time, and speed. Use `mediaProps` and `mediaRef` as on `Video`, compose `AudioControls` with the exported `Audio*` primitives for other layouts or seek offsets, and pass `controls={false}` to hide the controls. `className` applies to the outer frame; other props go to the Media Controller.
+
 ### Questionnaire
 
 `Questionnaire` provides an accessible, multi-step form flow with single or multiple choices, freeform answers, required validation, optional skips, progress, and keyboard shortcuts:
