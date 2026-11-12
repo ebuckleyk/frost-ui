@@ -54,17 +54,18 @@ function declaredValueExports(file) {
     .sort();
 }
 
+const specifiers = components.map((name) => `${manifest.name}/components/${name}`);
+const imported = await Promise.allSettled(specifiers.map((specifier) => import(specifier)));
+
 const failures = [];
-for (const [index, name] of components.entries()) {
-  const specifier = `${manifest.name}/components/${name}`;
+for (const [index, specifier] of specifiers.entries()) {
   const declared = declaredValueExports(declarationFiles[index]);
-  let runtime;
-  try {
-    runtime = Object.keys(await import(specifier)).sort();
-  } catch (error) {
-    failures.push(`${specifier}: failed to import (${error.message})`);
+  const result = imported[index];
+  if (result.status === 'rejected') {
+    failures.push(`${specifier}: failed to import (${result.reason?.message ?? result.reason})`);
     continue;
   }
+  const runtime = Object.keys(result.value).sort();
   const missing = declared.filter((key) => !runtime.includes(key));
   const undeclared = runtime.filter((key) => !declared.includes(key));
   if (missing.length) failures.push(`${specifier}: declared but missing at runtime: ${missing.join(', ')}`);
