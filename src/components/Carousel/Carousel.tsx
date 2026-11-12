@@ -29,6 +29,42 @@ type CarouselContextProps = {
   canScrollNext: boolean;
 } & CarouselProps;
 
+const OWN_ARROW_KEY_ROLES = new Set([
+  'combobox',
+  'grid',
+  'listbox',
+  'menu',
+  'menubar',
+  'radiogroup',
+  'slider',
+  'spinbutton',
+  'tablist',
+  'textbox',
+  'tree',
+  'treegrid',
+]);
+
+/**
+ * Whether the keydown target (or a control between it and the carousel root)
+ * owns arrow-key interaction itself, e.g. text editing or a composite widget.
+ */
+function targetHandlesArrowKeys(target: EventTarget | null, root: HTMLElement): boolean {
+  if (!(target instanceof Element)) return false;
+
+  for (let el: Element | null = target; el && el !== root; el = el.parentElement) {
+    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) {
+      return true;
+    }
+    if (el instanceof HTMLElement && el.isContentEditable) return true;
+    const contentEditable = el.getAttribute('contenteditable');
+    if (contentEditable !== null && contentEditable !== 'false') return true;
+    const role = el.getAttribute('role');
+    if (role && OWN_ARROW_KEY_ROLES.has(role)) return true;
+  }
+
+  return false;
+}
+
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
 function useCarousel() {
@@ -48,6 +84,7 @@ function Carousel({
   plugins,
   className,
   children,
+  onKeyDown,
   ...props
 }: React.ComponentProps<'div'> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
@@ -76,15 +113,38 @@ function Carousel({
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'ArrowLeft') {
+      onKeyDown?.(event);
+
+      // Leave the key alone when a descendant (or consumer) already handled it,
+      // when modifiers are held (selection, browser history, shortcuts), during
+      // IME composition, or when the target owns arrow keys (text fields,
+      // contenteditable, sliders, listboxes, ...).
+      if (
+        event.defaultPrevented ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.nativeEvent.isComposing ||
+        targetHandlesArrowKeys(event.target, event.currentTarget)
+      ) {
+        return;
+      }
+
+      // Left/Right navigate in both orientations; Up/Down also navigate a
+      // vertical carousel, matching its visual axis.
+      const prevKeys = orientation === 'vertical' ? ['ArrowLeft', 'ArrowUp'] : ['ArrowLeft'];
+      const nextKeys = orientation === 'vertical' ? ['ArrowRight', 'ArrowDown'] : ['ArrowRight'];
+
+      if (prevKeys.includes(event.key)) {
         event.preventDefault();
         scrollPrev();
-      } else if (event.key === 'ArrowRight') {
+      } else if (nextKeys.includes(event.key)) {
         event.preventDefault();
         scrollNext();
       }
     },
-    [scrollPrev, scrollNext],
+    [onKeyDown, orientation, scrollPrev, scrollNext],
   );
 
   React.useEffect(() => {
@@ -117,7 +177,7 @@ function Carousel({
       }}
     >
       <div
-        onKeyDownCapture={handleKeyDown}
+        onKeyDown={handleKeyDown}
         className={cn('relative', className)}
         role="region"
         aria-roledescription="carousel"
