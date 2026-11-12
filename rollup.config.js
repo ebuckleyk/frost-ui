@@ -17,8 +17,9 @@ import packageJson from './package.json';
 // Each component subpath resolves to its own index entry so runtime exports mirror its index.d.ts.
 // Paths stay cwd-relative like the rest of this config.
 const componentIndexEntries = readdirSync('src/components', { withFileTypes: true })
-  .map((entry) => entry.isDirectory() && `src/components/${entry.name}/index.ts`)
-  .filter((entry) => entry && existsSync(entry));
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => `src/components/${entry.name}/index.ts`)
+  .filter((entry) => existsSync(entry));
 
 const peerDependencies = Object.keys(packageJson.peerDependencies || {});
 const isPeerDependency = (id) =>

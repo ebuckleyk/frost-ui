@@ -37,7 +37,7 @@
     "build:storybook": "storybook build -o docs-build",
     "changeset": "changeset",
     "lint": "eslint ./src --ext .js,.ts,.tsx",
-    "prerelease": "npm run build && npm run lint && npm run test:subpath-exports",
+    "prerelease": "npm run build && npm run lint && npm run test:subpath-exports && npm run test:chat-package",
     "release": "changeset publish",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
