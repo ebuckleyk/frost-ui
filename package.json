@@ -16,10 +16,6 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
     },
-    "./components/Chart": {
-      "types": "./dist/types/components/Chart/index.d.ts",
-      "import": "./dist/components/Chart/index.mjs"
-    },
     "./components/*": {
       "types": "./dist/types/components/*/index.d.ts",
       "import": "./dist/components/*/index.mjs"
@@ -31,11 +27,7 @@
     "./styles.css": "./dist/styles/frostui.css",
     "./tailwind.css": "./dist/styles/tailwind.css",
     "./utilities.css": "./dist/styles/utilities.css",
-    "./presets/theme": "./dist/styles/theme-preset.mjs",
-    "./components/Chat": {
-      "types": "./dist/types/components/Chat/index.d.ts",
-      "import": "./dist/components/Chat/index.mjs"
-    }
+    "./presets/theme": "./dist/styles/theme-preset.mjs"
   },
   "scripts": {
     "prebuild": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
@@ -45,7 +37,7 @@
     "build:storybook": "storybook build -o docs-build",
     "changeset": "changeset",
     "lint": "eslint ./src --ext .js,.ts,.tsx",
-    "prerelease": "npm run build && npm run lint",
+    "prerelease": "npm run build && npm run lint && npm run test:subpath-exports",
     "release": "changeset publish",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",

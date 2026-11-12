@@ -20,6 +20,9 @@ const manifest = JSON.parse(read('package.json'));
 assert.equal(manifest.peerDependenciesMeta['@assistant-ui/react'].optional, true);
 assert.equal(manifest.devDependencies['@assistant-ui/react'], '0.15.23');
 assert.equal(manifest.peerDependencies['@assistant-ui/react'], '>=0.15.23 <0.16.0');
+// Check the file the Chat subpath actually resolves to through the exports map.
+const chatEntry = fileURLToPath(import.meta.resolve('@ebuckleyk/frost-ui/components/Chat'));
+assert.ok(readFileSync(chatEntry, 'utf8').startsWith("'use client';"), `${chatEntry} lacks 'use client'`);
 assert.ok(read('dist/components/Chat/Chat.mjs').startsWith("'use client';"));
 assert.match(read('dist/components/Chat/Chat.mjs'), /from\s*["']@assistant-ui\/react["']/);
 assert.ok(read('dist/types/components/Chat/index.d.ts').includes('./Chat'));

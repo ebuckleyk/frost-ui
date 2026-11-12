@@ -1,7 +1,7 @@
 // Verifies every `@ebuckleyk/frost-ui/components/*` subpath exports at runtime exactly the values its
 // declarations promise. Run after `npm run build`.
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
@@ -26,14 +26,7 @@ for (const key of Object.getOwnPropertyNames(dom.window)) {
 const components = readdirSync(typesRoot, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
-  .filter((name) => {
-    try {
-      readFileSync(resolve(typesRoot, name, 'index.d.ts'));
-      return true;
-    } catch {
-      return false;
-    }
-  });
+  .filter((name) => existsSync(resolve(typesRoot, name, 'index.d.ts')));
 assert.ok(components.length > 0, 'No component declarations found; run `npm run build` first.');
 
 const declarationFiles = components.map((name) => resolve(typesRoot, name, 'index.d.ts'));
@@ -54,7 +47,8 @@ function declaredValueExports(file) {
     .getExportsOfModule(moduleSymbol)
     .filter((symbol) => {
       const target = symbol.flags & ts.SymbolFlags.Alias ? checker.getAliasedSymbol(symbol) : symbol;
-      return Boolean(target.flags & ts.SymbolFlags.Value);
+      // const enums are inlined by the compiler and never exist at runtime.
+      return Boolean(target.flags & ts.SymbolFlags.Value) && !(target.flags & ts.SymbolFlags.ConstEnum);
     })
     .map((symbol) => symbol.getName())
     .sort();

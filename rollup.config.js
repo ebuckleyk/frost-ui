@@ -1,4 +1,5 @@
 import { existsSync, readdirSync } from 'node:fs';
+import path from 'node:path';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
@@ -15,9 +16,10 @@ import ts from 'typescript';
 import packageJson from './package.json';
 
 // Each component subpath resolves to its own index entry so runtime exports mirror its index.d.ts.
-const componentIndexEntries = readdirSync('src/components', { withFileTypes: true })
-  .filter((entry) => entry.isDirectory() && existsSync(`src/components/${entry.name}/index.ts`))
-  .map((entry) => `src/components/${entry.name}/index.ts`);
+const componentsDir = path.resolve(__dirname, 'src/components');
+const componentIndexEntries = readdirSync(componentsDir, { withFileTypes: true })
+  .map((entry) => entry.isDirectory() && path.join(componentsDir, entry.name, 'index.ts'))
+  .filter((entry) => entry && existsSync(entry));
 
 const peerDependencies = Object.keys(packageJson.peerDependencies || {});
 const isPeerDependency = (id) =>
@@ -49,12 +51,15 @@ const preserveOptInClientDirectives = () => ({
   name: 'preserve-opt-in-client-directives',
   generateBundle(_options, bundle) {
     for (const name of ['Video', 'Audio', 'Chat', 'PhoneInput', 'CurrencyInput', 'CodeBlock', 'Trace']) {
-      const clientChunk = bundle[`components/${name}/${name}.mjs`];
-      if (clientChunk?.type !== 'chunk') {
-        this.error('Expected the dedicated client entry chunk to be emitted.');
-      }
-      if (!clientChunk.code.startsWith("'use client';")) {
-        clientChunk.code = `'use client';\n${clientChunk.code}`;
+      // The subpath entry (index.mjs) carries the directive too, since that is the file consumers resolve.
+      for (const file of [`${name}.mjs`, 'index.mjs']) {
+        const clientChunk = bundle[`components/${name}/${file}`];
+        if (clientChunk?.type !== 'chunk') {
+          this.error(`Expected the client entry chunk components/${name}/${file} to be emitted.`);
+        }
+        if (!clientChunk.code.startsWith("'use client';")) {
+          clientChunk.code = `'use client';\n${clientChunk.code}`;
+        }
       }
     }
   },
