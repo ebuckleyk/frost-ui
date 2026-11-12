@@ -1,3 +1,4 @@
+import { existsSync, readdirSync } from 'node:fs';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
@@ -12,6 +13,11 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import ts from 'typescript';
 
 import packageJson from './package.json';
+
+// Each component subpath resolves to its own index entry so runtime exports mirror its index.d.ts.
+const componentIndexEntries = readdirSync('src/components', { withFileTypes: true })
+  .filter((entry) => entry.isDirectory() && existsSync(`src/components/${entry.name}/index.ts`))
+  .map((entry) => `src/components/${entry.name}/index.ts`);
 
 const peerDependencies = Object.keys(packageJson.peerDependencies || {});
 const isPeerDependency = (id) =>
@@ -63,6 +69,7 @@ const config = {
     'src/components/Video/Video.tsx',
     'src/components/Audio/Audio.tsx',
     'src/components/Chat/Chat.tsx',
+    ...componentIndexEntries,
     'src/styles/index.ts',
     'src/styles/theme-preset.js',
   ],

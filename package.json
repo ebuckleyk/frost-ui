@@ -18,11 +18,11 @@
     },
     "./components/Chart": {
       "types": "./dist/types/components/Chart/index.d.ts",
-      "import": "./dist/components/Chart/Chart.mjs"
+      "import": "./dist/components/Chart/index.mjs"
     },
     "./components/*": {
       "types": "./dist/types/components/*/index.d.ts",
-      "import": "./dist/components/*/*.mjs"
+      "import": "./dist/components/*/index.mjs"
     },
     "./hooks/*": {
       "types": "./dist/types/hooks/*.d.ts",
@@ -34,7 +34,7 @@
     "./presets/theme": "./dist/styles/theme-preset.mjs",
     "./components/Chat": {
       "types": "./dist/types/components/Chat/index.d.ts",
-      "import": "./dist/components/Chat/Chat.mjs"
+      "import": "./dist/components/Chat/index.mjs"
     }
   },
   "scripts": {
@@ -50,7 +50,8 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:typography-types": "tsc -p tsconfig.typography.json",
-    "test:chat-package": "node scripts/check-chat-package.mjs"
+    "test:chat-package": "node scripts/check-chat-package.mjs",
+    "test:subpath-exports": "node scripts/check-subpath-exports.mjs"
   },
   "keywords": [],
   "author": "Emmanuel K Buckley",
