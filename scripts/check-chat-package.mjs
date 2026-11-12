@@ -20,6 +20,17 @@ const manifest = JSON.parse(read('package.json'));
 assert.equal(manifest.peerDependenciesMeta['@assistant-ui/react'].optional, true);
 assert.equal(manifest.devDependencies['@assistant-ui/react'], '0.15.23');
 assert.equal(manifest.peerDependencies['@assistant-ui/react'], '>=0.15.23 <0.16.0');
+// The Chat subpath (resolved through the exports map) is a barrel; every relative module it imports or
+// re-exports must be a client module.
+const chatEntry = fileURLToPath(import.meta.resolve('@ebuckleyk/frost-ui/components/Chat'));
+const chatReexports = [...readFileSync(chatEntry, 'utf8').matchAll(/(?:from|import)\s*["'](\.[^"']+\.mjs)["']/g)].map(
+  (m) => m[1],
+);
+assert.ok(chatReexports.length > 0, `${chatEntry} re-exports nothing`);
+for (const specifier of chatReexports) {
+  const target = resolve(dirname(chatEntry), specifier);
+  assert.ok(readFileSync(target, 'utf8').startsWith("'use client';"), `${target} lacks 'use client'`);
+}
 assert.ok(read('dist/components/Chat/Chat.mjs').startsWith("'use client';"));
 assert.match(read('dist/components/Chat/Chat.mjs'), /from\s*["']@assistant-ui\/react["']/);
 assert.ok(read('dist/types/components/Chat/index.d.ts').includes('./Chat'));

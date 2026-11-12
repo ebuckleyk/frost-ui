@@ -1,0 +1,38 @@
+name: package checks
+
+on:
+  pull_request:
+    branches:
+      - main
+  # No paths filter: every PR reports this status, so it can safely become a required check.
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  package-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: nodejs 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: npm ci
+        run: npm ci
+
+      - name: build
+        run: npm run build
+
+      - name: subpath exports match their types
+        run: npm run test:subpath-exports
+
+      - name: chat package
+        run: npm run test:chat-package
