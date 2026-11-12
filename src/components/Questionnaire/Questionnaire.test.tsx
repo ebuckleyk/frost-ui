@@ -578,3 +578,267 @@ describe('Questionnaire', () => {
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 });
+
+type ParentPolicy = 'accept' | 'reject';
+
+function submittedEntries(onSubmit: ReturnType<typeof vi.fn>) {
+  return onSubmit.mock.calls.map(([entries]) => entries as [string, FormDataEntryValue][]);
+}
+
+function recordSubmit(onSubmit: ReturnType<typeof vi.fn>): React.FormEventHandler<HTMLFormElement> {
+  return (event) => {
+    event.preventDefault();
+    onSubmit([...new FormData(event.currentTarget).entries()]);
+  };
+}
+
+describe('Questionnaire controlled answers', () => {
+  function ControlledChoiceQuestionnaire({
+    multiple = false,
+    onSubmit,
+    policy,
+  }: {
+    multiple?: boolean;
+    onSubmit: ReturnType<typeof vi.fn>;
+    policy: ParentPolicy;
+  }) {
+    const [checked, setChecked] = React.useState(false);
+
+    return (
+      <Questionnaire onSubmit={recordSubmit(onSubmit)}>
+        <QuestionnaireItem multiple={multiple} name="answer" required>
+          <QuestionnaireTitle>Answer</QuestionnaireTitle>
+          <QuestionnaireChoice
+            checked={checked}
+            value="yes"
+            onChange={(event) => {
+              if (policy === 'accept') setChecked(event.target.checked);
+            }}
+          >
+            Yes
+          </QuestionnaireChoice>
+          <QuestionnaireError />
+        </QuestionnaireItem>
+        <QuestionnaireActions>
+          <QuestionnaireSubmit>Submit</QuestionnaireSubmit>
+        </QuestionnaireActions>
+      </Questionnaire>
+    );
+  }
+
+  it.each([
+    ['radio', false],
+    ['checkbox', true],
+  ] as const)('does not accept a %s edit the parent rejects', (role, multiple) => {
+    const onSubmit = vi.fn();
+    render(<ControlledChoiceQuestionnaire multiple={multiple} onSubmit={onSubmit} policy="reject" />);
+
+    fireEvent.click(screen.getByRole(role, { name: 'Yes' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+
+    expect(screen.getByRole(role, { name: 'Yes' })).not.toBeChecked();
+    expect(screen.getByRole('group', { name: 'Answer' })).toHaveAttribute('data-status', 'unanswered');
+    expect(screen.getByRole('alert')).toHaveTextContent('Choose an answer to continue.');
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['radio', false],
+    ['checkbox', true],
+  ] as const)('accepts a %s edit the parent accepts', (role, multiple) => {
+    const onSubmit = vi.fn();
+    render(<ControlledChoiceQuestionnaire multiple={multiple} onSubmit={onSubmit} policy="accept" />);
+
+    fireEvent.click(screen.getByRole(role, { name: 'Yes' }));
+
+    expect(screen.getByRole(role, { name: 'Yes' })).toBeChecked();
+    expect(screen.getByRole('group', { name: 'Answer' })).toHaveAttribute('data-status', 'answered');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(submittedEntries(onSubmit)).toEqual([[['answer', 'yes']]]);
+  });
+
+  it('commits a delayed controlled choice only once the parent applies it', () => {
+    const onSubmit = vi.fn();
+    const onChange = vi.fn();
+
+    function DelayedQuestionnaire({ checked }: { checked: boolean }) {
+      return (
+        <Questionnaire onSubmit={recordSubmit(onSubmit)}>
+          <QuestionnaireItem name="answer" required>
+            <QuestionnaireTitle>Answer</QuestionnaireTitle>
+            <QuestionnaireChoice checked={checked} value="yes" onChange={onChange}>
+              Yes
+            </QuestionnaireChoice>
+          </QuestionnaireItem>
+          <QuestionnaireActions>
+            <QuestionnaireSubmit>Submit</QuestionnaireSubmit>
+          </QuestionnaireActions>
+        </Questionnaire>
+      );
+    }
+
+    const { rerender } = render(<DelayedQuestionnaire checked={false} />);
+    fireEvent.click(screen.getByRole('radio', { name: 'Yes' }));
+
+    expect(onChange).toHaveBeenCalledOnce();
+    expect(screen.getByRole('group', { name: 'Answer' })).toHaveAttribute('data-status', 'unanswered');
+
+    rerender(<DelayedQuestionnaire checked />);
+    expect(screen.getByRole('group', { name: 'Answer' })).toHaveAttribute('data-status', 'answered');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(submittedEntries(onSubmit)).toEqual([[['answer', 'yes']]]);
+  });
+
+  function ControlledInputQuestionnaire({
+    onSubmit,
+    policy,
+  }: {
+    onSubmit: ReturnType<typeof vi.fn>;
+    policy: ParentPolicy;
+  }) {
+    const [value, setValue] = React.useState('');
+
+    return (
+      <Questionnaire onSubmit={recordSubmit(onSubmit)}>
+        <QuestionnaireItem name="first" required>
+          <QuestionnaireTitle>First</QuestionnaireTitle>
+          <QuestionnaireInput
+            aria-label="First answer"
+            value={value}
+            onChange={(event) => {
+              if (policy === 'accept') setValue(event.target.value);
+            }}
+          />
+          <QuestionnaireError />
+        </QuestionnaireItem>
+        <QuestionnaireItem name="second">
+          <QuestionnaireTitle>Second</QuestionnaireTitle>
+          <QuestionnaireInput aria-label="Second answer" />
+        </QuestionnaireItem>
+        <QuestionnaireActions>
+          <QuestionnaireNext />
+          <QuestionnaireSubmit>Submit</QuestionnaireSubmit>
+        </QuestionnaireActions>
+      </Questionnaire>
+    );
+  }
+
+  it('blocks Next when the parent rejects a required text edit', () => {
+    const onSubmit = vi.fn();
+    render(<ControlledInputQuestionnaire onSubmit={onSubmit} policy="reject" />);
+
+    fireEvent.change(screen.getByLabelText('First answer'), { target: { value: 'typed' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+
+    expect(screen.getByLabelText('First answer')).toHaveValue('');
+    expect(screen.getByRole('group', { name: 'First' })).toHaveAttribute('data-status', 'unanswered');
+    expect(screen.getByRole('alert')).toHaveTextContent('Choose an answer to continue.');
+    expect(screen.getByRole('group', { name: 'First' })).toBeVisible();
+  });
+
+  it('advances and submits when the parent accepts a required text edit', () => {
+    const onSubmit = vi.fn();
+    render(<ControlledInputQuestionnaire onSubmit={onSubmit} policy="accept" />);
+
+    fireEvent.change(screen.getByLabelText('First answer'), { target: { value: 'typed' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+    expect(screen.getByRole('group', { name: 'Second' })).toBeVisible();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(submittedEntries(onSubmit)).toEqual([
+      [
+        ['first', 'typed'],
+        ['second', ''],
+      ],
+    ]);
+  });
+});
+
+describe('Questionnaire item prop updates', () => {
+  function DynamicQuestionnaire({
+    disabled,
+    onSubmit,
+    required,
+    withDefinitions,
+  }: {
+    disabled: boolean;
+    onSubmit: ReturnType<typeof vi.fn>;
+    required: boolean;
+    withDefinitions: boolean;
+  }) {
+    return (
+      <Questionnaire items={withDefinitions ? [{ name: 'answer' }] : undefined} onSubmit={recordSubmit(onSubmit)}>
+        <QuestionnaireItem disabled={disabled} name="answer" required={required}>
+          <QuestionnaireTitle>Answer</QuestionnaireTitle>
+          <QuestionnaireInput aria-label="Answer" />
+          <QuestionnaireError />
+        </QuestionnaireItem>
+        <QuestionnaireActions>
+          <QuestionnaireSkip />
+          <QuestionnaireSubmit>Submit</QuestionnaireSubmit>
+        </QuestionnaireActions>
+      </Questionnaire>
+    );
+  }
+
+  it.each([
+    ['without an items list', false],
+    ['with definitions that omit the rules', true],
+  ])('applies required changes after mount %s', (_, withDefinitions) => {
+    const onSubmit = vi.fn();
+    const props = { disabled: false, onSubmit, withDefinitions };
+    const { rerender } = render(<DynamicQuestionnaire {...props} required={false} />);
+    expect(screen.getByRole('button', { name: 'Skip' })).toBeVisible();
+
+    rerender(<DynamicQuestionnaire {...props} required />);
+    expect(screen.getByText('Skip')).not.toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(onSubmit).not.toHaveBeenCalled();
+    expect(screen.getByRole('alert')).toHaveTextContent('Choose an answer to continue.');
+
+    rerender(<DynamicQuestionnaire {...props} required={false} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(onSubmit).toHaveBeenCalledOnce();
+  });
+
+  it.each([
+    ['without an items list', false],
+    ['with definitions that omit the rules', true],
+  ])('applies disabled changes after mount %s', (_, withDefinitions) => {
+    const onSubmit = vi.fn();
+    const props = { onSubmit, required: false, withDefinitions };
+    const { container, rerender } = render(<DynamicQuestionnaire {...props} disabled={false} />);
+    const fieldset = () => container.querySelector('fieldset')!;
+    expect(fieldset().disabled).toBe(false);
+
+    rerender(<DynamicQuestionnaire {...props} disabled />);
+    expect(fieldset().disabled).toBe(true);
+    expect(screen.getByLabelText('Answer')).toBeDisabled();
+
+    rerender(<DynamicQuestionnaire {...props} disabled={false} />);
+    expect(fieldset().disabled).toBe(false);
+    expect(screen.getByLabelText('Answer')).toBeEnabled();
+  });
+
+  it('still lets item definitions override child props', () => {
+    const onSubmit = vi.fn();
+
+    render(
+      <Questionnaire items={[{ name: 'answer', required: true }]} onSubmit={recordSubmit(onSubmit)}>
+        <QuestionnaireItem name="answer" required={false}>
+          <QuestionnaireTitle>Answer</QuestionnaireTitle>
+          <QuestionnaireInput aria-label="Answer" />
+          <QuestionnaireError />
+        </QuestionnaireItem>
+        <QuestionnaireActions>
+          <QuestionnaireSubmit>Submit</QuestionnaireSubmit>
+        </QuestionnaireActions>
+      </Questionnaire>,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
+});

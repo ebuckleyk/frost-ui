@@ -483,9 +483,11 @@ function QuestionnaireItem({
   const skipped = status === 'skipped';
   const invalid = invalidProp || questionnaire.invalidName === name;
 
+  // Register the raw props; `resolvedItems` applies item-definition overrides. Registering resolved values would feed
+  // the previous registration back in and freeze later prop changes.
   React.useLayoutEffect(
-    () => registerItem({ disabled: itemDisabled, element: ref.current, multiple, name, required: itemRequired }),
-    [itemDisabled, itemRequired, multiple, name, registerItem],
+    () => registerItem({ disabled, element: ref.current, multiple, name, required }),
+    [disabled, multiple, name, registerItem, required],
   );
 
   React.useEffect(() => onStatusChange?.(status), [onStatusChange, status]);
@@ -680,7 +682,9 @@ function QuestionnaireChoice({
         type={type}
         value={value}
         onChange={(event) => {
-          item.setChoice(value, event.target.checked);
+          // Controlled choices commit through the `checked` sync effect so a parent that rejects or delays the edit
+          // never leaves the answer map out of step with the rendered control.
+          if (checked === undefined) item.setChoice(value, event.target.checked);
           onChange?.(event);
         }}
       />
@@ -773,7 +777,10 @@ function QuestionnaireInput({
       type={type}
       value={fileInput ? undefined : (value ?? item.answer.input)}
       onChange={(event) => {
-        item.setInput(fileInput && event.target.files?.length ? 'file' : event.target.value);
+        // Controlled inputs commit through the `value` sync effect; tentative edits are only reported to the parent.
+        if (fileInput || controlledValue === undefined) {
+          item.setInput(fileInput && event.target.files?.length ? 'file' : event.target.value);
+        }
         onChange?.(event);
       }}
       {...props}
