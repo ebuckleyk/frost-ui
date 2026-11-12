@@ -34,6 +34,12 @@ type SidebarContextProps = {
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
 
+const EDITABLE_TARGET_SELECTOR = 'input, textarea, select, [contenteditable]:not([contenteditable="false"])';
+
+function isEditableTarget(target: EventTarget | null) {
+  return target instanceof Element && target.closest(EDITABLE_TARGET_SELECTOR) !== null;
+}
+
 function useSidebar() {
   const context = React.useContext(SidebarContext);
   if (!context) {
@@ -60,23 +66,33 @@ function SidebarProvider({
   const [openMobile, setOpenMobile] = React.useState(false);
 
   // This is the internal state of the sidebar.
-  // We use openProp and setOpenProp for control from outside the component.
+  // The sidebar is controlled only when an `open` prop is supplied. `onOpenChange`
+  // on its own observes changes to the internal state without taking ownership of it.
+  const isControlled = openProp !== undefined;
   const [_open, _setOpen] = React.useState(defaultOpen);
-  const open = openProp ?? _open;
+  const open = isControlled ? openProp : _open;
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === 'function' ? value(open) : value;
-      if (setOpenProp) {
-        setOpenProp(openState);
-      } else {
+      if (!isControlled) {
         _setOpen(openState);
       }
-
-      // This sets the cookie to keep the sidebar state.
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+      setOpenProp?.(openState);
     },
-    [setOpenProp, open],
+    [isControlled, setOpenProp, open],
   );
+
+  // Persist the state the sidebar actually shows. A controlled parent may reject a
+  // requested change, so the cookie follows the resolved `open` value rather than the
+  // requested one. The initial value is not written, matching the previous behavior.
+  const hasMountedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+    document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+  }, [open]);
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
@@ -86,6 +102,11 @@ function SidebarProvider({
   // Adds a keyboard shortcut to toggle the sidebar.
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      // A focused control that already handled the event (or owns typing, such as a
+      // rich-text editor using Ctrl/Meta+B for bold) keeps the shortcut for itself.
+      if (event.defaultPrevented || isEditableTarget(event.target)) {
+        return;
+      }
       if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
         toggleSidebar();
