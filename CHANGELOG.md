@@ -1,5 +1,11 @@
 # @ebuckleyk/frost-ui
 
+## 1.37.1
+
+### Patch Changes
+
+- b2fe0f2: Make each `components/*` subpath's runtime entry match its type declarations. `components/Sonner` now exports `toast`, and `components/RichText` now exports `RichTextRenderer` and the RichText utility helpers, so consumers no longer need the root entry for them.
+
 ## 1.37.0
 
 ### Minor Changes
