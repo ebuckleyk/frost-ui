@@ -4,15 +4,7 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'src/**'
-      - 'scripts/**'
-      - 'rollup.config.js'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig*.json'
-      - 'tailwind.config.js'
-      - '.github/workflows/package-checks.yml'
+  # No paths filter: every PR reports this status, so it can safely become a required check.
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
